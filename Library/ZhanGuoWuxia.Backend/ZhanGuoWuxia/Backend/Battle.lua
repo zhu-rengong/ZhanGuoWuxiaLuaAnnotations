@@ -46,7 +46,6 @@ function CS.ZhanGuoWuxia.Backend.Battle.AICardDecision:FilterBySkill(cards) end
 
 ---@class ZhanGuoWuxia.Backend.Battle.RoleCardGroup: System.Object, { [System.Int32]: ZhanGuoWuxia.Backend.Battle.RoleCardData }
 ---@field Length System.Int32
----@field Item ZhanGuoWuxia.Backend.Battle.RoleCardData
 ---@field ActiveCards userdata
 ---@field private m_Cards ZhanGuoWuxia.Backend.Battle.RoleCardData[]
 CS.ZhanGuoWuxia.Backend.Battle.RoleCardGroup = {}
@@ -185,7 +184,6 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleEntity(battleField) end
 
 ---@class ZhanGuoWuxia.Backend.Battle.BattleArgument: System.Object, System.IDisposable, { [System.String]: System.Object }
 ---@field Args { [System.String]: System.Object }
----@field Item System.Object
 ---@field private m_Args { [System.String]: System.Object }
 CS.ZhanGuoWuxia.Backend.Battle.BattleArgument = {}
 

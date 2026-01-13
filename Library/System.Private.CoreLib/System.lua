@@ -1080,7 +1080,6 @@ function CS.System.Object:GetHashCode() end
 function CS.System.Object() end
 
 ---@class System.String: System.Object, System.IComparable, System.Collections.IEnumerable, System.IConvertible, System.ICloneable, string, { [System.Int32]: System.Char }
----@field Chars System.Char
 ---@field Length System.Int32
 ---@field private _stringLength System.Int32
 ---@field private _firstChar System.Char

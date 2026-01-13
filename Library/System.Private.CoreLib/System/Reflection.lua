@@ -1546,7 +1546,6 @@ function CS.System.Reflection.ParameterInfo:ToString() end
 function CS.System.Reflection.ParameterInfo() end
 
 ---@class System.Reflection.ParameterModifier: System.ValueType, { [System.Int32]: System.Boolean }
----@field Item System.Boolean
 ---@field package IsByRefArray System.Boolean[]
 ---@field private _byRef System.Boolean[]
 CS.System.Reflection.ParameterModifier = {}

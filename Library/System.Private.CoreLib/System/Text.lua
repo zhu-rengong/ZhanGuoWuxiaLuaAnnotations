@@ -6,7 +6,6 @@
 ---@field Capacity System.Int32
 ---@field MaxCapacity System.Int32
 ---@field Length System.Int32
----@field Chars System.Char
 ---@field private RemainingCurrentChunk userdata
 ---@field package m_ChunkChars System.Char[]
 ---@field package m_ChunkPrevious System.Text.StringBuilder

@@ -4266,7 +4266,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TalentEffectBase(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AchievementBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.AchievementBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.AchievementBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AchievementBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.AchievementBean[]
@@ -4317,7 +4316,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ActionBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.ActionBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.ActionBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ActionBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.ActionBean[]
@@ -4368,7 +4366,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAction(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.AffixBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.AffixBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.AffixBean[]
@@ -4419,7 +4416,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAffix(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean[]
@@ -4470,7 +4466,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AreaBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.AreaBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.AreaBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AreaBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.AreaBean[]
@@ -4521,7 +4516,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbArea(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.AttrBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.AttrBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.AttrBean[]
@@ -4572,7 +4566,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAttr(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.AttrTemplateBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.AttrTemplateBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.AttrTemplateBean[]
@@ -4623,7 +4616,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.BattleBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.BattleBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.BattleBean[]
@@ -4674,7 +4666,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBattle(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.BattleTriggerBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.BattleTriggerBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.BattleTriggerBean[]
@@ -4725,7 +4716,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BigEventBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.BigEventBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.BigEventBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BigEventBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.BigEventBean[]
@@ -4776,7 +4766,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BuffBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.BuffBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.BuffBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BuffBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.BuffBean[]
@@ -4827,7 +4816,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBuff(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BuildingBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.BuildingBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.BuildingBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BuildingBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.BuildingBean[]
@@ -4878,7 +4866,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.DungeonBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.DungeonBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.DungeonBean[]
@@ -4929,7 +4916,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.DungeonEventBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.DungeonEventBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.DungeonEventBean[]
@@ -4980,7 +4966,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.DungeonTaskBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.DungeonTaskBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.DungeonTaskBean[]
@@ -5031,7 +5016,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.GalleryBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.GalleryBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.GalleryBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.GalleryBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.GalleryBean[]
@@ -5082,7 +5066,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbGallery(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.ItemBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.ItemBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.ItemBean[]
@@ -5133,7 +5116,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbItem(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.ItemAffixBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.ItemAffixBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.ItemAffixBean[]
@@ -5184,7 +5166,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.LootPoolBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.LootPoolBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.LootPoolBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.LootPoolBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.LootPoolBean[]
@@ -5235,7 +5216,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.MenpaiBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.MenpaiBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.MenpaiBean[]
@@ -5286,7 +5266,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.ModelBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.ModelBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.ModelBean[]
@@ -5337,7 +5316,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbModel(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.ModelComponentBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.ModelComponentBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.ModelComponentBean[]
@@ -5388,7 +5366,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.PermanentResourceBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.PermanentResourceBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.PermanentResourceBean[]
@@ -5439,7 +5416,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RestoreBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.RestoreBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.RestoreBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RestoreBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.RestoreBean[]
@@ -5490,7 +5466,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRestore(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.RoleBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.RoleBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.RoleBean[]
@@ -5541,7 +5516,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRole(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleClassBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.RoleClassBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.RoleClassBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleClassBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.RoleClassBean[]
@@ -5592,7 +5566,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean[]
@@ -5643,7 +5616,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.NameBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.NameBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.NameBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.NameBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.NameBean[]
@@ -5694,7 +5666,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.PicBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.PicBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.PicBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.PicBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.PicBean[]
@@ -5745,7 +5716,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.RoleTalentBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.RoleTalentBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.RoleTalentBean[]
@@ -5796,7 +5766,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean[]
@@ -5847,7 +5816,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ScenarioBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.ScenarioBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.ScenarioBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ScenarioBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.ScenarioBean[]
@@ -5898,7 +5866,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbScenario(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.ShopBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.ShopBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.ShopBean[]
@@ -5949,7 +5916,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbShop(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopItemBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.ShopItemBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.ShopItemBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopItemBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.ShopItemBean[]
@@ -6000,7 +5966,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.SkillBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.SkillBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.SkillBean[]
@@ -6051,7 +6016,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbSkill(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.SkillFormBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.SkillFormBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.SkillFormBean[]
@@ -6102,7 +6066,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean[]
@@ -6153,7 +6116,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.TutorialBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.TutorialBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.TutorialBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.TutorialBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.TutorialBean[]
@@ -6204,7 +6166,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial(_json) end
 ---@field BeanCount System.Int32
 ---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.VFXBean }
 ---@field DataList ZhanGuoWuxia.Backend.Beans.VFXBean[]
----@field Item ZhanGuoWuxia.Backend.Beans.VFXBean
 ---@field BeanType System.Type
 ---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.VFXBean }
 ---@field private _dataList ZhanGuoWuxia.Backend.Beans.VFXBean[]

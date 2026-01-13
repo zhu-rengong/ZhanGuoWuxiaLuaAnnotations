@@ -423,8 +423,6 @@ function CS.XLua.LuaFunction:ToString() end
 function CS.XLua.LuaFunction(reference, luaenv) end
 
 ---@class XLua.LuaTable: XLua.LuaBase, System.IDisposable, { [System.String]: System.Object }, { [System.Object]: System.Object }
----@field Item System.Object
----@field Item System.Object
 ---@field Length System.Int32
 CS.XLua.LuaTable = {}
 
@@ -865,7 +863,6 @@ function CS.XLua.ObjectCasters:GetCaster(type) end
 function CS.XLua.ObjectCasters(translator) end
 
 ---@class XLua.ObjectPool: System.Object, { [System.Int32]: System.Object }
----@field Item System.Object
 ---@field private list XLua.ObjectPool.Slot[]
 ---@field private freelist System.Int32
 ---@field private count System.Int32

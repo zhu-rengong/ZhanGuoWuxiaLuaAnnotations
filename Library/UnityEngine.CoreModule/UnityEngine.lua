@@ -86,7 +86,6 @@ function CS.UnityEngine.Keyframe(time, value) end
 
 ---@class UnityEngine.AnimationCurve: System.Object, { [System.Int32]: UnityEngine.Keyframe }
 ---@field keys UnityEngine.Keyframe[]
----@field Item UnityEngine.Keyframe
 ---@field length System.Int32
 ---@field preWrapMode UnityEngine.WrapMode
 ---@field postWrapMode UnityEngine.WrapMode
@@ -5075,7 +5074,6 @@ function CS.UnityEngine.Texture2DArray(width, height, depth, format, flags) end
 ---@field linear UnityEngine.Color
 ---@field gamma UnityEngine.Color
 ---@field maxColorComponent System.Single
----@field Item System.Single
 ---@field r System.Single
 ---@field g System.Single
 ---@field b System.Single
@@ -5245,7 +5243,6 @@ function CS.UnityEngine.Color.HSVToRGB(H, S, V) end
 function CS.UnityEngine.Color(r, g, b, a) end
 
 ---@class UnityEngine.Color32: System.ValueType, System.IFormattable, { [System.Int32]: System.Byte }
----@field Item System.Byte
 ---@field private rgba System.Int32
 ---@field r System.Byte
 ---@field g System.Byte
@@ -5321,7 +5318,6 @@ function CS.UnityEngine.ColorUtility.ToHtmlStringRGBA(color) end
 function CS.UnityEngine.ColorUtility() end
 
 ---@class UnityEngine.Vector3: System.ValueType, System.IFormattable, { [System.Int32]: System.Single }
----@field Item System.Single
 ---@field normalized UnityEngine.Vector3
 ---@field magnitude System.Single
 ---@field sqrMagnitude System.Single
@@ -5643,7 +5639,6 @@ function CS.UnityEngine.Vector3.RotateTowards_Injected(current, target, maxRadia
 function CS.UnityEngine.Vector3(x, y, z) end
 
 ---@class UnityEngine.Quaternion: System.ValueType, System.IFormattable, { [System.Int32]: System.Single }
----@field Item System.Single
 ---@field identity UnityEngine.Quaternion
 ---@field eulerAngles UnityEngine.Vector3
 ---@field normalized UnityEngine.Quaternion
@@ -6226,7 +6221,6 @@ function CS.UnityEngine.Mathf.CorrelatedColorTemperatureToRGB_Injected(kelvin, r
 function CS.UnityEngine.Mathf() end
 
 ---@class UnityEngine.Vector2: System.ValueType, System.IFormattable, { [System.Int32]: System.Single }
----@field Item System.Single
 ---@field normalized UnityEngine.Vector2
 ---@field magnitude System.Single
 ---@field sqrMagnitude System.Single
@@ -6455,7 +6449,6 @@ function CS.UnityEngine.Vector2.get_negativeInfinity() end
 function CS.UnityEngine.Vector2(x, y) end
 
 ---@class UnityEngine.Vector4: System.ValueType, System.IFormattable, { [System.Int32]: System.Single }
----@field Item System.Single
 ---@field normalized UnityEngine.Vector4
 ---@field magnitude System.Single
 ---@field sqrMagnitude System.Single

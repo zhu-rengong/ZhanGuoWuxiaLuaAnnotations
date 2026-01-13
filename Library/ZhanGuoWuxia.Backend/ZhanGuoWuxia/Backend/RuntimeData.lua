@@ -1137,7 +1137,6 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance() end
 
 ---@class ZhanGuoWuxia.Backend.RuntimeData.BaseIntDictionary: System.ValueType, { [System.Int32]: System.Single }
 ---@field IsNull System.Boolean
----@field Item System.Single
 ---@field FloatDict { [System.Int32]: System.Single }
 ---@operator add(userdata): ZhanGuoWuxia.Backend.RuntimeData.BaseIntDictionary
 ---@operator add(ZhanGuoWuxia.Backend.RuntimeData.BaseIntDictionary): ZhanGuoWuxia.Backend.RuntimeData.BaseIntDictionary
@@ -1189,7 +1188,6 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.BaseIntDictionary(floatDict) end
 ---@class ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary: System.ValueType, { [System.String]: System.Single }
 ---@field IsNull System.Boolean
 ---@field HasValue System.Boolean
----@field Item System.Single
 ---@field FloatDict { [System.String]: System.Single }
 ---@field Empty ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
 ---@operator add(userdata): ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
