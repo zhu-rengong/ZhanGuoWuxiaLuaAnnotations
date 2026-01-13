@@ -373,15 +373,31 @@ CS.ZhanGuoWuxia.Helpers.BgmSnapShotLayer = {
 
 ---@class ZhanGuoWuxia.Helpers.BgmSwitchManager: userdata
 ---@field protected LuaVM ZhanGuoWuxia.Backend.Lua.LuaManager
+---@field Instance ZhanGuoWuxia.Helpers.BgmSwitchManager
+---@field useGUILayout System.Boolean
+---@field enabled System.Boolean
+---@field isActiveAndEnabled System.Boolean
+---@field transform UnityEngine.Transform
+---@field gameObject UnityEngine.GameObject
+---@field tag System.String
+---@field name System.String
+---@field hideFlags UnityEngine.HideFlags
 ---@field private m_SnappedBgm userdata
+---@field private m_CachedPtr System.IntPtr
+---@field package OffsetOfInstanceIDInCPlusPlusObject System.Int32
+---@field private objectIsNullMessage System.String
+---@field private cloneDestroyedMessage System.String
 CS.ZhanGuoWuxia.Helpers.BgmSwitchManager = {}
 
 ---@protected
 ---@return ZhanGuoWuxia.Backend.Lua.LuaManager
 function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:get_LuaVM() end
 
+---@overload fun(self: self)
+---@overload fun(self: self)
 function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:Init() end
 
+---@overload fun(self: self)
 function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:Dispose() end
 
 ---@param layer ZhanGuoWuxia.Helpers.BgmSnapShotLayer
@@ -419,6 +435,453 @@ function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:OnEnterBattle(battleField) end
 ---@private
 ---@param battleField ZhanGuoWuxia.Backend.Battle.BattleField
 function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:OnExitBattle(battleField) end
+
+---@overload fun(self: self, methodName: System.String): System.Boolean
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:IsInvoking() end
+
+---@overload fun(self: self, methodName: System.String)
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:CancelInvoke() end
+
+---@param methodName System.String
+---@param time System.Single
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:Invoke(methodName, time) end
+
+---@param methodName System.String
+---@param time System.Single
+---@param repeatRate System.Single
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:InvokeRepeating(methodName, time, repeatRate) end
+
+---@overload fun(self: self, methodName: System.String, value: System.Object): UnityEngine.Coroutine
+---@overload fun(self: self, routine: System.Collections.IEnumerator): UnityEngine.Coroutine
+---@param methodName System.String
+---@return UnityEngine.Coroutine
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:StartCoroutine(methodName) end
+
+---@param routine System.Collections.IEnumerator
+---@return UnityEngine.Coroutine
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:StartCoroutine_Auto(routine) end
+
+---@overload fun(self: self, routine: UnityEngine.Coroutine)
+---@overload fun(self: self, methodName: System.String)
+---@param routine System.Collections.IEnumerator
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:StopCoroutine(routine) end
+
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:StopAllCoroutines() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:get_useGUILayout() end
+
+---@param value System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:set_useGUILayout(value) end
+
+---@param message System.Object
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.print(message) end
+
+---@private
+---@param self UnityEngine.MonoBehaviour
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.Internal_CancelInvokeAll(self) end
+
+---@private
+---@param self UnityEngine.MonoBehaviour
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.Internal_IsInvokingAll(self) end
+
+---@private
+---@param self UnityEngine.MonoBehaviour
+---@param methodName System.String
+---@param time System.Single
+---@param repeatRate System.Single
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.InvokeDelayed(self, methodName, time, repeatRate) end
+
+---@private
+---@param self UnityEngine.MonoBehaviour
+---@param methodName System.String
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.CancelInvoke(self, methodName) end
+
+---@private
+---@param self UnityEngine.MonoBehaviour
+---@param methodName System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.IsInvoking(self, methodName) end
+
+---@private
+---@param obj UnityEngine.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.IsObjectMonoBehaviour(obj) end
+
+---@private
+---@param methodName System.String
+---@param value System.Object
+---@return UnityEngine.Coroutine
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:StartCoroutineManaged(methodName, value) end
+
+---@private
+---@param enumerator System.Collections.IEnumerator
+---@return UnityEngine.Coroutine
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:StartCoroutineManaged2(enumerator) end
+
+---@private
+---@param routine UnityEngine.Coroutine
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:StopCoroutineManaged(routine) end
+
+---@private
+---@param routine System.Collections.IEnumerator
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:StopCoroutineFromEnumeratorManaged(routine) end
+
+---@package
+---@return System.String
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:GetScriptClassName() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:get_enabled() end
+
+---@param value System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:set_enabled(value) end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:get_isActiveAndEnabled() end
+
+---@return UnityEngine.Transform
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:get_transform() end
+
+---@return UnityEngine.GameObject
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:get_gameObject() end
+
+---@overload fun(self: self, type: System.String): UnityEngine.Component
+---@param type System.Type
+---@return UnityEngine.Component
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:GetComponent(type) end
+
+---@package
+---@param type System.Type
+---@param oneFurtherThanResultValue System.IntPtr
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:GetComponentFastPath(type, oneFurtherThanResultValue) end
+
+---@param type System.Type
+---@param component UnityEngine.Component
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:TryGetComponent(type, component) end
+
+---@overload fun(self: self, t: System.Type): UnityEngine.Component
+---@param t System.Type
+---@param includeInactive System.Boolean
+---@return UnityEngine.Component
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:GetComponentInChildren(t, includeInactive) end
+
+---@overload fun(self: self, t: System.Type): UnityEngine.Component[]
+---@param t System.Type
+---@param includeInactive System.Boolean
+---@return UnityEngine.Component[]
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:GetComponentsInChildren(t, includeInactive) end
+
+---@overload fun(self: self, t: System.Type): UnityEngine.Component
+---@param t System.Type
+---@param includeInactive System.Boolean
+---@return UnityEngine.Component
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:GetComponentInParent(t, includeInactive) end
+
+---@overload fun(self: self, t: System.Type): UnityEngine.Component[]
+---@param t System.Type
+---@param includeInactive System.Boolean
+---@return UnityEngine.Component[]
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:GetComponentsInParent(t, includeInactive) end
+
+---@overload fun(self: self, type: System.Type, results: UnityEngine.Component[])
+---@param type System.Type
+---@return UnityEngine.Component[]
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:GetComponents(type) end
+
+---@private
+---@param searchType System.Type
+---@param resultList System.Object
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:GetComponentsForListInternal(searchType, resultList) end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:get_tag() end
+
+---@param value System.String
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:set_tag(value) end
+
+---@param tag System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:CompareTag(tag) end
+
+---@overload fun(self: self, methodName: System.String, value: System.Object)
+---@overload fun(self: self, methodName: System.String)
+---@overload fun(self: self, methodName: System.String, options: UnityEngine.SendMessageOptions)
+---@param methodName System.String
+---@param value System.Object
+---@param options UnityEngine.SendMessageOptions
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:SendMessageUpwards(methodName, value, options) end
+
+---@overload fun(self: self, methodName: System.String)
+---@overload fun(self: self, methodName: System.String, value: System.Object, options: UnityEngine.SendMessageOptions)
+---@overload fun(self: self, methodName: System.String, options: UnityEngine.SendMessageOptions)
+---@param methodName System.String
+---@param value System.Object
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:SendMessage(methodName, value) end
+
+---@overload fun(self: self, methodName: System.String, parameter: System.Object)
+---@overload fun(self: self, methodName: System.String)
+---@overload fun(self: self, methodName: System.String, options: UnityEngine.SendMessageOptions)
+---@param methodName System.String
+---@param parameter System.Object
+---@param options UnityEngine.SendMessageOptions
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:BroadcastMessage(methodName, parameter, options) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:GetInstanceID() end
+
+---@overload fun(self: self): System.Int32
+---@return System.Int32
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:GetHashCode() end
+
+---@overload fun(self: self, obj: System.Object): System.Boolean
+---@param other System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:Equals(other) end
+
+---@param exists UnityEngine.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.op_Implicit(exists) end
+
+---@private
+---@param lhs UnityEngine.Object
+---@param rhs UnityEngine.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.CompareBaseObjects(lhs, rhs) end
+
+---@private
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:EnsureRunningOnMainThread() end
+
+---@private
+---@param o UnityEngine.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.IsNativeObjectAlive(o) end
+
+---@private
+---@return System.IntPtr
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:GetCachedPtr() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:get_name() end
+
+---@param value System.String
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:set_name(value) end
+
+---@overload fun(original: UnityEngine.Object, position: UnityEngine.Vector3, rotation: UnityEngine.Quaternion, parent: UnityEngine.Transform): UnityEngine.Object
+---@overload fun(original: UnityEngine.Object): UnityEngine.Object
+---@overload fun(original: UnityEngine.Object, parent: UnityEngine.Transform): UnityEngine.Object
+---@overload fun(original: UnityEngine.Object, parent: UnityEngine.Transform, instantiateInWorldSpace: System.Boolean): UnityEngine.Object
+---@param original UnityEngine.Object
+---@param position UnityEngine.Vector3
+---@param rotation UnityEngine.Quaternion
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.Instantiate(original, position, rotation) end
+
+---@overload fun(obj: UnityEngine.Object)
+---@param obj UnityEngine.Object
+---@param t System.Single
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.Destroy(obj, t) end
+
+---@overload fun(obj: UnityEngine.Object)
+---@param obj UnityEngine.Object
+---@param allowDestroyingAssets System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.DestroyImmediate(obj, allowDestroyingAssets) end
+
+---@overload fun(type: System.Type, includeInactive: System.Boolean): UnityEngine.Object[]
+---@param type System.Type
+---@return UnityEngine.Object[]
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.FindObjectsOfType(type) end
+
+---@param target UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.DontDestroyOnLoad(target) end
+
+---@return UnityEngine.HideFlags
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:get_hideFlags() end
+
+---@param value UnityEngine.HideFlags
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:set_hideFlags(value) end
+
+---@overload fun(obj: UnityEngine.Object)
+---@param obj UnityEngine.Object
+---@param t System.Single
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.DestroyObject(obj, t) end
+
+---@param type System.Type
+---@return UnityEngine.Object[]
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.FindSceneObjectsOfType(type) end
+
+---@param type System.Type
+---@return UnityEngine.Object[]
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.FindObjectsOfTypeIncludingAssets(type) end
+
+---@param type System.Type
+---@return UnityEngine.Object[]
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.FindObjectsOfTypeAll(type) end
+
+---@private
+---@param arg System.Object
+---@param message System.String
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.CheckNullArgument(arg, message) end
+
+---@overload fun(type: System.Type, includeInactive: System.Boolean): UnityEngine.Object
+---@param type System.Type
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.FindObjectOfType(type) end
+
+---@overload fun(self: self): System.String
+---@return System.String
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:ToString() end
+
+---@param x UnityEngine.Object
+---@param y UnityEngine.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.op_Equality(x, y) end
+
+---@param x UnityEngine.Object
+---@param y UnityEngine.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.op_Inequality(x, y) end
+
+---@private
+---@return System.Int32
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.GetOffsetOfInstanceIDInCPlusPlusObject() end
+
+---@private
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.CurrentThreadIsMainThread() end
+
+---@private
+---@param data UnityEngine.Object
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.Internal_CloneSingle(data) end
+
+---@private
+---@param data UnityEngine.Object
+---@param parent UnityEngine.Transform
+---@param worldPositionStays System.Boolean
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.Internal_CloneSingleWithParent(data, parent, worldPositionStays) end
+
+---@private
+---@param data UnityEngine.Object
+---@param pos UnityEngine.Vector3
+---@param rot UnityEngine.Quaternion
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.Internal_InstantiateSingle(data, pos, rot) end
+
+---@private
+---@param data UnityEngine.Object
+---@param parent UnityEngine.Transform
+---@param pos UnityEngine.Vector3
+---@param rot UnityEngine.Quaternion
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.Internal_InstantiateSingleWithParent(data, parent, pos, rot) end
+
+---@private
+---@param obj UnityEngine.Object
+---@return System.String
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.ToString(obj) end
+
+---@private
+---@param obj UnityEngine.Object
+---@return System.String
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.GetName(obj) end
+
+---@package
+---@param obj UnityEngine.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.IsPersistent(obj) end
+
+---@private
+---@param obj UnityEngine.Object
+---@param name System.String
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.SetName(obj, name) end
+
+---@package
+---@param instanceID System.Int32
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.DoesObjectWithInstanceIDExist(instanceID) end
+
+---@package
+---@param instanceID System.Int32
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.FindObjectFromInstanceID(instanceID) end
+
+---@package
+---@param instanceID System.Int32
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.ForceLoadFromInstanceID(instanceID) end
+
+---@private
+---@param data UnityEngine.Object
+---@param pos UnityEngine.Vector3
+---@param rot UnityEngine.Quaternion
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.Internal_InstantiateSingle_Injected(data, pos, rot) end
+
+---@private
+---@param data UnityEngine.Object
+---@param parent UnityEngine.Transform
+---@param pos UnityEngine.Vector3
+---@param rot UnityEngine.Quaternion
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.Internal_InstantiateSingleWithParent_Injected(data, parent, pos, rot) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:Finalize() end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.ReferenceEquals(objA, objB) end
+
+---@generic T : UnityEngine.Object
+---@param original T
+---@return T
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.Instantiate(original) end
+
+---@generic T : UnityEngine.Object
+---@param original T
+---@param position UnityEngine.Vector3
+---@param rotation UnityEngine.Quaternion
+---@return T
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.Instantiate(original, position, rotation) end
+
+---@generic T : UnityEngine.Object
+---@param original T
+---@param position UnityEngine.Vector3
+---@param rotation UnityEngine.Quaternion
+---@param parent UnityEngine.Transform
+---@return T
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.Instantiate(original, position, rotation, parent) end
+
+---@generic T : UnityEngine.Object
+---@param original T
+---@param parent UnityEngine.Transform
+---@return T
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.Instantiate(original, parent) end
+
+---@generic T : UnityEngine.Object
+---@param original T
+---@param parent UnityEngine.Transform
+---@param worldPositionStays System.Boolean
+---@return T
+function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager.Instantiate(original, parent, worldPositionStays) end
 
 ---@return ZhanGuoWuxia.Helpers.BgmSwitchManager
 function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager() end
@@ -526,7 +989,9 @@ function CS.ZhanGuoWuxia.Helpers.ImageLoadRequest:Stop() end
 function CS.ZhanGuoWuxia.Helpers.ImageLoadRequest() end
 
 ---@class ZhanGuoWuxia.Helpers.ImageHelper: userdata
+---@field Instance ZhanGuoWuxia.Helpers.ImageHelper
 ---@field private m_AllRequests { [System.Int32]: ZhanGuoWuxia.Helpers.ImageLoadRequest }
+---@field protected _instance ZhanGuoWuxia.Helpers.ImageHelper
 CS.ZhanGuoWuxia.Helpers.ImageHelper = {}
 
 ---@async
@@ -539,6 +1004,42 @@ function CS.ZhanGuoWuxia.Helpers.ImageHelper:LoadAsync(image, loadTask, hideWhen
 ---@private
 ---@param img UnityEngine.UI.MaskableGraphic
 function CS.ZhanGuoWuxia.Helpers.ImageHelper:StopPreviousRequest(img) end
+
+---@return ZhanGuoWuxia.Helpers.ImageHelper
+function CS.ZhanGuoWuxia.Helpers.ImageHelper.get_Instance() end
+
+---@protected
+function CS.ZhanGuoWuxia.Helpers.ImageHelper:OnCreate() end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Helpers.ImageHelper:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Helpers.ImageHelper:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Helpers.ImageHelper:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Helpers.ImageHelper:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.ImageHelper:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.ImageHelper.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.ImageHelper.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Helpers.ImageHelper:GetHashCode() end
 
 ---@return ZhanGuoWuxia.Helpers.ImageHelper
 function CS.ZhanGuoWuxia.Helpers.ImageHelper() end
@@ -984,10 +1485,23 @@ function CS.ZhanGuoWuxia.Helpers.SortHelper.GetRoleSortTextList() end
 ---@field IsSkip System.Boolean
 ---@field IsInSelection System.Boolean
 ---@field IsAuto System.Boolean
+---@field Instance ZhanGuoWuxia.Helpers.StoryManager
+---@field useGUILayout System.Boolean
+---@field enabled System.Boolean
+---@field isActiveAndEnabled System.Boolean
+---@field transform UnityEngine.Transform
+---@field gameObject UnityEngine.GameObject
+---@field tag System.String
+---@field name System.String
+---@field hideFlags UnityEngine.HideFlags
 ---@field private m_SkipInterval System.Single
 ---@field private m_Skip System.Boolean
 ---@field private m_StorySkiper ZhanGuoWuxia.UI.Story.UIStorySkiper
 ---@field private m_PrevTargets ZhanGuoWuxia.UI.Story.ISkippableStory[]
+---@field private m_CachedPtr System.IntPtr
+---@field package OffsetOfInstanceIDInCPlusPlusObject System.Int32
+---@field private objectIsNullMessage System.String
+---@field private cloneDestroyedMessage System.String
 CS.ZhanGuoWuxia.Helpers.StoryManager = {}
 
 ---@return System.Single
@@ -1034,6 +1548,458 @@ function CS.ZhanGuoWuxia.Helpers.StoryManager:OnEnter(target) end
 
 ---@param target ZhanGuoWuxia.UI.Story.ISkippableStory
 function CS.ZhanGuoWuxia.Helpers.StoryManager:OnExit(target) end
+
+---@overload fun(self: self)
+function CS.ZhanGuoWuxia.Helpers.StoryManager:Init() end
+
+function CS.ZhanGuoWuxia.Helpers.StoryManager:Dispose() end
+
+---@overload fun(self: self, methodName: System.String): System.Boolean
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager:IsInvoking() end
+
+---@overload fun(self: self, methodName: System.String)
+function CS.ZhanGuoWuxia.Helpers.StoryManager:CancelInvoke() end
+
+---@param methodName System.String
+---@param time System.Single
+function CS.ZhanGuoWuxia.Helpers.StoryManager:Invoke(methodName, time) end
+
+---@param methodName System.String
+---@param time System.Single
+---@param repeatRate System.Single
+function CS.ZhanGuoWuxia.Helpers.StoryManager:InvokeRepeating(methodName, time, repeatRate) end
+
+---@overload fun(self: self, methodName: System.String, value: System.Object): UnityEngine.Coroutine
+---@overload fun(self: self, routine: System.Collections.IEnumerator): UnityEngine.Coroutine
+---@param methodName System.String
+---@return UnityEngine.Coroutine
+function CS.ZhanGuoWuxia.Helpers.StoryManager:StartCoroutine(methodName) end
+
+---@param routine System.Collections.IEnumerator
+---@return UnityEngine.Coroutine
+function CS.ZhanGuoWuxia.Helpers.StoryManager:StartCoroutine_Auto(routine) end
+
+---@overload fun(self: self, routine: UnityEngine.Coroutine)
+---@overload fun(self: self, methodName: System.String)
+---@param routine System.Collections.IEnumerator
+function CS.ZhanGuoWuxia.Helpers.StoryManager:StopCoroutine(routine) end
+
+function CS.ZhanGuoWuxia.Helpers.StoryManager:StopAllCoroutines() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager:get_useGUILayout() end
+
+---@param value System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager:set_useGUILayout(value) end
+
+---@param message System.Object
+function CS.ZhanGuoWuxia.Helpers.StoryManager.print(message) end
+
+---@private
+---@param self UnityEngine.MonoBehaviour
+function CS.ZhanGuoWuxia.Helpers.StoryManager.Internal_CancelInvokeAll(self) end
+
+---@private
+---@param self UnityEngine.MonoBehaviour
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager.Internal_IsInvokingAll(self) end
+
+---@private
+---@param self UnityEngine.MonoBehaviour
+---@param methodName System.String
+---@param time System.Single
+---@param repeatRate System.Single
+function CS.ZhanGuoWuxia.Helpers.StoryManager.InvokeDelayed(self, methodName, time, repeatRate) end
+
+---@private
+---@param self UnityEngine.MonoBehaviour
+---@param methodName System.String
+function CS.ZhanGuoWuxia.Helpers.StoryManager.CancelInvoke(self, methodName) end
+
+---@private
+---@param self UnityEngine.MonoBehaviour
+---@param methodName System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager.IsInvoking(self, methodName) end
+
+---@private
+---@param obj UnityEngine.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager.IsObjectMonoBehaviour(obj) end
+
+---@private
+---@param methodName System.String
+---@param value System.Object
+---@return UnityEngine.Coroutine
+function CS.ZhanGuoWuxia.Helpers.StoryManager:StartCoroutineManaged(methodName, value) end
+
+---@private
+---@param enumerator System.Collections.IEnumerator
+---@return UnityEngine.Coroutine
+function CS.ZhanGuoWuxia.Helpers.StoryManager:StartCoroutineManaged2(enumerator) end
+
+---@private
+---@param routine UnityEngine.Coroutine
+function CS.ZhanGuoWuxia.Helpers.StoryManager:StopCoroutineManaged(routine) end
+
+---@private
+---@param routine System.Collections.IEnumerator
+function CS.ZhanGuoWuxia.Helpers.StoryManager:StopCoroutineFromEnumeratorManaged(routine) end
+
+---@package
+---@return System.String
+function CS.ZhanGuoWuxia.Helpers.StoryManager:GetScriptClassName() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager:get_enabled() end
+
+---@param value System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager:set_enabled(value) end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager:get_isActiveAndEnabled() end
+
+---@return UnityEngine.Transform
+function CS.ZhanGuoWuxia.Helpers.StoryManager:get_transform() end
+
+---@return UnityEngine.GameObject
+function CS.ZhanGuoWuxia.Helpers.StoryManager:get_gameObject() end
+
+---@overload fun(self: self, type: System.String): UnityEngine.Component
+---@param type System.Type
+---@return UnityEngine.Component
+function CS.ZhanGuoWuxia.Helpers.StoryManager:GetComponent(type) end
+
+---@package
+---@param type System.Type
+---@param oneFurtherThanResultValue System.IntPtr
+function CS.ZhanGuoWuxia.Helpers.StoryManager:GetComponentFastPath(type, oneFurtherThanResultValue) end
+
+---@param type System.Type
+---@param component UnityEngine.Component
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager:TryGetComponent(type, component) end
+
+---@overload fun(self: self, t: System.Type): UnityEngine.Component
+---@param t System.Type
+---@param includeInactive System.Boolean
+---@return UnityEngine.Component
+function CS.ZhanGuoWuxia.Helpers.StoryManager:GetComponentInChildren(t, includeInactive) end
+
+---@overload fun(self: self, t: System.Type): UnityEngine.Component[]
+---@param t System.Type
+---@param includeInactive System.Boolean
+---@return UnityEngine.Component[]
+function CS.ZhanGuoWuxia.Helpers.StoryManager:GetComponentsInChildren(t, includeInactive) end
+
+---@overload fun(self: self, t: System.Type): UnityEngine.Component
+---@param t System.Type
+---@param includeInactive System.Boolean
+---@return UnityEngine.Component
+function CS.ZhanGuoWuxia.Helpers.StoryManager:GetComponentInParent(t, includeInactive) end
+
+---@overload fun(self: self, t: System.Type): UnityEngine.Component[]
+---@param t System.Type
+---@param includeInactive System.Boolean
+---@return UnityEngine.Component[]
+function CS.ZhanGuoWuxia.Helpers.StoryManager:GetComponentsInParent(t, includeInactive) end
+
+---@overload fun(self: self, type: System.Type, results: UnityEngine.Component[])
+---@param type System.Type
+---@return UnityEngine.Component[]
+function CS.ZhanGuoWuxia.Helpers.StoryManager:GetComponents(type) end
+
+---@private
+---@param searchType System.Type
+---@param resultList System.Object
+function CS.ZhanGuoWuxia.Helpers.StoryManager:GetComponentsForListInternal(searchType, resultList) end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Helpers.StoryManager:get_tag() end
+
+---@param value System.String
+function CS.ZhanGuoWuxia.Helpers.StoryManager:set_tag(value) end
+
+---@param tag System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager:CompareTag(tag) end
+
+---@overload fun(self: self, methodName: System.String, value: System.Object)
+---@overload fun(self: self, methodName: System.String)
+---@overload fun(self: self, methodName: System.String, options: UnityEngine.SendMessageOptions)
+---@param methodName System.String
+---@param value System.Object
+---@param options UnityEngine.SendMessageOptions
+function CS.ZhanGuoWuxia.Helpers.StoryManager:SendMessageUpwards(methodName, value, options) end
+
+---@overload fun(self: self, methodName: System.String)
+---@overload fun(self: self, methodName: System.String, value: System.Object, options: UnityEngine.SendMessageOptions)
+---@overload fun(self: self, methodName: System.String, options: UnityEngine.SendMessageOptions)
+---@param methodName System.String
+---@param value System.Object
+function CS.ZhanGuoWuxia.Helpers.StoryManager:SendMessage(methodName, value) end
+
+---@overload fun(self: self, methodName: System.String, parameter: System.Object)
+---@overload fun(self: self, methodName: System.String)
+---@overload fun(self: self, methodName: System.String, options: UnityEngine.SendMessageOptions)
+---@param methodName System.String
+---@param parameter System.Object
+---@param options UnityEngine.SendMessageOptions
+function CS.ZhanGuoWuxia.Helpers.StoryManager:BroadcastMessage(methodName, parameter, options) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Helpers.StoryManager:GetInstanceID() end
+
+---@overload fun(self: self): System.Int32
+---@return System.Int32
+function CS.ZhanGuoWuxia.Helpers.StoryManager:GetHashCode() end
+
+---@overload fun(self: self, obj: System.Object): System.Boolean
+---@param other System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager:Equals(other) end
+
+---@param exists UnityEngine.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager.op_Implicit(exists) end
+
+---@private
+---@param lhs UnityEngine.Object
+---@param rhs UnityEngine.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager.CompareBaseObjects(lhs, rhs) end
+
+---@private
+function CS.ZhanGuoWuxia.Helpers.StoryManager:EnsureRunningOnMainThread() end
+
+---@private
+---@param o UnityEngine.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager.IsNativeObjectAlive(o) end
+
+---@private
+---@return System.IntPtr
+function CS.ZhanGuoWuxia.Helpers.StoryManager:GetCachedPtr() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Helpers.StoryManager:get_name() end
+
+---@param value System.String
+function CS.ZhanGuoWuxia.Helpers.StoryManager:set_name(value) end
+
+---@overload fun(original: UnityEngine.Object, position: UnityEngine.Vector3, rotation: UnityEngine.Quaternion, parent: UnityEngine.Transform): UnityEngine.Object
+---@overload fun(original: UnityEngine.Object): UnityEngine.Object
+---@overload fun(original: UnityEngine.Object, parent: UnityEngine.Transform): UnityEngine.Object
+---@overload fun(original: UnityEngine.Object, parent: UnityEngine.Transform, instantiateInWorldSpace: System.Boolean): UnityEngine.Object
+---@param original UnityEngine.Object
+---@param position UnityEngine.Vector3
+---@param rotation UnityEngine.Quaternion
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.StoryManager.Instantiate(original, position, rotation) end
+
+---@overload fun(obj: UnityEngine.Object)
+---@param obj UnityEngine.Object
+---@param t System.Single
+function CS.ZhanGuoWuxia.Helpers.StoryManager.Destroy(obj, t) end
+
+---@overload fun(obj: UnityEngine.Object)
+---@param obj UnityEngine.Object
+---@param allowDestroyingAssets System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager.DestroyImmediate(obj, allowDestroyingAssets) end
+
+---@overload fun(type: System.Type, includeInactive: System.Boolean): UnityEngine.Object[]
+---@param type System.Type
+---@return UnityEngine.Object[]
+function CS.ZhanGuoWuxia.Helpers.StoryManager.FindObjectsOfType(type) end
+
+---@param target UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.StoryManager.DontDestroyOnLoad(target) end
+
+---@return UnityEngine.HideFlags
+function CS.ZhanGuoWuxia.Helpers.StoryManager:get_hideFlags() end
+
+---@param value UnityEngine.HideFlags
+function CS.ZhanGuoWuxia.Helpers.StoryManager:set_hideFlags(value) end
+
+---@overload fun(obj: UnityEngine.Object)
+---@param obj UnityEngine.Object
+---@param t System.Single
+function CS.ZhanGuoWuxia.Helpers.StoryManager.DestroyObject(obj, t) end
+
+---@param type System.Type
+---@return UnityEngine.Object[]
+function CS.ZhanGuoWuxia.Helpers.StoryManager.FindSceneObjectsOfType(type) end
+
+---@param type System.Type
+---@return UnityEngine.Object[]
+function CS.ZhanGuoWuxia.Helpers.StoryManager.FindObjectsOfTypeIncludingAssets(type) end
+
+---@param type System.Type
+---@return UnityEngine.Object[]
+function CS.ZhanGuoWuxia.Helpers.StoryManager.FindObjectsOfTypeAll(type) end
+
+---@private
+---@param arg System.Object
+---@param message System.String
+function CS.ZhanGuoWuxia.Helpers.StoryManager.CheckNullArgument(arg, message) end
+
+---@overload fun(type: System.Type, includeInactive: System.Boolean): UnityEngine.Object
+---@param type System.Type
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.StoryManager.FindObjectOfType(type) end
+
+---@overload fun(self: self): System.String
+---@return System.String
+function CS.ZhanGuoWuxia.Helpers.StoryManager:ToString() end
+
+---@param x UnityEngine.Object
+---@param y UnityEngine.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager.op_Equality(x, y) end
+
+---@param x UnityEngine.Object
+---@param y UnityEngine.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager.op_Inequality(x, y) end
+
+---@private
+---@return System.Int32
+function CS.ZhanGuoWuxia.Helpers.StoryManager.GetOffsetOfInstanceIDInCPlusPlusObject() end
+
+---@private
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager.CurrentThreadIsMainThread() end
+
+---@private
+---@param data UnityEngine.Object
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.StoryManager.Internal_CloneSingle(data) end
+
+---@private
+---@param data UnityEngine.Object
+---@param parent UnityEngine.Transform
+---@param worldPositionStays System.Boolean
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.StoryManager.Internal_CloneSingleWithParent(data, parent, worldPositionStays) end
+
+---@private
+---@param data UnityEngine.Object
+---@param pos UnityEngine.Vector3
+---@param rot UnityEngine.Quaternion
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.StoryManager.Internal_InstantiateSingle(data, pos, rot) end
+
+---@private
+---@param data UnityEngine.Object
+---@param parent UnityEngine.Transform
+---@param pos UnityEngine.Vector3
+---@param rot UnityEngine.Quaternion
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.StoryManager.Internal_InstantiateSingleWithParent(data, parent, pos, rot) end
+
+---@private
+---@param obj UnityEngine.Object
+---@return System.String
+function CS.ZhanGuoWuxia.Helpers.StoryManager.ToString(obj) end
+
+---@private
+---@param obj UnityEngine.Object
+---@return System.String
+function CS.ZhanGuoWuxia.Helpers.StoryManager.GetName(obj) end
+
+---@package
+---@param obj UnityEngine.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager.IsPersistent(obj) end
+
+---@private
+---@param obj UnityEngine.Object
+---@param name System.String
+function CS.ZhanGuoWuxia.Helpers.StoryManager.SetName(obj, name) end
+
+---@package
+---@param instanceID System.Int32
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager.DoesObjectWithInstanceIDExist(instanceID) end
+
+---@package
+---@param instanceID System.Int32
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.StoryManager.FindObjectFromInstanceID(instanceID) end
+
+---@package
+---@param instanceID System.Int32
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.StoryManager.ForceLoadFromInstanceID(instanceID) end
+
+---@private
+---@param data UnityEngine.Object
+---@param pos UnityEngine.Vector3
+---@param rot UnityEngine.Quaternion
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.StoryManager.Internal_InstantiateSingle_Injected(data, pos, rot) end
+
+---@private
+---@param data UnityEngine.Object
+---@param parent UnityEngine.Transform
+---@param pos UnityEngine.Vector3
+---@param rot UnityEngine.Quaternion
+---@return UnityEngine.Object
+function CS.ZhanGuoWuxia.Helpers.StoryManager.Internal_InstantiateSingleWithParent_Injected(data, parent, pos, rot) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Helpers.StoryManager:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Helpers.StoryManager:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Helpers.StoryManager:Finalize() end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.StoryManager.ReferenceEquals(objA, objB) end
+
+---@generic T : UnityEngine.Object
+---@param original T
+---@return T
+function CS.ZhanGuoWuxia.Helpers.StoryManager.Instantiate(original) end
+
+---@generic T : UnityEngine.Object
+---@param original T
+---@param position UnityEngine.Vector3
+---@param rotation UnityEngine.Quaternion
+---@return T
+function CS.ZhanGuoWuxia.Helpers.StoryManager.Instantiate(original, position, rotation) end
+
+---@generic T : UnityEngine.Object
+---@param original T
+---@param position UnityEngine.Vector3
+---@param rotation UnityEngine.Quaternion
+---@param parent UnityEngine.Transform
+---@return T
+function CS.ZhanGuoWuxia.Helpers.StoryManager.Instantiate(original, position, rotation, parent) end
+
+---@generic T : UnityEngine.Object
+---@param original T
+---@param parent UnityEngine.Transform
+---@return T
+function CS.ZhanGuoWuxia.Helpers.StoryManager.Instantiate(original, parent) end
+
+---@generic T : UnityEngine.Object
+---@param original T
+---@param parent UnityEngine.Transform
+---@param worldPositionStays System.Boolean
+---@return T
+function CS.ZhanGuoWuxia.Helpers.StoryManager.Instantiate(original, parent, worldPositionStays) end
 
 ---@return ZhanGuoWuxia.Helpers.StoryManager
 function CS.ZhanGuoWuxia.Helpers.StoryManager() end

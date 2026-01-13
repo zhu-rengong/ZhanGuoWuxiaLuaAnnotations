@@ -8,7 +8,9 @@
 ---@field CurrentMeta ZhanGuoWuxia.UI.SaveMetaData
 ---@field DialogueRecorder ZhanGuoWuxia.UI.Story.DialogueRecorder
 ---@field TotalAchievementPoint System.Int32
+---@field Instance ZhanGuoWuxia.GameRuntime
 ---@field private m_SaveMetaCache { [System.String]: ZhanGuoWuxia.UI.SaveMetaData }
+---@field protected _instance ZhanGuoWuxia.GameRuntime
 CS.ZhanGuoWuxia.GameRuntime = {}
 
 ---@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
@@ -99,6 +101,42 @@ function CS.ZhanGuoWuxia.GameRuntime:InitLuaEnv() end
 function CS.ZhanGuoWuxia.GameRuntime:ReloadLuaEnv() end
 
 function CS.ZhanGuoWuxia.GameRuntime:ReloadGameData() end
+
+---@return ZhanGuoWuxia.GameRuntime
+function CS.ZhanGuoWuxia.GameRuntime.get_Instance() end
+
+---@protected
+function CS.ZhanGuoWuxia.GameRuntime:OnCreate() end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.GameRuntime:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.GameRuntime:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.GameRuntime:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.GameRuntime:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.GameRuntime:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.GameRuntime.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.GameRuntime.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.GameRuntime:GetHashCode() end
 
 ---@return ZhanGuoWuxia.GameRuntime
 function CS.ZhanGuoWuxia.GameRuntime() end

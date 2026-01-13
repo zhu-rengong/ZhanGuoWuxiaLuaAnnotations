@@ -40,8 +40,15 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixAddResult:get_IsUpgraded() end
 ---@field IsEternal System.Boolean
 ---@field NameWithCount System.String
 ---@field Attrs ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
+---@field Bean ZhanGuoWuxia.Backend.Beans.AffixBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@field IsValid System.Boolean
 ---@field LeftLifeCount System.Int32
 ---@field IsActive System.Boolean
+---@field private _bean ZhanGuoWuxia.Backend.Beans.AffixBean
+---@field InstanceId System.Int32
+---@field BeanId System.String
 CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance = {}
 
 ---@return ZhanGuoWuxia.Backend.Beans.AffixLifeType
@@ -65,6 +72,60 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:get_NameWithCount() e
 ---@return ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:get_Attrs() end
 
+---@return ZhanGuoWuxia.Backend.Beans.AffixBean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:get__db() end
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:get_SaveData() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:get_IsValid() end
+
+---@param newBeanId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:ChangeBeanId(newBeanId) end
+
+---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
+---@param ... System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:OnCreated(creator, ...) end
+
+---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:OnLoaded(save) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:GetHashCode() end
+
 ---@return ZhanGuoWuxia.Backend.RuntimeData.AffixInstance
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance() end
 
@@ -73,6 +134,13 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance() end
 ---@field Name System.String
 ---@field LuaCommandFile System.String
 ---@field Conditions userdata
+---@field Bean ZhanGuoWuxia.Backend.Beans.ActionBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@field IsValid System.Boolean
+---@field private _bean ZhanGuoWuxia.Backend.Beans.ActionBean
+---@field InstanceId System.Int32
+---@field BeanId System.String
 CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance = {}
 
 ---@return System.Int32
@@ -87,9 +155,60 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:get_LuaCommandFile()
 ---@return userdata
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:get_Conditions() end
 
+---@overload fun(self: self, creator: ZhanGuoWuxia.Backend.RuntimeData.ICreator, ...: System.Object)
 ---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
 ---@param ... System.Object
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:OnCreated(creator, ...) end
+
+---@return ZhanGuoWuxia.Backend.Beans.ActionBean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:get__db() end
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:get_SaveData() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:get_IsValid() end
+
+---@param newBeanId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:ChangeBeanId(newBeanId) end
+
+---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:OnLoaded(save) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:GetHashCode() end
 
 ---@return ZhanGuoWuxia.Backend.RuntimeData.ActionInstance
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance() end
@@ -176,10 +295,17 @@ CS.ZhanGuoWuxia.Backend.RuntimeData.JoinDungeonTeamRet = {
 ---@field SuccessCount System.Int32
 ---@field FailCount System.Int32
 ---@field FinishCount System.Int32
+---@field Bean ZhanGuoWuxia.Backend.Beans.DungeonBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@field IsValid System.Boolean
 ---@field private m_ActiveTaskIdCache userdata
 ---@field private m_DungeonProgress { [System.String]: System.Int32 }
 ---@field private m_DungeonResult { [System.String]: System.Boolean }
 ---@field private m_JoinedRoles userdata
+---@field private _bean ZhanGuoWuxia.Backend.Beans.DungeonBean
+---@field InstanceId System.Int32
+---@field BeanId System.String
 CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance = {}
 
 function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:InitTasks() end
@@ -277,12 +403,61 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get_LootPool() end
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get_FinishCount() end
 
+---@overload fun(self: self, creator: ZhanGuoWuxia.Backend.RuntimeData.ICreator, ...: System.Object)
 ---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
 ---@param ... System.Object
 function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:OnCreated(creator, ...) end
 
+---@overload fun(self: self, save: ZhanGuoWuxia.Backend.RuntimeData.GameSave)
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:OnLoaded(save) end
+
+---@return ZhanGuoWuxia.Backend.Beans.DungeonBean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get__db() end
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get_SaveData() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get_IsValid() end
+
+---@param newBeanId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:ChangeBeanId(newBeanId) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:GetHashCode() end
 
 ---@return ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance
 function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance() end
@@ -291,8 +466,15 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance() end
 ---@field QualityLevel ZhanGuoWuxia.Backend.Beans.ItemLevel
 ---@field EnablePrefixName System.Boolean
 ---@field AffixName System.String
+---@field Bean ZhanGuoWuxia.Backend.Beans.ItemAffixBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@field IsValid System.Boolean
 ---@field RuntimeAttrs { [System.String]: System.Single }
 ---@field RuntimeSkills userdata
+---@field private _bean ZhanGuoWuxia.Backend.Beans.ItemAffixBean
+---@field InstanceId System.Int32
+---@field BeanId System.String
 CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance = {}
 
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance:GenerateRuntimeEffects() end
@@ -314,9 +496,60 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance:get_EnablePrefixN
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance:get_AffixName() end
 
+---@overload fun(self: self, creator: ZhanGuoWuxia.Backend.RuntimeData.ICreator, ...: System.Object)
 ---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
 ---@param ... System.Object
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance:OnCreated(creator, ...) end
+
+---@return ZhanGuoWuxia.Backend.Beans.ItemAffixBean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance:get__db() end
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance:get_SaveData() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance:get_IsValid() end
+
+---@param newBeanId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance:ChangeBeanId(newBeanId) end
+
+---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance:OnLoaded(save) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance:GetHashCode() end
 
 ---@return ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance() end
@@ -392,6 +625,10 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.IRoleStatGetter:GetRoleStat(statNam
 ---@field MaxActiveAffixCount System.Int32
 ---@field NoAffixLimit System.Boolean
 ---@field UnlockTalents userdata
+---@field Bean ZhanGuoWuxia.Backend.Beans.RoleBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@field IsValid System.Boolean
 ---@field private RoleFlags { [System.String]: System.String }
 ---@field ItemUseCount { [System.String]: System.UInt32 }
 ---@field private _attrs ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
@@ -408,6 +645,9 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.IRoleStatGetter:GetRoleStat(statNam
 ---@field ImprisonMenpaiId System.Int32
 ---@field private m_UnlockTalents userdata
 ---@field private m_AttrPool ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
+---@field private _bean ZhanGuoWuxia.Backend.Beans.RoleBean
+---@field InstanceId System.Int32
+---@field BeanId System.String
 CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance = {}
 
 ---@param talentId System.String
@@ -503,6 +743,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_ClassName() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_ClassId() end
 
+---@overload fun(self: self): System.Boolean
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_IsValid() end
 
@@ -644,12 +885,58 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_NoAffixLimit() end
 ---@return userdata
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_UnlockTalents() end
 
+---@overload fun(self: self, creator: ZhanGuoWuxia.Backend.RuntimeData.ICreator, ...: System.Object)
 ---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
 ---@param ... System.Object
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:OnCreated(creator, ...) end
 
+---@overload fun(self: self, save: ZhanGuoWuxia.Backend.RuntimeData.GameSave)
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:OnLoaded(save) end
+
+---@return ZhanGuoWuxia.Backend.Beans.RoleBean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get__db() end
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_SaveData() end
+
+---@param newBeanId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:ChangeBeanId(newBeanId) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:GetHashCode() end
 
 ---@overload fun(): ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
 ---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
@@ -665,8 +952,15 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance() end
 ---@field PresetBuildings System.String[]
 ---@field Buildings ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance[]
 ---@field Actions userdata
+---@field Bean ZhanGuoWuxia.Backend.Beans.AreaBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@field IsValid System.Boolean
 ---@field private _actionCache userdata
 ---@field AreaFlags { [System.String]: System.String }
+---@field private _bean ZhanGuoWuxia.Backend.Beans.AreaBean
+---@field InstanceId System.Int32
+---@field BeanId System.String
 CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance = {}
 
 ---@return System.String
@@ -689,12 +983,61 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:GetAvailableActions(sa
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:CountOfImportantActions(save) end
 
+---@overload fun(self: self, creator: ZhanGuoWuxia.Backend.RuntimeData.ICreator, ...: System.Object)
 ---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
 ---@param ... System.Object
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:OnCreated(creator, ...) end
 
+---@overload fun(self: self, save: ZhanGuoWuxia.Backend.RuntimeData.GameSave)
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:OnLoaded(save) end
+
+---@return ZhanGuoWuxia.Backend.Beans.AreaBean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:get__db() end
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:get_SaveData() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:get_IsValid() end
+
+---@param newBeanId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:ChangeBeanId(newBeanId) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:GetHashCode() end
 
 ---@return ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance() end
@@ -719,6 +1062,13 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.BaseSave() end
 ---@field Name System.String
 ---@field Pic System.String
 ---@field Owner System.Int32
+---@field Bean ZhanGuoWuxia.Backend.Beans.BuildingBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@field IsValid System.Boolean
+---@field private _bean ZhanGuoWuxia.Backend.Beans.BuildingBean
+---@field InstanceId System.Int32
+---@field BeanId System.String
 CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance = {}
 
 ---@return System.String
@@ -727,9 +1077,60 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance:get_Name() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance:get_Pic() end
 
+---@overload fun(self: self, creator: ZhanGuoWuxia.Backend.RuntimeData.ICreator, ...: System.Object)
 ---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
 ---@param ... System.Object
 function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance:OnCreated(creator, ...) end
+
+---@return ZhanGuoWuxia.Backend.Beans.BuildingBean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance:get__db() end
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance:get_SaveData() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance:get_IsValid() end
+
+---@param newBeanId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance:ChangeBeanId(newBeanId) end
+
+---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance:OnLoaded(save) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance:GetHashCode() end
 
 ---@return ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance
 function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance() end
@@ -978,6 +1379,13 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ICreator:GenerateInstanceId() end
 ---@field CanUseOrEquip System.Boolean
 ---@field LuaCommandParam { [System.String]: System.Single }
 ---@field Attrs ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
+---@field Bean ZhanGuoWuxia.Backend.Beans.ItemBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@field IsValid System.Boolean
+---@field private _bean ZhanGuoWuxia.Backend.Beans.ItemBean
+---@field InstanceId System.Int32
+---@field BeanId System.String
 CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance = {}
 
 ---@return System.String
@@ -1040,8 +1448,60 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:get_LuaCommandParam() 
 ---@return ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:get_Attrs() end
 
+---@overload fun(self: self): System.Int32
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:GetHashCode() end
+
+---@return ZhanGuoWuxia.Backend.Beans.ItemBean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:get__db() end
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:get_SaveData() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:get_IsValid() end
+
+---@param newBeanId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:ChangeBeanId(newBeanId) end
+
+---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
+---@param ... System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:OnCreated(creator, ...) end
+
+---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:OnLoaded(save) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance.ReferenceEquals(objA, objB) end
 
 ---@return ZhanGuoWuxia.Backend.RuntimeData.ItemInstance
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance() end
@@ -1071,6 +1531,13 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.LearnSkillParam.NewParam(role) end
 ---@field FriendShips { [System.Int32]: System.Int32 }
 ---@field Relations { [System.Int32]: System.Int32 }
 ---@field IsLocked System.Boolean
+---@field Bean ZhanGuoWuxia.Backend.Beans.MenpaiBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@field IsValid System.Boolean
+---@field private _bean ZhanGuoWuxia.Backend.Beans.MenpaiBean
+---@field InstanceId System.Int32
+---@field BeanId System.String
 CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance = {}
 
 ---@return System.String
@@ -1097,12 +1564,61 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:get_IsDestroyed() en
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:get_PresetLeaderId() end
 
+---@overload fun(self: self, creator: ZhanGuoWuxia.Backend.RuntimeData.ICreator, ...: System.Object)
 ---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
 ---@param ... System.Object
 function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:OnCreated(creator, ...) end
 
+---@overload fun(self: self, save: ZhanGuoWuxia.Backend.RuntimeData.GameSave)
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:OnLoaded(save) end
+
+---@return ZhanGuoWuxia.Backend.Beans.MenpaiBean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:get__db() end
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:get_SaveData() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:get_IsValid() end
+
+---@param newBeanId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:ChangeBeanId(newBeanId) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:GetHashCode() end
 
 ---@return ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance() end
@@ -1349,6 +1865,13 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.IRoleCreateModifier:Apply(saveData)
 ---@field PlayerMenpaiId System.String
 ---@field Desc System.String
 ---@field Flags { [System.String]: System.String }
+---@field Bean ZhanGuoWuxia.Backend.Beans.ScenarioBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@field IsValid System.Boolean
+---@field private _bean ZhanGuoWuxia.Backend.Beans.ScenarioBean
+---@field InstanceId System.Int32
+---@field BeanId System.String
 CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance = {}
 
 ---@return System.String
@@ -1365,6 +1888,60 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:get_Desc() end
 
 ---@return userdata
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:get_Flags() end
+
+---@return ZhanGuoWuxia.Backend.Beans.ScenarioBean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:get__db() end
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:get_SaveData() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:get_IsValid() end
+
+---@param newBeanId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:ChangeBeanId(newBeanId) end
+
+---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
+---@param ... System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:OnCreated(creator, ...) end
+
+---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:OnLoaded(save) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:GetHashCode() end
 
 ---@return ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance() end
@@ -1412,8 +1989,15 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ICostumerTradeItem:get_ItemInstance
 ---@field ShopName System.String
 ---@field AvailableShopItems userdata
 ---@field CurrencyId System.String
+---@field Bean ZhanGuoWuxia.Backend.Beans.ShopBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@field IsValid System.Boolean
 ---@field private m_ShopItems ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance[]
 ---@field private m_IsShopReplaced System.Boolean
+---@field private _bean ZhanGuoWuxia.Backend.Beans.ShopBean
+---@field InstanceId System.Int32
+---@field BeanId System.String
 CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance = {}
 
 ---@return System.String
@@ -1434,10 +2018,12 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:GetAvailableItemsAbove
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:get_CurrencyId() end
 
+---@overload fun(self: self, creator: ZhanGuoWuxia.Backend.RuntimeData.ICreator, ...: System.Object)
 ---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
 ---@param ... System.Object
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:OnCreated(creator, ...) end
 
+---@overload fun(self: self, save: ZhanGuoWuxia.Backend.RuntimeData.GameSave)
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:OnLoaded(save) end
 
@@ -1466,6 +2052,53 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:ReplaceShopItems(shopI
 
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:RefreshItems() end
 
+---@return ZhanGuoWuxia.Backend.Beans.ShopBean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:get__db() end
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:get_SaveData() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:get_IsValid() end
+
+---@param newBeanId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:ChangeBeanId(newBeanId) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:GetHashCode() end
+
 ---@return ZhanGuoWuxia.Backend.RuntimeData.ShopInstance
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance() end
 
@@ -1479,6 +2112,13 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance() end
 ---@field IsAvailable System.Boolean
 ---@field ItemType ZhanGuoWuxia.Backend.Beans.ItemType
 ---@field ItemQuality ZhanGuoWuxia.Backend.Beans.ItemLevel
+---@field Bean ZhanGuoWuxia.Backend.Beans.ShopItemBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@field IsValid System.Boolean
+---@field private _bean ZhanGuoWuxia.Backend.Beans.ShopItemBean
+---@field InstanceId System.Int32
+---@field BeanId System.String
 CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance = {}
 
 ---@return System.Int32
@@ -1505,11 +2145,62 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:get_ItemType() end
 ---@return ZhanGuoWuxia.Backend.Beans.ItemLevel
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:get_ItemQuality() end
 
+---@overload fun(self: self, creator: ZhanGuoWuxia.Backend.RuntimeData.ICreator, ...: System.Object)
 ---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
 ---@param ... System.Object
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:OnCreated(creator, ...) end
 
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:ResetRemainCount() end
+
+---@return ZhanGuoWuxia.Backend.Beans.ShopItemBean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:get__db() end
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:get_SaveData() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:get_IsValid() end
+
+---@param newBeanId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:ChangeBeanId(newBeanId) end
+
+---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:OnLoaded(save) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:GetHashCode() end
 
 ---@return ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance() end
@@ -1535,6 +2226,13 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance() end
 ---@field Attrs ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
 ---@field NormalFormId System.String
 ---@field AdvanceForms ZhanGuoWuxia.Backend.Beans.SkillUnlockBean[]
+---@field Bean ZhanGuoWuxia.Backend.Beans.SkillBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@field IsValid System.Boolean
+---@field private _bean ZhanGuoWuxia.Backend.Beans.SkillBean
+---@field InstanceId System.Int32
+---@field BeanId System.String
 CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance = {}
 
 ---@return System.String
@@ -1585,9 +2283,60 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance:get_NormalFormId() en
 ---@return ZhanGuoWuxia.Backend.Beans.SkillUnlockBean[]
 function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance:get_AdvanceForms() end
 
+---@overload fun(self: self, creator: ZhanGuoWuxia.Backend.RuntimeData.ICreator, ...: System.Object)
 ---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
 ---@param ... System.Object
 function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance:OnCreated(creator, ...) end
+
+---@return ZhanGuoWuxia.Backend.Beans.SkillBean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance:get__db() end
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance:get_SaveData() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance:get_IsValid() end
+
+---@param newBeanId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance:ChangeBeanId(newBeanId) end
+
+---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance:OnLoaded(save) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance:GetHashCode() end
 
 ---@return ZhanGuoWuxia.Backend.RuntimeData.SkillInstance
 function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillInstance() end
@@ -1634,7 +2383,14 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.SkillSourceKey(skillSourceType, sou
 ---@field CoolDown System.Int32
 ---@field SkillType ZhanGuoWuxia.Backend.Beans.SkillFormType
 ---@field Attrs { [System.String]: System.Single }
+---@field Bean ZhanGuoWuxia.Backend.Beans.SkillFormBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@field IsValid System.Boolean
 ---@field Level System.Int32
+---@field private _bean ZhanGuoWuxia.Backend.Beans.SkillFormBean
+---@field InstanceId System.Int32
+---@field BeanId System.String
 CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill = {}
 
 ---@return System.String
@@ -1649,12 +2405,63 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:get_CoolDown() end
 ---@return ZhanGuoWuxia.Backend.Beans.SkillFormType
 function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:get_SkillType() end
 
+---@overload fun(self: self, creator: ZhanGuoWuxia.Backend.RuntimeData.ICreator, ...: System.Object)
 ---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
 ---@param ... System.Object
 function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:OnCreated(creator, ...) end
 
 ---@return userdata
 function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:get_Attrs() end
+
+---@return ZhanGuoWuxia.Backend.Beans.SkillFormBean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:get__db() end
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:get_SaveData() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:get_IsValid() end
+
+---@param newBeanId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:ChangeBeanId(newBeanId) end
+
+---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:OnLoaded(save) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:GetHashCode() end
 
 ---@return ZhanGuoWuxia.Backend.RuntimeData.TinySkill
 function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill() end

@@ -333,9 +333,11 @@ function CS.ZhanGuoWuxia.Backend.Difficulty() end
 ---@class ZhanGuoWuxia.Backend.GameCore: userdata
 ---@field protected m_Services { [System.Type]: ZhanGuoWuxia.Backend.IGameService }
 ---@field IsRunTime System.Boolean
+---@field Instance ZhanGuoWuxia.Backend.GameCore
 ---@field private m_IsRuntime System.Boolean
 ---@field protected _internalServices { [System.Type]: ZhanGuoWuxia.Backend.IGameService }
 ---@field private m_UpdatedServices ZhanGuoWuxia.Backend.IGameService[]
+---@field protected _instance ZhanGuoWuxia.Backend.GameCore
 CS.ZhanGuoWuxia.Backend.GameCore = {}
 
 ---@protected
@@ -354,6 +356,42 @@ function CS.ZhanGuoWuxia.Backend.GameCore.UpdateAll() end
 function CS.ZhanGuoWuxia.Backend.GameCore.Dispose() end
 
 function CS.ZhanGuoWuxia.Backend.GameCore.Init() end
+
+---@return ZhanGuoWuxia.Backend.GameCore
+function CS.ZhanGuoWuxia.Backend.GameCore.get_Instance() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.GameCore:OnCreate() end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.GameCore:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.GameCore:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.GameCore:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.GameCore:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.GameCore:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.GameCore.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.GameCore.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.GameCore:GetHashCode() end
 
 ---@return ZhanGuoWuxia.Backend.GameCore
 function CS.ZhanGuoWuxia.Backend.GameCore() end

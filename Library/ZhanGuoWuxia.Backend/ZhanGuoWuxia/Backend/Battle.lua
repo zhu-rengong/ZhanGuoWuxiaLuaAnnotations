@@ -230,12 +230,21 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleArgument() end
 ---@field CanDispel System.Boolean
 ---@field IsVisible System.Boolean
 ---@field RoleState userdata
+---@field AllStats { [System.String]: System.Single }
+---@field BeanId System.String
+---@field Bean ZhanGuoWuxia.Backend.Beans.BuffBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field protected _LuaVM ZhanGuoWuxia.Backend.Lua.LuaManager
+---@field InstanceId System.Int32
 ---@field private m_RegisterEvents userdata
 ---@field private m_LeftRound System.Int32
 ---@field private m_Pile System.Int32
 ---@field private m_CustomData { [System.String]: System.Object }
 ---@field private m_RoleState userdata
 ---@field private KEY_CASTER System.String
+---@field protected m_Stat ZhanGuoWuxia.Backend.Battle.Data.BattleRoleStat
+---@field private _bean ZhanGuoWuxia.Backend.Beans.BuffBean
+---@field protected m_BattleField ZhanGuoWuxia.Backend.Battle.BattleField
 CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance = {}
 
 ---@return userdata
@@ -271,6 +280,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:InitEvents() end
 ---@private
 function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:InitRoleState() end
 
+---@overload fun(self: self, key: System.String, val: System.Single)
 ---@param key System.String
 ---@param val System.Single
 function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:SetStat(key, val) end
@@ -280,6 +290,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:SetStat(key, val) end
 function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:GetStatOfAllPile(key) end
 
 ---@protected
+---@overload fun(self: self)
 function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:InitStat() end
 
 ---@param eventName System.String
@@ -367,6 +378,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:HasFlag(flagType) end
 ---@return userdata
 function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:get_RoleState() end
 
+---@overload fun(self: self): System.String
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:ToString() end
 
@@ -379,6 +391,51 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:Think() end
 ---@overload fun(self: self, eventCallBackName: System.String, battleArg: ZhanGuoWuxia.Backend.Battle.BattleArgument)
 ---@param eventCallBackName System.String
 function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:FireBuffEvent(eventCallBackName) end
+
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:get_AllStats() end
+
+---@param key System.String
+---@return System.Single
+function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:GetStat(key) end
+
+---@return ZhanGuoWuxia.Backend.Beans.BuffBean
+function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:get__db() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Lua.LuaManager
+function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:get__LuaVM() end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:Finalize() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:GetHashCode() end
 
 ---@param _battleField ZhanGuoWuxia.Backend.Battle.BattleField
 ---@param _beanId System.String
@@ -774,10 +831,54 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleSnapShot:OnRecycle() end
 function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleSnapShot() end
 
 ---@class ZhanGuoWuxia.Backend.Battle.SnapShotData_Int: userdata
+---@field Id System.String
+---@field IsChanged System.Boolean
+---@field Value System.Int32
 CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Int = {}
 
+---@overload fun(self: self, value: System.Int32)
 ---@param value System.Int32
 function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Int:SetValueIfChanged(value) end
+
+---@param sheet NPOI.SS.UserModel.ISheet
+---@param stageText System.String
+---@param roleId System.String
+---@param rowNumber System.Int32
+---@param CustomName? userdata
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Int:Write(sheet, stageText, roleId, rowNumber, CustomName) end
+
+---@param value System.Int32
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Int:ResetDefaultValue(value) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Int:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Int:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Int:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Int:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Int:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Int.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Int.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Int:GetHashCode() end
 
 ---@param id System.String
 ---@param value? System.Int32
@@ -786,10 +887,54 @@ function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Int:SetValueIfChanged(value
 function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Int(id, value, isChanged) end
 
 ---@class ZhanGuoWuxia.Backend.Battle.SnapShotData_Float: userdata
+---@field Id System.String
+---@field IsChanged System.Boolean
+---@field Value System.Single
 CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Float = {}
 
+---@overload fun(self: self, value: System.Single)
 ---@param value System.Single
 function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Float:SetValueIfChanged(value) end
+
+---@param sheet NPOI.SS.UserModel.ISheet
+---@param stageText System.String
+---@param roleId System.String
+---@param rowNumber System.Int32
+---@param CustomName? userdata
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Float:Write(sheet, stageText, roleId, rowNumber, CustomName) end
+
+---@param value System.Single
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Float:ResetDefaultValue(value) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Float:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Float:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Float:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Float:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Float:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Float.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Float.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Float:GetHashCode() end
 
 ---@param id System.String
 ---@param value? System.Single
@@ -798,10 +943,54 @@ function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Float:SetValueIfChanged(val
 function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Float(id, value, isChanged) end
 
 ---@class ZhanGuoWuxia.Backend.Battle.SnapShotData_String: userdata
+---@field Id System.String
+---@field IsChanged System.Boolean
+---@field Value System.String
 CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_String = {}
 
+---@overload fun(self: self, value: System.String)
 ---@param value System.String
 function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_String:SetValueIfChanged(value) end
+
+---@param sheet NPOI.SS.UserModel.ISheet
+---@param stageText System.String
+---@param roleId System.String
+---@param rowNumber System.Int32
+---@param CustomName? userdata
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_String:Write(sheet, stageText, roleId, rowNumber, CustomName) end
+
+---@param value System.String
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_String:ResetDefaultValue(value) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_String:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_String:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_String:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_String:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_String:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_String.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_String.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_String:GetHashCode() end
 
 ---@param id System.String
 ---@param value? System.String
@@ -810,10 +999,54 @@ function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_String:SetValueIfChanged(va
 function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_String(id, value, isChanged) end
 
 ---@class ZhanGuoWuxia.Backend.Battle.SnapShotData_Bool: userdata
+---@field Id System.String
+---@field IsChanged System.Boolean
+---@field Value System.Boolean
 CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Bool = {}
 
+---@overload fun(self: self, value: System.Boolean)
 ---@param value System.Boolean
 function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Bool:SetValueIfChanged(value) end
+
+---@param sheet NPOI.SS.UserModel.ISheet
+---@param stageText System.String
+---@param roleId System.String
+---@param rowNumber System.Int32
+---@param CustomName? userdata
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Bool:Write(sheet, stageText, roleId, rowNumber, CustomName) end
+
+---@param value System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Bool:ResetDefaultValue(value) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Bool:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Bool:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Bool:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Bool:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Bool:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Bool.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Bool.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Bool:GetHashCode() end
 
 ---@param id System.String
 ---@param value? System.Boolean
@@ -1601,9 +1834,16 @@ CS.ZhanGuoWuxia.Backend.Battle.SkillCastRet = {
 ---@field MaxContinueCount System.Int32
 ---@field IsOwnerUrf System.Boolean
 ---@field CanUpdateCoolDown System.Boolean
+---@field BeanId System.String
+---@field Bean ZhanGuoWuxia.Backend.Beans.SkillFormBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field protected _LuaVM ZhanGuoWuxia.Backend.Lua.LuaManager
+---@field InstanceId System.Int32
 ---@field private m_CompatibleWeaponTypes userdata
 ---@field private m_HitResultSet ZhanGuoWuxia.Backend.Battle.Data.SkillHitTypeSet
 ---@field private m_RangeResults userdata
+---@field private _bean ZhanGuoWuxia.Backend.Beans.SkillFormBean
+---@field protected m_BattleField ZhanGuoWuxia.Backend.Battle.BattleField
 CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance = {}
 
 ---@return ZhanGuoWuxia.Backend.Battle.BattleRoleInstance
@@ -1798,6 +2038,47 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:get_IsOwnerUrf() end
 
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:get_CanUpdateCoolDown() end
+
+---@return ZhanGuoWuxia.Backend.Beans.SkillFormBean
+function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:get__db() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Lua.LuaManager
+function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:get__LuaVM() end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:GetHashCode() end
 
 ---@overload fun(battleField: ZhanGuoWuxia.Backend.Battle.BattleField, beanId: System.String, ownedRoleId: System.Int32, skillLevel: System.Int32, quality: ZhanGuoWuxia.Backend.Beans.ItemLevel): ZhanGuoWuxia.Backend.Battle.BattleSkillInstance
 ---@param sourceSkill ZhanGuoWuxia.Backend.RuntimeData.SkillInstance
@@ -2265,6 +2546,13 @@ function CS.ZhanGuoWuxia.Backend.Battle.SkillCastPosCache() end
 ---@class ZhanGuoWuxia.Backend.Battle.BattleTriggerInstance: userdata
 ---@field TriggerCount System.Int32
 ---@field private LuaLogicFile System.String
+---@field BeanId System.String
+---@field Bean ZhanGuoWuxia.Backend.Beans.BattleTriggerBean
+---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
+---@field protected _LuaVM ZhanGuoWuxia.Backend.Lua.LuaManager
+---@field InstanceId System.Int32
+---@field private _bean ZhanGuoWuxia.Backend.Beans.BattleTriggerBean
+---@field protected m_BattleField ZhanGuoWuxia.Backend.Battle.BattleField
 CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerInstance = {}
 
 ---@private
@@ -2289,6 +2577,47 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerInstance:CheckConditions(ar
 ---@param eventType ZhanGuoWuxia.Backend.Beans.BattleEventNodeType
 ---@param battle_arg ZhanGuoWuxia.Backend.Battle.BattleArgument
 function CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerInstance:ExecuteLuaLogic(eventType, battle_arg) end
+
+---@return ZhanGuoWuxia.Backend.Beans.BattleTriggerBean
+function CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerInstance:get_Bean() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
+function CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerInstance:get__db() end
+
+---@protected
+---@return ZhanGuoWuxia.Backend.Lua.LuaManager
+function CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerInstance:get__LuaVM() end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerInstance:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerInstance:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerInstance:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerInstance:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerInstance:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerInstance.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerInstance.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerInstance:GetHashCode() end
 
 ---@param _battleField ZhanGuoWuxia.Backend.Battle.BattleField
 ---@param _beanId System.String

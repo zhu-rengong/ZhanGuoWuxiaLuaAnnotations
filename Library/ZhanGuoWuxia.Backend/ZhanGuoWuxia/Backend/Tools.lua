@@ -41,8 +41,13 @@ function CS.ZhanGuoWuxia.Backend.Tools.GenericDictionaryConverter:WriteJson(writ
 function CS.ZhanGuoWuxia.Backend.Tools.GenericDictionaryConverter() end
 
 ---@class ZhanGuoWuxia.Backend.Tools.UnityVector3Converter: userdata
+---@field CanRead System.Boolean
+---@field CanWrite System.Boolean
 CS.ZhanGuoWuxia.Backend.Tools.UnityVector3Converter = {}
 
+---@overload fun(self: self, reader: Newtonsoft.Json.JsonReader, objectType: System.Type, existingValue: System.Object, serializer: Newtonsoft.Json.JsonSerializer): System.Object
+---@overload fun(self: self, reader: Newtonsoft.Json.JsonReader, objectType: System.Type, existingValue: UnityEngine.Vector3, hasExistingValue: System.Boolean, serializer: Newtonsoft.Json.JsonSerializer): UnityEngine.Vector3
+---@overload fun(self: self, reader: Newtonsoft.Json.JsonReader, objectType: System.Type, existingValue: System.Object, serializer: Newtonsoft.Json.JsonSerializer): System.Object
 ---@param reader Newtonsoft.Json.JsonReader
 ---@param objectType System.Type
 ---@param existingValue UnityEngine.Vector3
@@ -51,17 +56,66 @@ CS.ZhanGuoWuxia.Backend.Tools.UnityVector3Converter = {}
 ---@return UnityEngine.Vector3
 function CS.ZhanGuoWuxia.Backend.Tools.UnityVector3Converter:ReadJson(reader, objectType, existingValue, hasExistingValue, serializer) end
 
+---@overload fun(self: self, writer: Newtonsoft.Json.JsonWriter, value: System.Object, serializer: Newtonsoft.Json.JsonSerializer)
+---@overload fun(self: self, writer: Newtonsoft.Json.JsonWriter, value: UnityEngine.Vector3, serializer: Newtonsoft.Json.JsonSerializer)
+---@overload fun(self: self, writer: Newtonsoft.Json.JsonWriter, value: System.Object, serializer: Newtonsoft.Json.JsonSerializer)
 ---@param writer Newtonsoft.Json.JsonWriter
 ---@param value UnityEngine.Vector3
 ---@param serializer Newtonsoft.Json.JsonSerializer
 function CS.ZhanGuoWuxia.Backend.Tools.UnityVector3Converter:WriteJson(writer, value, serializer) end
 
+---@overload fun(self: self, objectType: System.Type): System.Boolean
+---@param objectType System.Type
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector3Converter:CanConvert(objectType) end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector3Converter:get_CanRead() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector3Converter:get_CanWrite() end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector3Converter:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector3Converter:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector3Converter:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector3Converter:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector3Converter:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector3Converter.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector3Converter.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector3Converter:GetHashCode() end
+
 ---@return ZhanGuoWuxia.Backend.Tools.UnityVector3Converter
 function CS.ZhanGuoWuxia.Backend.Tools.UnityVector3Converter() end
 
 ---@class ZhanGuoWuxia.Backend.Tools.UnityVector2Converter: userdata
+---@field CanRead System.Boolean
+---@field CanWrite System.Boolean
 CS.ZhanGuoWuxia.Backend.Tools.UnityVector2Converter = {}
 
+---@overload fun(self: self, reader: Newtonsoft.Json.JsonReader, objectType: System.Type, existingValue: System.Object, serializer: Newtonsoft.Json.JsonSerializer): System.Object
+---@overload fun(self: self, reader: Newtonsoft.Json.JsonReader, objectType: System.Type, existingValue: UnityEngine.Vector2, hasExistingValue: System.Boolean, serializer: Newtonsoft.Json.JsonSerializer): UnityEngine.Vector2
+---@overload fun(self: self, reader: Newtonsoft.Json.JsonReader, objectType: System.Type, existingValue: System.Object, serializer: Newtonsoft.Json.JsonSerializer): System.Object
 ---@param reader Newtonsoft.Json.JsonReader
 ---@param objectType System.Type
 ---@param existingValue UnityEngine.Vector2
@@ -70,17 +124,66 @@ CS.ZhanGuoWuxia.Backend.Tools.UnityVector2Converter = {}
 ---@return UnityEngine.Vector2
 function CS.ZhanGuoWuxia.Backend.Tools.UnityVector2Converter:ReadJson(reader, objectType, existingValue, hasExistingValue, serializer) end
 
+---@overload fun(self: self, writer: Newtonsoft.Json.JsonWriter, value: System.Object, serializer: Newtonsoft.Json.JsonSerializer)
+---@overload fun(self: self, writer: Newtonsoft.Json.JsonWriter, value: UnityEngine.Vector2, serializer: Newtonsoft.Json.JsonSerializer)
+---@overload fun(self: self, writer: Newtonsoft.Json.JsonWriter, value: System.Object, serializer: Newtonsoft.Json.JsonSerializer)
 ---@param writer Newtonsoft.Json.JsonWriter
 ---@param value UnityEngine.Vector2
 ---@param serializer Newtonsoft.Json.JsonSerializer
 function CS.ZhanGuoWuxia.Backend.Tools.UnityVector2Converter:WriteJson(writer, value, serializer) end
 
+---@overload fun(self: self, objectType: System.Type): System.Boolean
+---@param objectType System.Type
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector2Converter:CanConvert(objectType) end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector2Converter:get_CanRead() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector2Converter:get_CanWrite() end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector2Converter:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector2Converter:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector2Converter:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector2Converter:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector2Converter:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector2Converter.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector2Converter.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Tools.UnityVector2Converter:GetHashCode() end
+
 ---@return ZhanGuoWuxia.Backend.Tools.UnityVector2Converter
 function CS.ZhanGuoWuxia.Backend.Tools.UnityVector2Converter() end
 
 ---@class ZhanGuoWuxia.Backend.Tools.UnityColorConverter: userdata
+---@field CanRead System.Boolean
+---@field CanWrite System.Boolean
 CS.ZhanGuoWuxia.Backend.Tools.UnityColorConverter = {}
 
+---@overload fun(self: self, reader: Newtonsoft.Json.JsonReader, objectType: System.Type, existingValue: System.Object, serializer: Newtonsoft.Json.JsonSerializer): System.Object
+---@overload fun(self: self, reader: Newtonsoft.Json.JsonReader, objectType: System.Type, existingValue: UnityEngine.Color, hasExistingValue: System.Boolean, serializer: Newtonsoft.Json.JsonSerializer): UnityEngine.Color
+---@overload fun(self: self, reader: Newtonsoft.Json.JsonReader, objectType: System.Type, existingValue: System.Object, serializer: Newtonsoft.Json.JsonSerializer): System.Object
 ---@param reader Newtonsoft.Json.JsonReader
 ---@param objectType System.Type
 ---@param existingValue UnityEngine.Color
@@ -89,10 +192,54 @@ CS.ZhanGuoWuxia.Backend.Tools.UnityColorConverter = {}
 ---@return UnityEngine.Color
 function CS.ZhanGuoWuxia.Backend.Tools.UnityColorConverter:ReadJson(reader, objectType, existingValue, hasExistingValue, serializer) end
 
+---@overload fun(self: self, writer: Newtonsoft.Json.JsonWriter, value: System.Object, serializer: Newtonsoft.Json.JsonSerializer)
+---@overload fun(self: self, writer: Newtonsoft.Json.JsonWriter, value: UnityEngine.Color, serializer: Newtonsoft.Json.JsonSerializer)
+---@overload fun(self: self, writer: Newtonsoft.Json.JsonWriter, value: System.Object, serializer: Newtonsoft.Json.JsonSerializer)
 ---@param writer Newtonsoft.Json.JsonWriter
 ---@param value UnityEngine.Color
 ---@param serializer Newtonsoft.Json.JsonSerializer
 function CS.ZhanGuoWuxia.Backend.Tools.UnityColorConverter:WriteJson(writer, value, serializer) end
+
+---@overload fun(self: self, objectType: System.Type): System.Boolean
+---@param objectType System.Type
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityColorConverter:CanConvert(objectType) end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityColorConverter:get_CanRead() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityColorConverter:get_CanWrite() end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.Tools.UnityColorConverter:GetType() end
+
+---@protected
+---@return System.Object
+function CS.ZhanGuoWuxia.Backend.Tools.UnityColorConverter:MemberwiseClone() end
+
+---@protected
+function CS.ZhanGuoWuxia.Backend.Tools.UnityColorConverter:Finalize() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.Tools.UnityColorConverter:ToString() end
+
+---@param obj System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityColorConverter:Equals(obj) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityColorConverter.Equals(objA, objB) end
+
+---@param objA System.Object
+---@param objB System.Object
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Tools.UnityColorConverter.ReferenceEquals(objA, objB) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Tools.UnityColorConverter:GetHashCode() end
 
 ---@return ZhanGuoWuxia.Backend.Tools.UnityColorConverter
 function CS.ZhanGuoWuxia.Backend.Tools.UnityColorConverter() end
