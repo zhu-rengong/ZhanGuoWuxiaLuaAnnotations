@@ -1,0 +1,6 @@
+{
+    "Lua.diagnostics.disable": [
+        "undefined-doc-name",
+        "undefined-doc-class"
+    ]
+}
