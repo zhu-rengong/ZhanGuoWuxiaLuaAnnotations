@@ -628,7 +628,6 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.IRoleStatGetter:GetRoleStat(statNam
 ---@field Bean ZhanGuoWuxia.Backend.Beans.RoleBean
 ---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
 ---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@field IsValid System.Boolean
 ---@field private RoleFlags { [System.String]: System.String }
 ---@field ItemUseCount { [System.String]: System.UInt32 }
 ---@field private _attrs ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
