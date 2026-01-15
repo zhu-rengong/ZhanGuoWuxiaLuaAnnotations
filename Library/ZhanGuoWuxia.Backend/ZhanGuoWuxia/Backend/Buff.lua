@@ -13,8 +13,9 @@ CS.ZhanGuoWuxia.Backend.Buff.IBuffContainer = {}
 function CS.ZhanGuoWuxia.Backend.Buff.IBuffContainer:AddBuff(buffId, casterRoleId, pile, duration) end
 
 ---@param buffId System.String
+---@param removerId? System.Int32
 ---@return System.Boolean
-function CS.ZhanGuoWuxia.Backend.Buff.IBuffContainer:RemoveBuff(buffId) end
+function CS.ZhanGuoWuxia.Backend.Buff.IBuffContainer:RemoveBuff(buffId, removerId) end
 
 ---@param buffId System.String
 ---@return System.Boolean

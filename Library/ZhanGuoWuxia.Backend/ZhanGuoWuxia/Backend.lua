@@ -18,6 +18,7 @@
 ---@field MaxRoleFavorPerLevel System.Int32
 ---@field GameSpeedUpFactor System.Single
 ---@field SkillExpStorageFactor System.Single
+---@field MaxLevelSkillStorageFactor System.Single
 ---@field UnCompatibleWeaponDamageScale System.Single
 ---@field RoleCreateBgm System.String
 ---@field MainBgm System.String
@@ -28,8 +29,6 @@
 ---@field MoneyItemId System.String
 ---@field FirePointKey System.String
 ---@field CostFirePointKey System.String
----@field AdditionExpKey System.String
----@field DeathAdditionExpKey System.String
 ---@field CritDamageBaseRate System.Single
 ---@field MaxCritDamageRate System.Single
 ---@field QingGong2CritDamageRate System.Single
@@ -40,6 +39,10 @@
 ---@field BatchRecoverCost System.Int32
 ---@field ShieldDecayRate System.Single
 ---@field GameSuggestionURL System.String
+---@field BaseFateEssence System.Int32
+---@field MaxFateEssence System.Int32
+---@field FateEssenceMoneyCost System.Int32
+---@field FateEssenceCostIncrement System.Int32
 ---@field DefaultDropCardCount System.Int32
 ---@field DefaultContinueActionMaxCount System.Int32
 ---@field DefaultFlawDamageModifier System.Single
@@ -69,8 +72,11 @@
 ---@field AchPointTag System.String
 ---@field ActionPointTag System.String
 ---@field MaxDropCardCount System.Int32
+---@field StarterGearMark System.String
+---@field GlobalAdditionBattleCount System.String
 ---@field MaxFlaw System.Int32
 ---@field DefaultFlawRound System.Int32
+---@field DefaultScenarioId System.String
 CS.ZhanGuoWuxia.Backend.GameConst = {}
 
 ---@private
@@ -120,6 +126,9 @@ function CS.ZhanGuoWuxia.Backend.GameConst.get_GameSpeedUpFactor() end
 function CS.ZhanGuoWuxia.Backend.GameConst.get_SkillExpStorageFactor() end
 
 ---@return System.Single
+function CS.ZhanGuoWuxia.Backend.GameConst.get_MaxLevelSkillStorageFactor() end
+
+---@return System.Single
 function CS.ZhanGuoWuxia.Backend.GameConst.get_UnCompatibleWeaponDamageScale() end
 
 ---@return System.String
@@ -148,12 +157,6 @@ function CS.ZhanGuoWuxia.Backend.GameConst.get_FirePointKey() end
 
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.GameConst.get_CostFirePointKey() end
-
----@return System.String
-function CS.ZhanGuoWuxia.Backend.GameConst.get_AdditionExpKey() end
-
----@return System.String
-function CS.ZhanGuoWuxia.Backend.GameConst.get_DeathAdditionExpKey() end
 
 ---@return System.Single
 function CS.ZhanGuoWuxia.Backend.GameConst.get_CritDamageBaseRate() end
@@ -186,6 +189,18 @@ function CS.ZhanGuoWuxia.Backend.GameConst.get_ShieldDecayRate() end
 function CS.ZhanGuoWuxia.Backend.GameConst.get_GameSuggestionURL() end
 
 ---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.GameConst.get_BaseFateEssence() end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.GameConst.get_MaxFateEssence() end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.GameConst.get_FateEssenceMoneyCost() end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.GameConst.get_FateEssenceCostIncrement() end
+
+---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.GameConst.get_DefaultDropCardCount() end
 
 ---@overload fun(): ZhanGuoWuxia.Backend.GameConst
@@ -201,6 +216,10 @@ function CS.ZhanGuoWuxia.Backend.GameConst() end
 ---@field persistentDataPath System.String
 ---@field NativeArchiveFolder System.String
 ---@field GMOptionFolder System.String
+---@field ModToolFolder System.String
+---@field ModExcelRefDataFolder System.String
+---@field DotnetInstallPath System.String
+---@field ExcelToolFolder System.String
 CS.ZhanGuoWuxia.Backend.AppPath = {}
 
 ---@return System.String
@@ -226,6 +245,18 @@ function CS.ZhanGuoWuxia.Backend.AppPath.get_NativeArchiveFolder() end
 
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.AppPath.get_GMOptionFolder() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.AppPath.get_ModToolFolder() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.AppPath.get_ModExcelRefDataFolder() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.AppPath.get_DotnetInstallPath() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.AppPath.get_ExcelToolFolder() end
 
 
 ---@class ZhanGuoWuxia.Backend.BeanLoadFailException: System.Exception, System.Runtime.Serialization.ISerializable
@@ -623,9 +654,9 @@ function CS.ZhanGuoWuxia.Backend.UserSetting() end
 CS.ZhanGuoWuxia.Backend.GameCompatibility = {
     Compatible = 0,
     MostCompatible = 1,
-    WarningCompatible = 2,
-    UnstableCompatible = 3,
-    UnCompatible = 4,
+    Warning = 2,
+    Bad = 3,
+    UnStable = 4,
     Unknown = 100
 }
 

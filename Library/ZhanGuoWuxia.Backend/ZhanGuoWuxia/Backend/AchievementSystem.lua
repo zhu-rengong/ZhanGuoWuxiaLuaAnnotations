@@ -15,6 +15,7 @@
 ---@field private ProgressKey System.String
 ---@field CurrentProgress System.Int32
 ---@field IsProgressMax System.Boolean
+---@field IsUnlockOnSteam System.Boolean
 ---@field IsUnlock System.Boolean
 ---@field private _db ZhanGuoWuxia.Backend.Beans.IBeanManager
 ---@field private _steamAchievement ZhanGuoWuxia.Backend.AchievementSystem.ISteamAchievement
@@ -59,12 +60,14 @@ function CS.ZhanGuoWuxia.Backend.AchievementSystem.AchievementData:set_CurrentPr
 function CS.ZhanGuoWuxia.Backend.AchievementSystem.AchievementData:get_IsProgressMax() end
 
 ---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.AchievementSystem.AchievementData:get_IsUnlockOnSteam() end
+
+---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.AchievementSystem.AchievementData:get_IsUnlock() end
 
 ---@param plusProgress? System.Int32
 function CS.ZhanGuoWuxia.Backend.AchievementSystem.AchievementData:Trigger(plusProgress) end
 
----@private
 function CS.ZhanGuoWuxia.Backend.AchievementSystem.AchievementData:TriggerSteamAchivementIfNeed() end
 
 ---@private
@@ -138,6 +141,12 @@ function CS.ZhanGuoWuxia.Backend.AchievementSystem.AchievementService:Dispose() 
 
 ---@private
 function CS.ZhanGuoWuxia.Backend.AchievementSystem.AchievementService:LoadAchivements() end
+
+function CS.ZhanGuoWuxia.Backend.AchievementSystem.AchievementService:SyncAchivementsToSteam() end
+
+---@private
+---@param achievementData ZhanGuoWuxia.Backend.AchievementSystem.AchievementData
+function CS.ZhanGuoWuxia.Backend.AchievementSystem.AchievementService:SyncStatusToSteam(achievementData) end
 
 ---@param achId System.String
 ---@return System.Boolean

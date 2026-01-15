@@ -130,8 +130,10 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.ShowCG(cgId, luaResumeCallBack) end
 
 ---@async
 ---@param content System.String
+---@param fadeInTime System.Single
+---@param fadeOutTime System.Single
 ---@param luaResumeCallBack fun()
-function CS.ZhanGuoWuxia.Lua.LuaBridge.ShowStaff(content, luaResumeCallBack) end
+function CS.ZhanGuoWuxia.Lua.LuaBridge.ShowStaff(content, fadeInTime, fadeOutTime, luaResumeCallBack) end
 
 ---@param roleId System.String
 ---@param content System.String
@@ -146,11 +148,10 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.AvgSelect(roleId, content, options, luaRe
 function CS.ZhanGuoWuxia.Lua.LuaBridge.AvgSelect_RoleInstance(role, content, options, luaResumeCallBack) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
----@param GenCount System.Int32
 ---@param itemId System.String
----@param CostCount System.Int32
+---@param price System.Int32
 ---@param luaResumeCallBack userdata
-function CS.ZhanGuoWuxia.Lua.LuaBridge.ShowRoleAffixSelect(role, GenCount, itemId, CostCount, luaResumeCallBack) end
+function CS.ZhanGuoWuxia.Lua.LuaBridge.ShowRoleAffixSelect(role, itemId, price, luaResumeCallBack) end
 
 ---@param itemIds System.String[]
 ---@param luaResumeCallBack userdata
@@ -164,11 +165,39 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.NoticeAsync(message, luaResumeCallBack) e
 ---@param crossFadeTime? System.Single
 function CS.ZhanGuoWuxia.Lua.LuaBridge.PlayBGM(bgmPath, crossFadeTime) end
 
+---@param addPoint System.Int32
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Lua.LuaBridge.AddPlayerActionPoint(addPoint) end
+
 ---@param crossFadeTime? System.Single
 function CS.ZhanGuoWuxia.Lua.LuaBridge.StopBGM(crossFadeTime) end
 
 ---@param sfxPath System.String
 function CS.ZhanGuoWuxia.Lua.LuaBridge.PlaySFX(sfxPath) end
+
+---@param id System.String
+---@param clipPath System.String
+---@param loop? System.Boolean
+---@param volume? System.Single
+---@param is3D? System.Boolean
+---@param fadeInTime? System.Single
+function CS.ZhanGuoWuxia.Lua.LuaBridge.PlayAmbient(id, clipPath, loop, volume, is3D, fadeInTime) end
+
+---@param id System.String
+---@param fadeOutTime? System.Single
+function CS.ZhanGuoWuxia.Lua.LuaBridge.StopAmbient(id, fadeOutTime) end
+
+---@param fadeOutTime? System.Single
+function CS.ZhanGuoWuxia.Lua.LuaBridge.StopAllAmbients(fadeOutTime) end
+
+---@param id System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Lua.LuaBridge.IsPlayingAmbient(id) end
+
+---@param id System.String
+---@param volume System.Single
+---@param fadeTime? System.Single
+function CS.ZhanGuoWuxia.Lua.LuaBridge.SetAmbientVolume(id, volume, fadeTime) end
 
 ---@param assetPath System.String
 ---@param sceneName System.String
@@ -205,7 +234,8 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.ShowGuide(newGuideDatas, luaResumeCallBac
 
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
-function CS.ZhanGuoWuxia.Lua.LuaBridge.BroadcastAreaOwnerChanged(area, menpai) end
+---@param luaResumeCallBack? fun()
+function CS.ZhanGuoWuxia.Lua.LuaBridge.BroadcastAreaOwnerChanged(area, menpai, luaResumeCallBack) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
@@ -245,12 +275,22 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.GetDisciplesOfMenpai(menpai) end
 function CS.ZhanGuoWuxia.Lua.LuaBridge.GetPlayerMenpai() end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+function CS.ZhanGuoWuxia.Lua.LuaBridge.SetPlayerMenpai(menpai) end
+
+---@param from ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param to ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+function CS.ZhanGuoWuxia.Lua.LuaBridge.MoveMenpaiItems(from, to) end
+
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param actionText System.String
 ---@param luaResumeCallBack fun()
 function CS.ZhanGuoWuxia.Lua.LuaBridge.ShowMenpaiAction(menpai, actionText, luaResumeCallBack) end
 
 ---@param luaResumeCallBack fun()
 function CS.ZhanGuoWuxia.Lua.LuaBridge.ShowRoundChangeTip(luaResumeCallBack) end
+
+---@param luaResumeCallBack fun()
+function CS.ZhanGuoWuxia.Lua.LuaBridge.WaitForUnlockAnimations(luaResumeCallBack) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@return System.Boolean
@@ -306,30 +346,42 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.LeaveMenpai(role) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
+---@param notifyMsg System.Boolean
 ---@param luaResumeCallBack userdata
-function CS.ZhanGuoWuxia.Lua.LuaBridge.OccupyBuilding(menpai, area, luaResumeCallBack) end
+function CS.ZhanGuoWuxia.Lua.LuaBridge.OccupyBuilding(menpai, area, notifyMsg, luaResumeCallBack) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
+---@param notifyMsg System.Boolean
 ---@param luaResumeCallBack userdata
-function CS.ZhanGuoWuxia.Lua.LuaBridge.OccupyArea(menpai, area, luaResumeCallBack) end
+function CS.ZhanGuoWuxia.Lua.LuaBridge.OccupyArea(menpai, area, notifyMsg, luaResumeCallBack) end
 
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
+---@param notifyMsg System.Boolean
 ---@param luaResumeCallBack userdata
-function CS.ZhanGuoWuxia.Lua.LuaBridge.PlayerOccupyArea(area, luaResumeCallBack) end
+function CS.ZhanGuoWuxia.Lua.LuaBridge.PlayerOccupyArea(area, notifyMsg, luaResumeCallBack) end
+
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param areaIds System.String[]
+---@param notifyMsg System.Boolean
+---@param luaResumeCallBack fun()
+function CS.ZhanGuoWuxia.Lua.LuaBridge.BatchOccupyAreas(menpai, areaIds, notifyMsg, luaResumeCallBack) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
+---@param notifyMsg System.Boolean
 ---@param luaResumeCallBack userdata
-function CS.ZhanGuoWuxia.Lua.LuaBridge.ReCaptureBuilding(menpai, area, luaResumeCallBack) end
+function CS.ZhanGuoWuxia.Lua.LuaBridge.ReCaptureBuilding(menpai, area, notifyMsg, luaResumeCallBack) end
 
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
+---@param notifyMsg System.Boolean
 ---@param luaResumeCallBack userdata
-function CS.ZhanGuoWuxia.Lua.LuaBridge.PlayerOccupyBuilding(area, luaResumeCallBack) end
+function CS.ZhanGuoWuxia.Lua.LuaBridge.PlayerOccupyBuilding(area, notifyMsg, luaResumeCallBack) end
 
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
+---@param notifyMsg System.Boolean
 ---@param luaResumeCallBack userdata
-function CS.ZhanGuoWuxia.Lua.LuaBridge.PlayerReCaptureBuilding(area, luaResumeCallBack) end
+function CS.ZhanGuoWuxia.Lua.LuaBridge.PlayerReCaptureBuilding(area, notifyMsg, luaResumeCallBack) end
 
 ---@param startAreaId System.String
 ---@param endAreaId System.String
@@ -370,32 +422,22 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.GetMenpaiByBeanId(menpaiId) end
 ---@return ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
 function CS.ZhanGuoWuxia.Lua.LuaBridge.GetMenpaiArea(menpai, index) end
 
----@param menpaiId1 System.String
----@param menpaiId2 System.String
----@param luaResumeCallBack userdata
-function CS.ZhanGuoWuxia.Lua.LuaBridge.BeginMenpaiBattleByBeanId(menpaiId1, menpaiId2, luaResumeCallBack) end
+---@return userdata
+function CS.ZhanGuoWuxia.Lua.LuaBridge.GetAllAreas() end
 
----@param menpai1 ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
----@param area2 ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
+---@param relation ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation
 ---@param luaResumeCallBack userdata
-function CS.ZhanGuoWuxia.Lua.LuaBridge.BeginMenpaiBattleByArea(menpai1, area2, luaResumeCallBack) end
+function CS.ZhanGuoWuxia.Lua.LuaBridge.BeginTerritoryBattle(relation, luaResumeCallBack) end
 
----@param menpai1 ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
----@param menpai2 ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
----@param luaResumeCallBack userdata
-function CS.ZhanGuoWuxia.Lua.LuaBridge.BeginMenpaiBattle(menpai1, menpai2, luaResumeCallBack) end
+---@private
+---@param relation ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation
+---@return System.String
+function CS.ZhanGuoWuxia.Lua.LuaBridge.GetTerriotryScene(relation) end
 
----@param menpai1 ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
----@param menpai2 ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
----@param luaResumeCallBack userdata
-function CS.ZhanGuoWuxia.Lua.LuaBridge.BeginReCaptureMenpaiBattle(menpai1, menpai2, luaResumeCallBack) end
-
----@param attackMenpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
----@param defenderMenpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
----@param disputedArea ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
----@param isRecapture System.Boolean
----@param luaResumeCallBack userdata
-function CS.ZhanGuoWuxia.Lua.LuaBridge.StartMenpaiBattle(attackMenpai, defenderMenpai, disputedArea, isRecapture, luaResumeCallBack) end
+---@private
+---@param relation ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation
+---@return System.String
+function CS.ZhanGuoWuxia.Lua.LuaBridge.GetTerriotryBGM(relation) end
 
 ---@private
 ---@param menpai1 ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
@@ -448,6 +490,11 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.HandlePermaDeadRole(result) end
 ---@param rolesForSelect ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 ---@param luaResumeCallBack userdata
 function CS.ZhanGuoWuxia.Lua.LuaBridge.StartPresetBattle_Internal(battleId, rolesForSelect, luaResumeCallBack) end
+
+---@private
+---@param battleBean ZhanGuoWuxia.Backend.Beans.BattleBean
+---@param ret ZhanGuoWuxia.Backend.Battle.BattleRet
+function CS.ZhanGuoWuxia.Lua.LuaBridge.MarkPresetBattleIfWin(battleBean, ret) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
 ---@param val System.Int32
@@ -546,6 +593,9 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.TryEquipItemFromBag(role, itemId) end
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Lua.LuaBridge.TryEquipSkill(role, skillId) end
 
+---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+function CS.ZhanGuoWuxia.Lua.LuaBridge.UnEquipAllItems(role) end
+
 ---@param buffId System.String
 ---@return ZhanGuoWuxia.Backend.Beans.BuffBean
 function CS.ZhanGuoWuxia.Lua.LuaBridge.GetBuffBeanById(buffId) end
@@ -589,7 +639,8 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.RestoreModel(role) end
 function CS.ZhanGuoWuxia.Lua.LuaBridge.GetDungeon(dungeonId) end
 
 ---@param dungeonId System.String
-function CS.ZhanGuoWuxia.Lua.LuaBridge.PrepareDungeon(dungeonId) end
+---@param luaResumeCallBack userdata
+function CS.ZhanGuoWuxia.Lua.LuaBridge.PrepareDungeon(dungeonId, luaResumeCallBack) end
 
 ---@param dungeonId System.String
 ---@param taskId System.String
@@ -657,6 +708,13 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.ShowStage(assetName, sceneName, bgColor, 
 ---@param luaResumeCallBack fun()
 function CS.ZhanGuoWuxia.Lua.LuaBridge.HideStage(luaResumeCallBack) end
 
+function CS.ZhanGuoWuxia.Lua.LuaBridge.TempHideStage() end
+
+function CS.ZhanGuoWuxia.Lua.LuaBridge.TempShowStage() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Lua.LuaBridge.IsStageShowing() end
+
 ---@param roleId System.String
 ---@param content System.String
 ---@param luaResumeCallBack fun()
@@ -710,6 +768,22 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.ShowStageActor(roleId) end
 ---@param roleId System.String
 ---@return ZhanGuoWuxia.UI.Stage.UIStageActor
 function CS.ZhanGuoWuxia.Lua.LuaBridge.AddStageActor(roleId) end
+
+---@param roleId System.String
+---@param prefabPath System.String
+---@param duration? System.Single
+function CS.ZhanGuoWuxia.Lua.LuaBridge.Stage_PlayVFX(roleId, prefabPath, duration) end
+
+---@param roleId System.String
+function CS.ZhanGuoWuxia.Lua.LuaBridge.Stage_StopAllVFX(roleId) end
+
+---@param prefabPath System.String
+---@param x System.Single
+---@param y System.Single
+---@param duration? System.Single
+function CS.ZhanGuoWuxia.Lua.LuaBridge.Stage_PlayVFXAtPosition(prefabPath, x, y, duration) end
+
+function CS.ZhanGuoWuxia.Lua.LuaBridge.Stage_StopAllPositionVFX() end
 
 ---@param roleBeanId System.String
 ---@param affixId System.String
@@ -808,24 +882,25 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.OpenCurtain(duration, luaResumeCallBack) 
 ---@param luaResumeCallBack? fun()
 function CS.ZhanGuoWuxia.Lua.LuaBridge.CloseCurtain(duration, luaResumeCallBack) end
 
----@param areaId System.String
-function CS.ZhanGuoWuxia.Lua.LuaBridge.LockArea(areaId) end
+---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
+function CS.ZhanGuoWuxia.Lua.LuaBridge.LockArea(area) end
 
----@param menpaiId System.String
-function CS.ZhanGuoWuxia.Lua.LuaBridge.LockMenpai(menpaiId) end
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+function CS.ZhanGuoWuxia.Lua.LuaBridge.LockMenpai(menpai) end
 
----@param menPaiId System.String
-function CS.ZhanGuoWuxia.Lua.LuaBridge.LockAllAreaOfMenPai(menPaiId) end
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+function CS.ZhanGuoWuxia.Lua.LuaBridge.LockAllAreaOfMenPai(menpai) end
 
----@param areaId System.String
-function CS.ZhanGuoWuxia.Lua.LuaBridge.UnlockArea(areaId) end
+---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
+function CS.ZhanGuoWuxia.Lua.LuaBridge.UnlockArea(area) end
 
----@param menpaiId System.String
-function CS.ZhanGuoWuxia.Lua.LuaBridge.UnlockMenpai(menpaiId) end
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param suggest? System.Boolean
+function CS.ZhanGuoWuxia.Lua.LuaBridge.UnlockMenpai(menpai, suggest) end
 
 ---@private
----@param menPaiId System.String
-function CS.ZhanGuoWuxia.Lua.LuaBridge.UnlockAllAreaOfMenPai(menPaiId) end
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+function CS.ZhanGuoWuxia.Lua.LuaBridge.UnlockAllAreaOfMenPai(menpai) end
 
 ---@return userdata
 function CS.ZhanGuoWuxia.Lua.LuaBridge.GetUnlockedMenpais() end
@@ -878,6 +953,9 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.AddMoney(menpai, money) end
 ---@param money System.Int32
 function CS.ZhanGuoWuxia.Lua.LuaBridge.AddPlayerMoney(money) end
 
+---@return System.Int32
+function CS.ZhanGuoWuxia.Lua.LuaBridge.GetMedianPlayerRoleLevel() end
+
 ---@param stealRoleId System.Int32
 ---@param targetRoleId System.Int32
 ---@param moneyNum System.Int32
@@ -914,7 +992,8 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.OpenTutorial(tutorialId) end
 function CS.ZhanGuoWuxia.Lua.LuaBridge.QuickTutorial(tutorialId, isForce) end
 
 ---@param rolesForRecover ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
-function CS.ZhanGuoWuxia.Lua.LuaBridge.OpenRolesBatchRecover(rolesForRecover) end
+---@param healCostScale System.Single
+function CS.ZhanGuoWuxia.Lua.LuaBridge.OpenRolesBatchRecover(rolesForRecover, healCostScale) end
 
 ---@param achId System.String
 ---@param plusedProgress? System.Int32
@@ -941,8 +1020,16 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.GetPlayerRole() end
 ---@param point System.Int32
 function CS.ZhanGuoWuxia.Lua.LuaBridge.ChangeFirePoint(point) end
 
+---@param areaNameOrId System.String
+---@return System.Int32
+function CS.ZhanGuoWuxia.Lua.LuaBridge.GetAreaDevelop(areaNameOrId) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Lua.LuaBridge.GetCurrentAreaDevelop() end
+
 ---@param shopId System.String
-function CS.ZhanGuoWuxia.Lua.LuaBridge.OpenShop(shopId) end
+---@param areaDevelop? System.Int32
+function CS.ZhanGuoWuxia.Lua.LuaBridge.OpenShop(shopId, areaDevelop) end
 
 ---@param shopId System.String
 ---@param newShopItemIds System.String[]
@@ -950,6 +1037,21 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.ReplaceShopItems(shopId, newShopItemIds) 
 
 ---@param shopId System.String
 function CS.ZhanGuoWuxia.Lua.LuaBridge.RefreshShop(shopId) end
+
+---@param shopId System.String
+---@param areaDevelop System.Int32
+---@return userdata
+function CS.ZhanGuoWuxia.Lua.LuaBridge.GetShopUnlockedItems(shopId, areaDevelop) end
+
+---@param shopId System.String
+---@param areaDevelop System.Int32
+---@return userdata
+function CS.ZhanGuoWuxia.Lua.LuaBridge.GetShopLockedItems(shopId, areaDevelop) end
+
+---@param shopId System.String
+---@param areaDevelop System.Int32
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Lua.LuaBridge.HasLockedShopItems(shopId, areaDevelop) end
 
 ---@param shopId System.String
 ---@param quality System.Int32
@@ -1024,9 +1126,28 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.GetTipLinkLabelName(prefix, id, label) en
 ---@return System.String
 function CS.ZhanGuoWuxia.Lua.LuaBridge.GetTipLinkLabelColor(prefix, id, result) end
 
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+function CS.ZhanGuoWuxia.Lua.LuaBridge.OpenMenpaiInfo(menpai) end
+
+---@param luaResumeCallBack fun()
+function CS.ZhanGuoWuxia.Lua.LuaBridge.WaitPlayerAdjustGear(luaResumeCallBack) end
+
 ---@param title System.String
 ---@param defaultText System.String
 ---@param luaResumeCallBack userdata
 function CS.ZhanGuoWuxia.Lua.LuaBridge.OpenTextInput(title, defaultText, luaResumeCallBack) end
+
+---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+---@param exp System.Int32
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Lua.LuaBridge.TryAddExp(role, exp) end
+
+---@param scenarioId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Lua.LuaBridge.SwitchStoryBranch(scenarioId) end
+
+---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+---@param luaResumeCallBack userdata
+function CS.ZhanGuoWuxia.Lua.LuaBridge.SelectAndChangeRoleClass(role, luaResumeCallBack) end
 
 

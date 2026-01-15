@@ -49,9 +49,10 @@ function CS.ZhanGuoWuxia.Backend.Map.MapManager:LoadMapElementsFrom(jsonFilePath
 ---@param mapElementSet ZhanGuoWuxia.Backend.Map.MapForeGroundElementSet
 function CS.ZhanGuoWuxia.Backend.Map.MapManager:MergeMapElements(mapElementSet) end
 
+---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param triggerId System.String
 ---@return userdata
-function CS.ZhanGuoWuxia.Backend.Map.MapManager:GetActionsByTriggerId(triggerId) end
+function CS.ZhanGuoWuxia.Backend.Map.MapManager:GetActionsByTriggerId(save, triggerId) end
 
 ---@private
 ---@return ZhanGuoWuxia.Backend.Beans.IBeanManager

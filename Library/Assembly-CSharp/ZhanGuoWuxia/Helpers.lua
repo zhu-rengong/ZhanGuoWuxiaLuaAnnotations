@@ -99,6 +99,7 @@ function CS.ZhanGuoWuxia.Helpers.AssetPathHelper.RelativePathToSprite(relativePa
 ---@field VideoFolder System.String
 ---@field ModBundleFolder System.String
 ---@field CGImgFolder System.String
+---@field ScenarioImgFolder System.String
 ---@field MaterialStylizeFolder System.String
 ---@field StageEmojiFolder System.String
 ---@field GameVersionCompaFolder System.String
@@ -120,6 +121,7 @@ CS.ZhanGuoWuxia.Helpers.AssetFolderConst = {}
 ---@field UIStorySkiper System.String
 ---@field AchievementUnlockItem System.String
 ---@field ComboCardSlot System.String
+---@field BuildingOccupyLogItem System.String
 CS.ZhanGuoWuxia.Helpers.PrefabPaths = {}
 
 ---@return ZhanGuoWuxia.Helpers.PrefabPaths
@@ -158,6 +160,7 @@ function CS.ZhanGuoWuxia.Helpers.BeanHelper.get__globalflags() end
 ---@overload fun(areaBean: ZhanGuoWuxia.Backend.Beans.AreaBean): userdata
 ---@overload fun(resourceBean: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean): userdata
 ---@overload fun(galleryBean: ZhanGuoWuxia.Backend.Beans.GalleryBean): userdata
+---@overload fun(bean: ZhanGuoWuxia.Backend.Beans.ScenarioBean): userdata
 ---@overload fun(Bean: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean): userdata
 ---@overload fun(compatibility: ZhanGuoWuxia.Backend.GameCompatibility): userdata
 ---@param talent ZhanGuoWuxia.Backend.Beans.TalentElement
@@ -362,6 +365,23 @@ function CS.ZhanGuoWuxia.Helpers.BeanHelper.GetCompatibilityIcon(compatibility) 
 ---@param rcBean ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean
 ---@return System.String
 function CS.ZhanGuoWuxia.Helpers.BeanHelper.GetUnlockCondtionText(rcBean) end
+
+---@param scenarioBean ZhanGuoWuxia.Backend.Beans.ScenarioBean
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BeanHelper.IsVisible(scenarioBean) end
+
+---@param scenarioBean ZhanGuoWuxia.Backend.Beans.ScenarioBean
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BeanHelper.IsLocked(scenarioBean) end
+
+---@param presetBean ZhanGuoWuxia.Backend.Beans.BattleBean
+---@return System.String
+function CS.ZhanGuoWuxia.Helpers.BeanHelper.GetPresetBattleWinKey(presetBean) end
+
+---@param presetBean ZhanGuoWuxia.Backend.Beans.BattleBean
+---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.BeanHelper.IsPresetBattleAlreadyWon(presetBean, save) end
 
 
 ---@enum ZhanGuoWuxia.Helpers.BgmSnapShotLayer
@@ -933,6 +953,7 @@ function CS.ZhanGuoWuxia.Helpers.EnumTextHelper.GetGameDifficultyNames(hasColor)
 ---@overload fun(modType: ZhanGuoWuxia.Backend.Mod.ModType): System.String
 ---@overload fun(galleryType: ZhanGuoWuxia.UI.CG.GalleryType): System.String
 ---@overload fun(compatibility: ZhanGuoWuxia.Backend.GameCompatibility): System.String
+---@overload fun(prefixType: ZhanGuoWuxia.Backend.Beans.PrefixType): System.String
 ---@param gameScreenMode ZhanGuoWuxia.Backend.GameScreenMode
 ---@return System.String
 function CS.ZhanGuoWuxia.Helpers.EnumTextHelper.ToNameText(gameScreenMode) end
@@ -1066,14 +1087,20 @@ function CS.ZhanGuoWuxia.Helpers.InstanceHelper.get__db() end
 ---@overload fun(achData: ZhanGuoWuxia.Backend.AchievementSystem.AchievementData): userdata
 ---@overload fun(area: ZhanGuoWuxia.Backend.RuntimeData.AreaInstance): userdata
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
----@param emotion? System.String
 ---@return userdata
-function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetPic(role, emotion) end
+function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetPic(role) end
 
 ---@async
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
 ---@return userdata
 function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetSmallIcon(role) end
+
+---@private
+---@async
+---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+---@param assetFolderName System.String
+---@return userdata
+function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetMissingPic(role, assetFolderName) end
 
 ---@async
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
@@ -1255,6 +1282,7 @@ function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetDescriptionText(gameDifficult
 ---@return System.String
 function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetBattleDescription(skill) end
 
+---@overload fun(moduleBase: ZhanGuoWuxia.RuntimeEditor.GameModuleBase): System.String
 ---@param skill ZhanGuoWuxia.Backend.RuntimeData.TinySkill
 ---@return System.String
 function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetSourceText(skill) end
@@ -1279,6 +1307,10 @@ function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetItemLevel(shopItem) end
 ---@param shopItem ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance
 ---@return System.String
 function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetName(shopItem) end
+
+---@param moduleBase ZhanGuoWuxia.RuntimeEditor.GameModuleBase
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Helpers.InstanceHelper.IsSteamMod(moduleBase) end
 
 
 ---@class ZhanGuoWuxia.Helpers.MonoUtil: System.Object
@@ -2287,9 +2319,10 @@ function CS.ZhanGuoWuxia.Helpers.UnityExtension.ToNumbericVector3(vec3) end
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Helpers.UnityExtension.IsNull(obj) end
 
----@overload fun(com: UnityEngine.Component)
+---@overload fun(com: UnityEngine.Component, poolName?: System.String)
 ---@param go UnityEngine.GameObject
-function CS.ZhanGuoWuxia.Helpers.UnityExtension.GameObjectPushPool(go) end
+---@param poolName? System.String
+function CS.ZhanGuoWuxia.Helpers.UnityExtension.GameObjectPushPool(go, poolName) end
 
 ---@param transform UnityEngine.Transform
 ---@param newValue System.Single
@@ -2396,6 +2429,12 @@ function CS.ZhanGuoWuxia.Helpers.UnityExtension.ToVector2(vector3) end
 ---@return UnityEngine.Vector3
 function CS.ZhanGuoWuxia.Helpers.UnityExtension.ToVector3(vector2) end
 
+---@param tmp TMPro.TMP_Text
+---@param content System.String
+---@param singleLineAlignment? TMPro.TextAlignmentOptions
+---@param multiLineAlignment? TMPro.TextAlignmentOptions
+function CS.ZhanGuoWuxia.Helpers.UnityExtension.SetTextWithAutoAlign(tmp, content, singleLineAlignment, multiLineAlignment) end
+
 ---@param transform UnityEngine.Transform
 ---@param newValue System.Single
 function CS.ZhanGuoWuxia.Helpers.UnityExtension.SetPositionX(transform, newValue) end
@@ -2495,5 +2534,9 @@ function CS.ZhanGuoWuxia.Helpers.UnityExtension.SetAnchoredPositionY(rectTransfo
 ---@param rectTransform UnityEngine.RectTransform
 ---@param posZ System.Single
 function CS.ZhanGuoWuxia.Helpers.UnityExtension.SetAnchoredPositionZ(rectTransform, posZ) end
+
+---@param volume UnityEngine.Rendering.PostProcessing.PostProcessVolume
+---@param targetVolume UnityEngine.Rendering.PostProcessing.PostProcessVolume
+function CS.ZhanGuoWuxia.Helpers.UnityExtension.DeepCloneFrom(volume, targetVolume) end
 
 

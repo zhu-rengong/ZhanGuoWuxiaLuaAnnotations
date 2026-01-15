@@ -45,6 +45,7 @@ function CS.ZhanGuoWuxia.Backend.Event.EventManager() end
 ---@field RoleFatePointEvent ZhanGuoWuxia.Backend.Event.RoleFatePointChangeEvent
 ---@field RoleTalentStateChangeEvent ZhanGuoWuxia.Backend.Event.RoleTalentStateChangeEvent
 ---@field RoleNameChangeEvent ZhanGuoWuxia.Backend.Event.RoleNameChangeEvent
+---@field RoleBattleCountChangeEvent ZhanGuoWuxia.Backend.Event.RoleBattleCountChangeEvent
 ---@field TaskProgressChangeEvent ZhanGuoWuxia.Backend.Event.DungeonTaskProgressChangeEvent
 ---@field TaskResultChangeEvent ZhanGuoWuxia.Backend.Event.DungeonTaskResultChangeEvent
 ---@field DungeonNodeChangeEvent ZhanGuoWuxia.Backend.Event.DungeonMapNodeChangeEvent
@@ -64,6 +65,7 @@ function CS.ZhanGuoWuxia.Backend.Event.EventManager() end
 ---@field MenpaiRoleLeaveEvent ZhanGuoWuxia.Backend.Event.MenpaiRoleLeaveEvent
 ---@field MenpaiRoleJoinEvent ZhanGuoWuxia.Backend.Event.MenpaiRoleJoinEvent
 ---@field MenpaiLockStateChangeEvent ZhanGuoWuxia.Backend.Event.MenpaiLockStateChangeEvent
+---@field MenpaiUnlockEvent ZhanGuoWuxia.Backend.Event.MenpaiUnlockEvent
 ---@field GameSaveEvent ZhanGuoWuxia.Backend.Event.GameSaveEvent
 ---@field GameSaveDeleteEvent ZhanGuoWuxia.Backend.Event.GameSaveDeleteEvent
 ---@field ToggleStorySkipEvent ZhanGuoWuxia.Backend.Event.ToggleStorySkipEvent
@@ -78,6 +80,7 @@ function CS.ZhanGuoWuxia.Backend.Event.EventManager() end
 ---@field RoleWoundValueChangeEvent ZhanGuoWuxia.Backend.Event.RoleWoundValueChangeEvent
 ---@field RoleRecoverHealthChangeEvent ZhanGuoWuxia.Backend.Event.RoleRecoverHealthChangeEvent
 ---@field RCModifierSelectionChangeEvent ZhanGuoWuxia.Backend.Event.RCModifierSelectionChangeEvent
+---@field MenpaiRelationChangeEvent ZhanGuoWuxia.Backend.Event.MenpaiRelationChangeEvent
 CS.ZhanGuoWuxia.Backend.Event.Zg_Events = {}
 
 ---@private
@@ -123,6 +126,10 @@ function CS.ZhanGuoWuxia.Backend.Event.RoleRefreshShowEvent() end
 ---@field Area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
 ---@field building ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance
 ---@field Owner ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@field OldOwner ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@field TerritoryRelation ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation
+---@field BuildingIndex System.Int32
+---@field TotalBuildings System.Int32
 CS.ZhanGuoWuxia.Backend.Event.AreaBuildingOwnerChangedEvent = {}
 
 ---@return ZhanGuoWuxia.Backend.Event.AreaBuildingOwnerChangedEvent
@@ -131,6 +138,8 @@ function CS.ZhanGuoWuxia.Backend.Event.AreaBuildingOwnerChangedEvent() end
 ---@class ZhanGuoWuxia.Backend.Event.AreaOwnerChangedEvent: ZhanGuoWuxia.Backend.Event.GameEvent
 ---@field Area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
 ---@field Owner ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@field OldOwner ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@field PlayAnimation System.Boolean
 CS.ZhanGuoWuxia.Backend.Event.AreaOwnerChangedEvent = {}
 
 ---@return ZhanGuoWuxia.Backend.Event.AreaOwnerChangedEvent
@@ -553,4 +562,31 @@ CS.ZhanGuoWuxia.Backend.Event.RoleWoundValueChangeEvent = {}
 
 ---@return ZhanGuoWuxia.Backend.Event.RoleWoundValueChangeEvent
 function CS.ZhanGuoWuxia.Backend.Event.RoleWoundValueChangeEvent() end
+
+---@class ZhanGuoWuxia.Backend.Event.RoleBattleCountChangeEvent: ZhanGuoWuxia.Backend.Event.GameEvent
+---@field Role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+---@field OldCount System.Int32
+---@field NewCount System.Int32
+CS.ZhanGuoWuxia.Backend.Event.RoleBattleCountChangeEvent = {}
+
+---@return ZhanGuoWuxia.Backend.Event.RoleBattleCountChangeEvent
+function CS.ZhanGuoWuxia.Backend.Event.RoleBattleCountChangeEvent() end
+
+---@class ZhanGuoWuxia.Backend.Event.MenpaiUnlockEvent: ZhanGuoWuxia.Backend.Event.GameEvent
+---@field Menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@field ShouldShowAnimation System.Boolean
+CS.ZhanGuoWuxia.Backend.Event.MenpaiUnlockEvent = {}
+
+---@return ZhanGuoWuxia.Backend.Event.MenpaiUnlockEvent
+function CS.ZhanGuoWuxia.Backend.Event.MenpaiUnlockEvent() end
+
+---@class ZhanGuoWuxia.Backend.Event.MenpaiRelationChangeEvent: ZhanGuoWuxia.Backend.Event.GameEvent
+---@field Menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@field TargetMenpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@field OldRelation ZhanGuoWuxia.Backend.Beans.MenpaiRelationType
+---@field NewRelation ZhanGuoWuxia.Backend.Beans.MenpaiRelationType
+CS.ZhanGuoWuxia.Backend.Event.MenpaiRelationChangeEvent = {}
+
+---@return ZhanGuoWuxia.Backend.Event.MenpaiRelationChangeEvent
+function CS.ZhanGuoWuxia.Backend.Event.MenpaiRelationChangeEvent() end
 

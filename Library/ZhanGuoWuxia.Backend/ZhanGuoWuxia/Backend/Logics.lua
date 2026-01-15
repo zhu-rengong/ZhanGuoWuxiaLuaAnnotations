@@ -27,12 +27,18 @@ CS.ZhanGuoWuxia.Backend.Logics.AreaLogic = {}
 
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
 ---@param owner ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
-function CS.ZhanGuoWuxia.Backend.Logics.AreaLogic.BroadcastAreaOwnerChanged(area, owner) end
+---@param oldOwner? ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param playAnimation? System.Boolean
+function CS.ZhanGuoWuxia.Backend.Logics.AreaLogic.BroadcastAreaOwnerChanged(area, owner, oldOwner, playAnimation) end
 
 ---@param building ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance
 ---@param owner ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
-function CS.ZhanGuoWuxia.Backend.Logics.AreaLogic.BroadcastOwnerChanged(building, owner, area) end
+---@param territoryRelation? ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation
+---@param oldOwner? ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param buildingIndex? System.Int32
+---@param totalBuildings? System.Int32
+function CS.ZhanGuoWuxia.Backend.Logics.AreaLogic.BroadcastOwnerChanged(building, owner, area, territoryRelation, oldOwner, buildingIndex, totalBuildings) end
 
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
 ---@param prevDevelop System.Int32
@@ -67,16 +73,19 @@ function CS.ZhanGuoWuxia.Backend.Logics.AreaLogic.RemoveBuilding(area, building)
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@param building ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance
 ---@param isAreaOccupied System.Boolean
+---@param territoryRelation? ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation
 ---@return System.Boolean
-function CS.ZhanGuoWuxia.Backend.Logics.AreaLogic.OccupyBuilding(area, menpai, save, isAreaOccupied) end
+function CS.ZhanGuoWuxia.Backend.Logics.AreaLogic.OccupyBuilding(area, menpai, save, building, isAreaOccupied, territoryRelation) end
 
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param isForce? System.Boolean
+---@param playAnimation? System.Boolean
 ---@return System.Boolean
-function CS.ZhanGuoWuxia.Backend.Logics.AreaLogic.OccupyArea(area, menpai, save, isForce) end
+function CS.ZhanGuoWuxia.Backend.Logics.AreaLogic.OccupyArea(area, menpai, save, isForce, playAnimation) end
 
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
@@ -86,8 +95,9 @@ function CS.ZhanGuoWuxia.Backend.Logics.AreaLogic.OccupyAllBuildings(area, menpa
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@param territoryRelation? ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation
 ---@return System.Boolean
-function CS.ZhanGuoWuxia.Backend.Logics.AreaLogic.ReCaptureAreaBuilding(area, menpai, save) end
+function CS.ZhanGuoWuxia.Backend.Logics.AreaLogic.ReCaptureAreaBuilding(area, menpai, save, territoryRelation) end
 
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
 ---@param other ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
@@ -219,6 +229,50 @@ function CS.ZhanGuoWuxia.Backend.Logics.DungeonLogic.GetRolesJoinedDungeon(dunge
 function CS.ZhanGuoWuxia.Backend.Logics.DungeonLogic.GetRolesMustJoinedDungeon(dungeon, saveData) end
 
 
+---@class ZhanGuoWuxia.Backend.Logics.EquipmentScoreLogic: System.Object
+CS.ZhanGuoWuxia.Backend.Logics.EquipmentScoreLogic = {}
+
+---@private
+---@param level ZhanGuoWuxia.Backend.Beans.ItemLevel
+---@return System.Single
+function CS.ZhanGuoWuxia.Backend.Logics.EquipmentScoreLogic.GetQualityScore(level) end
+
+---@private
+---@param attrName System.String
+---@return System.Single
+function CS.ZhanGuoWuxia.Backend.Logics.EquipmentScoreLogic.GetAttrWeight(attrName) end
+
+---@private
+---@return System.Single
+function CS.ZhanGuoWuxia.Backend.Logics.EquipmentScoreLogic.GetAffixSkillScore() end
+
+---@private
+---@return System.Single
+function CS.ZhanGuoWuxia.Backend.Logics.EquipmentScoreLogic.GetWeaponIncompatibilityPenalty() end
+
+---@param item ZhanGuoWuxia.Backend.RuntimeData.ItemInstance
+---@param role? ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+---@return System.Single
+function CS.ZhanGuoWuxia.Backend.Logics.EquipmentScoreLogic.CalculateEquipmentScore(item, role) end
+
+---@private
+---@param item ZhanGuoWuxia.Backend.RuntimeData.ItemInstance
+---@return System.Single
+function CS.ZhanGuoWuxia.Backend.Logics.EquipmentScoreLogic.CalculateBaseAttrsScore(item) end
+
+---@private
+---@param affix ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance
+---@return System.Single
+function CS.ZhanGuoWuxia.Backend.Logics.EquipmentScoreLogic.CalculateAffixScore(affix) end
+
+---@param bagItems ZhanGuoWuxia.Backend.RuntimeData.ItemInstance[]
+---@param slotIndex System.Int32
+---@param currentEquip ZhanGuoWuxia.Backend.RuntimeData.ItemInstance
+---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+---@return ZhanGuoWuxia.Backend.RuntimeData.ItemInstance
+function CS.ZhanGuoWuxia.Backend.Logics.EquipmentScoreLogic.FindBestEquipmentForSlot(bagItems, slotIndex, currentEquip, role) end
+
+
 ---@class ZhanGuoWuxia.Backend.Logics.GameSaveLogic: System.Object
 ---@field private LuaVM ZhanGuoWuxia.Backend.Lua.LuaManager
 ---@field private _db ZhanGuoWuxia.Backend.Beans.IBeanManager
@@ -233,7 +287,13 @@ function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.get_LuaVM() end
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.get__db() end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
-function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.InitFromConfigTable(save) end
+---@param scenarioId? System.String
+function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.InitFromConfigTable(save, scenarioId) end
+
+---@private
+---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@param scenarioId System.String
+function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.SetScenarioId(save, scenarioId) end
 
 ---@private
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
@@ -387,14 +447,6 @@ function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetAreaByBeanId(save, id) 
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetAreaByInstanceId(save, id) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@param beanId System.String
-function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.LockArea(save, beanId) end
-
----@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@param beanId System.String
-function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.UnLockArea(save, beanId) end
-
----@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@return userdata
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetMenpaiAreas(save, menpai) end
@@ -469,9 +521,9 @@ function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.IsRoleInMenpai(save, role,
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.IsRoleInPlayerMenpai(save, role) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@param meipai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@return userdata
-function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetDisciples(save, meipai) end
+function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetDisciples(save, menpai) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@return userdata
@@ -651,6 +703,12 @@ function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.BroadcastMenpaiRoleLeave(men
 function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.BroadcastMenpaiSwapItem(menpai, a, b) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param targetMenpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param oldRelation ZhanGuoWuxia.Backend.Beans.MenpaiRelationType
+---@param newRelation ZhanGuoWuxia.Backend.Beans.MenpaiRelationType
+function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.BroadcastMenpaiRelationChange(menpai, targetMenpai, oldRelation, newRelation) end
+
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.AddArea(menpai, area) end
@@ -806,6 +864,56 @@ function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.MedianOfQingGongLevel(menpai
 ---@param skillType ZhanGuoWuxia.Backend.Beans.SkillType
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.MedianOfSkillLevel(menpai, skillType) end
+
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param scenarioId System.String
+---@return ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
+function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.ConfigOfScenario(menpai, scenarioId) end
+
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param scenarioId System.String
+---@param config ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.TryGetConfigOfScenario(menpai, scenarioId, config) end
+
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param scenarioId System.String
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetMenpaiRandomRolePool(menpai, scenarioId) end
+
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param scenarioId System.String
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.StartRandomRoleCount(menpai, scenarioId) end
+
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param scenarioId System.String
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetPresetLeaderId(menpai, scenarioId) end
+
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param scenarioId System.String
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetPresetRoles(menpai, scenarioId) end
+
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param scenarioId System.String
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetPresetAreas(menpai, scenarioId) end
+
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param scenarioId System.String
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetPresetRelations(menpai, scenarioId) end
+
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@param scenarioId System.String
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetPresetFriendShips(menpai, scenarioId) end
+
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.CurrentAI(menpai) end
 
 
 ---@class ZhanGuoWuxia.Backend.Logics.RoleAttrLogic: System.Object
@@ -973,6 +1081,11 @@ function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.IsLevelMax(role) end
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.TryLevelUp(role) end
+
+---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+---@param exp System.Int32
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.TryAddExp(role, exp) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
 ---@param level System.Int32
@@ -1196,6 +1309,14 @@ function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetJoinBattleRet(role) end
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.ResetJoinBattleCount(role) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.DifficultyAdditionJoinBattleCount(role) end
+
+---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GlobalAdditionJoinBattleCount(role) end
+
+---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.RefreshJoinBattleCount(role) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
@@ -1249,6 +1370,16 @@ function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.ContainsAffix(role, affixId) e
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
 ---@param affixId System.String
 ---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.ContainsAnyPreAffix(role, affixId) end
+
+---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+---@param affixId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.ContainsAnyNextAffix(role, affixId) end
+
+---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+---@param affixId System.String
+---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.CanAddAffix(role, affixId) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
@@ -1262,6 +1393,10 @@ function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.ChangeFatePoint(role, newPoint
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.HasUnCompatibleWeapon(role) end
+
+---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetAllAvailableRandomAffixes(role) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
 ---@param genCount System.Int32
@@ -1310,6 +1445,15 @@ function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.ForgetAllTalents(role) end
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetAllTalentAttrs(role) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetUnlockableTalentIds(role) end
+
+---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+---@param count? System.Int32
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetRandomUnlockableTalents(role, count) end
+
+---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
 ---@return System.Single
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetModelHeight(role) end
 
@@ -1320,6 +1464,11 @@ function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetIdleStateName(role) end
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetSprintStateName(role) end
+
+---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.AutoEquipBestItems(role, menpai) end
 
 
 ---@enum ZhanGuoWuxia.Backend.Logics.ShopDealResult

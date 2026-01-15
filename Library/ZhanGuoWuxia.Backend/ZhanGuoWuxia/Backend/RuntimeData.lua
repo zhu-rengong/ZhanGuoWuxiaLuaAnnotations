@@ -38,6 +38,8 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixAddResult:get_IsUpgraded() end
 ---@field AffixDescription System.String
 ---@field AffixQuality ZhanGuoWuxia.Backend.Beans.ItemLevel
 ---@field IsEternal System.Boolean
+---@field IsRandom System.Boolean
+---@field IsUpgradable System.Boolean
 ---@field NameWithCount System.String
 ---@field Attrs ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
 ---@field Bean ZhanGuoWuxia.Backend.Beans.AffixBean
@@ -66,11 +68,24 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:get_AffixQuality() en
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:get_IsEternal() end
 
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:get_IsRandom() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:get_IsUpgradable() end
+
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:get_NameWithCount() end
 
 ---@return ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:get_Attrs() end
+
+---@overload fun(self: self, save: ZhanGuoWuxia.Backend.RuntimeData.GameSave)
+---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:OnLoaded(save) end
+
+---@private
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:FixDisabledTempAffix() end
 
 ---@return ZhanGuoWuxia.Backend.Beans.AffixBean
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:get_Bean() end
@@ -92,9 +107,6 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:ChangeBeanId(newBeanI
 ---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
 ---@param ... System.Object
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:OnCreated(creator, ...) end
-
----@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
-function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:OnLoaded(save) end
 
 ---@return System.Type
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:GetType() end
@@ -129,90 +141,6 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance:GetHashCode() end
 ---@return ZhanGuoWuxia.Backend.RuntimeData.AffixInstance
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AffixInstance() end
 
----@class ZhanGuoWuxia.Backend.RuntimeData.ActionInstance: userdata
----@field CostActionCount System.Int32
----@field Name System.String
----@field LuaCommandFile System.String
----@field Conditions userdata
----@field Bean ZhanGuoWuxia.Backend.Beans.ActionBean
----@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
----@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@field IsValid System.Boolean
----@field private _bean ZhanGuoWuxia.Backend.Beans.ActionBean
----@field InstanceId System.Int32
----@field BeanId System.String
-CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance = {}
-
----@return System.Int32
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:get_CostActionCount() end
-
----@return System.String
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:get_Name() end
-
----@return System.String
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:get_LuaCommandFile() end
-
----@return userdata
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:get_Conditions() end
-
----@overload fun(self: self, creator: ZhanGuoWuxia.Backend.RuntimeData.ICreator, ...: System.Object)
----@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
----@param ... System.Object
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:OnCreated(creator, ...) end
-
----@return ZhanGuoWuxia.Backend.Beans.ActionBean
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:get_Bean() end
-
----@protected
----@return ZhanGuoWuxia.Backend.Beans.IBeanManager
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:get__db() end
-
----@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:get_SaveData() end
-
----@return System.Boolean
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:get_IsValid() end
-
----@param newBeanId System.String
----@return System.Boolean
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:ChangeBeanId(newBeanId) end
-
----@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:OnLoaded(save) end
-
----@return System.Type
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:GetType() end
-
----@protected
----@return System.Object
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:MemberwiseClone() end
-
----@protected
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:Finalize() end
-
----@return System.String
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:ToString() end
-
----@param obj System.Object
----@return System.Boolean
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:Equals(obj) end
-
----@param objA System.Object
----@param objB System.Object
----@return System.Boolean
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance.Equals(objA, objB) end
-
----@param objA System.Object
----@param objB System.Object
----@return System.Boolean
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance.ReferenceEquals(objA, objB) end
-
----@return System.Int32
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance:GetHashCode() end
-
----@return ZhanGuoWuxia.Backend.RuntimeData.ActionInstance
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance() end
-
 ---@class ZhanGuoWuxia.Backend.RuntimeData.GameEventId: System.Object
 ---@field StartGame System.String
 ---@field EnemyTurn System.String
@@ -221,8 +149,8 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ActionInstance() end
 ---@field OccupyBuilding System.String
 ---@field OccupyArea System.String
 ---@field ReCaptureAreaBuilding System.String
----@field BeforeBattle System.String
----@field AfterBattle System.String
+---@field BeforeTerritoryBattle System.String
+---@field AfterTerritoryBattle System.String
 ---@field AreaCommon System.String
 CS.ZhanGuoWuxia.Backend.RuntimeData.GameEventId = {}
 
@@ -284,6 +212,7 @@ CS.ZhanGuoWuxia.Backend.RuntimeData.JoinDungeonTeamRet = {
 ---@field Name System.String
 ---@field Description System.String
 ---@field Pic System.String
+---@field BGM System.String
 ---@field MaxJoinRoleCount System.Int32
 ---@field DungeonType ZhanGuoWuxia.Backend.Beans.DungeonType
 ---@field DungeonProgress userdata
@@ -378,6 +307,9 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get_Description() e
 
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get_Pic() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get_BGM() end
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get_MaxJoinRoleCount() end
@@ -601,12 +533,14 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.IRoleStatGetter:GetRoleStat(statNam
 ---@field Favor System.Int32
 ---@field LastGrantedFavorLevel System.Int32
 ---@field FatePoint System.Int32
+---@field FateTrainingCount System.Int32
 ---@field IsPlayerBattleAIActive System.Boolean
 ---@field CanSelectFate System.Boolean
 ---@field WoundValue System.Int32
 ---@field IsWound System.Boolean
 ---@field WoundStatus System.Single
 ---@field RemainBattleJoinCount System.Int32
+---@field private m_MaxBattleJoinCount System.Int32
 ---@field MaxBattleJoinCount System.Int32
 ---@field IsDead System.Boolean
 ---@field RoleType ZhanGuoWuxia.Backend.Beans.RoleType
@@ -639,7 +573,6 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.IRoleStatGetter:GetRoleStat(statNam
 ---@field EditPic System.String
 ---@field EditModelId System.String
 ---@field private m_RemainBattleJoinCount System.Int32
----@field private m_MaxBattleJoinCount System.Int32
 ---@field private m_RoleActions ZhanGuoWuxia.Backend.Beans.ActionBean[]
 ---@field ImprisonMenpaiId System.Int32
 ---@field private m_UnlockTalents userdata
@@ -810,6 +743,12 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_FatePoint() end
 ---@param value System.Int32
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:set_FatePoint(value) end
 
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_FateTrainingCount() end
+
+---@param value System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:set_FateTrainingCount(value) end
+
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_CanSelectFate() end
 
@@ -825,11 +764,17 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_RemainBattleJoinCo
 ---@param value System.Int32
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:set_RemainBattleJoinCount(value) end
 
+---@private
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_m_MaxBattleJoinCount() end
+
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_MaxBattleJoinCount() end
 
----@param value System.Int32
-function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:set_MaxBattleJoinCount(value) end
+---@private
+---@param oldCount System.Int32
+---@param newCount System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:BroadcastBattleCountChange(oldCount, newCount) end
 
 ---@return ZhanGuoWuxia.Backend.Beans.RoleType
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_RoleType() end
@@ -944,6 +889,8 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance() end
 ---@class ZhanGuoWuxia.Backend.RuntimeData.AreaInstance: userdata
 ---@field Id System.String
 ---@field Name System.String
+---@field BattleScene System.String
+---@field BattleBGM System.String
 ---@field Owner System.Int32
 ---@field Develop System.Int32
 ---@field NeighborList System.String[]
@@ -967,6 +914,12 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:get_Id() end
 
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:get_Name() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:get_BattleScene() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:get_BattleBGM() end
 
 ---@return userdata
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:get_PresetBuildings() end
@@ -1280,6 +1233,18 @@ CS.ZhanGuoWuxia.Backend.RuntimeData.GameDifficulty = {
     Expert = 4
 }
 
+---@class ZhanGuoWuxia.Backend.RuntimeData.DummyTable: System.Object
+---@field Default ZhanGuoWuxia.Backend.RuntimeData.DummyTable
+---@field private m_Cache { [System.Type]: { [System.String]: ZhanGuoWuxia.Backend.Beans.BaseBean } }
+---@field private _instance ZhanGuoWuxia.Backend.RuntimeData.DummyTable
+CS.ZhanGuoWuxia.Backend.RuntimeData.DummyTable = {}
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.DummyTable
+function CS.ZhanGuoWuxia.Backend.RuntimeData.DummyTable.get_Default() end
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.DummyTable
+function CS.ZhanGuoWuxia.Backend.RuntimeData.DummyTable() end
+
 ---@class ZhanGuoWuxia.Backend.RuntimeData.GameSave: ZhanGuoWuxia.Backend.RuntimeData.Creator, ZhanGuoWuxia.Backend.RuntimeData.ICreator
 ---@field CurrentSave ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@field private _beanManager ZhanGuoWuxia.Backend.Beans.IBeanManager
@@ -1306,13 +1271,16 @@ CS.ZhanGuoWuxia.Backend.RuntimeData.GameDifficulty = {
 ---@field Player System.Int32
 ---@field PlayerMenpai System.Int32
 ---@field LastSaveTime System.DateTime
+---@field LockDifficulty System.Boolean
 ---@field Difficulty ZhanGuoWuxia.Backend.RuntimeData.GameDifficulty
+---@field ScenarioId System.String
 ---@field private GameRound System.Int32
 ---@field private ActionCount System.Int32
 ---@field PlayerFamilyName System.String
 ---@field PlayerGivenName System.String
 ---@field QuickFormations ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution[]
 ---@field private m_Difficulty ZhanGuoWuxia.Backend.RuntimeData.GameDifficulty
+---@field private m_LockDifficulty System.Boolean
 CS.ZhanGuoWuxia.Backend.RuntimeData.GameSave = {}
 
 ---@private
@@ -1337,12 +1305,19 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.GameSave:get_MaxActionCount() end
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.RuntimeData.GameSave:get_MaxTeamRoleCount() end
 
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.GameSave:get_LockDifficulty() end
+
+---@param value System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.GameSave:set_LockDifficulty(value) end
+
 ---@return ZhanGuoWuxia.Backend.RuntimeData.GameDifficulty
 function CS.ZhanGuoWuxia.Backend.RuntimeData.GameSave:get_Difficulty() end
 
 ---@param value ZhanGuoWuxia.Backend.RuntimeData.GameDifficulty
 function CS.ZhanGuoWuxia.Backend.RuntimeData.GameSave:set_Difficulty(value) end
 
+---@overload fun(): ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
 function CS.ZhanGuoWuxia.Backend.RuntimeData.GameSave() end
 
@@ -1516,14 +1491,10 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.LearnSkillParam.NewParam(role) end
 ---@field Id System.String
 ---@field Name System.String
 ---@field Pic System.String
----@field AIName System.String
----@field Color UnityEngine.Color
----@field AreaSet userdata
 ---@field Areas userdata
 ---@field IsDestroyed System.Boolean
 ---@field Bag ZhanGuoWuxia.Backend.RuntimeData.ItemInstance[]
 ---@field Roles System.Int32[]
----@field PresetLeaderId System.String
 ---@field Leader System.Int32
 ---@field FriendShips { [System.Int32]: System.Int32 }
 ---@field Relations { [System.Int32]: System.Int32 }
@@ -1546,20 +1517,8 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:get_Name() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:get_Pic() end
 
----@return System.String
-function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:get_AIName() end
-
----@return UnityEngine.Color
-function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:get_Color() end
-
----@return userdata
-function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:get_AreaSet() end
-
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:get_IsDestroyed() end
-
----@return System.String
-function CS.ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance:get_PresetLeaderId() end
 
 ---@overload fun(self: self, creator: ZhanGuoWuxia.Backend.RuntimeData.ICreator, ...: System.Object)
 ---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
@@ -1856,93 +1815,6 @@ CS.ZhanGuoWuxia.Backend.RuntimeData.IRoleCreateModifier = {}
 function CS.ZhanGuoWuxia.Backend.RuntimeData.IRoleCreateModifier:Apply(saveData) end
 
 
----@class ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance: userdata
----@field Name System.String
----@field PlayerId System.String
----@field PlayerMenpaiId System.String
----@field Desc System.String
----@field Flags { [System.String]: System.String }
----@field Bean ZhanGuoWuxia.Backend.Beans.ScenarioBean
----@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
----@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@field IsValid System.Boolean
----@field private _bean ZhanGuoWuxia.Backend.Beans.ScenarioBean
----@field InstanceId System.Int32
----@field BeanId System.String
-CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance = {}
-
----@return System.String
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:get_Name() end
-
----@return System.String
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:get_PlayerId() end
-
----@return System.String
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:get_PlayerMenpaiId() end
-
----@return System.String
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:get_Desc() end
-
----@return userdata
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:get_Flags() end
-
----@return ZhanGuoWuxia.Backend.Beans.ScenarioBean
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:get_Bean() end
-
----@protected
----@return ZhanGuoWuxia.Backend.Beans.IBeanManager
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:get__db() end
-
----@return ZhanGuoWuxia.Backend.RuntimeData.GameSave
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:get_SaveData() end
-
----@return System.Boolean
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:get_IsValid() end
-
----@param newBeanId System.String
----@return System.Boolean
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:ChangeBeanId(newBeanId) end
-
----@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
----@param ... System.Object
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:OnCreated(creator, ...) end
-
----@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:OnLoaded(save) end
-
----@return System.Type
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:GetType() end
-
----@protected
----@return System.Object
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:MemberwiseClone() end
-
----@protected
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:Finalize() end
-
----@return System.String
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:ToString() end
-
----@param obj System.Object
----@return System.Boolean
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:Equals(obj) end
-
----@param objA System.Object
----@param objB System.Object
----@return System.Boolean
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance.Equals(objA, objB) end
-
----@param objA System.Object
----@param objB System.Object
----@return System.Boolean
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance.ReferenceEquals(objA, objB) end
-
----@return System.Int32
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance:GetHashCode() end
-
----@return ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance
-function CS.ZhanGuoWuxia.Backend.RuntimeData.ScenarioInstance() end
-
 ---@class ZhanGuoWuxia.Backend.RuntimeData.ITradeItem
 ---@field Price System.Int32
 ---@field TradeCount System.Int32
@@ -2049,6 +1921,18 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:ReplaceShopItems(shopI
 
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:RefreshItems() end
 
+---@param areaDevelop System.Int32
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:GetUnlockedShopItems(areaDevelop) end
+
+---@param areaDevelop System.Int32
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:GetLockedShopItems(areaDevelop) end
+
+---@param areaDevelop System.Int32
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:GetAvailableUnlockedItems(areaDevelop) end
+
 ---@return ZhanGuoWuxia.Backend.Beans.ShopBean
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:get_Bean() end
 
@@ -2148,6 +2032,13 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:get_ItemQuality() 
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:OnCreated(creator, ...) end
 
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:ResetRemainCount() end
+
+---@param areaDevelop System.Int32
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:IsUnlocked(areaDevelop) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:GetRequiredDevelop() end
 
 ---@return ZhanGuoWuxia.Backend.Beans.ShopItemBean
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance:get_Bean() end

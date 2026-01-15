@@ -22,8 +22,22 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.get__db() end
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetPrevAffixId(affixBean) end
 
 ---@param affixBean ZhanGuoWuxia.Backend.Beans.AffixBean
+---@param includeSelf? System.Boolean
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetPrevAffixChain(affixBean, includeSelf) end
+
+---@param affixBean ZhanGuoWuxia.Backend.Beans.AffixBean
+---@param includeSelf? System.Boolean
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetNextAffixChain(affixBean, includeSelf) end
+
+---@param affixBean ZhanGuoWuxia.Backend.Beans.AffixBean
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.IsRandom(affixBean) end
+
+---@param affixBean ZhanGuoWuxia.Backend.Beans.AffixBean
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.IsUpgradable(affixBean) end
 
 ---@param itemBean ZhanGuoWuxia.Backend.Beans.ItemBean
 ---@return ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
@@ -75,6 +89,11 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.IsImportant(skillFormBean) 
 ---@param actionBean ZhanGuoWuxia.Backend.Beans.ActionBean
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetSavedEventId(actionBean) end
+
+---@param actionBean ZhanGuoWuxia.Backend.Beans.ActionBean
+---@param scenarioId System.String
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.IsBelongedToScenario(actionBean, scenarioId) end
 
 ---@overload fun(evtBean: ZhanGuoWuxia.Backend.Beans.DungeonEventBean, param: ZhanGuoWuxia.Backend.RuntimeData.ActionParam): System.Boolean
 ---@overload fun(bigEventBean: ZhanGuoWuxia.Backend.Beans.BigEventBean, param: ZhanGuoWuxia.Backend.RuntimeData.ActionParam): System.Boolean
@@ -141,6 +160,11 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetClassAttrByLevel(classId
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.CountOfResource(resourceBean, save) end
 
+---@param resourceBean ZhanGuoWuxia.Backend.Beans.PermanentResourceBean
+---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.TotalRoleCount(resourceBean, save) end
+
 ---@param battleBean ZhanGuoWuxia.Backend.Beans.BattleBean
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.IsAskForPlayerFormation(battleBean) end
@@ -168,10 +192,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetAttrsWithDifficulty(bean
 ---@param team System.Int32
 ---@return userdata
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.Preset2Formations(preset, saveData, followPlayerLevel, team) end
-
----@param colorData ZhanGuoWuxia.Backend.Beans.ColorData
----@return UnityEngine.Color
-function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.ToUnityColor(colorData) end
 
 ---@param rcBean ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean
 ---@return System.Boolean
@@ -221,8 +241,9 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore() end
 ---@class ZhanGuoWuxia.Backend.Beans.ActionBean: ZhanGuoWuxia.Backend.Beans.BaseBean, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
 ---@field Id System.String
 ---@field Icon System.String
----@field Prefix System.String
+---@field PrefixType ZhanGuoWuxia.Backend.Beans.PrefixType
 ---@field MountEvents userdata
+---@field Scenarios userdata
 ---@field ImportanceType ZhanGuoWuxia.Backend.Beans.ActionImportantType
 ---@field Name System.String
 ---@field Name_l10n_key System.String
@@ -264,7 +285,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ActionBean:ToString() end
 function CS.ZhanGuoWuxia.Backend.Beans.ActionBean:PostInit() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.ActionBean
----@overload fun(Id: System.String, Icon: System.String, Prefix: System.String, MountEvents: userdata, ImportanceType: ZhanGuoWuxia.Backend.Beans.ActionImportantType, Name: System.String, LuaCommandFile: System.String, CostActionCount: System.Int32, ActionType: ZhanGuoWuxia.Backend.Beans.ActionClassType, RoundAfter: System.Int32, PlayOnce: System.Boolean, ShareEventId: System.String, PreEvents: userdata, PreEventsAfterRound: { [System.String]: System.Int32 }, MenpaiExist: userdata, HasFlags: userdata, ExcludeFlags: userdata, ActionConditions: ZhanGuoWuxia.Backend.Beans.ActionConditionBase[]): ZhanGuoWuxia.Backend.Beans.ActionBean
+---@overload fun(Id: System.String, Icon: System.String, PrefixType: ZhanGuoWuxia.Backend.Beans.PrefixType, MountEvents: userdata, Scenarios: userdata, ImportanceType: ZhanGuoWuxia.Backend.Beans.ActionImportantType, Name: System.String, LuaCommandFile: System.String, CostActionCount: System.Int32, ActionType: ZhanGuoWuxia.Backend.Beans.ActionClassType, RoundAfter: System.Int32, PlayOnce: System.Boolean, ShareEventId: System.String, PreEvents: userdata, PreEventsAfterRound: { [System.String]: System.Int32 }, MenpaiExist: userdata, HasFlags: userdata, ExcludeFlags: userdata, ActionConditions: ZhanGuoWuxia.Backend.Beans.ActionConditionBase[]): ZhanGuoWuxia.Backend.Beans.ActionBean
 ---@return ZhanGuoWuxia.Backend.Beans.ActionBean
 function CS.ZhanGuoWuxia.Backend.Beans.ActionBean() end
 
@@ -2409,6 +2430,8 @@ CS.ZhanGuoWuxia.Backend.Beans.AffixLifeType = {
 ---@field PicScale System.Single
 ---@field MapPosition UnityEngine.Vector2
 ---@field ConnectedNodes userdata
+---@field BattleScene System.String
+---@field BattleBGM System.String
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.AreaBean = {}
 
@@ -2432,7 +2455,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AreaBean:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.AreaBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.AreaBean
----@overload fun(Id: System.String, Name: System.String, BuildingList: System.String[], Develop: System.Int32, Pic: System.String, PicScale: System.Single, MapPosition: UnityEngine.Vector2, ConnectedNodes: userdata): ZhanGuoWuxia.Backend.Beans.AreaBean
+---@overload fun(Id: System.String, Name: System.String, BuildingList: System.String[], Develop: System.Int32, Pic: System.String, PicScale: System.Single, MapPosition: UnityEngine.Vector2, ConnectedNodes: userdata, BattleScene: System.String, BattleBGM: System.String): ZhanGuoWuxia.Backend.Beans.AreaBean
 ---@return ZhanGuoWuxia.Backend.Beans.AreaBean
 function CS.ZhanGuoWuxia.Backend.Beans.AreaBean() end
 
@@ -2528,7 +2551,8 @@ CS.ZhanGuoWuxia.Backend.Beans.BattleConfigFlag = {
     NoWound = 2,
     FollowPlayerLevel = 4,
     IgnorePlayerFormation = 8,
-    AttritionBattle = 16
+    AttritionBattle = 16,
+    AllowAutoIfWin = 32
 }
 
 ---@enum ZhanGuoWuxia.Backend.Beans.BattleEventNodeType
@@ -2703,38 +2727,6 @@ function CS.ZhanGuoWuxia.Backend.Beans.BuildingBean:ToString() end
 ---@return ZhanGuoWuxia.Backend.Beans.BuildingBean
 function CS.ZhanGuoWuxia.Backend.Beans.BuildingBean() end
 
----@class ZhanGuoWuxia.Backend.Beans.ColorData: ZhanGuoWuxia.Backend.Beans.BaseBean, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
----@field R System.Single
----@field G System.Single
----@field B System.Single
----@field A System.Single
----@field __ID__ System.Int32
-CS.ZhanGuoWuxia.Backend.Beans.ColorData = {}
-
----@param _json SimpleJSON.JSONNode
----@return ZhanGuoWuxia.Backend.Beans.ColorData
-function CS.ZhanGuoWuxia.Backend.Beans.ColorData.DeserializeColorData(_json) end
-
----@return System.Int32
-function CS.ZhanGuoWuxia.Backend.Beans.ColorData:GetTypeId() end
-
----@return System.String
-function CS.ZhanGuoWuxia.Backend.Beans.ColorData:GetPrimaryKey() end
-
----@param _tables { [System.String]: System.Object }
-function CS.ZhanGuoWuxia.Backend.Beans.ColorData:Resolve(_tables) end
-
----@param translator userdata
-function CS.ZhanGuoWuxia.Backend.Beans.ColorData:TranslateText(translator) end
-
----@return System.String
-function CS.ZhanGuoWuxia.Backend.Beans.ColorData:ToString() end
-
----@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.ColorData
----@overload fun(R: System.Single, G: System.Single, B: System.Single, A: System.Single): ZhanGuoWuxia.Backend.Beans.ColorData
----@return ZhanGuoWuxia.Backend.Beans.ColorData
-function CS.ZhanGuoWuxia.Backend.Beans.ColorData() end
-
 ---@enum ZhanGuoWuxia.Backend.Beans.ColorType
 CS.ZhanGuoWuxia.Backend.Beans.ColorType = {
     Color_R = 0,
@@ -2769,6 +2761,7 @@ CS.ZhanGuoWuxia.Backend.Beans.DamageType = {
 ---@field Desc System.String
 ---@field Desc_l10n_key System.String
 ---@field Pic System.String
+---@field BGM System.String
 ---@field DungeonType ZhanGuoWuxia.Backend.Beans.DungeonType
 ---@field MustRoles System.String[]
 ---@field MaxJoinRoleNum System.Int32
@@ -2797,7 +2790,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.DungeonBean:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.DungeonBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.DungeonBean
----@overload fun(Id: System.String, Name: System.String, Desc: System.String, Pic: System.String, DungeonType: ZhanGuoWuxia.Backend.Beans.DungeonType, MustRoles: System.String[], MaxJoinRoleNum: System.Int32, OwnedAreaId: System.String, LootPoolId: System.String): ZhanGuoWuxia.Backend.Beans.DungeonBean
+---@overload fun(Id: System.String, Name: System.String, Desc: System.String, Pic: System.String, BGM: System.String, DungeonType: ZhanGuoWuxia.Backend.Beans.DungeonType, MustRoles: System.String[], MaxJoinRoleNum: System.Int32, OwnedAreaId: System.String, LootPoolId: System.String): ZhanGuoWuxia.Backend.Beans.DungeonBean
 ---@return ZhanGuoWuxia.Backend.Beans.DungeonBean
 function CS.ZhanGuoWuxia.Backend.Beans.DungeonBean() end
 
@@ -3349,15 +3342,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.LootPoolBean() end
 ---@field Pic System.String
 ---@field Desc System.String
 ---@field Desc_l10n_key System.String
----@field AreaSet userdata
----@field RoleList System.String[]
----@field RecruitRoles System.String[]
----@field StartRandromRoleNum System.Int32
----@field LeaderId System.String
----@field RelationDict { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiRelationType }
----@field FriendShipDict { [System.String]: System.Single }
----@field SectColor ZhanGuoWuxia.Backend.Beans.ColorData
----@field AIName System.String
+---@field SectColor System.String
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.MenpaiBean = {}
 
@@ -3381,7 +3366,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.MenpaiBean:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.MenpaiBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.MenpaiBean
----@overload fun(Id: System.String, Name: System.String, Pic: System.String, Desc: System.String, AreaSet: userdata, RoleList: System.String[], RecruitRoles: System.String[], StartRandromRoleNum: System.Int32, LeaderId: System.String, RelationDict: { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiRelationType }, FriendShipDict: { [System.String]: System.Single }, SectColor: ZhanGuoWuxia.Backend.Beans.ColorData, AIName: System.String): ZhanGuoWuxia.Backend.Beans.MenpaiBean
+---@overload fun(Id: System.String, Name: System.String, Pic: System.String, Desc: System.String, SectColor: System.String): ZhanGuoWuxia.Backend.Beans.MenpaiBean
 ---@return ZhanGuoWuxia.Backend.Beans.MenpaiBean
 function CS.ZhanGuoWuxia.Backend.Beans.MenpaiBean() end
 
@@ -3391,6 +3376,45 @@ CS.ZhanGuoWuxia.Backend.Beans.MenpaiRelationType = {
     Friend = 1,
     Enemy = -1
 }
+
+---@class ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean: ZhanGuoWuxia.Backend.Beans.BaseBean, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
+---@field Id System.String
+---@field Scenarios userdata
+---@field MenpaiId System.String
+---@field AreaSet userdata
+---@field RoleList System.String[]
+---@field RecruitRoles System.String[]
+---@field StartRandromRoleNum System.Int32
+---@field LeaderId System.String
+---@field RelationDict { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiRelationType }
+---@field FriendShipDict { [System.String]: System.Single }
+---@field AIName System.String
+---@field __ID__ System.Int32
+CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean = {}
+
+---@param _json SimpleJSON.JSONNode
+---@return ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
+function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean.DeserializeMenpaiSetUpBean(_json) end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean:GetTypeId() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean:GetPrimaryKey() end
+
+---@param _tables { [System.String]: System.Object }
+function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean:Resolve(_tables) end
+
+---@param translator userdata
+function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean:TranslateText(translator) end
+
+---@return System.String
+function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean:ToString() end
+
+---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
+---@overload fun(Id: System.String, Scenarios: userdata, MenpaiId: System.String, AreaSet: userdata, RoleList: System.String[], RecruitRoles: System.String[], StartRandromRoleNum: System.Int32, LeaderId: System.String, RelationDict: { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiRelationType }, FriendShipDict: { [System.String]: System.Single }, AIName: System.String): ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
+---@return ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
+function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean() end
 
 ---@class ZhanGuoWuxia.Backend.Beans.ModelBean: ZhanGuoWuxia.Backend.Beans.BaseBean, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
 ---@field Id System.String
@@ -3597,7 +3621,8 @@ function CS.ZhanGuoWuxia.Backend.Beans.PermanentResourceBean() end
 CS.ZhanGuoWuxia.Backend.Beans.PermanentResourceType = {
     None = 0,
     Item = 1,
-    FirePoint = 2
+    FirePoint = 2,
+    RoleAvailableCount = 3
 }
 
 ---@class ZhanGuoWuxia.Backend.Beans.PicBean: ZhanGuoWuxia.Backend.Beans.BaseBean, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
@@ -3629,6 +3654,31 @@ function CS.ZhanGuoWuxia.Backend.Beans.PicBean:ToString() end
 ---@overload fun(Id: System.String, Gender: ZhanGuoWuxia.Backend.Beans.GenderType): ZhanGuoWuxia.Backend.Beans.PicBean
 ---@return ZhanGuoWuxia.Backend.Beans.PicBean
 function CS.ZhanGuoWuxia.Backend.Beans.PicBean() end
+
+---@enum ZhanGuoWuxia.Backend.Beans.PrefixType
+CS.ZhanGuoWuxia.Backend.Beans.PrefixType = {
+    None = 0,
+    Unknown = 1,
+    Role = 2,
+    Story = 3,
+    Recruit = 4,
+    Unlock = 5,
+    Train = 6,
+    Diplomatic = 7,
+    HostileDiplomatic = 8,
+    Trade = 9,
+    Explore = 10,
+    Special = 11,
+    Search = 12,
+    Recover = 13,
+    Battle = 14,
+    Develop = 15,
+    Strategy = 16,
+    Robber = 17,
+    Inquire = 18,
+    Hunt = 19,
+    BossHunt = 20
+}
 
 ---@enum ZhanGuoWuxia.Backend.Beans.RCModifierType
 CS.ZhanGuoWuxia.Backend.Beans.RCModifierType = {
@@ -3918,7 +3968,12 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleVoiceData() end
 ---@field Name_l10n_key System.String
 ---@field PlayerId System.String
 ---@field PlayerMenpaiId System.String
+---@field Pic System.String
 ---@field Desc System.String
+---@field Desc_l10n_key System.String
+---@field LuaEntry System.String
+---@field ScenarioFlag ZhanGuoWuxia.Backend.Beans.ScenarioFlag
+---@field MapBGM System.String
 ---@field Flags { [System.String]: System.String }
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.ScenarioBean = {}
@@ -3943,9 +3998,17 @@ function CS.ZhanGuoWuxia.Backend.Beans.ScenarioBean:TranslateText(translator) en
 function CS.ZhanGuoWuxia.Backend.Beans.ScenarioBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.ScenarioBean
----@overload fun(Id: System.String, Name: System.String, PlayerId: System.String, PlayerMenpaiId: System.String, Desc: System.String, Flags: { [System.String]: System.String }): ZhanGuoWuxia.Backend.Beans.ScenarioBean
+---@overload fun(Id: System.String, Name: System.String, PlayerId: System.String, PlayerMenpaiId: System.String, Pic: System.String, Desc: System.String, LuaEntry: System.String, ScenarioFlag: ZhanGuoWuxia.Backend.Beans.ScenarioFlag, MapBGM: System.String, Flags: { [System.String]: System.String }): ZhanGuoWuxia.Backend.Beans.ScenarioBean
 ---@return ZhanGuoWuxia.Backend.Beans.ScenarioBean
 function CS.ZhanGuoWuxia.Backend.Beans.ScenarioBean() end
+
+---@enum ZhanGuoWuxia.Backend.Beans.ScenarioFlag
+CS.ZhanGuoWuxia.Backend.Beans.ScenarioFlag = {
+    None = 0,
+    Hidden = 1,
+    NewGameSelectable = 2,
+    NotOpen = 4
+}
 
 ---@class ZhanGuoWuxia.Backend.Beans.ShopBean: ZhanGuoWuxia.Backend.Beans.BaseBean, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
 ---@field Id System.String
@@ -5261,6 +5324,56 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:get_BeanType() end
 ---@param _json SimpleJSON.JSONNode
 ---@return ZhanGuoWuxia.Backend.Beans.TbMenpai
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai(_json) end
+
+---@class ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean }
+---@field BeanCount System.Int32
+---@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean }
+---@field DataList ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean[]
+---@field BeanType System.Type
+---@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean }
+---@field private _dataList ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean[]
+CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp = {}
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:get_BeanCount() end
+
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:GetAllBeans() end
+
+---@overload fun(self: self, newBeans: userdata)
+---@param newBeans userdata
+function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:Merge(newBeans) end
+
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:get_DataMap() end
+
+---@return userdata
+function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:get_DataList() end
+
+---@param key System.String
+---@return ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
+function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:GetOrDefault(key) end
+
+---@param key System.String
+---@return ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
+function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:Get(key) end
+
+---@param key System.String
+---@return ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
+function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:get_Item(key) end
+
+---@param _tables { [System.String]: System.Object }
+function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:Resolve(_tables) end
+
+---@param translator userdata
+function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:TranslateText(translator) end
+
+---@return System.Type
+function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:get_BeanType() end
+
+---@param _json SimpleJSON.JSONNode
+---@return ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp
+function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbModel: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelBean }
 ---@field BeanCount System.Int32

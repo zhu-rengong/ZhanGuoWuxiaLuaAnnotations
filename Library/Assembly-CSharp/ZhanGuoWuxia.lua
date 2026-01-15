@@ -8,8 +8,10 @@
 ---@field CurrentMeta ZhanGuoWuxia.UI.SaveMetaData
 ---@field DialogueRecorder ZhanGuoWuxia.UI.Story.DialogueRecorder
 ---@field TotalAchievementPoint System.Int32
+---@field CurrentMapBGM System.String
 ---@field Instance ZhanGuoWuxia.GameRuntime
 ---@field private m_SaveMetaCache { [System.String]: ZhanGuoWuxia.UI.SaveMetaData }
+---@field private FirePointLastViewedKey System.String
 ---@field protected _instance ZhanGuoWuxia.GameRuntime
 CS.ZhanGuoWuxia.GameRuntime = {}
 
@@ -44,7 +46,8 @@ function CS.ZhanGuoWuxia.GameRuntime:GetCurrentArchiveFolderPath() end
 function CS.ZhanGuoWuxia.GameRuntime:NavigateToArchiveFolder() end
 
 ---@param archiveIdx? System.Int32
-function CS.ZhanGuoWuxia.GameRuntime:StartGame(archiveIdx) end
+---@param scenarioId? System.String
+function CS.ZhanGuoWuxia.GameRuntime:StartGame(archiveIdx, scenarioId) end
 
 ---@param index System.Int32
 ---@param onManualSave? fun()
@@ -68,6 +71,8 @@ function CS.ZhanGuoWuxia.GameRuntime:DoSaveMetaData(index) end
 
 function CS.ZhanGuoWuxia.GameRuntime:ExportCurrentSave() end
 
+function CS.ZhanGuoWuxia.GameRuntime:EnterNewGame() end
+
 ---@param index System.Int32
 function CS.ZhanGuoWuxia.GameRuntime:Load(index) end
 
@@ -82,6 +87,11 @@ function CS.ZhanGuoWuxia.GameRuntime:ReturnToMainMenu(needConfirm) end
 
 function CS.ZhanGuoWuxia.GameRuntime:ReturnToModEditor() end
 
+---@return System.String
+function CS.ZhanGuoWuxia.GameRuntime:get_CurrentMapBGM() end
+
+function CS.ZhanGuoWuxia.GameRuntime:PlayCurrentMapBGM() end
+
 function CS.ZhanGuoWuxia.GameRuntime:ReturnToMainMenuOrModEditor() end
 
 ---@param index System.Int32
@@ -90,6 +100,14 @@ function CS.ZhanGuoWuxia.GameRuntime:LoadMetaData(index) end
 
 ---@return userdata
 function CS.ZhanGuoWuxia.GameRuntime:GetRestoreContexts() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.GameRuntime:HasChoosableRestore() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.GameRuntime:HasNewUnlockedRestore() end
+
+function CS.ZhanGuoWuxia.GameRuntime:MarkRestoreAsViewed() end
 
 function CS.ZhanGuoWuxia.GameRuntime:InitRuntimeEnv() end
 

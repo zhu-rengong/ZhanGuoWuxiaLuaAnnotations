@@ -1109,6 +1109,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Bool(id, value, isChanged) 
 ---@field Team System.Int32
 ---@field Pos System.Int32
 ---@field private m_DeadMark System.Boolean
+---@field private m_BattleTempUnlockedTalents System.String[]
 ---@field BindRole ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
 ---@field m_Buffs ZhanGuoWuxia.Backend.Battle.BattleBuffInstance[]
 ---@field private m_StatDirtyMark { [System.String]: System.Boolean }
@@ -1122,6 +1123,10 @@ CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance = {}
 
 ---@return userdata
 function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:get_ActiveSkills() end
+
+---@param skill ZhanGuoWuxia.Backend.Battle.BattleSkillInstance
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:IndexOfActiveSkill(skill) end
 
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:get_HasActiveSkill() end
@@ -1261,6 +1266,12 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:ReduceJoinBattleCount
 
 function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:OnExitBattle() end
 
+---@private
+function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:RandomUnlockTalentsForNPC() end
+
+---@private
+function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:CleanupTempUnlockedTalents() end
+
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:get_CurrentRow() end
 
@@ -1310,8 +1321,9 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:GetBuff(buffId) end
 function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:MarkBuffStatDirty(buff) end
 
 ---@param buffId System.String
+---@param removerId? System.Int32
 ---@return System.Boolean
-function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:RemoveBuff(buffId) end
+function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:RemoveBuff(buffId, removerId) end
 
 ---@param buffId System.String
 ---@return System.Boolean
@@ -1356,7 +1368,8 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:UpdateBuffs() end
 ---@package
 ---@param eventName System.String
 ---@param arg ZhanGuoWuxia.Backend.Battle.BattleArgument
-function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:FireBuffEvent(eventName, arg) end
+---@param exceptFunc? userdata
+function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:FireBuffEvent(eventName, arg, exceptFunc) end
 
 ---@private
 ---@param role ZhanGuoWuxia.Backend.Battle.BattleRoleInstance
@@ -1382,6 +1395,16 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:FireOtherBuffEvent(ev
 ---@param buffToAdd ZhanGuoWuxia.Backend.Battle.BattleBuffInstance
 ---@param CasterId? System.Int32
 function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:NotifyOtherBuffAdded(buffToAdd, CasterId) end
+
+---@private
+---@param buffToAdd ZhanGuoWuxia.Backend.Battle.BattleBuffInstance
+---@param CasterId? System.Int32
+function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:NotifySelfBuffAdded(buffToAdd, CasterId) end
+
+---@private
+---@param buffToRemove ZhanGuoWuxia.Backend.Battle.BattleBuffInstance
+---@param RemoverId? System.Int32
+function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:NotifySelfBuffRemoved(buffToRemove, RemoverId) end
 
 ---@private
 ---@param buffToRemove ZhanGuoWuxia.Backend.Battle.BattleBuffInstance
@@ -2250,7 +2273,6 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleAttritionSystem() end
 
 ---@class ZhanGuoWuxia.Backend.Battle.BattleEvaluateSystem: ZhanGuoWuxia.Backend.Battle.BattleFieldSystem
 ---@field IsPlayerWin System.Boolean
----@field private m_TeamExpCache { [System.Int32]: System.Single }
 ---@field private m_PlayerTeam System.Int32
 ---@field private m_WinRet ZhanGuoWuxia.Backend.Battle.BattleRet
 ---@field private _teamRoleCountScale System.Single[]
@@ -2672,8 +2694,10 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerSystem() end
 ---@field IsSkip System.Boolean
 ---@field private m_Roles { [System.Int32]: ZhanGuoWuxia.Backend.Battle.BattleRoleInstance }
 ---@field private m_RolesForIteration ZhanGuoWuxia.Backend.Battle.BattleRoleInstance[]
+---@field private _battleRet ZhanGuoWuxia.Backend.Battle.BattleRet
 ---@field private m_Team1 System.Int32[]
 ---@field private m_Team2 System.Int32[]
+---@field private _battleCTS System.Threading.CancellationTokenSource
 ---@field private m_CurrentNormalAttackers ZhanGuoWuxia.Backend.Battle.BattleRoleInstance[]
 CS.ZhanGuoWuxia.Backend.Battle.BattleField = {}
 
@@ -2695,6 +2719,12 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleField:get_IsAIProxied() end
 
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Battle.BattleField:get_IsAutoBattle() end
+
+---@return ZhanGuoWuxia.Backend.Battle.BattleRet
+function CS.ZhanGuoWuxia.Backend.Battle.BattleField:get_PrematureRet() end
+
+---@param value ZhanGuoWuxia.Backend.Battle.BattleRet
+function CS.ZhanGuoWuxia.Backend.Battle.BattleField:set_PrematureRet(value) end
 
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Battle.BattleField.get_IsInBattle() end
@@ -2865,7 +2895,11 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleField:WaitForNormalAttack() end
 
 ---@private
 ---@return System.Boolean
-function CS.ZhanGuoWuxia.Backend.Battle.BattleField:IsBattleFinished() end
+function CS.ZhanGuoWuxia.Backend.Battle.BattleField:IsBattleFinishedAfterRound() end
+
+---@private
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.BattleField:IsBattleFinishedInRound() end
 
 ---@private
 ---@async
@@ -2907,7 +2941,15 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleField:OnBattleEnd() end
 
 ---@private
 ---@return ZhanGuoWuxia.Backend.Battle.BattleRet
-function CS.ZhanGuoWuxia.Backend.Battle.BattleField:GetBattleRet() end
+function CS.ZhanGuoWuxia.Backend.Battle.BattleField:GetCurrentTeamRet() end
+
+---@private
+---@return ZhanGuoWuxia.Backend.Battle.BattleRet
+function CS.ZhanGuoWuxia.Backend.Battle.BattleField:GetBattleRetAfterRound() end
+
+---@private
+---@return ZhanGuoWuxia.Backend.Battle.BattleRet
+function CS.ZhanGuoWuxia.Backend.Battle.BattleField:GetBattleRetBeforeRoundEnd() end
 
 ---@private
 ---@return ZhanGuoWuxia.Backend.Battle.BattleRoleInstance
@@ -2970,6 +3012,9 @@ function CS.ZhanGuoWuxia.Backend.Battle.RoleEvaluation:get_IsLevelUp() end
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Battle.RoleEvaluation:GetWound() end
 
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.RoleEvaluation:IsLevelUpHealed() end
+
 ---@return ZhanGuoWuxia.Backend.Battle.RoleEvaluation
 function CS.ZhanGuoWuxia.Backend.Battle.RoleEvaluation() end
 
@@ -3004,6 +3049,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.SkillEvalutaion:get_IsLevelUp() end
 
 ---@class ZhanGuoWuxia.Backend.Battle.WoundEvaluation: System.ValueType
 ---@field NewWound System.Int32
+---@field IsLevelUpHealed System.Boolean
 CS.ZhanGuoWuxia.Backend.Battle.WoundEvaluation = {}
 
 
@@ -3037,6 +3083,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.CardCountType() end
 ---@field IsEmpty System.Boolean
 ---@field IsAvailable System.Boolean
 ---@field IsPlayerCard System.Boolean
+---@field SkillSlotIndex System.Int32
 ---@field CardCountIconName System.String
 ---@field Role ZhanGuoWuxia.Backend.Battle.BattleRoleInstance
 ---@field Skill ZhanGuoWuxia.Backend.Battle.BattleSkillInstance
@@ -3050,6 +3097,9 @@ function CS.ZhanGuoWuxia.Backend.Battle.RoleCardData:get_IsAvailable() end
 
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Battle.RoleCardData:get_IsPlayerCard() end
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.Battle.RoleCardData:get_SkillSlotIndex() end
 
 function CS.ZhanGuoWuxia.Backend.Battle.RoleCardData:Clear() end
 

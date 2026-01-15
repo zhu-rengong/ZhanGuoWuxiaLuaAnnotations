@@ -3751,6 +3751,10 @@ function CS.UnityEngine.Mesh:GetBoneWeightsNonAllocImpl(values) end
 ---@param values UnityEngine.Matrix4x4[]
 function CS.UnityEngine.Mesh:GetBindposesNonAllocImpl(values) end
 
+---@package
+---@return System.Boolean
+function CS.UnityEngine.Mesh:IsCloudResource() end
+
 ---@return System.Boolean
 function CS.UnityEngine.Mesh:get_isReadable() end
 
@@ -4340,11 +4344,11 @@ function CS.UnityEngine.Texture:get_graphicsFormat() end
 
 ---@private
 ---@return System.Int32
-function CS.UnityEngine.Texture:GetDataWidth() end
+function CS.UnityEngine.Texture:GetScriptWidth() end
 
 ---@private
 ---@return System.Int32
-function CS.UnityEngine.Texture:GetDataHeight() end
+function CS.UnityEngine.Texture:GetScriptHeight() end
 
 ---@private
 ---@return UnityEngine.Rendering.TextureDimension
@@ -8341,6 +8345,7 @@ CS.UnityEngine.SpriteSortPoint = {
 ---@field spriteAtlasTextureScale System.Single
 ---@field associatedAlphaSplitTexture UnityEngine.Texture2D
 ---@field pivot UnityEngine.Vector2
+---@field isUsingPlaceholder System.Boolean
 ---@field packed System.Boolean
 ---@field packingMode UnityEngine.SpritePackingMode
 ---@field packingRotation UnityEngine.SpritePackingRotation
@@ -8431,6 +8436,9 @@ function CS.UnityEngine.Sprite:get_associatedAlphaSplitTexture() end
 
 ---@return UnityEngine.Vector2
 function CS.UnityEngine.Sprite:get_pivot() end
+
+---@return System.Boolean
+function CS.UnityEngine.Sprite:get_isUsingPlaceholder() end
 
 ---@return System.Boolean
 function CS.UnityEngine.Sprite:get_packed() end

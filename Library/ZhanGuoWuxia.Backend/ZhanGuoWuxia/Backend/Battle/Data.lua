@@ -234,15 +234,18 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleRoleStat:SetFloat(dataName, n
 ---@return ZhanGuoWuxia.Backend.Battle.Data.BattleRoleStat
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleRoleStat() end
 
----@class ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation: System.ValueType
+---@class ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation: System.Object
 ---@field Attacker ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@field Defender ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@field DisputedArea ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
+---@field IsRecaptureBuilding System.Boolean
 CS.ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation = {}
 
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation:IsEmpty() end
 
+---@return ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation
+function CS.ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation() end
 
 ---@class ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam: System.Object
 ---@field Team1 ZhanGuoWuxia.Backend.Battle.RoleFormationData[]
@@ -372,6 +375,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam() end
 ---@field CDReduction_Skill1 System.String
 ---@field CDReduction_Skill2 System.String
 ---@field CDReduction_Skill3 System.String
+---@field FlawModifier System.String
 CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStatKey = {}
 
 ---@return ZhanGuoWuxia.Backend.Battle.Data.BattleStatKey
@@ -458,6 +462,8 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.BuffActionResult() end
 ---@field OnKill System.String
 ---@field BeforeSkillCast System.String
 ---@field AfterSkillCast System.String
+---@field BeforeOtherCastSkill System.String
+---@field AfterOtherCastSkill System.String
 ---@field BeforePersue System.String
 ---@field BeforeCounter System.String
 ---@field AfterPersue System.String
@@ -485,10 +491,13 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.BuffActionResult() end
 ---@field OnAllyDodge System.String
 ---@field OnAllyParry System.String
 ---@field OnDodge System.String
+---@field OnOtherDodge System.String
 ---@field OnBeParried System.String
 ---@field OnParry System.String
 ---@field OnAdd System.String
 ---@field OnBuffRefresh System.String
+---@field OnSelfBuffAdded System.String
+---@field OnSelfBuffRemoved System.String
 ---@field OnThink System.String
 ---@field OnRemove System.String
 ---@field OnRoundStart System.String
@@ -816,6 +825,9 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.RecoverResult:IsFromSkill(skillId) 
 ---@param buffId System.String
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Battle.Data.RecoverResult:IsFromBuff(buffId) end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Battle.Data.RecoverResult:IsActiveSkill() end
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Battle.Data.RecoverResult:GetPerformRoleId() end

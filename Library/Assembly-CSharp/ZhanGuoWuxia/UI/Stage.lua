@@ -9,6 +9,7 @@
 ---@field OverrideName System.String
 ---@field PicName System.String
 ---@field DefaultEmotion System.String
+---@field IsSilhouette System.Boolean
 CS.ZhanGuoWuxia.UI.Stage.StageActorInfo = {}
 
 ---@return System.String
@@ -23,6 +24,7 @@ function CS.ZhanGuoWuxia.UI.Stage.StageActorInfo() end
 ---@field AllBubbles userdata
 ---@field SkipPriority System.Int32
 ---@field ViewObject UnityEngine.GameObject
+---@field StageRoot UnityEngine.RectTransform
 ---@field IsSelectionsActive System.Boolean
 ---@field private IsTypingText System.Boolean
 ---@field private IsShaking System.Boolean
@@ -53,6 +55,9 @@ function CS.ZhanGuoWuxia.UI.Stage.UIStage:get_SkipPriority() end
 
 ---@return UnityEngine.GameObject
 function CS.ZhanGuoWuxia.UI.Stage.UIStage:get_ViewObject() end
+
+---@return UnityEngine.RectTransform
+function CS.ZhanGuoWuxia.UI.Stage.UIStage:get_StageRoot() end
 
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.UI.Stage.UIStage:get_IsSelectionsActive() end
@@ -127,13 +132,6 @@ function CS.ZhanGuoWuxia.UI.Stage.UIStage:HideAllActors() end
 ---@param roleId System.String
 function CS.ZhanGuoWuxia.UI.Stage.UIStage:HideActor(roleId) end
 
----@param effectName System.String
-function CS.ZhanGuoWuxia.UI.Stage.UIStage:EffectAllActors(effectName) end
-
----@param roleId System.String
----@param effectName System.String
-function CS.ZhanGuoWuxia.UI.Stage.UIStage:EffectActor(roleId, effectName) end
-
 ---@async
 ---@param roleId System.String
 ---@param content System.String
@@ -155,7 +153,8 @@ function CS.ZhanGuoWuxia.UI.Stage.UIStage:SetDialogueDataGroup(dialogues) end
 ---@param talkerName System.String
 ---@param picName System.String
 ---@param talkContent System.String
-function CS.ZhanGuoWuxia.UI.Stage.UIStage:SaveDialogueRecord(talkerName, picName, talkContent) end
+---@param isSilhouette System.Boolean
+function CS.ZhanGuoWuxia.UI.Stage.UIStage:SaveDialogueRecord(talkerName, picName, talkContent, isSilhouette) end
 
 ---@param eventData UnityEngine.EventSystems.PointerEventData
 function CS.ZhanGuoWuxia.UI.Stage.UIStage:OnPointerClick(eventData) end
@@ -282,6 +281,7 @@ CS.ZhanGuoWuxia.UI.Stage.RoleIdType = {
 }
 
 ---@class ZhanGuoWuxia.UI.Stage.UIStageActor: Sirenix.OdinInspector.SerializedMonoBehaviour, UnityEngine.ISerializationCallbackReceiver, Sirenix.Serialization.ISupportsPrefabSerialization
+---@field IsSilhouette System.Boolean
 ---@field IsActing System.Boolean
 ---@field private m_RoleImg UnityEngine.UI.Image
 ---@field private m_Effect Coffee.UIEffects.UIEffect
@@ -291,6 +291,7 @@ CS.ZhanGuoWuxia.UI.Stage.RoleIdType = {
 ---@field private m_IsFaceLeft System.Boolean
 ---@field private m_ActorTwns DG.Tweening.Tween[]
 ---@field private m_CurrentEmoji UnityEngine.GameObject
+---@field private m_ActiveVFXs ZhanGuoWuxia.VFX.VFXObject[]
 ---@field PrefabPath System.String
 ---@field private DefaultPicName System.String
 CS.ZhanGuoWuxia.UI.Stage.UIStageActor = {}
@@ -320,8 +321,13 @@ function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:Show() end
 function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:Hide() end
 
 ---@param effectName? System.String
----@param play? System.Boolean
-function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:Effect(effectName, play) end
+function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:PlayEffect(effectName) end
+
+---@param duration? System.Single
+---@return DG.Tweening.Tween
+function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:PlayUnDissolveEffect(duration) end
+
+function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:ResetEffect() end
 
 ---@param endValue System.Single
 ---@param duration? System.Single
@@ -371,6 +377,9 @@ function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:SetPic(imgId) end
 
 ---@return System.String
 function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:GetCurrentPic() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:get_IsSilhouette() end
 
 ---@param isFemale System.Boolean
 function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:SetRandomPic(isFemale) end
@@ -429,6 +438,11 @@ function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:MoveY(distance, relative, speed) 
 ---@param duration System.Single
 ---@return DG.Tweening.Tween
 function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:Daze(duration) end
+
+---@param imgId? System.String
+---@param duration? System.Single
+---@return DG.Tweening.Tween
+function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:CrossFadePic(imgId, duration) end
 
 ---@private
 function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:EndDaze() end
@@ -495,6 +509,8 @@ function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:RotateY(angle, duration) end
 ---@return DG.Tweening.Tween
 function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:RotateZ(angle, duration) end
 
+function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:MarkAsSilhouette() end
+
 ---@private
 ---@param twn DG.Tweening.Tween
 ---@return DG.Tweening.Tween
@@ -514,6 +530,16 @@ function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:GetBestBubbleType() end
 
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:IsOnLeftOfScreen() end
+
+---@param prefabPath System.String
+---@param duration? System.Single
+---@return ZhanGuoWuxia.VFX.VFXObject
+function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:PlayVFX(prefabPath, duration) end
+
+function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:StopAllVFX() end
+
+---@private
+function CS.ZhanGuoWuxia.UI.Stage.UIStageActor:CleanupInactiveVFX() end
 
 ---@return ZhanGuoWuxia.UI.Stage.UIStageActor
 function CS.ZhanGuoWuxia.UI.Stage.UIStageActor() end

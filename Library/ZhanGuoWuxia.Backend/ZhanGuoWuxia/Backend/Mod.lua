@@ -358,8 +358,8 @@ function CS.ZhanGuoWuxia.Backend.Mod.IModDownloadTask:set_ModItem(value) end
 ---@field Author System.String
 ---@field Path System.String
 ---@field Download_num System.Int32
----@field Createtime System.Int64
----@field Updatetime System.Int64
+---@field Createtime System.DateTime
+---@field Updatetime System.DateTime
 ---@field IsDownloaded System.Boolean
 ---@field IsHot System.Boolean
 ---@field IsNew System.Boolean
@@ -393,10 +393,10 @@ function CS.ZhanGuoWuxia.Backend.Mod.IModShopItem:get_Path() end
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Mod.IModShopItem:get_Download_num() end
 
----@return System.Int64
+---@return System.DateTime
 function CS.ZhanGuoWuxia.Backend.Mod.IModShopItem:get_Createtime() end
 
----@return System.Int64
+---@return System.DateTime
 function CS.ZhanGuoWuxia.Backend.Mod.IModShopItem:get_Updatetime() end
 
 ---@return System.Boolean
@@ -414,7 +414,7 @@ function CS.ZhanGuoWuxia.Backend.Mod.IModShopItem:get_IsOfficial() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Mod.IModShopItem:GetDetailInfo() end
 
----@return System.Boolean
+---@return userdata
 function CS.ZhanGuoWuxia.Backend.Mod.IModShopItem:Delete() end
 
 

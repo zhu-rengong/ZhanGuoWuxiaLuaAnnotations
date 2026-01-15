@@ -119,6 +119,10 @@ function CS.ZhanGuoWuxia.Backend.Lua.LuaManager:LuaExecBegin() end
 ---@param ... System.Object
 function CS.ZhanGuoWuxia.Backend.Lua.LuaManager:LuaExecFinished(...) end
 
+---@private
+---@param ... System.Object
+function CS.ZhanGuoWuxia.Backend.Lua.LuaManager:CompleteNextSignal(...) end
+
 ---@param customLoader fun(filepath: System.String): System.Byte[]
 function CS.ZhanGuoWuxia.Backend.Lua.LuaManager:AddLoader(customLoader) end
 

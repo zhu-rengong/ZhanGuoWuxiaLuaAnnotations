@@ -1,7 +1,7 @@
 {
   "assemblies": [
     {
-      "path": "F:/SteamLibrary/steamapps/common/息风谷战略 Demo/WindstopStrategy_Data/Managed/System.Runtime.dll",
+      "path": "F:/SteamLibrary/steamapps/common/息风谷战略/WindstopStrategy_Data/Managed/System.Runtime.dll",
       "types": [
         "System.IDisposable",
         "System.IConvertible",
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "path": "F:/SteamLibrary/steamapps/common/息风谷战略 Demo/WindstopStrategy_Data/Managed/UnityEngine.CoreModule.dll",
+      "path": "F:/SteamLibrary/steamapps/common/息风谷战略/WindstopStrategy_Data/Managed/UnityEngine.CoreModule.dll",
       "types": [
         "UnityEngine.Object",
         "UnityEngine.Vector2",
@@ -127,13 +127,13 @@
       ]
     },
     {
-      "path": "F:/SteamLibrary/steamapps/common/息风谷战略 Demo/WindstopStrategy_Data/Managed/DOTween.dll",
+      "path": "F:/SteamLibrary/steamapps/common/息风谷战略/WindstopStrategy_Data/Managed/DOTween.dll",
       "types": [
         "DG.Tweening*",
       ]
     },
     {
-      "path": "F:/SteamLibrary/steamapps/common/息风谷战略 Demo/WindstopStrategy_Data/Managed/Assembly-CSharp.dll",
+      "path": "F:/SteamLibrary/steamapps/common/息风谷战略/WindstopStrategy_Data/Managed/Assembly-CSharp.dll",
       "types": [
         "ZhanGuoWuxia.GameRuntime",
         "ZhanGuoWuxia.Lua*",
@@ -142,13 +142,13 @@
       ]
     },
     {
-      "path": "F:/SteamLibrary/steamapps/common/息风谷战略 Demo/WindstopStrategy_Data/Managed/Xlua.Core.dll",
+      "path": "F:/SteamLibrary/steamapps/common/息风谷战略/WindstopStrategy_Data/Managed/Xlua.Core.dll",
       "types": [
         "XLua*",
       ]
     },
     {
-      "path": "F:/SteamLibrary/steamapps/common/息风谷战略 Demo/WindstopStrategy_Data/Managed/ZhanGuoWuxia.Backend.dll",
+      "path": "F:/SteamLibrary/steamapps/common/息风谷战略/WindstopStrategy_Data/Managed/ZhanGuoWuxia.Backend.dll",
       "types": [
         "ZhanGuoWuxia.SimplePlayerPrefs",
         "ZhanGuoWuxia.PlayerPrefsData",
