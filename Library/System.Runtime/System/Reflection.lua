@@ -1,5 +1,5 @@
 ---@meta
----Auto-generated from System.Private.CoreLib
+---Auto-generated from System.Runtime
 ---Namespace: System.Reflection
 
 ---@class System.Reflection.Assembly: System.Object, System.Reflection.ICustomAttributeProvider, System.Runtime.Serialization.ISerializable
@@ -509,6 +509,80 @@ function CS.System.Reflection.AssemblyName.IsUnreserved(c) end
 ---@return System.Reflection.AssemblyName
 function CS.System.Reflection.AssemblyName(pParts) end
 
+---@class System.Reflection.Binder: System.Object
+CS.System.Reflection.Binder = {}
+
+---@param bindingAttr System.Reflection.BindingFlags
+---@param match System.Reflection.FieldInfo[]
+---@param value System.Object
+---@param culture System.Globalization.CultureInfo
+---@return System.Reflection.FieldInfo
+function CS.System.Reflection.Binder:BindToField(bindingAttr, match, value, culture) end
+
+---@param bindingAttr System.Reflection.BindingFlags
+---@param match System.Reflection.MethodBase[]
+---@param args System.Object[]
+---@param modifiers System.Reflection.ParameterModifier[]
+---@param culture System.Globalization.CultureInfo
+---@param names System.String[]
+---@param state System.Object
+---@return System.Reflection.MethodBase
+function CS.System.Reflection.Binder:BindToMethod(bindingAttr, match, args, modifiers, culture, names, state) end
+
+---@param value System.Object
+---@param type System.Type
+---@param culture System.Globalization.CultureInfo
+---@return System.Object
+function CS.System.Reflection.Binder:ChangeType(value, type, culture) end
+
+---@param args System.Object[]
+---@param state System.Object
+function CS.System.Reflection.Binder:ReorderArgumentArray(args, state) end
+
+---@param bindingAttr System.Reflection.BindingFlags
+---@param match System.Reflection.MethodBase[]
+---@param types System.Type[]
+---@param modifiers System.Reflection.ParameterModifier[]
+---@return System.Reflection.MethodBase
+function CS.System.Reflection.Binder:SelectMethod(bindingAttr, match, types, modifiers) end
+
+---@param bindingAttr System.Reflection.BindingFlags
+---@param match System.Reflection.PropertyInfo[]
+---@param returnType System.Type
+---@param indexes System.Type[]
+---@param modifiers System.Reflection.ParameterModifier[]
+---@return System.Reflection.PropertyInfo
+function CS.System.Reflection.Binder:SelectProperty(bindingAttr, match, returnType, indexes, modifiers) end
+
+---@protected
+---@return System.Reflection.Binder
+function CS.System.Reflection.Binder() end
+
+---@enum System.Reflection.BindingFlags
+CS.System.Reflection.BindingFlags = {
+    Default = 0,
+    IgnoreCase = 1,
+    DeclaredOnly = 2,
+    Instance = 4,
+    Static = 8,
+    Public = 16,
+    NonPublic = 32,
+    FlattenHierarchy = 64,
+    InvokeMethod = 256,
+    CreateInstance = 512,
+    GetField = 1024,
+    SetField = 2048,
+    GetProperty = 4096,
+    SetProperty = 8192,
+    PutDispProperty = 16384,
+    PutRefDispProperty = 32768,
+    ExactBinding = 65536,
+    SuppressChangeType = 131072,
+    OptionalParamBinding = 262144,
+    IgnoreReturn = 16777216,
+    DoNotWrapExceptions = 33554432
+}
+
 ---@class System.Reflection.ConstructorInfo: System.Reflection.MethodBase, System.Reflection.ICustomAttributeProvider
 ---@field MemberType System.Reflection.MemberTypes
 ---@field ConstructorName System.String
@@ -548,6 +622,29 @@ function CS.System.Reflection.ConstructorInfo.op_Inequality(left, right) end
 ---@overload fun(): System.Reflection.ConstructorInfo
 ---@return System.Reflection.ConstructorInfo
 function CS.System.Reflection.ConstructorInfo() end
+
+---@enum System.Reflection.FieldAttributes
+CS.System.Reflection.FieldAttributes = {
+    PrivateScope = 0,
+    Private = 1,
+    FamANDAssem = 2,
+    Assembly = 3,
+    Family = 4,
+    FamORAssem = 5,
+    Public = 6,
+    FieldAccessMask = 7,
+    Static = 16,
+    InitOnly = 32,
+    Literal = 64,
+    NotSerialized = 128,
+    HasFieldRVA = 256,
+    SpecialName = 512,
+    RTSpecialName = 1024,
+    HasFieldMarshal = 4096,
+    PinvokeImpl = 8192,
+    HasDefault = 32768,
+    ReservedMask = 38144
+}
 
 ---@class System.Reflection.FieldInfo: System.Reflection.MemberInfo, System.Reflection.ICustomAttributeProvider
 ---@field MemberType System.Reflection.MemberTypes
@@ -683,6 +780,80 @@ function CS.System.Reflection.FieldInfo:GetRequiredCustomModifiers() end
 ---@return System.Reflection.FieldInfo
 function CS.System.Reflection.FieldInfo() end
 
+---@class System.Reflection.ICustomAttributeProvider
+CS.System.Reflection.ICustomAttributeProvider = {}
+
+---@overload fun(self: self, attributeType: System.Type, inherit: System.Boolean): System.Object[]
+---@param inherit System.Boolean
+---@return System.Object[]
+function CS.System.Reflection.ICustomAttributeProvider:GetCustomAttributes(inherit) end
+
+---@param attributeType System.Type
+---@param inherit System.Boolean
+---@return System.Boolean
+function CS.System.Reflection.ICustomAttributeProvider:IsDefined(attributeType, inherit) end
+
+
+---@class System.Reflection.IReflect
+---@field UnderlyingSystemType System.Type
+CS.System.Reflection.IReflect = {}
+
+---@overload fun(self: self, name: System.String, bindingAttr: System.Reflection.BindingFlags): System.Reflection.MethodInfo
+---@param name System.String
+---@param bindingAttr System.Reflection.BindingFlags
+---@param binder System.Reflection.Binder
+---@param types System.Type[]
+---@param modifiers System.Reflection.ParameterModifier[]
+---@return System.Reflection.MethodInfo
+function CS.System.Reflection.IReflect:GetMethod(name, bindingAttr, binder, types, modifiers) end
+
+---@param bindingAttr System.Reflection.BindingFlags
+---@return System.Reflection.MethodInfo[]
+function CS.System.Reflection.IReflect:GetMethods(bindingAttr) end
+
+---@param name System.String
+---@param bindingAttr System.Reflection.BindingFlags
+---@return System.Reflection.FieldInfo
+function CS.System.Reflection.IReflect:GetField(name, bindingAttr) end
+
+---@param bindingAttr System.Reflection.BindingFlags
+---@return System.Reflection.FieldInfo[]
+function CS.System.Reflection.IReflect:GetFields(bindingAttr) end
+
+---@overload fun(self: self, name: System.String, bindingAttr: System.Reflection.BindingFlags, binder: System.Reflection.Binder, returnType: System.Type, types: System.Type[], modifiers: System.Reflection.ParameterModifier[]): System.Reflection.PropertyInfo
+---@param name System.String
+---@param bindingAttr System.Reflection.BindingFlags
+---@return System.Reflection.PropertyInfo
+function CS.System.Reflection.IReflect:GetProperty(name, bindingAttr) end
+
+---@param bindingAttr System.Reflection.BindingFlags
+---@return System.Reflection.PropertyInfo[]
+function CS.System.Reflection.IReflect:GetProperties(bindingAttr) end
+
+---@param name System.String
+---@param bindingAttr System.Reflection.BindingFlags
+---@return System.Reflection.MemberInfo[]
+function CS.System.Reflection.IReflect:GetMember(name, bindingAttr) end
+
+---@param bindingAttr System.Reflection.BindingFlags
+---@return System.Reflection.MemberInfo[]
+function CS.System.Reflection.IReflect:GetMembers(bindingAttr) end
+
+---@param name System.String
+---@param invokeAttr System.Reflection.BindingFlags
+---@param binder System.Reflection.Binder
+---@param target System.Object
+---@param args System.Object[]
+---@param modifiers System.Reflection.ParameterModifier[]
+---@param culture System.Globalization.CultureInfo
+---@param namedParameters System.String[]
+---@return System.Object
+function CS.System.Reflection.IReflect:InvokeMember(name, invokeAttr, binder, target, args, modifiers, culture, namedParameters) end
+
+---@return System.Type
+function CS.System.Reflection.IReflect:get_UnderlyingSystemType() end
+
+
 ---@class System.Reflection.MemberInfo: System.Object, System.Reflection.ICustomAttributeProvider
 ---@field MemberType System.Reflection.MemberTypes
 ---@field Name System.String
@@ -760,6 +931,47 @@ function CS.System.Reflection.MemberInfo.op_Inequality(left, right) end
 ---@protected
 ---@return System.Reflection.MemberInfo
 function CS.System.Reflection.MemberInfo() end
+
+---@enum System.Reflection.MemberTypes
+CS.System.Reflection.MemberTypes = {
+    Constructor = 1,
+    Event = 2,
+    Field = 4,
+    Method = 8,
+    Property = 16,
+    TypeInfo = 32,
+    Custom = 64,
+    NestedType = 128,
+    All = 191
+}
+
+---@enum System.Reflection.MethodAttributes
+CS.System.Reflection.MethodAttributes = {
+    PrivateScope = 0,
+    ReuseSlot = 0,
+    Private = 1,
+    FamANDAssem = 2,
+    Assembly = 3,
+    Family = 4,
+    FamORAssem = 5,
+    Public = 6,
+    MemberAccessMask = 7,
+    UnmanagedExport = 8,
+    Static = 16,
+    Final = 32,
+    Virtual = 64,
+    HideBySig = 128,
+    NewSlot = 256,
+    VtableLayoutMask = 256,
+    CheckAccessOnOverride = 512,
+    Abstract = 1024,
+    SpecialName = 2048,
+    RTSpecialName = 4096,
+    PinvokeImpl = 8192,
+    HasSecurity = 16384,
+    RequireSecObject = 32768,
+    ReservedMask = 53248
+}
 
 ---@class System.Reflection.MethodBase: System.Reflection.MemberInfo, System.Reflection.ICustomAttributeProvider
 ---@field Attributes System.Reflection.MethodAttributes
@@ -930,218 +1142,6 @@ function CS.System.Reflection.MethodBase.HandleTypeMissing(paramInfo, sigType) e
 ---@protected
 ---@return System.Reflection.MethodBase
 function CS.System.Reflection.MethodBase() end
-
----@class System.Reflection.Binder: System.Object
-CS.System.Reflection.Binder = {}
-
----@param bindingAttr System.Reflection.BindingFlags
----@param match System.Reflection.FieldInfo[]
----@param value System.Object
----@param culture System.Globalization.CultureInfo
----@return System.Reflection.FieldInfo
-function CS.System.Reflection.Binder:BindToField(bindingAttr, match, value, culture) end
-
----@param bindingAttr System.Reflection.BindingFlags
----@param match System.Reflection.MethodBase[]
----@param args System.Object[]
----@param modifiers System.Reflection.ParameterModifier[]
----@param culture System.Globalization.CultureInfo
----@param names System.String[]
----@param state System.Object
----@return System.Reflection.MethodBase
-function CS.System.Reflection.Binder:BindToMethod(bindingAttr, match, args, modifiers, culture, names, state) end
-
----@param value System.Object
----@param type System.Type
----@param culture System.Globalization.CultureInfo
----@return System.Object
-function CS.System.Reflection.Binder:ChangeType(value, type, culture) end
-
----@param args System.Object[]
----@param state System.Object
-function CS.System.Reflection.Binder:ReorderArgumentArray(args, state) end
-
----@param bindingAttr System.Reflection.BindingFlags
----@param match System.Reflection.MethodBase[]
----@param types System.Type[]
----@param modifiers System.Reflection.ParameterModifier[]
----@return System.Reflection.MethodBase
-function CS.System.Reflection.Binder:SelectMethod(bindingAttr, match, types, modifiers) end
-
----@param bindingAttr System.Reflection.BindingFlags
----@param match System.Reflection.PropertyInfo[]
----@param returnType System.Type
----@param indexes System.Type[]
----@param modifiers System.Reflection.ParameterModifier[]
----@return System.Reflection.PropertyInfo
-function CS.System.Reflection.Binder:SelectProperty(bindingAttr, match, returnType, indexes, modifiers) end
-
----@protected
----@return System.Reflection.Binder
-function CS.System.Reflection.Binder() end
-
----@enum System.Reflection.BindingFlags
-CS.System.Reflection.BindingFlags = {
-    Default = 0,
-    IgnoreCase = 1,
-    DeclaredOnly = 2,
-    Instance = 4,
-    Static = 8,
-    Public = 16,
-    NonPublic = 32,
-    FlattenHierarchy = 64,
-    InvokeMethod = 256,
-    CreateInstance = 512,
-    GetField = 1024,
-    SetField = 2048,
-    GetProperty = 4096,
-    SetProperty = 8192,
-    PutDispProperty = 16384,
-    PutRefDispProperty = 32768,
-    ExactBinding = 65536,
-    SuppressChangeType = 131072,
-    OptionalParamBinding = 262144,
-    IgnoreReturn = 16777216,
-    DoNotWrapExceptions = 33554432
-}
-
----@enum System.Reflection.FieldAttributes
-CS.System.Reflection.FieldAttributes = {
-    PrivateScope = 0,
-    Private = 1,
-    FamANDAssem = 2,
-    Assembly = 3,
-    Family = 4,
-    FamORAssem = 5,
-    Public = 6,
-    FieldAccessMask = 7,
-    Static = 16,
-    InitOnly = 32,
-    Literal = 64,
-    NotSerialized = 128,
-    HasFieldRVA = 256,
-    SpecialName = 512,
-    RTSpecialName = 1024,
-    HasFieldMarshal = 4096,
-    PinvokeImpl = 8192,
-    HasDefault = 32768,
-    ReservedMask = 38144
-}
-
----@class System.Reflection.ICustomAttributeProvider
-CS.System.Reflection.ICustomAttributeProvider = {}
-
----@overload fun(self: self, attributeType: System.Type, inherit: System.Boolean): System.Object[]
----@param inherit System.Boolean
----@return System.Object[]
-function CS.System.Reflection.ICustomAttributeProvider:GetCustomAttributes(inherit) end
-
----@param attributeType System.Type
----@param inherit System.Boolean
----@return System.Boolean
-function CS.System.Reflection.ICustomAttributeProvider:IsDefined(attributeType, inherit) end
-
-
----@class System.Reflection.IReflect
----@field UnderlyingSystemType System.Type
-CS.System.Reflection.IReflect = {}
-
----@overload fun(self: self, name: System.String, bindingAttr: System.Reflection.BindingFlags): System.Reflection.MethodInfo
----@param name System.String
----@param bindingAttr System.Reflection.BindingFlags
----@param binder System.Reflection.Binder
----@param types System.Type[]
----@param modifiers System.Reflection.ParameterModifier[]
----@return System.Reflection.MethodInfo
-function CS.System.Reflection.IReflect:GetMethod(name, bindingAttr, binder, types, modifiers) end
-
----@param bindingAttr System.Reflection.BindingFlags
----@return System.Reflection.MethodInfo[]
-function CS.System.Reflection.IReflect:GetMethods(bindingAttr) end
-
----@param name System.String
----@param bindingAttr System.Reflection.BindingFlags
----@return System.Reflection.FieldInfo
-function CS.System.Reflection.IReflect:GetField(name, bindingAttr) end
-
----@param bindingAttr System.Reflection.BindingFlags
----@return System.Reflection.FieldInfo[]
-function CS.System.Reflection.IReflect:GetFields(bindingAttr) end
-
----@overload fun(self: self, name: System.String, bindingAttr: System.Reflection.BindingFlags, binder: System.Reflection.Binder, returnType: System.Type, types: System.Type[], modifiers: System.Reflection.ParameterModifier[]): System.Reflection.PropertyInfo
----@param name System.String
----@param bindingAttr System.Reflection.BindingFlags
----@return System.Reflection.PropertyInfo
-function CS.System.Reflection.IReflect:GetProperty(name, bindingAttr) end
-
----@param bindingAttr System.Reflection.BindingFlags
----@return System.Reflection.PropertyInfo[]
-function CS.System.Reflection.IReflect:GetProperties(bindingAttr) end
-
----@param name System.String
----@param bindingAttr System.Reflection.BindingFlags
----@return System.Reflection.MemberInfo[]
-function CS.System.Reflection.IReflect:GetMember(name, bindingAttr) end
-
----@param bindingAttr System.Reflection.BindingFlags
----@return System.Reflection.MemberInfo[]
-function CS.System.Reflection.IReflect:GetMembers(bindingAttr) end
-
----@param name System.String
----@param invokeAttr System.Reflection.BindingFlags
----@param binder System.Reflection.Binder
----@param target System.Object
----@param args System.Object[]
----@param modifiers System.Reflection.ParameterModifier[]
----@param culture System.Globalization.CultureInfo
----@param namedParameters System.String[]
----@return System.Object
-function CS.System.Reflection.IReflect:InvokeMember(name, invokeAttr, binder, target, args, modifiers, culture, namedParameters) end
-
----@return System.Type
-function CS.System.Reflection.IReflect:get_UnderlyingSystemType() end
-
-
----@enum System.Reflection.MemberTypes
-CS.System.Reflection.MemberTypes = {
-    Constructor = 1,
-    Event = 2,
-    Field = 4,
-    Method = 8,
-    Property = 16,
-    TypeInfo = 32,
-    Custom = 64,
-    NestedType = 128,
-    All = 191
-}
-
----@enum System.Reflection.MethodAttributes
-CS.System.Reflection.MethodAttributes = {
-    PrivateScope = 0,
-    ReuseSlot = 0,
-    Private = 1,
-    FamANDAssem = 2,
-    Assembly = 3,
-    Family = 4,
-    FamORAssem = 5,
-    Public = 6,
-    MemberAccessMask = 7,
-    UnmanagedExport = 8,
-    Static = 16,
-    Final = 32,
-    Virtual = 64,
-    HideBySig = 128,
-    NewSlot = 256,
-    VtableLayoutMask = 256,
-    CheckAccessOnOverride = 512,
-    Abstract = 1024,
-    SpecialName = 2048,
-    RTSpecialName = 4096,
-    PinvokeImpl = 8192,
-    HasSecurity = 16384,
-    RequireSecObject = 32768,
-    ReservedMask = 53248
-}
 
 ---@class System.Reflection.MethodBody: System.Object
 ---@field LocalSignatureMetadataToken System.Int32

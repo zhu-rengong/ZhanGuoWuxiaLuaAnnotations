@@ -1,5 +1,5 @@
 ---@meta
----Auto-generated from System.Private.CoreLib
+---Auto-generated from System.Runtime
 ---Namespace: System.Globalization
 
 ---@class System.Globalization.CultureInfo: System.Object, System.IFormatProvider, System.ICloneable

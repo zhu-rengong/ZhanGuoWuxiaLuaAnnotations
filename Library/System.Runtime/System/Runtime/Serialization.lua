@@ -1,5 +1,5 @@
 ---@meta
----Auto-generated from System.Private.CoreLib
+---Auto-generated from System.Runtime
 ---Namespace: System.Runtime.Serialization
 
 ---@class System.Runtime.Serialization.IDeserializationCallback
