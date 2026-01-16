@@ -129,22 +129,22 @@
     {
       "path": "F:/SteamLibrary/steamapps/common/息风谷战略/WindstopStrategy_Data/Managed/DOTween.dll",
       "types": [
-        "DG.Tweening*",
+        "DG.Tweening.*",
       ]
     },
     {
       "path": "F:/SteamLibrary/steamapps/common/息风谷战略/WindstopStrategy_Data/Managed/Assembly-CSharp.dll",
       "types": [
         "ZhanGuoWuxia.GameRuntime",
-        "ZhanGuoWuxia.Lua*",
-        "ZhanGuoWuxia.Helpers*",
-        "ZhanGuoWuxia.UI.Stage*",
+        "ZhanGuoWuxia.Lua.*",
+        "ZhanGuoWuxia.Helpers.*",
+        "ZhanGuoWuxia.UI.Stage.*",
       ]
     },
     {
       "path": "F:/SteamLibrary/steamapps/common/息风谷战略/WindstopStrategy_Data/Managed/Xlua.Core.dll",
       "types": [
-        "XLua*",
+        "XLua.*",
       ]
     },
     {
@@ -152,7 +152,7 @@
       "types": [
         "ZhanGuoWuxia.SimplePlayerPrefs",
         "ZhanGuoWuxia.PlayerPrefsData",
-        "ZhanGuoWuxia.Backend*",
+        "ZhanGuoWuxia.Backend.*",
       ]
     },
   ],
