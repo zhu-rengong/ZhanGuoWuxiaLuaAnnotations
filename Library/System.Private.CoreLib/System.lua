@@ -724,28 +724,28 @@ function CS.System.Delegate:GetMethodImpl() end
 ---@return System.Object
 function CS.System.Delegate:get_Target() end
 
----@overload fun(type: System.Type, target: System.Type, method: System.String, ignoreCase: System.Boolean, throwOnBindFailure: System.Boolean): System.Delegate
----@overload fun(type: System.Type, method: System.Reflection.MethodInfo, throwOnBindFailure: System.Boolean): System.Delegate
----@overload fun(type: System.Type, firstArgument: System.Object, method: System.Reflection.MethodInfo, throwOnBindFailure: System.Boolean): System.Delegate
----@overload fun(type: System.Type, firstArgument: System.Object, method: System.Reflection.MethodInfo): System.Delegate
----@overload fun(type: System.Type, method: System.Reflection.MethodInfo): System.Delegate
----@overload fun(type: System.Type, target: System.Object, method: System.String): System.Delegate
----@overload fun(type: System.Type, target: System.Object, method: System.String, ignoreCase: System.Boolean): System.Delegate
----@overload fun(type: System.Type, target: System.Type, method: System.String): System.Delegate
----@overload fun(type: System.Type, target: System.Type, method: System.String, ignoreCase: System.Boolean): System.Delegate
+---@overload fun(type: System.Type, target: System.Type, method: System.String, ignoreCase: System.Boolean, throwOnBindFailure: System.Boolean): fun()
+---@overload fun(type: System.Type, method: System.Reflection.MethodInfo, throwOnBindFailure: System.Boolean): fun()
+---@overload fun(type: System.Type, firstArgument: System.Object, method: System.Reflection.MethodInfo, throwOnBindFailure: System.Boolean): fun()
+---@overload fun(type: System.Type, firstArgument: System.Object, method: System.Reflection.MethodInfo): fun()
+---@overload fun(type: System.Type, method: System.Reflection.MethodInfo): fun()
+---@overload fun(type: System.Type, target: System.Object, method: System.String): fun()
+---@overload fun(type: System.Type, target: System.Object, method: System.String, ignoreCase: System.Boolean): fun()
+---@overload fun(type: System.Type, target: System.Type, method: System.String): fun()
+---@overload fun(type: System.Type, target: System.Type, method: System.String, ignoreCase: System.Boolean): fun()
 ---@param type System.Type
 ---@param target System.Object
 ---@param method System.String
 ---@param ignoreCase System.Boolean
 ---@param throwOnBindFailure System.Boolean
----@return System.Delegate
+---@return fun()
 function CS.System.Delegate.CreateDelegate(type, target, method, ignoreCase, throwOnBindFailure) end
 
 ---@package
 ---@param type System.Type
 ---@param target System.Object
 ---@param method System.RuntimeMethodHandle
----@return System.Delegate
+---@return fun()
 function CS.System.Delegate.CreateDelegateNoSecurityCheck(type, target, method) end
 
 ---@package
@@ -753,7 +753,7 @@ function CS.System.Delegate.CreateDelegateNoSecurityCheck(type, target, method) 
 ---@param rtMethod System.Reflection.RuntimeMethodInfo
 ---@param firstArgument System.Object
 ---@param flags System.DelegateBindingFlags
----@return System.Delegate
+---@return fun()
 function CS.System.Delegate.CreateDelegateInternal(rtType, rtMethod, firstArgument, flags) end
 
 ---@private
@@ -774,12 +774,12 @@ function CS.System.Delegate:BindToMethodInfo(target, method, methodType, flags) 
 
 ---@private
 ---@param type System.RuntimeType
----@return System.MulticastDelegate
+---@return fun()
 function CS.System.Delegate.InternalAlloc(type) end
 
 ---@package
----@param d System.Delegate
----@return System.MulticastDelegate
+---@param d fun()
+---@return fun()
 function CS.System.Delegate.InternalAllocLike(d) end
 
 ---@package
@@ -806,8 +806,8 @@ function CS.System.Delegate:GetInvokeMethod() end
 function CS.System.Delegate:FindMethodHandle() end
 
 ---@package
----@param left System.Delegate
----@param right System.Delegate
+---@param left fun()
+---@param right fun()
 ---@return System.Boolean
 function CS.System.Delegate.InternalEqualMethodHandles(left, right) end
 
@@ -829,23 +829,23 @@ function CS.System.Delegate:GetTarget() end
 ---@return System.Object
 function CS.System.Delegate:Clone() end
 
----@overload fun(...: System.Delegate): System.Delegate
----@param a System.Delegate
----@param b System.Delegate
----@return System.Delegate
+---@overload fun(...: fun()): fun()
+---@param a fun()
+---@param b fun()
+---@return fun()
 function CS.System.Delegate.Combine(a, b) end
 
 ---@protected
----@param d System.Delegate
----@return System.Delegate
+---@param d fun()
+---@return fun()
 function CS.System.Delegate:CombineImpl(d) end
 
 ---@protected
----@param d System.Delegate
----@return System.Delegate
+---@param d fun()
+---@return fun()
 function CS.System.Delegate:RemoveImpl(d) end
 
----@return System.Delegate[]
+---@return fun()[]
 function CS.System.Delegate:GetInvocationList() end
 
 ---@param ... System.Object
@@ -859,23 +859,23 @@ function CS.System.Delegate:GetObjectData(info, context) end
 ---@return System.Reflection.MethodInfo
 function CS.System.Delegate:get_Method() end
 
----@param source System.Delegate
----@param value System.Delegate
----@return System.Delegate
+---@param source fun()
+---@param value fun()
+---@return fun()
 function CS.System.Delegate.Remove(source, value) end
 
----@param source System.Delegate
----@param value System.Delegate
----@return System.Delegate
+---@param source fun()
+---@param value fun()
+---@return fun()
 function CS.System.Delegate.RemoveAll(source, value) end
 
----@param d1 System.Delegate
----@param d2 System.Delegate
+---@param d1 fun()
+---@param d2 fun()
 ---@return System.Boolean
 function CS.System.Delegate.op_Equality(d1, d2) end
 
----@param d1 System.Delegate
----@param d2 System.Delegate
+---@param d1 fun()
+---@param d2 fun()
 ---@return System.Boolean
 function CS.System.Delegate.op_Inequality(d1, d2) end
 
@@ -908,7 +908,7 @@ function CS.System.MulticastDelegate:GetObjectData(info, context) end
 function CS.System.MulticastDelegate:Equals(obj) end
 
 ---@private
----@param d System.MulticastDelegate
+---@param d fun()
 ---@return System.Boolean
 function CS.System.MulticastDelegate:InvocationListEquals(d) end
 
@@ -923,13 +923,13 @@ function CS.System.MulticastDelegate.TrySetSlot(a, index, o) end
 ---@param invocationList System.Object[]
 ---@param invocationCount System.Int32
 ---@param thisIsMultiCastAlready System.Boolean
----@return System.MulticastDelegate
+---@return fun()
 function CS.System.MulticastDelegate:NewMulticastDelegate(invocationList, invocationCount, thisIsMultiCastAlready) end
 
 ---@package
 ---@param invocationList System.Object[]
 ---@param invocationCount System.Int32
----@return System.MulticastDelegate
+---@return fun()
 function CS.System.MulticastDelegate:NewMulticastDelegate(invocationList, invocationCount) end
 
 ---@package
@@ -937,8 +937,8 @@ function CS.System.MulticastDelegate:NewMulticastDelegate(invocationList, invoca
 function CS.System.MulticastDelegate:StoreDynamicMethod(dynamicMethod) end
 
 ---@protected
----@param follow System.Delegate
----@return System.Delegate
+---@param follow fun()
+---@return fun()
 function CS.System.MulticastDelegate:CombineImpl(follow) end
 
 ---@private
@@ -958,20 +958,20 @@ function CS.System.MulticastDelegate:DeleteFromInvocationList(invocationList, in
 function CS.System.MulticastDelegate.EqualInvocationLists(a, b, start, count) end
 
 ---@protected
----@param value System.Delegate
----@return System.Delegate
+---@param value fun()
+---@return fun()
 function CS.System.MulticastDelegate:RemoveImpl(value) end
 
----@return System.Delegate[]
+---@return fun()[]
 function CS.System.MulticastDelegate:GetInvocationList() end
 
----@param d1 System.MulticastDelegate
----@param d2 System.MulticastDelegate
+---@param d1 fun()
+---@param d2 fun()
 ---@return System.Boolean
 function CS.System.MulticastDelegate.op_Equality(d1, d2) end
 
----@param d1 System.MulticastDelegate
----@param d2 System.MulticastDelegate
+---@param d1 fun()
+---@param d2 fun()
 ---@return System.Boolean
 function CS.System.MulticastDelegate.op_Inequality(d1, d2) end
 
@@ -1916,9 +1916,9 @@ function CS.System.Type:get_IsInterface() end
 
 ---@overload fun(typeName: System.String, throwOnError: System.Boolean): System.Type
 ---@overload fun(typeName: System.String): System.Type
----@overload fun(typeName: System.String, assemblyResolver: userdata, typeResolver: userdata): System.Type
----@overload fun(typeName: System.String, assemblyResolver: userdata, typeResolver: userdata, throwOnError: System.Boolean): System.Type
----@overload fun(typeName: System.String, assemblyResolver: userdata, typeResolver: userdata, throwOnError: System.Boolean, ignoreCase: System.Boolean): System.Type
+---@overload fun(typeName: System.String, assemblyResolver: (fun(arg: System.Reflection.AssemblyName): System.Reflection.Assembly), typeResolver: (fun(arg1: System.Reflection.Assembly, arg2: System.String, arg3: System.Boolean): System.Type)): System.Type
+---@overload fun(typeName: System.String, assemblyResolver: (fun(arg: System.Reflection.AssemblyName): System.Reflection.Assembly), typeResolver: (fun(arg1: System.Reflection.Assembly, arg2: System.String, arg3: System.Boolean): System.Type), throwOnError: System.Boolean): System.Type
+---@overload fun(typeName: System.String, assemblyResolver: (fun(arg: System.Reflection.AssemblyName): System.Reflection.Assembly), typeResolver: (fun(arg1: System.Reflection.Assembly, arg2: System.String, arg3: System.Boolean): System.Type), throwOnError: System.Boolean, ignoreCase: System.Boolean): System.Type
 ---@param typeName System.String
 ---@param throwOnError System.Boolean
 ---@param ignoreCase System.Boolean

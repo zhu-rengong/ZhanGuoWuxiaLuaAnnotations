@@ -87,7 +87,7 @@ function CS.ZhanGuoWuxia.UI.Stage.UIStage:ShowSpotLight(xPosition) end
 ---@return ZhanGuoWuxia.UI.Stage.UIStageBubble
 function CS.ZhanGuoWuxia.UI.Stage.UIStage:AddBubble(roleId, bubbleType) end
 
----@param predicate userdata
+---@param predicate fun(arg: ZhanGuoWuxia.UI.Stage.UIStageBubble): System.Boolean
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.UI.Stage.UIStage:HasBubble(predicate) end
 

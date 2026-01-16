@@ -71,7 +71,7 @@ function CS.ZhanGuoWuxia.Backend.Mod.IEditorBeanController:get_DataFilePath() en
 ---@return System.Type
 function CS.ZhanGuoWuxia.Backend.Mod.IEditorBeanController:get_BeanType() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Mod.IEditorBean[]
 function CS.ZhanGuoWuxia.Backend.Mod.IEditorBeanController:get_DataSource() end
 
 ---@return System.Boolean
@@ -122,7 +122,7 @@ function CS.ZhanGuoWuxia.Backend.Mod.IEditorBeanController:AddOrUpdate(bean) end
 ---@param bean ZhanGuoWuxia.Backend.Mod.IEditorBean
 function CS.ZhanGuoWuxia.Backend.Mod.IEditorBeanController:Add(bean) end
 
----@param func userdata
+---@param func fun(obj: ZhanGuoWuxia.Backend.Mod.IEditorBean): System.Boolean
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Mod.IEditorBeanController:FindIndex(func) end
 
@@ -189,7 +189,7 @@ function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:RefreshAssetsInFolder(fold
 
 ---@param fromFolder System.String
 ---@param toSubFolder System.String
----@param OnProgress? userdata
+---@param OnProgress? fun(arg1: System.Int32, arg2: System.Int32, arg3: System.String)
 ---@return userdata
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:CopyFrom(fromFolder, toSubFolder, OnProgress) end
 
@@ -249,7 +249,7 @@ function CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager:RefreshAssetsInFolder(fol
 
 ---@param fromFolder System.String
 ---@param toSubFolder System.String
----@param OnProgress? userdata
+---@param OnProgress? fun(arg1: System.Int32, arg2: System.Int32, arg3: System.String)
 ---@return userdata
 function CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager:CopyFrom(fromFolder, toSubFolder, OnProgress) end
 
@@ -436,7 +436,7 @@ CS.ZhanGuoWuxia.Backend.Mod.QueryModParam = {}
 function CS.ZhanGuoWuxia.Backend.Mod.QueryModParam() end
 
 ---@class ZhanGuoWuxia.Backend.Mod.QueryModResult: System.Object
----@field ModItems userdata
+---@field ModItems ZhanGuoWuxia.Backend.Mod.IModShopItem[]
 ---@field TotalPage System.Int32
 ---@field IsEmpty System.Boolean
 CS.ZhanGuoWuxia.Backend.Mod.QueryModResult = {}

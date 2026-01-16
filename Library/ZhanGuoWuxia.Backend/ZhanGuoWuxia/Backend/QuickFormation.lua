@@ -34,7 +34,7 @@ function CS.ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution() end
 CS.ZhanGuoWuxia.Backend.QuickFormation.QuickFormationManager = {}
 
 ---@private
----@return userdata
+---@return ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution[]
 function CS.ZhanGuoWuxia.Backend.QuickFormation.QuickFormationManager:get_m_Solutions() end
 
 ---@return userdata

@@ -215,8 +215,8 @@ CS.ZhanGuoWuxia.Backend.RuntimeData.JoinDungeonTeamRet = {
 ---@field BGM System.String
 ---@field MaxJoinRoleCount System.Int32
 ---@field DungeonType ZhanGuoWuxia.Backend.Beans.DungeonType
----@field DungeonProgress userdata
----@field DungeonResult userdata
+---@field DungeonProgress { [System.String]: System.Int32 }
+---@field DungeonResult { [System.String]: System.Boolean }
 ---@field JoinedRoles userdata
 ---@field JoinedRoleCount System.Int32
 ---@field ActiveEvents userdata
@@ -317,10 +317,10 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get_MaxJoinRoleCoun
 ---@return ZhanGuoWuxia.Backend.Beans.DungeonType
 function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get_DungeonType() end
 
----@return userdata
+---@return { [System.String]: System.Int32 }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get_DungeonProgress() end
 
----@return userdata
+---@return { [System.String]: System.Boolean }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get_DungeonResult() end
 
 ---@return userdata
@@ -693,10 +693,10 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:set_Attrs(value) end
 
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:RefreshAttr() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.SkillPartialBean[]
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_InitialSkills() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.EquipmentPartialBean[]
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_PresetEquipments() end
 
 ---@return System.String
@@ -792,7 +792,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_RoleActionTriggerI
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_PrisonerActionTriggerId() end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.ActionBean[]
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:GetRoleActions(save) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
@@ -921,7 +921,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:get_BattleScene() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:get_BattleBGM() end
 
----@return userdata
+---@return System.String[]
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:get_PresetBuildings() end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
@@ -1090,7 +1090,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance() end
 ---@class ZhanGuoWuxia.Backend.RuntimeData.BaseIntDictionary: System.ValueType, { [System.Int32]: System.Single }
 ---@field IsNull System.Boolean
 ---@field FloatDict { [System.Int32]: System.Single }
----@operator add(userdata): ZhanGuoWuxia.Backend.RuntimeData.BaseIntDictionary
+---@operator add({ [System.Int32]: System.Single }): ZhanGuoWuxia.Backend.RuntimeData.BaseIntDictionary
 ---@operator add(ZhanGuoWuxia.Backend.RuntimeData.BaseIntDictionary): ZhanGuoWuxia.Backend.RuntimeData.BaseIntDictionary
 ---@operator mul(System.Single): ZhanGuoWuxia.Backend.RuntimeData.BaseIntDictionary
 CS.ZhanGuoWuxia.Backend.RuntimeData.BaseIntDictionary = {}
@@ -1142,11 +1142,11 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.BaseIntDictionary(floatDict) end
 ---@field HasValue System.Boolean
 ---@field FloatDict { [System.String]: System.Single }
 ---@field Empty ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
----@operator add(userdata): ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
+---@operator add({ [System.String]: System.Single }): ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
 ---@operator add(ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary): ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
 ---@operator mul(System.Single): ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
 ---@operator sub(ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary): ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
----@operator sub(userdata): ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
+---@operator sub({ [System.String]: System.Single }): ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
 CS.ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary = {}
 
 ---@return System.Boolean
@@ -1414,7 +1414,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:get_CanSell() end
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:get_CanUseOrEquip() end
 
----@return userdata
+---@return { [System.String]: System.Single }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ItemInstance:get_LuaCommandParam() end
 
 ---@return ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
@@ -2298,7 +2298,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:get_SkillType() end
 ---@param ... System.Object
 function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:OnCreated(creator, ...) end
 
----@return userdata
+---@return { [System.String]: System.Single }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.TinySkill:get_Attrs() end
 
 ---@return ZhanGuoWuxia.Backend.Beans.SkillFormBean

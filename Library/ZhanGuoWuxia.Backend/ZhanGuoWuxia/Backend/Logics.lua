@@ -5,11 +5,11 @@
 ---@class ZhanGuoWuxia.Backend.Logics.DungeonResult: System.Object
 ---@field Dungeon ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance
 ---@field IsSucesss System.Boolean
----@field Rewards userdata
+---@field Rewards ZhanGuoWuxia.Backend.Beans.LootData[]
 ---@field private m_Rewards ZhanGuoWuxia.Backend.Beans.LootData[]
 CS.ZhanGuoWuxia.Backend.Logics.DungeonResult = {}
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.LootData[]
 function CS.ZhanGuoWuxia.Backend.Logics.DungeonResult:get_Rewards() end
 
 function CS.ZhanGuoWuxia.Backend.Logics.DungeonResult:DoSucceed() end
@@ -105,7 +105,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.AreaLogic.ConnectTo(area, other) end
 
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.AreaInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.AreaLogic.GetNeighbors(area, save) end
 
 ---@param area ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
@@ -208,7 +208,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.DungeonLogic.RemoveDungeonAffixesJoinedR
 function CS.ZhanGuoWuxia.Backend.Logics.DungeonLogic.TryCheckMustJoinedRole(dungeon, saveData, mustRoleName) end
 
 ---@param dungeon ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.LootData[]
 function CS.ZhanGuoWuxia.Backend.Logics.DungeonLogic.DropReward(dungeon) end
 
 ---@async
@@ -220,12 +220,12 @@ function CS.ZhanGuoWuxia.Backend.Logics.DungeonLogic.ExecuteDungeonEvent(dungeon
 
 ---@param dungeon ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance
 ---@param saveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.DungeonLogic.GetRolesJoinedDungeon(dungeon, saveData) end
 
 ---@param dungeon ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance
 ---@param saveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.DungeonLogic.GetRolesMustJoinedDungeon(dungeon, saveData) end
 
 
@@ -405,11 +405,11 @@ function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.SetFloatData(save, key, va
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetFloatData(save, key, defaultValue) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetMenpais(save) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetUnlockedMenpais(save) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
@@ -448,7 +448,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetAreaByInstanceId(save, 
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.AreaInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetMenpaiAreas(save, menpai) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
@@ -489,7 +489,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetRoleByBeanId(save, id) 
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetRoleByInstanceId(save, id) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetRoles(save) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
@@ -497,16 +497,16 @@ function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetRoles(save) end
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetRolesNotDead(save) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetNoMenpaiRoles(save) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetMenpaiRoles(save, menpai) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetPlayerMenpaiRoles(save) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
@@ -522,29 +522,29 @@ function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.IsRoleInPlayerMenpai(save,
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetDisciples(save, menpai) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetPlayerMenpaiDisciples(save) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param meipai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetPrisoners(save, meipai) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetPlayerMenpaiPrisoners(save) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetVisibleRoles(save, menpai) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetPlayerMenpaiVisibleRoles(save) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
@@ -569,7 +569,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.ChangeFirePoint(save, poin
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param itemLevel System.Int32
 ---@param itemType System.Int32
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.ItemBean[]
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetItemRandomPool(save, itemLevel, itemType) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
@@ -764,7 +764,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.AddRandomDisciple(menpai, sa
 function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.DefaultSort(a, b) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
----@param sortFunc? userdata
+---@param sortFunc? fun(x: ZhanGuoWuxia.Backend.RuntimeData.ItemInstance, y: ZhanGuoWuxia.Backend.RuntimeData.ItemInstance): System.Int32
 function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.SortBag(menpai, sortFunc) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
@@ -794,12 +794,12 @@ function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.Release(menpai, role, save) 
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetOtherMenpais(menpai, save) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetEnemyMenpais(menpai, save) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
@@ -808,7 +808,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetEnemyMenpaiCount(menpai) 
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance[]
 function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetAlliedMenpais(menpai, save) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
@@ -837,7 +837,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.SetFriendship(menpai, other,
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.ActionBean[]
 function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetAvailableStoryActions(menpai, save) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
@@ -926,7 +926,7 @@ CS.ZhanGuoWuxia.Backend.Logics.RoleAttrLogic = {}
 function CS.ZhanGuoWuxia.Backend.Logics.RoleAttrLogic.get__db() end
 
 ---@private
----@return userdata
+---@return { [System.String]: System.String }
 function CS.ZhanGuoWuxia.Backend.Logics.RoleAttrLogic.InitAttrDependency() end
 
 ---@private
@@ -1400,7 +1400,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetAllAvailableRandomAffixes(r
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
 ---@param genCount System.Int32
----@return userdata
+---@return System.String[]
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetRoleRandomAffixes(role, genCount) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
@@ -1445,12 +1445,12 @@ function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.ForgetAllTalents(role) end
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetAllTalentAttrs(role) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
----@return userdata
+---@return System.String[]
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetUnlockableTalentIds(role) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
 ---@param count? System.Int32
----@return userdata
+---@return System.String[]
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetRandomUnlockableTalents(role, count) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
@@ -1532,15 +1532,15 @@ function CS.ZhanGuoWuxia.Backend.Logics.SkillLogic.get_LuaVM() end
 function CS.ZhanGuoWuxia.Backend.Logics.SkillLogic.get__db() end
 
 ---@param skill ZhanGuoWuxia.Backend.RuntimeData.SkillInstance
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary[]
 function CS.ZhanGuoWuxia.Backend.Logics.SkillLogic.GetPassiveSkillAttrs(skill) end
 
 ---@param skill ZhanGuoWuxia.Backend.RuntimeData.SkillInstance
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.SkillUnlockBean[]
 function CS.ZhanGuoWuxia.Backend.Logics.SkillLogic.GetUnlockedSkillFormIds(skill) end
 
 ---@param skill ZhanGuoWuxia.Backend.RuntimeData.SkillInstance
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.SkillFormBean[]
 function CS.ZhanGuoWuxia.Backend.Logics.SkillLogic.GetPassiveSkillFormBeans(skill) end
 
 ---@param skill ZhanGuoWuxia.Backend.RuntimeData.SkillInstance

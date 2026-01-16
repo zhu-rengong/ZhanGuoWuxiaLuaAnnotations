@@ -277,11 +277,11 @@ function CS.System.Globalization.CultureInfo:get_HasInvariantCultureName() end
 function CS.System.Globalization.CultureInfo.GetCultureInfo(culture) end
 
 ---@private
----@return userdata
+---@return { [System.String]: System.Globalization.CultureInfo }
 function CS.System.Globalization.CultureInfo.get_CachedCulturesByName() end
 
 ---@private
----@return userdata
+---@return { [System.Int32]: System.Globalization.CultureInfo }
 function CS.System.Globalization.CultureInfo.get_CachedCulturesByLcid() end
 
 ---@param name System.String

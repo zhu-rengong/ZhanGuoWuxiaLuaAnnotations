@@ -323,20 +323,20 @@ function CS.ZhanGuoWuxia.Backend.Tools.StringTool.SplitInto(str, split, first, s
 ---@param str System.String
 ---@param split1? System.Char
 ---@param split2? System.Char
----@return userdata
+---@return { [System.String]: System.Single }
 function CS.ZhanGuoWuxia.Backend.Tools.StringTool.SplitIntoDictFloat(str, split1, split2) end
 
 ---@param str System.String
 ---@param split1? System.Char
 ---@param split2? System.Char
----@return userdata
+---@return { [System.String]: System.String }
 function CS.ZhanGuoWuxia.Backend.Tools.StringTool.SplitStroDict(str, split1, split2) end
 
 ---@param str System.String
 ---@param split1? System.Char
 ---@param split2? System.Char
 ---@param split3? System.Char
----@return userdata
+---@return { [System.Int32]: userdata[] }
 function CS.ZhanGuoWuxia.Backend.Tools.StringTool.SplitIntTupleStrIntDict(str, split1, split2, split3) end
 
 ---@param str System.String

@@ -41,12 +41,12 @@ function CS.DG.Tweening.CustomPlugins.PureQuaternionPlugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.CustomPlugins.PureQuaternionPlugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.NoOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: UnityEngine.Quaternion, changeValue: UnityEngine.Quaternion, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.NoOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): UnityEngine.Quaternion), setter: (fun(pNewValue: UnityEngine.Quaternion)), elapsed: System.Single, startValue: UnityEngine.Quaternion, changeValue: UnityEngine.Quaternion, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.NoOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): UnityEngine.Quaternion
+---@param setter fun(pNewValue: UnityEngine.Quaternion)
 ---@param elapsed System.Single
 ---@param startValue UnityEngine.Quaternion
 ---@param changeValue UnityEngine.Quaternion

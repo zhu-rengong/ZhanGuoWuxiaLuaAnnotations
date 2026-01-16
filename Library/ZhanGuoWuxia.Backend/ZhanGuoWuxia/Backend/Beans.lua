@@ -172,7 +172,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.IsAskForPlayerFormation(bat
 ---@param battleBean ZhanGuoWuxia.Backend.Beans.BattleBean
 ---@param saveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param team System.Int32
----@return userdata
+---@return ZhanGuoWuxia.Backend.Battle.RoleFormationData[]
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetTeamPresetFormation(battleBean, saveData, team) end
 
 ---@param bean ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean
@@ -182,7 +182,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetTeamPresetFormation(batt
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.TryGetAttrsWithDiffculty(bean, difficulty, attrs) end
 
 ---@param bean ZhanGuoWuxia.Backend.Beans.AffixBean
----@return userdata
+---@return { [System.String]: System.Single }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetAttrsWithDifficulty(bean) end
 
 ---@private
@@ -219,7 +219,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore:GetAll(type) end
 ---@param beans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore:Merge(type, beans) end
 
----@overload fun(self: self, loader: userdata): System.Int32
+---@overload fun(self: self, loader: (fun(arg: System.String): SimpleJSON.JSONNode)): System.Int32
 ---@param path? System.String
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore:ReloadAll(path) end
@@ -232,7 +232,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore:Dispose() end
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore:GetBeanTypeCount() end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore:OnTranslation(translator) end
 
 ---@return ZhanGuoWuxia.Backend.Beans.BeanManagerCore
@@ -275,7 +275,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ActionBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ActionBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ActionBean:TranslateText(translator) end
 
 ---@return System.String
@@ -334,7 +334,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ActionConditionBase.DeserializeActionCond
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ActionConditionBase:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ActionConditionBase:TranslateText(translator) end
 
 ---@return System.String
@@ -368,7 +368,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_FlagBool:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_FlagBool:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_FlagBool:TranslateText(translator) end
 
 ---@return System.String
@@ -403,7 +403,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_FlagInt:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_FlagInt:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_FlagInt:TranslateText(translator) end
 
 ---@return System.String
@@ -437,7 +437,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_Round:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_Round:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_Round:TranslateText(translator) end
 
 ---@return System.String
@@ -471,7 +471,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_ActionCount:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_ActionCount:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_ActionCount:TranslateText(translator) end
 
 ---@return System.String
@@ -506,7 +506,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiHasArea:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiHasArea:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiHasArea:TranslateText(translator) end
 
 ---@return System.String
@@ -541,7 +541,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiHasRole:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiHasRole:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiHasRole:TranslateText(translator) end
 
 ---@return System.String
@@ -579,7 +579,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_LuaCondition:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_LuaCondition:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_LuaCondition:TranslateText(translator) end
 
 ---@return System.String
@@ -615,7 +615,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaOwnerRelationWithMenpai:GetPrimary
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaOwnerRelationWithMenpai:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaOwnerRelationWithMenpai:TranslateText(translator) end
 
 ---@return System.String
@@ -650,7 +650,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaNeighborWithMenpai:GetPrimaryKey()
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaNeighborWithMenpai:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaNeighborWithMenpai:TranslateText(translator) end
 
 ---@return System.String
@@ -686,7 +686,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_DungeonTaskProgress:GetPrimaryKey() en
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_DungeonTaskProgress:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_DungeonTaskProgress:TranslateText(translator) end
 
 ---@return System.String
@@ -721,7 +721,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_DungeonHasTeam:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_DungeonHasTeam:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_DungeonHasTeam:TranslateText(translator) end
 
 ---@return System.String
@@ -755,7 +755,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaLostAnyBuilding:GetPrimaryKey() en
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaLostAnyBuilding:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaLostAnyBuilding:TranslateText(translator) end
 
 ---@return System.String
@@ -789,7 +789,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaLock:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaLock:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaLock:TranslateText(translator) end
 
 ---@return System.String
@@ -824,7 +824,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaDevelop:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaDevelop:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaDevelop:TranslateText(translator) end
 
 ---@return System.String
@@ -859,7 +859,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaFlagBool:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaFlagBool:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaFlagBool:TranslateText(translator) end
 
 ---@return System.String
@@ -895,7 +895,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaFlagInt:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaFlagInt:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaFlagInt:TranslateText(translator) end
 
 ---@return System.String
@@ -930,7 +930,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleFlagBool:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleFlagBool:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleFlagBool:TranslateText(translator) end
 
 ---@return System.String
@@ -965,7 +965,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleFavor:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleFavor:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleFavor:TranslateText(translator) end
 
 ---@return System.String
@@ -1000,7 +1000,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleLevel:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleLevel:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleLevel:TranslateText(translator) end
 
 ---@return System.String
@@ -1035,7 +1035,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleTalentPoint:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleTalentPoint:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleTalentPoint:TranslateText(translator) end
 
 ---@return System.String
@@ -1071,7 +1071,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiRelation:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiRelation:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiRelation:TranslateText(translator) end
 
 ---@return System.String
@@ -1107,7 +1107,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiFriendship:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiFriendship:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiFriendship:TranslateText(translator) end
 
 ---@return System.String
@@ -1142,7 +1142,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiAreaCount:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiAreaCount:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiAreaCount:TranslateText(translator) end
 
 ---@return System.String
@@ -1178,7 +1178,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBattle:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBattle:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBattle:TranslateText(translator) end
 
 ---@return System.String
@@ -1219,7 +1219,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBuildingCount:GetPrimaryKey() en
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBuildingCount:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBuildingCount:TranslateText(translator) end
 
 ---@return System.String
@@ -1253,7 +1253,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBattleArea:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBattleArea:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBattleArea:TranslateText(translator) end
 
 ---@return System.String
@@ -1287,7 +1287,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiOccupyingArea:GetPrimaryKey() en
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiOccupyingArea:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiOccupyingArea:TranslateText(translator) end
 
 ---@return System.String
@@ -1321,7 +1321,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiLosingArea:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiLosingArea:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiLosingArea:TranslateText(translator) end
 
 ---@return System.String
@@ -1355,7 +1355,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiDestroyed:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiDestroyed:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiDestroyed:TranslateText(translator) end
 
 ---@return System.String
@@ -1390,7 +1390,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaBuildingsOwnerHasMenpai:GetPrimary
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaBuildingsOwnerHasMenpai:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaBuildingsOwnerHasMenpai:TranslateText(translator) end
 
 ---@return System.String
@@ -1416,7 +1416,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AttrItemBase.DeserializeAttrItemBase(_jso
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AttrItemBase:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AttrItemBase:TranslateText(translator) end
 
 ---@return System.String
@@ -1449,7 +1449,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AttrItem_Fix:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AttrItem_Fix:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AttrItem_Fix:TranslateText(translator) end
 
 ---@return System.String
@@ -1483,7 +1483,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AttrItem_LevelGrow:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AttrItem_LevelGrow:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AttrItem_LevelGrow:TranslateText(translator) end
 
 ---@return System.String
@@ -1502,7 +1502,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AttrItem_LevelGrow() end
 CS.ZhanGuoWuxia.Backend.Beans.AttrTemplateBean = {}
 
 ---@param level System.Int32
----@return userdata
+---@return { [System.String]: System.Single }
 function CS.ZhanGuoWuxia.Backend.Beans.AttrTemplateBean:GetAttrs(level) end
 
 ---@param _json SimpleJSON.JSONNode
@@ -1518,7 +1518,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AttrTemplateBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AttrTemplateBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AttrTemplateBean:TranslateText(translator) end
 
 ---@return System.String
@@ -1563,7 +1563,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BattleConditionBase.DeserializeBattleCond
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.BattleConditionBase:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BattleConditionBase:TranslateText(translator) end
 
 ---@return System.String
@@ -1598,7 +1598,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BC_RoleHealthPercent:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.BC_RoleHealthPercent:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BC_RoleHealthPercent:TranslateText(translator) end
 
 ---@return System.String
@@ -1632,7 +1632,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BC_Round:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.BC_Round:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BC_Round:TranslateText(translator) end
 
 ---@return System.String
@@ -1667,7 +1667,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerCount:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerCount:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerCount:TranslateText(translator) end
 
 ---@return System.String
@@ -1701,7 +1701,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerRole:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerRole:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerRole:TranslateText(translator) end
 
 ---@return System.String
@@ -1735,7 +1735,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerSkill:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerSkill:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerSkill:TranslateText(translator) end
 
 ---@return System.String
@@ -1770,7 +1770,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerFlagInt:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerFlagInt:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerFlagInt:TranslateText(translator) end
 
 ---@return System.String
@@ -1826,7 +1826,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BattleRolePresetData:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.BattleRolePresetData:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BattleRolePresetData:TranslateText(translator) end
 
 ---@return System.String
@@ -1873,7 +1873,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixBean:TranslateText(translator) end
 
 ---@return System.String
@@ -1911,7 +1911,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.LootData:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.LootData:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.LootData:TranslateText(translator) end
 
 ---@return System.String
@@ -1936,7 +1936,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillConditionBase.DeserializeSkillCondit
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.SkillConditionBase:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SkillConditionBase:TranslateText(translator) end
 
 ---@return System.String
@@ -1969,7 +1969,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleLearnedSkill:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleLearnedSkill:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleLearnedSkill:TranslateText(translator) end
 
 ---@return System.String
@@ -2003,7 +2003,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleAttr:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleAttr:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleAttr:TranslateText(translator) end
 
 ---@return System.String
@@ -2036,7 +2036,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleLevel:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleLevel:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleLevel:TranslateText(translator) end
 
 ---@return System.String
@@ -2095,7 +2095,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillFormBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.SkillFormBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SkillFormBean:TranslateText(translator) end
 
 ---@return System.String
@@ -2121,7 +2121,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TalentConditionBase.DeserializeTalentCond
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TalentConditionBase:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TalentConditionBase:TranslateText(translator) end
 
 ---@return System.String
@@ -2156,7 +2156,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TC_RoleAttr:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TC_RoleAttr:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TC_RoleAttr:TranslateText(translator) end
 
 ---@return System.String
@@ -2190,7 +2190,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TC_RoleLevel:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TC_RoleLevel:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TC_RoleLevel:TranslateText(translator) end
 
 ---@return System.String
@@ -2224,7 +2224,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TC_UnlockTalent:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TC_UnlockTalent:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TC_UnlockTalent:TranslateText(translator) end
 
 ---@return System.String
@@ -2262,7 +2262,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TalentElement:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TalentElement:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TalentElement:TranslateText(translator) end
 
 ---@return System.String
@@ -2300,7 +2300,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AchievementBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AchievementBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AchievementBean:TranslateText(translator) end
 
 ---@return System.String
@@ -2355,7 +2355,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean:TranslateText(translator) end
 
 ---@return System.String
@@ -2395,7 +2395,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AffixBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AffixBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AffixBean:TranslateText(translator) end
 
 ---@return System.String
@@ -2448,7 +2448,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AreaBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AreaBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AreaBean:TranslateText(translator) end
 
 ---@return System.String
@@ -2487,7 +2487,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AttrBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.AttrBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AttrBean:TranslateText(translator) end
 
 ---@return System.String
@@ -2533,7 +2533,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BattleBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.BattleBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BattleBean:TranslateText(translator) end
 
 ---@return System.String
@@ -2594,7 +2594,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BattleTriggerBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.BattleTriggerBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BattleTriggerBean:TranslateText(translator) end
 
 ---@return System.String
@@ -2629,7 +2629,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BigEventBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.BigEventBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BigEventBean:TranslateText(translator) end
 
 ---@return System.String
@@ -2676,7 +2676,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BuffBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.BuffBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BuffBean:TranslateText(translator) end
 
 ---@return System.String
@@ -2716,7 +2716,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BuildingBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.BuildingBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BuildingBean:TranslateText(translator) end
 
 ---@return System.String
@@ -2783,7 +2783,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.DungeonBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.DungeonBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.DungeonBean:TranslateText(translator) end
 
 ---@return System.String
@@ -2824,7 +2824,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.DungeonEventBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.DungeonEventBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.DungeonEventBean:TranslateText(translator) end
 
 ---@return System.String
@@ -2873,7 +2873,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.DungeonTaskBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.DungeonTaskBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.DungeonTaskBean:TranslateText(translator) end
 
 ---@return System.String
@@ -2915,7 +2915,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.EquipmentPartialBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.EquipmentPartialBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.EquipmentPartialBean:TranslateText(translator) end
 
 ---@return System.String
@@ -2971,7 +2971,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.GalleryBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.GalleryBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.GalleryBean:TranslateText(translator) end
 
 ---@return System.String
@@ -2999,7 +2999,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffectBase.DeserializeItemAffixE
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffectBase:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffectBase:TranslateText(translator) end
 
 ---@return System.String
@@ -3029,7 +3029,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_Attr:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_Attr:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_Attr:TranslateText(translator) end
 
 ---@return System.String
@@ -3060,7 +3060,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroup:GetPrimaryKey()
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroup:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroup:TranslateText(translator) end
 
 ---@return System.String
@@ -3091,7 +3091,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRange:GetPrimary
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRange:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRange:TranslateText(translator) end
 
 ---@return System.String
@@ -3120,7 +3120,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRangeList:GetPri
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRangeList:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRangeList:TranslateText(translator) end
 
 ---@return System.String
@@ -3151,7 +3151,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrRange:GetPrimaryKey()
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrRange:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrRange:TranslateText(translator) end
 
 ---@return System.String
@@ -3180,7 +3180,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_RandomSkill:GetPrimaryKey
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_RandomSkill:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_RandomSkill:TranslateText(translator) end
 
 ---@return System.String
@@ -3209,7 +3209,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_Skill:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_Skill:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_Skill:TranslateText(translator) end
 
 ---@return System.String
@@ -3257,7 +3257,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemBean:TranslateText(translator) end
 
 ---@return System.String
@@ -3324,7 +3324,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.LootPoolBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.LootPoolBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.LootPoolBean:TranslateText(translator) end
 
 ---@return System.String
@@ -3359,7 +3359,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.MenpaiBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.MenpaiBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.MenpaiBean:TranslateText(translator) end
 
 ---@return System.String
@@ -3405,7 +3405,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean:TranslateText(translator) end
 
 ---@return System.String
@@ -3441,7 +3441,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ModelBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ModelBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ModelBean:TranslateText(translator) end
 
 ---@return System.String
@@ -3473,7 +3473,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ModelColorBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ModelColorBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ModelColorBean:TranslateText(translator) end
 
 ---@return System.String
@@ -3506,7 +3506,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ModelComponentBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ModelComponentBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ModelComponentBean:TranslateText(translator) end
 
 ---@return System.String
@@ -3562,7 +3562,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.NameBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.NameBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.NameBean:TranslateText(translator) end
 
 ---@return System.String
@@ -3606,7 +3606,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.PermanentResourceBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.PermanentResourceBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.PermanentResourceBean:TranslateText(translator) end
 
 ---@return System.String
@@ -3644,7 +3644,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.PicBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.PicBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.PicBean:TranslateText(translator) end
 
 ---@return System.String
@@ -3714,7 +3714,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RestoreBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.RestoreBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.RestoreBean:TranslateText(translator) end
 
 ---@return System.String
@@ -3763,7 +3763,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.RoleBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.RoleBean:TranslateText(translator) end
 
 ---@return System.String
@@ -3800,7 +3800,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleClassBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.RoleClassBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.RoleClassBean:TranslateText(translator) end
 
 ---@return System.String
@@ -3836,7 +3836,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean:GetPrimaryKey() en
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean:TranslateText(translator) end
 
 ---@return System.String
@@ -3883,7 +3883,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleTalentBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.RoleTalentBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.RoleTalentBean:TranslateText(translator) end
 
 ---@return System.String
@@ -3913,7 +3913,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean:GetPrimaryKey() e
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean:TranslateText(translator) end
 
 ---@return System.String
@@ -3951,7 +3951,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleVoiceData:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.RoleVoiceData:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.RoleVoiceData:TranslateText(translator) end
 
 ---@return System.String
@@ -3991,7 +3991,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ScenarioBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ScenarioBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ScenarioBean:TranslateText(translator) end
 
 ---@return System.String
@@ -4032,7 +4032,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ShopBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ShopBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ShopBean:TranslateText(translator) end
 
 ---@return System.String
@@ -4065,7 +4065,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ShopItemBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.ShopItemBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ShopItemBean:TranslateText(translator) end
 
 ---@return System.String
@@ -4112,7 +4112,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.SkillBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SkillBean:TranslateText(translator) end
 
 ---@return System.String
@@ -4196,7 +4196,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillPartialBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.SkillPartialBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SkillPartialBean:TranslateText(translator) end
 
 ---@return System.String
@@ -4251,7 +4251,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillUnlockBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.SkillUnlockBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SkillUnlockBean:TranslateText(translator) end
 
 ---@return System.String
@@ -4281,7 +4281,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean:TranslateText(translator) end
 
 ---@return System.String
@@ -4314,7 +4314,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TalentEffectBase.DeserializeTalentEffectB
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TalentEffectBase:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TalentEffectBase:TranslateText(translator) end
 
 ---@return System.String
@@ -4344,10 +4344,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AchievementBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.AchievementBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:get_DataList() end
 
 ---@param key System.String
@@ -4365,7 +4365,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:TranslateText(translator) end
 
 ---@return System.Type
@@ -4394,10 +4394,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAction:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbAction:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ActionBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAction:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.ActionBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbAction:get_DataList() end
 
 ---@param key System.String
@@ -4415,7 +4415,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAction:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAction:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbAction:TranslateText(translator) end
 
 ---@return System.Type
@@ -4444,10 +4444,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.AffixBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:get_DataList() end
 
 ---@param key System.String
@@ -4465,7 +4465,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:TranslateText(translator) end
 
 ---@return System.Type
@@ -4494,10 +4494,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:get_DataList() end
 
 ---@param key System.String
@@ -4515,7 +4515,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:TranslateText(translator) end
 
 ---@return System.Type
@@ -4544,10 +4544,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbArea:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbArea:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AreaBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbArea:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.AreaBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbArea:get_DataList() end
 
 ---@param key System.String
@@ -4565,7 +4565,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbArea:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbArea:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbArea:TranslateText(translator) end
 
 ---@return System.Type
@@ -4594,10 +4594,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.AttrBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:get_DataList() end
 
 ---@param key System.String
@@ -4615,7 +4615,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:TranslateText(translator) end
 
 ---@return System.Type
@@ -4644,10 +4644,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.AttrTemplateBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:get_DataList() end
 
 ---@param key System.String
@@ -4665,7 +4665,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:TranslateText(translator) end
 
 ---@return System.Type
@@ -4694,10 +4694,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.BattleBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:get_DataList() end
 
 ---@param key System.String
@@ -4715,7 +4715,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:TranslateText(translator) end
 
 ---@return System.Type
@@ -4744,10 +4744,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.BattleTriggerBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:get_DataList() end
 
 ---@param key System.String
@@ -4765,7 +4765,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:TranslateText(translator) end
 
 ---@return System.Type
@@ -4794,10 +4794,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.BigEventBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.BigEventBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:get_DataList() end
 
 ---@param key System.String
@@ -4815,7 +4815,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:TranslateText(translator) end
 
 ---@return System.Type
@@ -4844,10 +4844,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.BuffBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.BuffBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:get_DataList() end
 
 ---@param key System.String
@@ -4865,7 +4865,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:TranslateText(translator) end
 
 ---@return System.Type
@@ -4894,10 +4894,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.BuildingBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.BuildingBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:get_DataList() end
 
 ---@param key System.String
@@ -4915,7 +4915,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:TranslateText(translator) end
 
 ---@return System.Type
@@ -4944,10 +4944,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.DungeonBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:get_DataList() end
 
 ---@param key System.String
@@ -4965,7 +4965,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:TranslateText(translator) end
 
 ---@return System.Type
@@ -4994,10 +4994,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.DungeonEventBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:get_DataList() end
 
 ---@param key System.String
@@ -5015,7 +5015,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:TranslateText(translator) end
 
 ---@return System.Type
@@ -5044,10 +5044,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.DungeonTaskBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:get_DataList() end
 
 ---@param key System.String
@@ -5065,7 +5065,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:TranslateText(translator) end
 
 ---@return System.Type
@@ -5094,10 +5094,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.GalleryBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.GalleryBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:get_DataList() end
 
 ---@param key System.String
@@ -5115,7 +5115,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:TranslateText(translator) end
 
 ---@return System.Type
@@ -5144,10 +5144,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbItem:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbItem:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItem:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.ItemBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbItem:get_DataList() end
 
 ---@param key System.String
@@ -5165,7 +5165,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbItem:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItem:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbItem:TranslateText(translator) end
 
 ---@return System.Type
@@ -5194,10 +5194,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.ItemAffixBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:get_DataList() end
 
 ---@param key System.String
@@ -5215,7 +5215,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:TranslateText(translator) end
 
 ---@return System.Type
@@ -5244,10 +5244,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.LootPoolBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.LootPoolBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:get_DataList() end
 
 ---@param key System.String
@@ -5265,7 +5265,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:TranslateText(translator) end
 
 ---@return System.Type
@@ -5294,10 +5294,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.MenpaiBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:get_DataList() end
 
 ---@param key System.String
@@ -5315,7 +5315,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:TranslateText(translator) end
 
 ---@return System.Type
@@ -5344,10 +5344,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:get_DataList() end
 
 ---@param key System.String
@@ -5365,7 +5365,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:TranslateText(translator) end
 
 ---@return System.Type
@@ -5394,10 +5394,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbModel:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbModel:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModel:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.ModelBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbModel:get_DataList() end
 
 ---@param key System.String
@@ -5415,7 +5415,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbModel:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModel:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbModel:TranslateText(translator) end
 
 ---@return System.Type
@@ -5444,10 +5444,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.ModelComponentBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:get_DataList() end
 
 ---@param key System.String
@@ -5465,7 +5465,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:TranslateText(translator) end
 
 ---@return System.Type
@@ -5494,10 +5494,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.PermanentResourceBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:get_DataList() end
 
 ---@param key System.String
@@ -5515,7 +5515,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:TranslateText(translator) end
 
 ---@return System.Type
@@ -5544,10 +5544,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RestoreBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.RestoreBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:get_DataList() end
 
 ---@param key System.String
@@ -5565,7 +5565,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:TranslateText(translator) end
 
 ---@return System.Type
@@ -5594,10 +5594,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRole:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbRole:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRole:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.RoleBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbRole:get_DataList() end
 
 ---@param key System.String
@@ -5615,7 +5615,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRole:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRole:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbRole:TranslateText(translator) end
 
 ---@return System.Type
@@ -5644,10 +5644,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleClassBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.RoleClassBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:get_DataList() end
 
 ---@param key System.String
@@ -5665,7 +5665,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:TranslateText(translator) end
 
 ---@return System.Type
@@ -5694,10 +5694,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:get_DataList() end
 
 ---@param key System.String
@@ -5715,7 +5715,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:TranslateText(translator) end
 
 ---@return System.Type
@@ -5744,10 +5744,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.NameBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.NameBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:get_DataList() end
 
 ---@param key System.String
@@ -5765,7 +5765,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:TranslateText(translator) end
 
 ---@return System.Type
@@ -5794,10 +5794,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.PicBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.PicBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:get_DataList() end
 
 ---@param key System.String
@@ -5815,7 +5815,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:TranslateText(translator) end
 
 ---@return System.Type
@@ -5844,10 +5844,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.RoleTalentBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:get_DataList() end
 
 ---@param key System.String
@@ -5865,7 +5865,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:TranslateText(translator) end
 
 ---@return System.Type
@@ -5894,10 +5894,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:get_DataList() end
 
 ---@param key System.String
@@ -5915,7 +5915,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:TranslateText(translator) end
 
 ---@return System.Type
@@ -5944,10 +5944,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ScenarioBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.ScenarioBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:get_DataList() end
 
 ---@param key System.String
@@ -5965,7 +5965,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:TranslateText(translator) end
 
 ---@return System.Type
@@ -5994,10 +5994,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbShop:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbShop:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShop:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.ShopBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbShop:get_DataList() end
 
 ---@param key System.String
@@ -6015,7 +6015,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbShop:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShop:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbShop:TranslateText(translator) end
 
 ---@return System.Type
@@ -6044,10 +6044,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopItemBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.ShopItemBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:get_DataList() end
 
 ---@param key System.String
@@ -6065,7 +6065,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:TranslateText(translator) end
 
 ---@return System.Type
@@ -6094,10 +6094,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.SkillBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:get_DataList() end
 
 ---@param key System.String
@@ -6115,7 +6115,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:TranslateText(translator) end
 
 ---@return System.Type
@@ -6144,10 +6144,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.SkillFormBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:get_DataList() end
 
 ---@param key System.String
@@ -6165,7 +6165,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:TranslateText(translator) end
 
 ---@return System.Type
@@ -6194,10 +6194,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:get_DataList() end
 
 ---@param key System.String
@@ -6215,7 +6215,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:TranslateText(translator) end
 
 ---@return System.Type
@@ -6244,10 +6244,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.TutorialBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.TutorialBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:get_DataList() end
 
 ---@param key System.String
@@ -6265,7 +6265,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:TranslateText(translator) end
 
 ---@return System.Type
@@ -6294,10 +6294,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:GetAllBeans() end
 ---@param newBeans userdata
 function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:Merge(newBeans) end
 
----@return userdata
+---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.VFXBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:get_DataMap() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.VFXBean[]
 function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:get_DataList() end
 
 ---@param key System.String
@@ -6315,7 +6315,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:get_Item(key) end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:TranslateText(translator) end
 
 ---@return System.Type
@@ -6343,7 +6343,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TE_Attr:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TE_Attr:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TE_Attr:TranslateText(translator) end
 
 ---@return System.String
@@ -6372,7 +6372,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TE_Buff:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TE_Buff:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TE_Buff:TranslateText(translator) end
 
 ---@return System.String
@@ -6401,7 +6401,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TE_Skill:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TE_Skill:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TE_Skill:TranslateText(translator) end
 
 ---@return System.String
@@ -6434,7 +6434,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TutorialBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TutorialBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TutorialBean:TranslateText(translator) end
 
 ---@return System.String
@@ -6465,7 +6465,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TutorialStep:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.TutorialStep:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TutorialStep:TranslateText(translator) end
 
 ---@return System.String
@@ -6517,7 +6517,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.VFXBean:GetPrimaryKey() end
 ---@param _tables { [System.String]: System.Object }
 function CS.ZhanGuoWuxia.Backend.Beans.VFXBean:Resolve(_tables) end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.VFXBean:TranslateText(translator) end
 
 ---@return System.String
@@ -6540,7 +6540,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:GetAll(type) end
 ---@param source userdata
 function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:Merge(type, source) end
 
----@overload fun(self: self, loader: userdata): System.Int32
+---@overload fun(self: self, loader: (fun(arg: System.String): SimpleJSON.JSONNode)): System.Int32
 ---@param path? System.String
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:ReloadAll(path) end
@@ -6556,7 +6556,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:GetBeanTypeCount() end
 ---@return userdata
 function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:get_Tables() end
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:OnTranslation(translator) end
 
 
@@ -6565,7 +6565,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:OnTranslation(translator) en
 ---@field BeanType System.Type
 CS.ZhanGuoWuxia.Backend.Beans.ITable = {}
 
----@param translator userdata
+---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ITable:TranslateText(translator) end
 
 ---@param _tables { [System.String]: System.Object }

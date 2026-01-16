@@ -27,10 +27,10 @@ function CS.ZhanGuoWuxia.Backend.Map.MapBaseData() end
 ---@field private DefaultMapElementPath System.String
 CS.ZhanGuoWuxia.Backend.Map.MapManager = {}
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Map.MapElementMoveData[]
 function CS.ZhanGuoWuxia.Backend.Map.MapManager:get_DynamicElements() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Map.MapStaticElementData[]
 function CS.ZhanGuoWuxia.Backend.Map.MapManager:get_StaticElements() end
 
 ---@return ZhanGuoWuxia.Backend.Map.MapBaseData

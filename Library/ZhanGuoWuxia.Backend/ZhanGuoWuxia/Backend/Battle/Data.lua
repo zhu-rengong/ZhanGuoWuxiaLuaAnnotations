@@ -215,10 +215,10 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleRoleSkipResult() end
 ---@field private m_StatData { [System.String]: System.Single }
 CS.ZhanGuoWuxia.Backend.Battle.Data.BattleRoleStat = {}
 
----@return userdata
+---@return { [System.String]: System.Single }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleRoleStat:get_AllStats() end
 
----@param newStat userdata
+---@param newStat { [System.String]: System.Single }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleRoleStat:Merge(newStat) end
 
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleRoleStat:ClearData() end
@@ -298,15 +298,15 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:IsInTeam2(role) en
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:IsInTeam(role, team) end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:GetTeam1CaptureableRoles() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:GetTeam2CaptureableRoles() end
 
 ---@private
 ---@param formation userdata
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:FindRolesCanCaptured(formation) end
 
 ---@private
@@ -314,14 +314,14 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:FindRolesCanCaptur
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:IsRoleInSave(role) end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:GetTeam1Roles() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:GetTeam2Roles() end
 
 ---@param team System.Int32
----@return userdata
+---@return ZhanGuoWuxia.Backend.Battle.RoleFormationData[]
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:GetTeamFormation(team) end
 
 ---@param team System.Int32

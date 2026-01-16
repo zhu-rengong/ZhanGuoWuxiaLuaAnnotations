@@ -331,10 +331,10 @@ function CS.ZhanGuoWuxia.Backend.Difficulty:get_AdditionJoinBattleCount() end
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Difficulty:get_IsItemUsageLimited() end
 
----@return userdata
+---@return System.String[]
 function CS.ZhanGuoWuxia.Backend.Difficulty:get_PlayerBuffs() end
 
----@return userdata
+---@return System.String[]
 function CS.ZhanGuoWuxia.Backend.Difficulty:get_EnemyBuffs() end
 
 ---@return System.Single
@@ -372,7 +372,7 @@ function CS.ZhanGuoWuxia.Backend.Difficulty() end
 CS.ZhanGuoWuxia.Backend.GameCore = {}
 
 ---@protected
----@return userdata
+---@return { [System.Type]: ZhanGuoWuxia.Backend.IGameService }
 function CS.ZhanGuoWuxia.Backend.GameCore.get_m_Services() end
 
 ---@return System.Boolean
@@ -480,11 +480,11 @@ function CS.ZhanGuoWuxia.Backend.DefaultLaunchHandler:AddError(type, exception) 
 
 ---@private
 ---@param type ZhanGuoWuxia.Backend.LaunchErrorType
----@return userdata
+---@return System.Exception[]
 function CS.ZhanGuoWuxia.Backend.DefaultLaunchHandler:GetErrors(type) end
 
 ---@param launchErrorType ZhanGuoWuxia.Backend.LaunchErrorType
----@return userdata
+---@return System.Exception[]
 function CS.ZhanGuoWuxia.Backend.DefaultLaunchHandler:PopErrors(launchErrorType) end
 
 ---@param exception System.Exception
@@ -564,7 +564,7 @@ function CS.ZhanGuoWuxia.Backend.UserSetting:LoadOther() end
 ---@return ZhanGuoWuxia.Backend.UserResolution
 function CS.ZhanGuoWuxia.Backend.UserSetting:get_CurrentResolution() end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.UserResolution[]
 function CS.ZhanGuoWuxia.Backend.UserSetting:get_Resolutions() end
 
 ---@param width System.Int32
@@ -641,7 +641,7 @@ function CS.ZhanGuoWuxia.Backend.UserSetting:get_CanAdjustBattleSpeed() end
 ---@param value System.Boolean
 function CS.ZhanGuoWuxia.Backend.UserSetting:set_CanAdjustBattleSpeed(value) end
 
----@return userdata
+---@return ZhanGuoWuxia.Backend.Translation.TranslationDefinition[]
 function CS.ZhanGuoWuxia.Backend.UserSetting:GetLanguageDefinitions() end
 
 ---@param idx System.Int32

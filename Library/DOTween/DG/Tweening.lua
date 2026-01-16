@@ -193,44 +193,44 @@ function CS.DG.Tweening.DOTween.Validate() end
 ---@param unscaledDeltaTime System.Single
 function CS.DG.Tweening.DOTween.ManualUpdate(deltaTime, unscaledDeltaTime) end
 
----@overload fun(getter: userdata, setter: userdata, endValue: System.Double, duration: System.Single): userdata
----@overload fun(getter: userdata, setter: userdata, endValue: System.Int32, duration: System.Single): userdata
----@overload fun(getter: userdata, setter: userdata, endValue: System.UInt32, duration: System.Single): userdata
----@overload fun(getter: userdata, setter: userdata, endValue: System.Int64, duration: System.Single): userdata
----@overload fun(getter: userdata, setter: userdata, endValue: System.UInt64, duration: System.Single): userdata
----@overload fun(getter: userdata, setter: userdata, endValue: System.String, duration: System.Single): userdata
----@overload fun(getter: userdata, setter: userdata, endValue: UnityEngine.Vector2, duration: System.Single): userdata
----@overload fun(getter: userdata, setter: userdata, endValue: UnityEngine.Vector3, duration: System.Single): userdata
----@overload fun(getter: userdata, setter: userdata, endValue: UnityEngine.Vector4, duration: System.Single): userdata
----@overload fun(getter: userdata, setter: userdata, endValue: UnityEngine.Vector3, duration: System.Single): userdata
----@overload fun(getter: userdata, setter: userdata, endValue: UnityEngine.Color, duration: System.Single): userdata
----@overload fun(getter: userdata, setter: userdata, endValue: UnityEngine.Rect, duration: System.Single): userdata
----@overload fun(getter: userdata, setter: userdata, endValue: UnityEngine.RectOffset, duration: System.Single): DG.Tweening.Tweener
----@overload fun(setter: userdata, startValue: System.Single, endValue: System.Single, duration: System.Single): DG.Tweening.Tweener
----@param getter userdata
----@param setter userdata
+---@overload fun(getter: (fun(): System.Double), setter: (fun(pNewValue: System.Double)), endValue: System.Double, duration: System.Single): userdata
+---@overload fun(getter: (fun(): System.Int32), setter: (fun(pNewValue: System.Int32)), endValue: System.Int32, duration: System.Single): userdata
+---@overload fun(getter: (fun(): System.UInt32), setter: (fun(pNewValue: System.UInt32)), endValue: System.UInt32, duration: System.Single): userdata
+---@overload fun(getter: (fun(): System.Int64), setter: (fun(pNewValue: System.Int64)), endValue: System.Int64, duration: System.Single): userdata
+---@overload fun(getter: (fun(): System.UInt64), setter: (fun(pNewValue: System.UInt64)), endValue: System.UInt64, duration: System.Single): userdata
+---@overload fun(getter: (fun(): System.String), setter: (fun(pNewValue: System.String)), endValue: System.String, duration: System.Single): userdata
+---@overload fun(getter: (fun(): UnityEngine.Vector2), setter: (fun(pNewValue: UnityEngine.Vector2)), endValue: UnityEngine.Vector2, duration: System.Single): userdata
+---@overload fun(getter: (fun(): UnityEngine.Vector3), setter: (fun(pNewValue: UnityEngine.Vector3)), endValue: UnityEngine.Vector3, duration: System.Single): userdata
+---@overload fun(getter: (fun(): UnityEngine.Vector4), setter: (fun(pNewValue: UnityEngine.Vector4)), endValue: UnityEngine.Vector4, duration: System.Single): userdata
+---@overload fun(getter: (fun(): UnityEngine.Quaternion), setter: (fun(pNewValue: UnityEngine.Quaternion)), endValue: UnityEngine.Vector3, duration: System.Single): userdata
+---@overload fun(getter: (fun(): UnityEngine.Color), setter: (fun(pNewValue: UnityEngine.Color)), endValue: UnityEngine.Color, duration: System.Single): userdata
+---@overload fun(getter: (fun(): UnityEngine.Rect), setter: (fun(pNewValue: UnityEngine.Rect)), endValue: UnityEngine.Rect, duration: System.Single): userdata
+---@overload fun(getter: (fun(): UnityEngine.RectOffset), setter: (fun(pNewValue: UnityEngine.RectOffset)), endValue: UnityEngine.RectOffset, duration: System.Single): DG.Tweening.Tweener
+---@overload fun(setter: (fun(pNewValue: System.Single)), startValue: System.Single, endValue: System.Single, duration: System.Single): DG.Tweening.Tweener
+---@param getter fun(): System.Single
+---@param setter fun(pNewValue: System.Single)
 ---@param endValue System.Single
 ---@param duration System.Single
 ---@return userdata
 function CS.DG.Tweening.DOTween.To(getter, setter, endValue, duration) end
 
----@param getter userdata
----@param setter userdata
+---@param getter fun(): UnityEngine.Vector3
+---@param setter fun(pNewValue: UnityEngine.Vector3)
 ---@param endValue System.Single
 ---@param duration System.Single
 ---@param axisConstraint? DG.Tweening.AxisConstraint
 ---@return userdata
 function CS.DG.Tweening.DOTween.ToAxis(getter, setter, endValue, duration, axisConstraint) end
 
----@param getter userdata
----@param setter userdata
+---@param getter fun(): UnityEngine.Color
+---@param setter fun(pNewValue: UnityEngine.Color)
 ---@param endValue System.Single
 ---@param duration System.Single
 ---@return userdata
 function CS.DG.Tweening.DOTween.ToAlpha(getter, setter, endValue, duration) end
 
----@param getter userdata
----@param setter userdata
+---@param getter fun(): UnityEngine.Vector3
+---@param setter fun(pNewValue: UnityEngine.Vector3)
 ---@param direction UnityEngine.Vector3
 ---@param duration System.Single
 ---@param vibrato? System.Int32
@@ -238,9 +238,9 @@ function CS.DG.Tweening.DOTween.ToAlpha(getter, setter, endValue, duration) end
 ---@return userdata
 function CS.DG.Tweening.DOTween.Punch(getter, setter, direction, duration, vibrato, elasticity) end
 
----@overload fun(getter: userdata, setter: userdata, duration: System.Single, strength: UnityEngine.Vector3, vibrato?: System.Int32, randomness?: System.Single, fadeOut?: System.Boolean, randomnessMode?: DG.Tweening.ShakeRandomnessMode): userdata
----@param getter userdata
----@param setter userdata
+---@overload fun(getter: (fun(): UnityEngine.Vector3), setter: (fun(pNewValue: UnityEngine.Vector3)), duration: System.Single, strength: UnityEngine.Vector3, vibrato?: System.Int32, randomness?: System.Single, fadeOut?: System.Boolean, randomnessMode?: DG.Tweening.ShakeRandomnessMode): userdata
+---@param getter fun(): UnityEngine.Vector3
+---@param setter fun(pNewValue: UnityEngine.Vector3)
 ---@param duration System.Single
 ---@param strength? System.Single
 ---@param vibrato? System.Int32
@@ -252,8 +252,8 @@ function CS.DG.Tweening.DOTween.Punch(getter, setter, direction, duration, vibra
 function CS.DG.Tweening.DOTween.Shake(getter, setter, duration, strength, vibrato, randomness, ignoreZAxis, fadeOut, randomnessMode) end
 
 ---@private
----@param getter userdata
----@param setter userdata
+---@param getter fun(): UnityEngine.Vector3
+---@param setter fun(pNewValue: UnityEngine.Vector3)
 ---@param duration System.Single
 ---@param strength UnityEngine.Vector3
 ---@param vibrato System.Int32
@@ -265,16 +265,16 @@ function CS.DG.Tweening.DOTween.Shake(getter, setter, duration, strength, vibrat
 ---@return userdata
 function CS.DG.Tweening.DOTween.Shake(getter, setter, duration, strength, vibrato, randomness, ignoreZAxis, vectorBased, fadeOut, randomnessMode) end
 
----@param getter userdata
----@param setter userdata
+---@param getter fun(): UnityEngine.Vector3
+---@param setter fun(pNewValue: UnityEngine.Vector3)
 ---@param endValues UnityEngine.Vector3[]
 ---@param durations System.Single[]
 ---@return userdata
 function CS.DG.Tweening.DOTween.ToArray(getter, setter, endValues, durations) end
 
 ---@package
----@param getter userdata
----@param setter userdata
+---@param getter fun(): DG.Tweening.Color2
+---@param setter fun(pNewValue: DG.Tweening.Color2)
 ---@param endValue DG.Tweening.Color2
 ---@param duration System.Single
 ---@return userdata
@@ -421,23 +421,23 @@ function CS.DG.Tweening.DOTween.TotalPlayingTweens() end
 function CS.DG.Tweening.DOTween.TotalTweensById(id, playingOnly) end
 
 ---@param fillableList? DG.Tweening.Tween[]
----@return userdata
+---@return DG.Tweening.Tween[]
 function CS.DG.Tweening.DOTween.PlayingTweens(fillableList) end
 
 ---@param fillableList? DG.Tweening.Tween[]
----@return userdata
+---@return DG.Tweening.Tween[]
 function CS.DG.Tweening.DOTween.PausedTweens(fillableList) end
 
 ---@param id System.Object
 ---@param playingOnly? System.Boolean
 ---@param fillableList? DG.Tweening.Tween[]
----@return userdata
+---@return DG.Tweening.Tween[]
 function CS.DG.Tweening.DOTween.TweensById(id, playingOnly, fillableList) end
 
 ---@param target System.Object
 ---@param playingOnly? System.Boolean
 ---@param fillableList? DG.Tweening.Tween[]
----@return userdata
+---@return DG.Tweening.Tween[]
 function CS.DG.Tweening.DOTween.TweensByTarget(target, playingOnly, fillableList) end
 
 ---@private
@@ -453,28 +453,28 @@ CS.DG.Tweening.DOVirtual = {}
 ---@param from System.Single
 ---@param to System.Single
 ---@param duration System.Single
----@param onVirtualUpdate userdata
+---@param onVirtualUpdate fun(value: System.Single)
 ---@return DG.Tweening.Tweener
 function CS.DG.Tweening.DOVirtual.Float(from, to, duration, onVirtualUpdate) end
 
 ---@param from System.Int32
 ---@param to System.Int32
 ---@param duration System.Single
----@param onVirtualUpdate userdata
+---@param onVirtualUpdate fun(value: System.Int32)
 ---@return DG.Tweening.Tweener
 function CS.DG.Tweening.DOVirtual.Int(from, to, duration, onVirtualUpdate) end
 
 ---@param from UnityEngine.Vector3
 ---@param to UnityEngine.Vector3
 ---@param duration System.Single
----@param onVirtualUpdate userdata
+---@param onVirtualUpdate fun(value: UnityEngine.Vector3)
 ---@return DG.Tweening.Tweener
 function CS.DG.Tweening.DOVirtual.Vector3(from, to, duration, onVirtualUpdate) end
 
 ---@param from UnityEngine.Color
 ---@param to UnityEngine.Color
 ---@param duration System.Single
----@param onVirtualUpdate userdata
+---@param onVirtualUpdate fun(value: UnityEngine.Color)
 ---@return DG.Tweening.Tweener
 function CS.DG.Tweening.DOVirtual.Color(from, to, duration, onVirtualUpdate) end
 
@@ -545,7 +545,7 @@ CS.DG.Tweening.Ease = {
 CS.DG.Tweening.EaseFactory = {}
 
 ---@overload fun(motionFps: System.Int32, animCurve: UnityEngine.AnimationCurve): fun(time: System.Single, duration: System.Single, overshootOrAmplitude: System.Single, period: System.Single): System.Single
----@overload fun(motionFps: System.Int32, customEase: fun(time: System.Single, duration: System.Single, overshootOrAmplitude: System.Single, period: System.Single): System.Single): fun(time: System.Single, duration: System.Single, overshootOrAmplitude: System.Single, period: System.Single): System.Single
+---@overload fun(motionFps: System.Int32, customEase: (fun(time: System.Single, duration: System.Single, overshootOrAmplitude: System.Single, period: System.Single): System.Single)): fun(time: System.Single, duration: System.Single, overshootOrAmplitude: System.Single, period: System.Single): System.Single
 ---@param motionFps System.Int32
 ---@param ease? DG.Tweening.Ease|nil
 ---@return fun(time: System.Single, duration: System.Single, overshootOrAmplitude: System.Single, period: System.Single): System.Single
@@ -1432,7 +1432,7 @@ function CS.DG.Tweening.TweenParams:SetTarget(target) end
 function CS.DG.Tweening.TweenParams:SetLoops(loops, loopType) end
 
 ---@overload fun(self: self, animCurve: UnityEngine.AnimationCurve): DG.Tweening.TweenParams
----@overload fun(self: self, customEase: fun(time: System.Single, duration: System.Single, overshootOrAmplitude: System.Single, period: System.Single): System.Single): DG.Tweening.TweenParams
+---@overload fun(self: self, customEase: (fun(time: System.Single, duration: System.Single, overshootOrAmplitude: System.Single, period: System.Single): System.Single)): DG.Tweening.TweenParams
 ---@param ease DG.Tweening.Ease
 ---@param overshootOrAmplitude? System.Single|nil
 ---@param period? System.Single|nil
@@ -1476,7 +1476,7 @@ function CS.DG.Tweening.TweenParams:OnComplete(action) end
 ---@return DG.Tweening.TweenParams
 function CS.DG.Tweening.TweenParams:OnKill(action) end
 
----@param action userdata
+---@param action fun(value: System.Int32)
 ---@return DG.Tweening.TweenParams
 function CS.DG.Tweening.TweenParams:OnWaypointChange(action) end
 
@@ -1797,7 +1797,7 @@ function CS.DG.Tweening.TweenSettingsExtensions.OnKill(t, action) end
 
 ---@generic T : DG.Tweening.Tween
 ---@param t T
----@param action userdata
+---@param action fun(value: System.Int32)
 ---@return T
 function CS.DG.Tweening.TweenSettingsExtensions.OnWaypointChange(t, action) end
 

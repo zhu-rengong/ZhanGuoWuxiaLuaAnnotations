@@ -11,11 +11,11 @@ function CS.ZhanGuoWuxia.Backend.Pattern.IPoolObject:OnRecycle() end
 
 
 ---@class ZhanGuoWuxia.Backend.Pattern.ObjPool: System.Object
----@field AllPools userdata
+---@field AllPools { [System.Type]: ZhanGuoWuxia.Backend.Pattern.ObjPool.PoolBase }
 ---@field private m_AllPools { [System.Type]: ZhanGuoWuxia.Backend.Pattern.ObjPool.PoolBase }
 CS.ZhanGuoWuxia.Backend.Pattern.ObjPool = {}
 
----@return userdata
+---@return { [System.Type]: ZhanGuoWuxia.Backend.Pattern.ObjPool.PoolBase }
 function CS.ZhanGuoWuxia.Backend.Pattern.ObjPool.get_AllPools() end
 
 ---@private

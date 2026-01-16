@@ -139,7 +139,7 @@ function CS.System.Reflection.Assembly:IsDefined(attributeType, inherit) end
 ---@return userdata
 function CS.System.Reflection.Assembly:get_CustomAttributes() end
 
----@return userdata
+---@return System.Reflection.CustomAttributeData[]
 function CS.System.Reflection.Assembly:GetCustomAttributesData() end
 
 ---@overload fun(self: self, attributeType: System.Type, inherit: System.Boolean): System.Object[]
@@ -396,7 +396,7 @@ function CS.System.Reflection.AssemblyName:set_ContentType(value) end
 function CS.System.Reflection.AssemblyName:Clone() end
 
 ---@private
----@return userdata
+---@return fun(arg: System.String): System.Reflection.AssemblyName
 function CS.System.Reflection.AssemblyName.InitGetAssemblyName() end
 
 ---@param assemblyFile System.String
@@ -731,7 +731,7 @@ function CS.System.Reflection.MemberInfo:GetCustomAttributes(inherit) end
 ---@return userdata
 function CS.System.Reflection.MemberInfo:get_CustomAttributes() end
 
----@return userdata
+---@return System.Reflection.CustomAttributeData[]
 function CS.System.Reflection.MemberInfo:GetCustomAttributesData() end
 
 ---@return System.Boolean
@@ -1145,16 +1145,16 @@ CS.System.Reflection.MethodAttributes = {
 
 ---@class System.Reflection.MethodBody: System.Object
 ---@field LocalSignatureMetadataToken System.Int32
----@field LocalVariables userdata
+---@field LocalVariables System.Reflection.LocalVariableInfo[]
 ---@field MaxStackSize System.Int32
 ---@field InitLocals System.Boolean
----@field ExceptionHandlingClauses userdata
+---@field ExceptionHandlingClauses System.Reflection.ExceptionHandlingClause[]
 CS.System.Reflection.MethodBody = {}
 
 ---@return System.Int32
 function CS.System.Reflection.MethodBody:get_LocalSignatureMetadataToken() end
 
----@return userdata
+---@return System.Reflection.LocalVariableInfo[]
 function CS.System.Reflection.MethodBody:get_LocalVariables() end
 
 ---@return System.Int32
@@ -1166,7 +1166,7 @@ function CS.System.Reflection.MethodBody:get_InitLocals() end
 ---@return System.Byte[]
 function CS.System.Reflection.MethodBody:GetILAsByteArray() end
 
----@return userdata
+---@return System.Reflection.ExceptionHandlingClause[]
 function CS.System.Reflection.MethodBody:get_ExceptionHandlingClauses() end
 
 ---@protected
@@ -1227,9 +1227,9 @@ function CS.System.Reflection.MethodInfo:GetBaseDefinition() end
 ---@return System.Reflection.ICustomAttributeProvider
 function CS.System.Reflection.MethodInfo:get_ReturnTypeCustomAttributes() end
 
----@overload fun(self: self, delegateType: System.Type, target: System.Object): System.Delegate
+---@overload fun(self: self, delegateType: System.Type, target: System.Object): fun()
 ---@param delegateType System.Type
----@return System.Delegate
+---@return fun()
 function CS.System.Reflection.MethodInfo:CreateDelegate(delegateType) end
 
 ---@param obj System.Object
@@ -1310,7 +1310,7 @@ function CS.System.Reflection.Module:IsDefined(attributeType, inherit) end
 ---@return userdata
 function CS.System.Reflection.Module:get_CustomAttributes() end
 
----@return userdata
+---@return System.Reflection.CustomAttributeData[]
 function CS.System.Reflection.Module:GetCustomAttributesData() end
 
 ---@overload fun(self: self, attributeType: System.Type, inherit: System.Boolean): System.Object[]
@@ -1514,7 +1514,7 @@ function CS.System.Reflection.ParameterInfo:IsDefined(attributeType, inherit) en
 ---@return userdata
 function CS.System.Reflection.ParameterInfo:get_CustomAttributes() end
 
----@return userdata
+---@return System.Reflection.CustomAttributeData[]
 function CS.System.Reflection.ParameterInfo:GetCustomAttributesData() end
 
 ---@overload fun(self: self, attributeType: System.Type, inherit: System.Boolean): System.Object[]

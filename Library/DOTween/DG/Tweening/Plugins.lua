@@ -57,12 +57,12 @@ function CS.DG.Tweening.Plugins.CirclePlugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.CirclePlugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.CircleOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: UnityEngine.Vector2, changeValue: UnityEngine.Vector2, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.CircleOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): UnityEngine.Vector2), setter: (fun(pNewValue: UnityEngine.Vector2)), elapsed: System.Single, startValue: UnityEngine.Vector2, changeValue: UnityEngine.Vector2, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.CircleOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): UnityEngine.Vector2
+---@param setter fun(pNewValue: UnityEngine.Vector2)
 ---@param elapsed System.Single
 ---@param startValue UnityEngine.Vector2
 ---@param changeValue UnityEngine.Vector2
@@ -145,12 +145,12 @@ function CS.DG.Tweening.Plugins.Color2Plugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.Color2Plugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.ColorOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: DG.Tweening.Color2, changeValue: DG.Tweening.Color2, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.ColorOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): DG.Tweening.Color2), setter: (fun(pNewValue: DG.Tweening.Color2)), elapsed: System.Single, startValue: DG.Tweening.Color2, changeValue: DG.Tweening.Color2, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.ColorOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): DG.Tweening.Color2
+---@param setter fun(pNewValue: DG.Tweening.Color2)
 ---@param elapsed System.Single
 ---@param startValue DG.Tweening.Color2
 ---@param changeValue DG.Tweening.Color2
@@ -228,12 +228,12 @@ function CS.DG.Tweening.Plugins.DoublePlugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.DoublePlugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.NoOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: System.Double, changeValue: System.Double, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.NoOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): System.Double), setter: (fun(pNewValue: System.Double)), elapsed: System.Single, startValue: System.Double, changeValue: System.Double, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.NoOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): System.Double
+---@param setter fun(pNewValue: System.Double)
 ---@param elapsed System.Single
 ---@param startValue System.Double
 ---@param changeValue System.Double
@@ -311,12 +311,12 @@ function CS.DG.Tweening.Plugins.LongPlugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.LongPlugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.NoOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: System.Int64, changeValue: System.Int64, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.NoOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): System.Int64), setter: (fun(pNewValue: System.Int64)), elapsed: System.Single, startValue: System.Int64, changeValue: System.Int64, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.NoOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): System.Int64
+---@param setter fun(pNewValue: System.Int64)
 ---@param elapsed System.Single
 ---@param startValue System.Int64
 ---@param changeValue System.Int64
@@ -394,12 +394,12 @@ function CS.DG.Tweening.Plugins.UlongPlugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.UlongPlugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.NoOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: System.UInt64, changeValue: System.UInt64, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.NoOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): System.UInt64), setter: (fun(pNewValue: System.UInt64)), elapsed: System.Single, startValue: System.UInt64, changeValue: System.UInt64, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.NoOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): System.UInt64
+---@param setter fun(pNewValue: System.UInt64)
 ---@param elapsed System.Single
 ---@param startValue System.UInt64
 ---@param changeValue System.UInt64
@@ -477,12 +477,12 @@ function CS.DG.Tweening.Plugins.Vector3ArrayPlugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.Vector3ArrayPlugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.Vector3ArrayOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: UnityEngine.Vector3[], changeValue: UnityEngine.Vector3[], duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.Vector3ArrayOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): UnityEngine.Vector3), setter: (fun(pNewValue: UnityEngine.Vector3)), elapsed: System.Single, startValue: UnityEngine.Vector3[], changeValue: UnityEngine.Vector3[], duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.Vector3ArrayOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): UnityEngine.Vector3
+---@param setter fun(pNewValue: UnityEngine.Vector3)
 ---@param elapsed System.Single
 ---@param startValue UnityEngine.Vector3[]
 ---@param changeValue UnityEngine.Vector3[]
@@ -564,12 +564,12 @@ function CS.DG.Tweening.Plugins.PathPlugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.PathPlugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.PathOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: DG.Tweening.Plugins.Core.PathCore.Path, changeValue: DG.Tweening.Plugins.Core.PathCore.Path, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.PathOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): UnityEngine.Vector3), setter: (fun(pNewValue: UnityEngine.Vector3)), elapsed: System.Single, startValue: DG.Tweening.Plugins.Core.PathCore.Path, changeValue: DG.Tweening.Plugins.Core.PathCore.Path, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.PathOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): UnityEngine.Vector3
+---@param setter fun(pNewValue: UnityEngine.Vector3)
 ---@param elapsed System.Single
 ---@param startValue DG.Tweening.Plugins.Core.PathCore.Path
 ---@param changeValue DG.Tweening.Plugins.Core.PathCore.Path
@@ -667,12 +667,12 @@ function CS.DG.Tweening.Plugins.ColorPlugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.ColorPlugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.ColorOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: UnityEngine.Color, changeValue: UnityEngine.Color, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.ColorOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): UnityEngine.Color), setter: (fun(pNewValue: UnityEngine.Color)), elapsed: System.Single, startValue: UnityEngine.Color, changeValue: UnityEngine.Color, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.ColorOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): UnityEngine.Color
+---@param setter fun(pNewValue: UnityEngine.Color)
 ---@param elapsed System.Single
 ---@param startValue UnityEngine.Color
 ---@param changeValue UnityEngine.Color
@@ -750,12 +750,12 @@ function CS.DG.Tweening.Plugins.IntPlugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.IntPlugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.NoOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: System.Int32, changeValue: System.Int32, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.NoOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): System.Int32), setter: (fun(pNewValue: System.Int32)), elapsed: System.Single, startValue: System.Int32, changeValue: System.Int32, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.NoOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): System.Int32
+---@param setter fun(pNewValue: System.Int32)
 ---@param elapsed System.Single
 ---@param startValue System.Int32
 ---@param changeValue System.Int32
@@ -833,12 +833,12 @@ function CS.DG.Tweening.Plugins.QuaternionPlugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.QuaternionPlugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.QuaternionOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: UnityEngine.Vector3, changeValue: UnityEngine.Vector3, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.QuaternionOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): UnityEngine.Quaternion), setter: (fun(pNewValue: UnityEngine.Quaternion)), elapsed: System.Single, startValue: UnityEngine.Vector3, changeValue: UnityEngine.Vector3, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.QuaternionOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): UnityEngine.Quaternion
+---@param setter fun(pNewValue: UnityEngine.Quaternion)
 ---@param elapsed System.Single
 ---@param startValue UnityEngine.Vector3
 ---@param changeValue UnityEngine.Vector3
@@ -929,12 +929,12 @@ function CS.DG.Tweening.Plugins.RectOffsetPlugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.RectOffsetPlugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.NoOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: UnityEngine.RectOffset, changeValue: UnityEngine.RectOffset, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.NoOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): UnityEngine.RectOffset), setter: (fun(pNewValue: UnityEngine.RectOffset)), elapsed: System.Single, startValue: UnityEngine.RectOffset, changeValue: UnityEngine.RectOffset, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.NoOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): UnityEngine.RectOffset
+---@param setter fun(pNewValue: UnityEngine.RectOffset)
 ---@param elapsed System.Single
 ---@param startValue UnityEngine.RectOffset
 ---@param changeValue UnityEngine.RectOffset
@@ -1013,12 +1013,12 @@ function CS.DG.Tweening.Plugins.RectPlugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.RectPlugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.RectOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: UnityEngine.Rect, changeValue: UnityEngine.Rect, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.RectOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): UnityEngine.Rect), setter: (fun(pNewValue: UnityEngine.Rect)), elapsed: System.Single, startValue: UnityEngine.Rect, changeValue: UnityEngine.Rect, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.RectOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): UnityEngine.Rect
+---@param setter fun(pNewValue: UnityEngine.Rect)
 ---@param elapsed System.Single
 ---@param startValue UnityEngine.Rect
 ---@param changeValue UnityEngine.Rect
@@ -1096,12 +1096,12 @@ function CS.DG.Tweening.Plugins.UintPlugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.UintPlugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.UintOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: System.UInt32, changeValue: System.UInt32, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.UintOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): System.UInt32), setter: (fun(pNewValue: System.UInt32)), elapsed: System.Single, startValue: System.UInt32, changeValue: System.UInt32, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.UintOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): System.UInt32
+---@param setter fun(pNewValue: System.UInt32)
 ---@param elapsed System.Single
 ---@param startValue System.UInt32
 ---@param changeValue System.UInt32
@@ -1179,12 +1179,12 @@ function CS.DG.Tweening.Plugins.Vector2Plugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.Vector2Plugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.VectorOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: UnityEngine.Vector2, changeValue: UnityEngine.Vector2, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.VectorOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): UnityEngine.Vector2), setter: (fun(pNewValue: UnityEngine.Vector2)), elapsed: System.Single, startValue: UnityEngine.Vector2, changeValue: UnityEngine.Vector2, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.VectorOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): UnityEngine.Vector2
+---@param setter fun(pNewValue: UnityEngine.Vector2)
 ---@param elapsed System.Single
 ---@param startValue UnityEngine.Vector2
 ---@param changeValue UnityEngine.Vector2
@@ -1262,12 +1262,12 @@ function CS.DG.Tweening.Plugins.Vector4Plugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.Vector4Plugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.VectorOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: UnityEngine.Vector4, changeValue: UnityEngine.Vector4, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.VectorOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): UnityEngine.Vector4), setter: (fun(pNewValue: UnityEngine.Vector4)), elapsed: System.Single, startValue: UnityEngine.Vector4, changeValue: UnityEngine.Vector4, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.VectorOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): UnityEngine.Vector4
+---@param setter fun(pNewValue: UnityEngine.Vector4)
 ---@param elapsed System.Single
 ---@param startValue UnityEngine.Vector4
 ---@param changeValue UnityEngine.Vector4
@@ -1347,12 +1347,12 @@ function CS.DG.Tweening.Plugins.StringPlugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.StringPlugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.StringOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: System.String, changeValue: System.String, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.StringOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): System.String), setter: (fun(pNewValue: System.String)), elapsed: System.Single, startValue: System.String, changeValue: System.String, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.StringOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): System.String
+---@param setter fun(pNewValue: System.String)
 ---@param elapsed System.Single
 ---@param startValue System.String
 ---@param changeValue System.String
@@ -1467,12 +1467,12 @@ function CS.DG.Tweening.Plugins.FloatPlugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.FloatPlugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.FloatOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: System.Single, changeValue: System.Single, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.FloatOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): System.Single), setter: (fun(pNewValue: System.Single)), elapsed: System.Single, startValue: System.Single, changeValue: System.Single, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.FloatOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): System.Single
+---@param setter fun(pNewValue: System.Single)
 ---@param elapsed System.Single
 ---@param startValue System.Single
 ---@param changeValue System.Single
@@ -1550,12 +1550,12 @@ function CS.DG.Tweening.Plugins.Vector3Plugin:SetChangeValue(t) end
 ---@return System.Single
 function CS.DG.Tweening.Plugins.Vector3Plugin:GetSpeedBasedDuration(options, unitsXSecond, changeValue) end
 
----@overload fun(self: self, options: DG.Tweening.Plugins.Options.VectorOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: userdata, setter: userdata, elapsed: System.Single, startValue: UnityEngine.Vector3, changeValue: UnityEngine.Vector3, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
+---@overload fun(self: self, options: DG.Tweening.Plugins.Options.VectorOptions, t: DG.Tweening.Tween, isRelative: System.Boolean, getter: (fun(): UnityEngine.Vector3), setter: (fun(pNewValue: UnityEngine.Vector3)), elapsed: System.Single, startValue: UnityEngine.Vector3, changeValue: UnityEngine.Vector3, duration: System.Single, usingInversePosition: System.Boolean, newCompletedSteps: System.Int32, updateNotice: DG.Tweening.Core.Enums.UpdateNotice)
 ---@param options DG.Tweening.Plugins.Options.VectorOptions
 ---@param t DG.Tweening.Tween
 ---@param isRelative System.Boolean
----@param getter userdata
----@param setter userdata
+---@param getter fun(): UnityEngine.Vector3
+---@param setter fun(pNewValue: UnityEngine.Vector3)
 ---@param elapsed System.Single
 ---@param startValue UnityEngine.Vector3
 ---@param changeValue UnityEngine.Vector3

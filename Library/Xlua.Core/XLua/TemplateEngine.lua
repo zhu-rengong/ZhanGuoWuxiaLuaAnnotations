@@ -40,7 +40,7 @@ function CS.XLua.TemplateEngine.Parser.EscapeString(input) end
 function CS.XLua.TemplateEngine.Parser.GetRegexString() end
 
 ---@param snippet System.String
----@return userdata
+---@return XLua.TemplateEngine.Chunk[]
 function CS.XLua.TemplateEngine.Parser.Parse(snippet) end
 
 ---@private

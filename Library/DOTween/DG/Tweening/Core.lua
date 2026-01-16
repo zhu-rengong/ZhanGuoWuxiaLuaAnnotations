@@ -451,14 +451,14 @@ function CS.DG.Tweening.Core.TweenManager.TotalTweensById(id, playingOnly) end
 ---@package
 ---@param playing System.Boolean
 ---@param fillableList? DG.Tweening.Tween[]
----@return userdata
+---@return DG.Tweening.Tween[]
 function CS.DG.Tweening.Core.TweenManager.GetActiveTweens(playing, fillableList) end
 
 ---@package
 ---@param id System.Object
 ---@param playingOnly System.Boolean
 ---@param fillableList? DG.Tweening.Tween[]
----@return userdata
+---@return DG.Tweening.Tween[]
 function CS.DG.Tweening.Core.TweenManager.GetTweensById(id, playingOnly, fillableList) end
 
 ---@private
@@ -473,7 +473,7 @@ function CS.DG.Tweening.Core.TweenManager.DoGetTweensById(id, playingOnly, addTo
 ---@param target System.Object
 ---@param playingOnly System.Boolean
 ---@param fillableList? DG.Tweening.Tween[]
----@return userdata
+---@return DG.Tweening.Tween[]
 function CS.DG.Tweening.Core.TweenManager.GetTweensByTarget(target, playingOnly, fillableList) end
 
 ---@private

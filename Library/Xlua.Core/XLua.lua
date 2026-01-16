@@ -44,22 +44,22 @@ function CS.XLua.CopyByValue.IsStruct(type) end
 
 ---@class XLua.DelegateBridgeBase: XLua.LuaBase, System.IDisposable
 ---@field private firstKey System.Type
----@field private firstValue System.Delegate
----@field private bindTo { [System.Type]: System.Delegate }
+---@field private firstValue fun()
+---@field private bindTo { [System.Type]: fun() }
 ---@field protected errorFuncRef System.Int32
 CS.XLua.DelegateBridgeBase = {}
 
 ---@param key System.Type
----@param value System.Delegate
+---@param value fun()
 ---@return System.Boolean
 function CS.XLua.DelegateBridgeBase:TryGetDelegate(key, value) end
 
 ---@param key System.Type
----@param value System.Delegate
+---@param value fun()
 function CS.XLua.DelegateBridgeBase:AddDelegate(key, value) end
 
 ---@param type System.Type
----@return System.Delegate
+---@return fun()
 function CS.XLua.DelegateBridgeBase:GetDelegateByType(type) end
 
 ---@param reference System.Int32
@@ -209,11 +209,11 @@ function CS.XLua.HotfixDelegateAttribute() end
 CS.XLua.SysGenConfig = {}
 
 ---@private
----@return userdata
+---@return System.Type[]
 function CS.XLua.SysGenConfig.get_GCOptimize() end
 
 ---@private
----@return userdata
+---@return { [System.Type]: System.String[] }
 function CS.XLua.SysGenConfig.get_AdditionalProperties() end
 
 
@@ -236,9 +236,9 @@ CS.XLua.InternalGlobals = {}
 function CS.XLua.InternalGlobals.get_Gen_Flag() end
 
 ---@package
----@param sourceDelegate System.Delegate
+---@param sourceDelegate fun()
 ---@param targetType System.Type
----@return System.Delegate
+---@return fun()
 function CS.XLua.InternalGlobals.ConvertDelegate(sourceDelegate, targetType) end
 
 ---@package
@@ -294,7 +294,7 @@ function CS.XLua.LuaBase(reference, luaenv) end
 ---@field private init_xlua System.String
 ---@field package customLoaders fun(filepath: System.String): System.Byte[][]
 ---@field package buildin_initer { [System.String]: fun(L: System.IntPtr): System.Int32 }
----@field private initers userdata[]
+---@field private initers fun(arg1: XLua.LuaEnv, arg2: XLua.ObjectTranslator)[]
 ---@field CSHARP_NAMESPACE System.String
 ---@field MAIN_SHREAD System.String
 ---@field private LIB_VERSION_EXPECT System.Int32
@@ -303,7 +303,7 @@ CS.XLua.LuaEnv = {}
 ---@return System.IntPtr
 function CS.XLua.LuaEnv:get_L() end
 
----@param initer userdata
+---@param initer fun(arg1: XLua.LuaEnv, arg2: XLua.ObjectTranslator)
 function CS.XLua.LuaEnv.AddIniter(initer) end
 
 ---@return XLua.LuaTable
@@ -903,7 +903,7 @@ function CS.XLua.ObjectPool:Replace(index, o) end
 
 ---@param check_pos System.Int32
 ---@param max_check System.Int32
----@param checker userdata
+---@param checker fun(arg: System.Object): System.Boolean
 ---@param reverse_map { [System.Object]: System.Int32 }
 ---@return System.Int32
 function CS.XLua.ObjectPool:Check(check_pos, max_check, checker, reverse_map) end
@@ -1015,15 +1015,15 @@ function CS.XLua.LuaIndexes.set_LUA_REGISTRYINDEX(value) end
 ---@field private importTypeFunction fun(L: System.IntPtr): System.Int32
 ---@field private loadAssemblyFunction fun(L: System.IntPtr): System.Int32
 ---@field private castFunction fun(L: System.IntPtr): System.Int32
----@field private delayWrap { [System.Type]: userdata }
----@field private interfaceBridgeCreators { [System.Type]: userdata }
+---@field private delayWrap { [System.Type]: fun(obj: System.IntPtr) }
+---@field private interfaceBridgeCreators { [System.Type]: fun(arg1: System.Int32, arg2: XLua.LuaEnv): XLua.LuaBase }
 ---@field private aliasCfg { [System.Type]: System.Type }
 ---@field private loaded_types { [System.Type]: System.Boolean }
 ---@field cacheRef System.Int32
 ---@field private delegate_birdge_type System.Type
 ---@field private genericAction System.Reflection.MethodInfo[]
 ---@field private genericFunc System.Reflection.MethodInfo[]
----@field private delegateCreatorCache { [System.Type]: userdata }
+---@field private delegateCreatorCache { [System.Type]: fun(arg: XLua.DelegateBridgeBase): fun() }
 ---@field private delegate_bridges { [System.Int32]: System.WeakReference }
 ---@field private common_array_meta System.Int32
 ---@field private common_delegate_meta System.Int32
@@ -1036,19 +1036,19 @@ function CS.XLua.LuaIndexes.set_LUA_REGISTRYINDEX(value) end
 ---@field private custom_push_funcs { [System.Type]: fun(L: System.IntPtr, obj: System.Object) }
 ---@field private custom_get_funcs { [System.Type]: fun(L: System.IntPtr, idx: System.Int32): System.Object }
 ---@field private custom_update_funcs { [System.Type]: fun(L: System.IntPtr, idx: System.Int32, obj: System.Object) }
----@field private _default_push_func { [XLua.FuncTypeMapKey]: System.Delegate }
----@field private default_get_func { [XLua.FuncTypeMapKey]: System.Delegate }
----@field private _addition_push_func { [System.Type]: System.Delegate }
----@field private _addition_get_func { [System.Type]: System.Delegate }
+---@field private _default_push_func { [XLua.FuncTypeMapKey]: fun() }
+---@field private default_get_func { [XLua.FuncTypeMapKey]: fun() }
+---@field private _addition_push_func { [System.Type]: fun() }
+---@field private _addition_get_func { [System.Type]: fun() }
 ---@field private decimal_type_id System.Int32
 CS.XLua.ObjectTranslator = {}
 
 ---@param type System.Type
----@param loader userdata
+---@param loader fun(obj: System.IntPtr)
 function CS.XLua.ObjectTranslator:DelayWrapLoader(type, loader) end
 
 ---@param type System.Type
----@param creator userdata
+---@param creator fun(arg1: System.Int32, arg2: XLua.LuaEnv): XLua.LuaBase
 function CS.XLua.ObjectTranslator:AddInterfaceBridgeCreator(type, creator) end
 
 ---@param L System.IntPtr
@@ -1072,13 +1072,13 @@ function CS.XLua.ObjectTranslator:initCSharpCallLua() end
 ---@param bridge XLua.DelegateBridgeBase
 ---@param delegateType System.Type
 ---@param delegateMethod System.Reflection.MethodInfo
----@return userdata
+---@return fun(arg: XLua.DelegateBridgeBase): fun()
 function CS.XLua.ObjectTranslator:getCreatorUsingGeneric(bridge, delegateType, delegateMethod) end
 
 ---@private
 ---@param bridge XLua.DelegateBridgeBase
 ---@param delegateType System.Type
----@return System.Delegate
+---@return fun()
 function CS.XLua.ObjectTranslator:getDelegate(bridge, delegateType) end
 
 ---@param L System.IntPtr
@@ -1268,13 +1268,13 @@ function CS.XLua.ObjectTranslator:Type2FuncKey(type) end
 
 ---@private
 ---@param type System.Type
----@param result System.Delegate
+---@param result fun()
 ---@return System.Boolean
 function CS.XLua.ObjectTranslator:TryGetDefaultPushFunc(type, result) end
 
 ---@private
 ---@param type System.Type
----@param result System.Delegate
+---@param result fun()
 ---@return System.Boolean
 function CS.XLua.ObjectTranslator:TryGetDefaultGetFunc(type, result) end
 
@@ -1624,7 +1624,7 @@ function CS.XLua.Utils.LoadField(L, idx, field_name) end
 function CS.XLua.Utils.GetMainState(L) end
 
 ---@param exclude_generic_definition? System.Boolean
----@return userdata
+---@return System.Type[]
 function CS.XLua.Utils.GetAllTypes(exclude_generic_definition) end
 
 ---@private
@@ -1762,7 +1762,7 @@ function CS.XLua.Utils.EndClassRegister(type, L, translator) end
 
 ---@private
 ---@param type System.Type
----@return userdata
+---@return System.String[]
 function CS.XLua.Utils.getPathOfType(type) end
 
 ---@param L System.IntPtr

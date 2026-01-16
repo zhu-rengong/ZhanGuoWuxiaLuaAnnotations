@@ -195,11 +195,11 @@ function CS.ZhanGuoWuxia.Helpers.BeanHelper.NameWithColor(itemBean) end
 function CS.ZhanGuoWuxia.Helpers.BeanHelper.GetColor(skillBean) end
 
 ---@param poolBean ZhanGuoWuxia.Backend.Beans.LootPoolBean
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.LootData[]
 function CS.ZhanGuoWuxia.Helpers.BeanHelper.GetPreviewFixedLoots(poolBean) end
 
 ---@param poolBean ZhanGuoWuxia.Backend.Beans.LootPoolBean
----@return userdata
+---@return ZhanGuoWuxia.Backend.Beans.LootData[]
 function CS.ZhanGuoWuxia.Helpers.BeanHelper.GetPreviewRandomLoots(poolBean) end
 
 ---@param formSkill ZhanGuoWuxia.Backend.Beans.SkillFormBean
@@ -402,7 +402,7 @@ CS.ZhanGuoWuxia.Helpers.BgmSnapShotLayer = {
 ---@field tag System.String
 ---@field name System.String
 ---@field hideFlags UnityEngine.HideFlags
----@field private m_SnappedBgm userdata
+---@field private m_SnappedBgm { [ZhanGuoWuxia.Helpers.BgmSnapShotLayer]: System.String }
 ---@field private m_CachedPtr System.IntPtr
 ---@field package OffsetOfInstanceIDInCPlusPlusObject System.Int32
 ---@field private objectIsNullMessage System.String
@@ -918,16 +918,16 @@ function CS.ZhanGuoWuxia.Helpers.BypassCertificate:ValidateCertificate(certifica
 function CS.ZhanGuoWuxia.Helpers.BypassCertificate() end
 
 ---@class ZhanGuoWuxia.Helpers.EnumTextHelper: System.Object
----@field private EnumConverters { [System.Type]: System.MulticastDelegate }
+---@field private EnumConverters { [System.Type]: fun() }
 ---@field private m_EnumConverteLazyLoader userdata
 CS.ZhanGuoWuxia.Helpers.EnumTextHelper = {}
 
 ---@private
----@return userdata
+---@return { [System.Type]: fun() }
 function CS.ZhanGuoWuxia.Helpers.EnumTextHelper.get_EnumConverters() end
 
 ---@private
----@return userdata
+---@return { [System.Type]: fun() }
 function CS.ZhanGuoWuxia.Helpers.EnumTextHelper.InitEnumTextConverters() end
 
 ---@return userdata
@@ -1486,23 +1486,23 @@ CS.ZhanGuoWuxia.Helpers.SortHelper = {}
 function CS.ZhanGuoWuxia.Helpers.SortHelper.GetSortText(sortType) end
 
 ---@param sortType ZhanGuoWuxia.UI.CreateRole.RCModifierSortType
----@return userdata
+---@return fun(x: ZhanGuoWuxia.Backend.RuntimeData.RCSkillModifier, y: ZhanGuoWuxia.Backend.RuntimeData.RCSkillModifier): System.Int32
 function CS.ZhanGuoWuxia.Helpers.SortHelper.GetSkillSortFunction(sortType) end
 
 ---@param sortType ZhanGuoWuxia.UI.CreateRole.RCModifierSortType
----@return userdata
+---@return fun(x: ZhanGuoWuxia.Backend.RuntimeData.RCItemModifier, y: ZhanGuoWuxia.Backend.RuntimeData.RCItemModifier): System.Int32
 function CS.ZhanGuoWuxia.Helpers.SortHelper.GetItemSortFunction(sortType) end
 
 ---@param sortType ZhanGuoWuxia.UI.CreateRole.RCModifierSortType
----@return userdata
+---@return fun(x: ZhanGuoWuxia.Backend.RuntimeData.RCAffixModifier, y: ZhanGuoWuxia.Backend.RuntimeData.RCAffixModifier): System.Int32
 function CS.ZhanGuoWuxia.Helpers.SortHelper.GetAffixSortFunction(sortType) end
 
 ---@param sortType ZhanGuoWuxia.UI.RoleSortType
----@return userdata
+---@return fun(x: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance, y: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance): System.Int32
 function CS.ZhanGuoWuxia.Helpers.SortHelper.GetSortFunction(sortType) end
 
 ---@param sortType ZhanGuoWuxia.UI.RoleSortType
----@return userdata
+---@return fun(x: ZhanGuoWuxia.Backend.RuntimeData.RoleRecoverContext, y: ZhanGuoWuxia.Backend.RuntimeData.RoleRecoverContext): System.Int32
 function CS.ZhanGuoWuxia.Helpers.SortHelper.GetRecoverSortFunction(sortType) end
 
 ---@return userdata
@@ -2249,7 +2249,7 @@ function CS.ZhanGuoWuxia.Helpers.UnityExtension.ToColor(colorStr) end
 function CS.ZhanGuoWuxia.Helpers.UnityExtension.DestroyAllChildren(trans, isPool) end
 
 ---@param current UnityEngine.Transform
----@param StopParentMatch userdata
+---@param StopParentMatch fun(arg: UnityEngine.Transform): System.Boolean
 ---@return System.String
 function CS.ZhanGuoWuxia.Helpers.UnityExtension.GetRootPath(current, StopParentMatch) end
 
@@ -2349,7 +2349,7 @@ function CS.ZhanGuoWuxia.Helpers.UnityExtension.ReselectDefaultIndex(listView) e
 ---@param newClip UnityEngine.AnimationClip
 function CS.ZhanGuoWuxia.Helpers.UnityExtension.SetAnimatorStateClip(overrideController, stateName, newClip) end
 
----@overload fun(parent: UnityEngine.Transform, match: userdata): UnityEngine.Transform
+---@overload fun(parent: UnityEngine.Transform, match: (fun(arg: UnityEngine.Transform): System.Boolean)): UnityEngine.Transform
 ---@param parent UnityEngine.Transform
 ---@param name System.String
 ---@return UnityEngine.Transform

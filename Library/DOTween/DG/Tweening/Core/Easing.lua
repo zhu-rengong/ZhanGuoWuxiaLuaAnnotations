@@ -32,7 +32,7 @@ function CS.DG.Tweening.Core.Easing.Bounce.EaseInOut(time, duration, unusedOvers
 ---@field private _TwoPi System.Single
 CS.DG.Tweening.Core.Easing.EaseManager = {}
 
----@overload fun(easeType: DG.Tweening.Ease, customEase: fun(time: System.Single, duration: System.Single, overshootOrAmplitude: System.Single, period: System.Single): System.Single, time: System.Single, duration: System.Single, overshootOrAmplitude: System.Single, period: System.Single): System.Single
+---@overload fun(easeType: DG.Tweening.Ease, customEase: (fun(time: System.Single, duration: System.Single, overshootOrAmplitude: System.Single, period: System.Single): System.Single), time: System.Single, duration: System.Single, overshootOrAmplitude: System.Single, period: System.Single): System.Single
 ---@param t DG.Tweening.Tween
 ---@param time System.Single
 ---@param duration System.Single

@@ -8189,10 +8189,10 @@ CS.UnityEngine.SpriteMaskInteraction = {
 ---@field private m_SpriteChangeEvent userdata
 CS.UnityEngine.SpriteRenderer = {}
 
----@param callback userdata
+---@param callback fun(arg0: UnityEngine.SpriteRenderer)
 function CS.UnityEngine.SpriteRenderer:RegisterSpriteChangeCallback(callback) end
 
----@param callback userdata
+---@param callback fun(arg0: UnityEngine.SpriteRenderer)
 function CS.UnityEngine.SpriteRenderer:UnregisterSpriteChangeCallback(callback) end
 
 ---@private
@@ -8487,7 +8487,7 @@ function CS.UnityEngine.Sprite:GetPhysicsShape(shapeIdx, physicsShape) end
 ---@param physicsShape UnityEngine.Vector2[]
 function CS.UnityEngine.Sprite.GetPhysicsShapeImpl(sprite, shapeIdx, physicsShape) end
 
----@param physicsShapes userdata
+---@param physicsShapes UnityEngine.Vector2[][]
 function CS.UnityEngine.Sprite:OverridePhysicsShape(physicsShapes) end
 
 ---@private
