@@ -290,7 +290,7 @@ function CS.ZhanGuoWuxia.Backend.Tools.MathTool.Positive_Percent_Formula(baseVal
 ---@return UnityEngine.Color32
 function CS.ZhanGuoWuxia.Backend.Tools.MathTool.RandomColor() end
 
----@param source userdata
+---@param source { [nil]: System.Int32 }
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Tools.MathTool.Median(source) end
 
@@ -306,12 +306,12 @@ function CS.ZhanGuoWuxia.Backend.Tools.MathTool.SafeClamp(target, number1, numbe
 CS.ZhanGuoWuxia.Backend.Tools.StringTool = {}
 
 ---@param str System.String
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Tools.StringTool.AsLines(str) end
 
 ---@param str System.String
 ---@param c System.Char
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Tools.StringTool.SplitPlus(str, c) end
 
 ---@param str System.String

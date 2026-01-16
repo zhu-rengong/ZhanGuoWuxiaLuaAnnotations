@@ -29,24 +29,24 @@ function CS.ZhanGuoWuxia.Backend.Battle.AICardDecision:get_AnySkill() end
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Battle.AICardDecision:get_AnyCaster() end
 
----@param cards userdata
+---@param cards { [nil]: ZhanGuoWuxia.Backend.Battle.RoleCardData }
 ---@return ZhanGuoWuxia.Backend.Battle.RoleCardData
 function CS.ZhanGuoWuxia.Backend.Battle.AICardDecision:Pick(cards) end
 
 ---@private
----@param cards userdata
----@return userdata
+---@param cards { [nil]: ZhanGuoWuxia.Backend.Battle.RoleCardData }
+---@return { [nil]: ZhanGuoWuxia.Backend.Battle.RoleCardData }
 function CS.ZhanGuoWuxia.Backend.Battle.AICardDecision:FilterByCaster(cards) end
 
 ---@private
----@param cards userdata
----@return userdata
+---@param cards { [nil]: ZhanGuoWuxia.Backend.Battle.RoleCardData }
+---@return { [nil]: ZhanGuoWuxia.Backend.Battle.RoleCardData }
 function CS.ZhanGuoWuxia.Backend.Battle.AICardDecision:FilterBySkill(cards) end
 
 
 ---@class ZhanGuoWuxia.Backend.Battle.RoleCardGroup: System.Object, { [System.Int32]: ZhanGuoWuxia.Backend.Battle.RoleCardData }
 ---@field Length System.Int32
----@field ActiveCards userdata
+---@field ActiveCards { [nil]: ZhanGuoWuxia.Backend.Battle.RoleCardData }
 ---@field private m_Cards ZhanGuoWuxia.Backend.Battle.RoleCardData[]
 CS.ZhanGuoWuxia.Backend.Battle.RoleCardGroup = {}
 
@@ -61,7 +61,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.RoleCardGroup:get_Item(index) end
 ---@param value ZhanGuoWuxia.Backend.Battle.RoleCardData
 function CS.ZhanGuoWuxia.Backend.Battle.RoleCardGroup:set_Item(index, value) end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Battle.RoleCardData }
 function CS.ZhanGuoWuxia.Backend.Battle.RoleCardGroup:get_ActiveCards() end
 
 function CS.ZhanGuoWuxia.Backend.Battle.RoleCardGroup:Clear() end
@@ -128,8 +128,8 @@ function CS.ZhanGuoWuxia.Backend.Battle.AISkillSystem:RemoveAllUnAvailableAction
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Battle.AISkillSystem:CannotKeepInQueue(action) end
 
----@param attackerCards userdata
----@param defenderCards userdata
+---@param attackerCards { [nil]: ZhanGuoWuxia.Backend.Battle.RoleCardData }
+---@param defenderCards { [nil]: ZhanGuoWuxia.Backend.Battle.RoleCardData }
 function CS.ZhanGuoWuxia.Backend.Battle.AISkillSystem:PlaceCardSkills(attackerCards, defenderCards) end
 
 ---@private
@@ -154,7 +154,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.AISkillSystem:AI_PlaceCards(team) end
 
 ---@private
 ---@param team System.Int32
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Battle.RoleCardData }
 function CS.ZhanGuoWuxia.Backend.Battle.AISkillSystem:GetAvailableCards(team) end
 
 ---@return ZhanGuoWuxia.Backend.Battle.AI_QueuedSkillAction
@@ -203,7 +203,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleArgument:Dispose() end
 function CS.ZhanGuoWuxia.Backend.Battle.BattleArgument() end
 
 ---@class ZhanGuoWuxia.Backend.Battle.BattleBuffInstance: userdata
----@field RegisterEvents userdata
+---@field RegisterEvents { [nil]: System.String }
 ---@field LeftRound System.Int32
 ---@field Pile System.Int32
 ---@field BuffName System.String
@@ -227,25 +227,25 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleArgument() end
 ---@field Interval System.Int32
 ---@field CanDispel System.Boolean
 ---@field IsVisible System.Boolean
----@field RoleState userdata
+---@field RoleState { [nil]: System.String }
 ---@field AllStats { [System.String]: System.Single }
 ---@field BeanId System.String
 ---@field Bean ZhanGuoWuxia.Backend.Beans.BuffBean
 ---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
 ---@field protected _LuaVM ZhanGuoWuxia.Backend.Lua.LuaManager
 ---@field InstanceId System.Int32
----@field private m_RegisterEvents userdata
+---@field private m_RegisterEvents { [nil]: System.String }
 ---@field private m_LeftRound System.Int32
 ---@field private m_Pile System.Int32
 ---@field private m_CustomData { [System.String]: System.Object }
----@field private m_RoleState userdata
+---@field private m_RoleState { [nil]: System.String }
 ---@field private KEY_CASTER System.String
 ---@field protected m_Stat ZhanGuoWuxia.Backend.Battle.Data.BattleRoleStat
 ---@field private _bean ZhanGuoWuxia.Backend.Beans.BuffBean
 ---@field protected m_BattleField ZhanGuoWuxia.Backend.Battle.BattleField
 CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance = {}
 
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:get_RegisterEvents() end
 
 ---@return System.Int32
@@ -298,7 +298,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:IsEventListened(event
 ---@param roleId System.Int32
 function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:AddCaster(roleId) end
 
----@return userdata
+---@return { [nil]: System.Int32 }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:GetCasters() end
 
 ---@param key System.String
@@ -373,7 +373,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:get_IsVisible() end
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:HasFlag(flagType) end
 
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleBuffInstance:get_RoleState() end
 
 ---@overload fun(self: self): System.String
@@ -465,7 +465,7 @@ CS.ZhanGuoWuxia.Backend.Battle.BattleAction = {}
 ---@return { [System.Type]: ZhanGuoWuxia.Backend.Battle.Data.BattleActionResult[] }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleAction:get_m_ActionResults() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Battle.Data.BattleActionResult }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleAction:GetAllResults() end
 
 function CS.ZhanGuoWuxia.Backend.Battle.BattleAction:OnUse() end
@@ -532,7 +532,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleRecordNode() end
 ---@class ZhanGuoWuxia.Backend.Battle.BattleRecordSystem: ZhanGuoWuxia.Backend.Battle.BattleFieldSystem
 ---@field IsSkip System.Boolean
 ---@field TextLogger ZhanGuoWuxia.Backend.Battle.BattleTextLogger
----@field private m_RecordNodes userdata
+---@field private m_RecordNodes { [nil]: ZhanGuoWuxia.Backend.Battle.BattleRecordNode }
 ---@field private m_CurrentNode ZhanGuoWuxia.Backend.Battle.BattleRecordNode
 ---@field private m_CurrentAction ZhanGuoWuxia.Backend.Battle.BattleAction
 ---@field private m_TextLogger ZhanGuoWuxia.Backend.Battle.BattleTextLogger
@@ -681,7 +681,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillAction() end
 ---@field private m_Sheet NPOI.SS.UserModel.ISheet
 ---@field private m_IsTracking System.Boolean
 ---@field private m_RecordRowNumber System.Int32
----@field private m_SnapShotStack userdata
+---@field private m_SnapShotStack { [nil]: ZhanGuoWuxia.Backend.Battle.BattleActionSnapShot }
 CS.ZhanGuoWuxia.Backend.Battle.BattleTextLogger = {}
 
 ---@param roleInstanceId System.Int32
@@ -773,11 +773,11 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleActionSnapShot() end
 ---@field private Position ZhanGuoWuxia.Backend.Battle.SnapShotData_Int
 ---@field private Team ZhanGuoWuxia.Backend.Battle.SnapShotData_Int
 ---@field private m_Stats { [System.String]: System.Single }
----@field private m_ChangedStats userdata
----@field private m_ChangedBuffs userdata
+---@field private m_ChangedStats { [nil]: System.String }
+---@field private m_ChangedBuffs { [nil]: System.String }
 ---@field private m_Buffs { [System.String]: System.Int32 }
 ---@field private m_Role ZhanGuoWuxia.Backend.Battle.BattleRoleInstance
----@field private m_StatKeyCache userdata
+---@field private m_StatKeyCache { [nil]: System.String }
 CS.ZhanGuoWuxia.Backend.Battle.BattleRoleSnapShot = {}
 
 ---@private
@@ -1065,13 +1065,13 @@ function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Bool(id, value, isChanged) 
 ---@field IsObStacle System.Boolean
 ---@field CurrentRow System.Int32
 ---@field CurrentCol System.Int32
----@field Buffs userdata
----@field RoleState userdata
+---@field Buffs { [nil]: ZhanGuoWuxia.Backend.Battle.BattleBuffInstance }
+---@field RoleState { [nil]: System.String }
 ---@field IsStunned System.Boolean
 ---@field IsNormalAttackForbidden System.Boolean
 ---@field IsSilenced System.Boolean
 ---@field IsParalysis System.Boolean
----@field AllStats userdata
+---@field AllStats { [nil]: userdata }
 ---@field Hp System.Single
 ---@field HpPercent System.Single
 ---@field Shield System.Int32
@@ -1114,11 +1114,11 @@ function CS.ZhanGuoWuxia.Backend.Battle.SnapShotData_Bool(id, value, isChanged) 
 ---@field m_Buffs ZhanGuoWuxia.Backend.Battle.BattleBuffInstance[]
 ---@field private m_StatDirtyMark { [System.String]: System.Boolean }
 ---@field private m_Stat ZhanGuoWuxia.Backend.Battle.Data.BattleRoleStat
----@field private m_RoleState userdata
+---@field private m_RoleState { [nil]: System.String }
 ---@field private m_Status { [System.Type]: ZhanGuoWuxia.Backend.Battle.IBattleRoleStatus }
 ---@field private m_BuffUpdateQueue ZhanGuoWuxia.Backend.Battle.BattleBuffInstance[]
 ---@field private m_BuffsNeedRemove ZhanGuoWuxia.Backend.Battle.BattleBuffInstance[]
----@field private m_NewStates userdata
+---@field private m_NewStates { [nil]: System.String }
 CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance = {}
 
 ---@return ZhanGuoWuxia.Backend.Battle.BattleSkillInstance[]
@@ -1227,7 +1227,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:CreateNewBattleSkill(
 ---@return ZhanGuoWuxia.Backend.Battle.BattleSkillInstance
 function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:GetActiveSkillById(skillId) end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Battle.BattleSkillInstance }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:GetActiveSkillsCanCast() end
 
 function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:UpdateAllSkills() end
@@ -1302,7 +1302,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:InitCards() end
 ---@return ZhanGuoWuxia.Backend.Battle.RoleCardGroup
 function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:GetCardGroup() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Battle.BattleBuffInstance }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:get_Buffs() end
 
 ---@param buffId System.String
@@ -1427,7 +1427,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:RemoveStatMark(dataNa
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:IsStatDirty(dataName) end
 
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:get_RoleState() end
 
 ---@param stateName System.String
@@ -1448,7 +1448,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:get_IsParalysis() end
 
 function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:RefreshState() end
 
----@return userdata
+---@return { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance:get_AllStats() end
 
 ---@return System.Single
@@ -1687,7 +1687,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleRoleInstance(battleField, role, te
 ---@class ZhanGuoWuxia.Backend.Battle.IBattleRoleStatus: System.Object
 ---@field Duration System.Int32
 ---@field RemainRound System.Int32
----@field RoleState userdata
+---@field RoleState { [nil]: System.String }
 ---@field IsActivated System.Boolean
 ---@field protected m_BindRole ZhanGuoWuxia.Backend.Battle.BattleRoleInstance
 ---@field protected m_BattleField ZhanGuoWuxia.Backend.Battle.BattleField
@@ -1735,8 +1735,8 @@ function CS.ZhanGuoWuxia.Backend.Battle.FlawStatus:Tick() end
 function CS.ZhanGuoWuxia.Backend.Battle.FlawStatus(battleField, role) end
 
 ---@class ZhanGuoWuxia.Backend.Battle.SkillCastSystem: ZhanGuoWuxia.Backend.Battle.BattleFieldSystem
----@field private m_CastQueue userdata
----@field private m_TempQueue userdata
+---@field private m_CastQueue { [nil]: ZhanGuoWuxia.Backend.Battle.SkillCastContext }
+---@field private m_TempQueue { [nil]: ZhanGuoWuxia.Backend.Battle.SkillCastContext }
 ---@field private m_ContinueCount { [ZhanGuoWuxia.Backend.Battle.BattleSkillInstance]: System.Int32 }
 ---@field private m_TempKeys ZhanGuoWuxia.Backend.Battle.BattleSkillInstance[]
 CS.ZhanGuoWuxia.Backend.Battle.SkillCastSystem = {}
@@ -1860,9 +1860,9 @@ CS.ZhanGuoWuxia.Backend.Battle.SkillCastRet = {
 ---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
 ---@field protected _LuaVM ZhanGuoWuxia.Backend.Lua.LuaManager
 ---@field InstanceId System.Int32
----@field private m_CompatibleWeaponTypes userdata
+---@field private m_CompatibleWeaponTypes { [nil]: ZhanGuoWuxia.Backend.Beans.EquipType }
 ---@field private m_HitResultSet ZhanGuoWuxia.Backend.Battle.Data.SkillHitTypeSet
----@field private m_RangeResults userdata
+---@field private m_RangeResults { [nil]: System.Int32 }
 ---@field private _bean ZhanGuoWuxia.Backend.Beans.SkillFormBean
 ---@field protected m_BattleField ZhanGuoWuxia.Backend.Battle.BattleField
 CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance = {}
@@ -1986,7 +1986,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:IsWeaponCompatible()
 ---@private
 ---@param originPos System.Int32
 ---@param team System.Int32
----@return userdata
+---@return { [nil]: System.Int32 }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:GetDefaultTargets(originPos, team) end
 
 ---@param param ZhanGuoWuxia.Backend.Battle.SkillTargetParam
@@ -2014,7 +2014,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:FireDefenderCritEven
 ---@private
 ---@param eventName System.String
 ---@param attacker ZhanGuoWuxia.Backend.Battle.BattleRoleInstance
----@param targets userdata
+---@param targets { [nil]: System.Int32 }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:FireAttackerTargetsEvent(eventName, attacker, targets) end
 
 ---@private
@@ -2028,7 +2028,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:FireTeamAttackerCrit
 ---@param eventName System.String
 ---@param attacker ZhanGuoWuxia.Backend.Battle.BattleRoleInstance
 ---@param param ZhanGuoWuxia.Backend.Battle.SkillTargetParam
----@param targets userdata
+---@param targets { [nil]: System.Int32 }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillInstance:FireTeamAttackerTargetsEvent(eventName, attacker, param, targets) end
 
 ---@param param ZhanGuoWuxia.Backend.Battle.SkillTargetParam
@@ -2137,7 +2137,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.SkillTargetParam:HasTarget(instanceId) e
 function CS.ZhanGuoWuxia.Backend.Battle.SkillTargetParam:SetNewTargets(newTargets) end
 
 ---@package
----@param newTargets userdata
+---@param newTargets { [nil]: System.Int32 }
 function CS.ZhanGuoWuxia.Backend.Battle.SkillTargetParam:Internal_SetNewTargets(newTargets) end
 
 function CS.ZhanGuoWuxia.Backend.Battle.SkillTargetParam:Dispose() end
@@ -2235,16 +2235,16 @@ CS.ZhanGuoWuxia.Backend.Battle.SkillStrategyParam = {}
 ---@class ZhanGuoWuxia.Backend.Battle.IBattleSubstitute
 CS.ZhanGuoWuxia.Backend.Battle.IBattleSubstitute = {}
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance }
 function CS.ZhanGuoWuxia.Backend.Battle.IBattleSubstitute:GetSubstitues() end
 
 
 ---@class ZhanGuoWuxia.Backend.Battle.BattleAttritionSystem: ZhanGuoWuxia.Backend.Battle.BattleFieldSystem
 ---@field IsEnabled System.Boolean
----@field private m_SubstitutePositions userdata
+---@field private m_SubstitutePositions { [nil]: System.Int32 }
 ---@field private m_PlayerTeam System.Int32
----@field private m_SubstituteRoles userdata
----@field private m_CurrentEmptyPositions userdata
+---@field private m_SubstituteRoles { [nil]: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance }
+---@field private m_CurrentEmptyPositions { [nil]: System.Int32 }
 CS.ZhanGuoWuxia.Backend.Battle.BattleAttritionSystem = {}
 
 function CS.ZhanGuoWuxia.Backend.Battle.BattleAttritionSystem:SetUp() end
@@ -2258,14 +2258,14 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleAttritionSystem:InitSubstitutePosi
 function CS.ZhanGuoWuxia.Backend.Battle.BattleAttritionSystem:InitSubstitueRoles() end
 
 ---@private
----@return userdata
+---@return { [nil]: System.Int32 }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleAttritionSystem:GetEmptySubstitutePositions() end
 
 function CS.ZhanGuoWuxia.Backend.Battle.BattleAttritionSystem:TryFillSubstitueRoles() end
 
 ---@private
 ---@param team System.Int32
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Battle.RoleFormationData }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleAttritionSystem:GetTeamFormations(team) end
 
 ---@return ZhanGuoWuxia.Backend.Battle.BattleAttritionSystem
@@ -2413,8 +2413,8 @@ function CS.ZhanGuoWuxia.Backend.Battle.SkillSelectPosResult() end
 
 ---@class ZhanGuoWuxia.Backend.Battle.BattleSkillTargetSystem: ZhanGuoWuxia.Backend.Battle.BattleFieldSystem
 ---@field private m_SkillCastPositions ZhanGuoWuxia.Backend.Battle.SkillCastPosCache
----@field private m_CachePositions userdata
----@field private m_PreviewCache userdata
+---@field private m_CachePositions { [nil]: System.Int32 }
+---@field private m_PreviewCache { [nil]: System.Int32 }
 CS.ZhanGuoWuxia.Backend.Battle.BattleSkillTargetSystem = {}
 
 function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillTargetSystem:Dispose() end
@@ -2463,7 +2463,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillTargetSystem:FindBestCastPosi
 
 ---@param skillCaster ZhanGuoWuxia.Backend.Battle.BattleRoleInstance
 ---@param battleSkill ZhanGuoWuxia.Backend.Battle.BattleSkillInstance
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Battle.BattleRoleInstance }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleSkillTargetSystem:PreviewTargets(skillCaster, battleSkill) end
 
 ---@return ZhanGuoWuxia.Backend.Battle.BattleSkillTargetSystem
@@ -2485,7 +2485,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BuffExecuteState:Clear() end
 function CS.ZhanGuoWuxia.Backend.Battle.BuffExecuteState() end
 
 ---@class ZhanGuoWuxia.Backend.Battle.BuffLockSystem: ZhanGuoWuxia.Backend.Battle.BattleFieldSystem
----@field private m_ExecutingStates userdata
+---@field private m_ExecutingStates { [nil]: ZhanGuoWuxia.Backend.Battle.BuffExecuteState }
 CS.ZhanGuoWuxia.Backend.Battle.BuffLockSystem = {}
 
 ---@param buff ZhanGuoWuxia.Backend.Battle.BattleBuffInstance
@@ -2667,7 +2667,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerSystem() end
 
 ---@class ZhanGuoWuxia.Backend.Battle.BattleField: ZhanGuoWuxia.Backend.Battle.IBattleEntity
 ---@field private m_PlayerPrefs ZhanGuoWuxia.SimplePlayerPrefs
----@field Roles userdata
+---@field Roles { [nil]: ZhanGuoWuxia.Backend.Battle.BattleRoleInstance }
 ---@field View ZhanGuoWuxia.Backend.Battle.IBattleFieldView
 ---@field Turn System.Int32
 ---@field PlayerDropCardCount System.Int32
@@ -2682,7 +2682,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleTriggerSystem() end
 ---@field NoWound System.Boolean
 ---@field ProvideExp System.Boolean
 ---@field SceneName System.String
----@field StartTriggers userdata
+---@field StartTriggers { [nil]: System.String }
 ---@field RoleIdsAIMustControl System.String[]
 ---@field IsAutoBattle System.Boolean
 ---@field PrematureRet ZhanGuoWuxia.Backend.Battle.BattleRet
@@ -2705,7 +2705,7 @@ CS.ZhanGuoWuxia.Backend.Battle.BattleField = {}
 ---@return ZhanGuoWuxia.SimplePlayerPrefs
 function CS.ZhanGuoWuxia.Backend.Battle.BattleField:get_m_PlayerPrefs() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Battle.BattleRoleInstance }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleField:get_Roles() end
 
 ---@return System.Int32
@@ -2961,7 +2961,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleField:GetNextNormalAttackRole() en
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Battle.BattleField:CompareSpeedDescending(a, b) end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Battle.BattleRoleInstance }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleField:GetRolesCanNormalAttack() end
 
 ---@private

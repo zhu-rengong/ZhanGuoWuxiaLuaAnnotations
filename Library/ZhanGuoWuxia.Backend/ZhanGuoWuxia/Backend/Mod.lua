@@ -177,7 +177,7 @@ function CS.ZhanGuoWuxia.Backend.Mod.IModAsset:Rename(newName) end
 
 
 ---@class ZhanGuoWuxia.Backend.Mod.IModAssetManager
----@field SupportExtensions userdata
+---@field SupportExtensions { [nil]: System.String }
 CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager = {}
 
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:Dispose() end
@@ -201,13 +201,13 @@ function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:IsValidAsset(path) end
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:DeleteAsset(path) end
 
----@param paths userdata
+---@param paths { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:DeleteManyAssets(paths) end
 
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:RefreshAllAssets() end
 
 ---@param folder System.String
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Mod.IModAsset }
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:GetAssetsInFolder(folder) end
 
 ---@param subFolder System.String
@@ -223,7 +223,7 @@ function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:RenameAsset(asset, newName
 ---@return ZhanGuoWuxia.Backend.Mod.IModAsset
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:LoadAssetAtPath(relativePath) end
 
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:get_SupportExtensions() end
 
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:Save() end
@@ -231,11 +231,11 @@ function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:Save() end
 
 ---@class ZhanGuoWuxia.Backend.Mod.EmptyAssetManager: System.Object, ZhanGuoWuxia.Backend.Mod.IModAssetManager
 ---@field Default ZhanGuoWuxia.Backend.Mod.EmptyAssetManager
----@field SupportExtensions userdata
----@field private m_SupportExtensions userdata
+---@field SupportExtensions { [nil]: System.String }
+---@field private m_SupportExtensions { [nil]: System.String }
 CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager = {}
 
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager:get_SupportExtensions() end
 
 function CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager:Save() end
@@ -261,13 +261,13 @@ function CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager:IsValidAsset(path) end
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager:DeleteAsset(path) end
 
----@param paths userdata
+---@param paths { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager:DeleteManyAssets(paths) end
 
 function CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager:RefreshAllAssets() end
 
 ---@param folder System.String
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Mod.IModAsset }
 function CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager:GetAssetsInFolder(folder) end
 
 ---@param subFolder System.String
@@ -429,7 +429,7 @@ CS.ZhanGuoWuxia.Backend.Mod.ModShopSortType = {
 ---@field Order ZhanGuoWuxia.Backend.Mod.ModShopSortType
 ---@field PageSize System.Int32
 ---@field Page System.Int32
----@field Tags userdata
+---@field Tags { [nil]: System.String }
 CS.ZhanGuoWuxia.Backend.Mod.QueryModParam = {}
 
 ---@return ZhanGuoWuxia.Backend.Mod.QueryModParam

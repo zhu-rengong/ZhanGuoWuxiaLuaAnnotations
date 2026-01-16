@@ -20,13 +20,13 @@ function CS.ZhanGuoWuxia.Backend.Lua.ILuaManager:get_LuaEnv() end
 ---@field IsExecuting System.Boolean
 ---@field private _isInitialized System.Boolean
 ---@field private _luaEnv XLua.LuaEnv
----@field private _signalStack userdata
+---@field private _signalStack { [nil]: userdata }
 ---@field private _loader fun(filepath: System.String): System.Byte[]
 ---@field private _scriptEnv XLua.LuaTable
----@field private m_LuaRequirePaths userdata
+---@field private m_LuaRequirePaths { [nil]: System.String }
 ---@field private m_TempFunc { [System.String]: XLua.LuaFunction }
 ---@field private m_GlobalFunc { [System.String]: XLua.LuaFunction }
----@field private m_TablePool userdata
+---@field private m_TablePool { [nil]: XLua.LuaTable }
 ---@field private _lastGCTime System.Single
 ---@field private _GCInterval System.Single
 CS.ZhanGuoWuxia.Backend.Lua.LuaManager = {}

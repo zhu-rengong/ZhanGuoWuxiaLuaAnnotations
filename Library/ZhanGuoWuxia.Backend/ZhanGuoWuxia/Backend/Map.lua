@@ -51,7 +51,7 @@ function CS.ZhanGuoWuxia.Backend.Map.MapManager:MergeMapElements(mapElementSet) 
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param triggerId System.String
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.ActionBean }
 function CS.ZhanGuoWuxia.Backend.Map.MapManager:GetActionsByTriggerId(save, triggerId) end
 
 ---@private

@@ -225,7 +225,7 @@ function CS.XLua.SysGenConfig.get_AdditionalProperties() end
 ---@field package objectTranslatorPool XLua.ObjectTranslatorPool
 ---@field package LUA_REGISTRYINDEX System.Int32
 ---@field package supportOp { [System.String]: System.String }
----@field package extensionMethodMap { [System.Type]: userdata }
+---@field package extensionMethodMap { [System.Type]: { [nil]: System.Reflection.MethodInfo } }
 ---@field package LazyReflectionWrap fun(L: System.IntPtr): System.Int32
 ---@field package delegate_birdge_type System.Type
 ---@field private initState System.Int32
@@ -290,7 +290,7 @@ function CS.XLua.LuaBase(reference, luaenv) end
 ---@field private max_check_per_tick System.Int32
 ---@field private object_valid_checker fun(arg: System.Object): System.Boolean
 ---@field private disposed System.Boolean
----@field private refQueue userdata
+---@field private refQueue { [nil]: XLua.LuaEnv.GCAction }
 ---@field private init_xlua System.String
 ---@field package customLoaders fun(filepath: System.String): System.Byte[][]
 ---@field package buildin_initer { [System.String]: fun(L: System.IntPtr): System.Int32 }
@@ -544,7 +544,7 @@ function CS.XLua.MethodWrapsCache:GetEventWrap(type, eventName) end
 
 ---@param type System.Type
 ---@param methodName System.String
----@param methodBases userdata
+---@param methodBases { [nil]: System.Reflection.MemberInfo }
 ---@param forceCheck? System.Boolean
 ---@return XLua.MethodWrap
 function CS.XLua.MethodWrapsCache:_GenMethodWrap(type, methodName, methodBases, forceCheck) end
@@ -1030,7 +1030,7 @@ function CS.XLua.LuaIndexes.set_LUA_REGISTRYINDEX(value) end
 ---@field private enumerable_pairs_func System.Int32
 ---@field private typeIdMap { [System.Type]: System.Int32 }
 ---@field private typeMap { [System.Int32]: System.Type }
----@field private privateAccessibleFlags userdata
+---@field private privateAccessibleFlags { [nil]: System.Type }
 ---@field private enumMap { [System.Object]: System.Int32 }
 ---@field private fix_cs_functions fun(L: System.IntPtr): System.Int32[]
 ---@field private custom_push_funcs { [System.Type]: fun(L: System.IntPtr, obj: System.Object) }
@@ -1061,7 +1061,7 @@ function CS.XLua.ObjectTranslator:TryDelayWrapLoader(L, type) end
 function CS.XLua.ObjectTranslator:Alias(type, alias) end
 
 ---@private
----@param assemblies_usorted userdata
+---@param assemblies_usorted { [nil]: System.Reflection.Assembly }
 ---@param name System.String
 function CS.XLua.ObjectTranslator:addAssemblieByName(assemblies_usorted, name) end
 
@@ -1658,7 +1658,7 @@ function CS.XLua.Utils.genEnumCastFrom(type) end
 
 ---@package
 ---@param type_to_be_extend System.Type
----@return userdata
+---@return { [nil]: System.Reflection.MethodInfo }
 function CS.XLua.Utils.GetExtensionMethodsOf(type_to_be_extend) end
 
 ---@private

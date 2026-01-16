@@ -23,12 +23,12 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetPrevAffixId(affixBean) e
 
 ---@param affixBean ZhanGuoWuxia.Backend.Beans.AffixBean
 ---@param includeSelf? System.Boolean
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.AffixBean }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetPrevAffixChain(affixBean, includeSelf) end
 
 ---@param affixBean ZhanGuoWuxia.Backend.Beans.AffixBean
 ---@param includeSelf? System.Boolean
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.AffixBean }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetNextAffixChain(affixBean, includeSelf) end
 
 ---@param affixBean ZhanGuoWuxia.Backend.Beans.AffixBean
@@ -75,7 +75,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetRoleClassAttrTemplate(ro
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.CanLearn(skillBean, param) end
 
 ---@param skillBean ZhanGuoWuxia.Backend.Beans.SkillBean
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.AllForms(skillBean) end
 
 ---@param skillFormBean ZhanGuoWuxia.Backend.Beans.SkillFormBean
@@ -134,11 +134,11 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.IsPreEventAfterRoundOk(acti
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.IsMenpaiConditionOk(actionBean, param) end
 
 ---@param bean ZhanGuoWuxia.Backend.Beans.DungeonBean
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetAllEvents(bean) end
 
 ---@param bean ZhanGuoWuxia.Backend.Beans.DungeonBean
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetAllTasks(bean) end
 
 ---@param evtBean ZhanGuoWuxia.Backend.Beans.DungeonEventBean
@@ -190,7 +190,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetAttrsWithDifficulty(bean
 ---@param saveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param followPlayerLevel System.Boolean
 ---@param team System.Int32
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Battle.RoleFormationData }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.Preset2Formations(preset, saveData, followPlayerLevel, team) end
 
 ---@param rcBean ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean
@@ -200,7 +200,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.IsUnlock(rcBean) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.BeanManagerCore: System.Object, ZhanGuoWuxia.Backend.Beans.IBeanManager
 ---@field Instance ZhanGuoWuxia.Backend.Beans.IBeanManager
----@field Tables userdata
+---@field Tables { [nil]: ZhanGuoWuxia.Backend.Beans.ITable }
 ---@field private _db ZhanGuoWuxia.Tables
 ---@field private _instance ZhanGuoWuxia.Backend.Beans.IBeanManager
 CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore = {}
@@ -208,15 +208,15 @@ CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore = {}
 ---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
 function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore.get_Instance() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.ITable }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore:get_Tables() end
 
 ---@param type System.Type
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore:GetAll(type) end
 
 ---@param type System.Type
----@param beans userdata
+---@param beans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore:Merge(type, beans) end
 
 ---@overload fun(self: self, loader: (fun(arg: System.String): SimpleJSON.JSONNode)): System.Int32
@@ -242,8 +242,8 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore() end
 ---@field Id System.String
 ---@field Icon System.String
 ---@field PrefixType ZhanGuoWuxia.Backend.Beans.PrefixType
----@field MountEvents userdata
----@field Scenarios userdata
+---@field MountEvents { [nil]: System.String }
+---@field Scenarios { [nil]: System.String }
 ---@field ImportanceType ZhanGuoWuxia.Backend.Beans.ActionImportantType
 ---@field Name System.String
 ---@field Name_l10n_key System.String
@@ -253,11 +253,11 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore() end
 ---@field RoundAfter System.Int32
 ---@field PlayOnce System.Boolean
 ---@field ShareEventId System.String
----@field PreEvents userdata
+---@field PreEvents { [nil]: System.String }
 ---@field PreEventsAfterRound { [System.String]: System.Int32 }
----@field MenpaiExist userdata
----@field HasFlags userdata
----@field ExcludeFlags userdata
+---@field MenpaiExist { [nil]: System.String }
+---@field HasFlags { [nil]: System.String }
+---@field ExcludeFlags { [nil]: System.String }
 ---@field ActionConditions ZhanGuoWuxia.Backend.Beans.ActionConditionBase[]
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.ActionBean = {}
@@ -285,7 +285,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ActionBean:ToString() end
 function CS.ZhanGuoWuxia.Backend.Beans.ActionBean:PostInit() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.ActionBean
----@overload fun(Id: System.String, Icon: System.String, PrefixType: ZhanGuoWuxia.Backend.Beans.PrefixType, MountEvents: userdata, Scenarios: userdata, ImportanceType: ZhanGuoWuxia.Backend.Beans.ActionImportantType, Name: System.String, LuaCommandFile: System.String, CostActionCount: System.Int32, ActionType: ZhanGuoWuxia.Backend.Beans.ActionClassType, RoundAfter: System.Int32, PlayOnce: System.Boolean, ShareEventId: System.String, PreEvents: userdata, PreEventsAfterRound: { [System.String]: System.Int32 }, MenpaiExist: userdata, HasFlags: userdata, ExcludeFlags: userdata, ActionConditions: ZhanGuoWuxia.Backend.Beans.ActionConditionBase[]): ZhanGuoWuxia.Backend.Beans.ActionBean
+---@overload fun(Id: System.String, Icon: System.String, PrefixType: ZhanGuoWuxia.Backend.Beans.PrefixType, MountEvents: { [nil]: System.String }, Scenarios: { [nil]: System.String }, ImportanceType: ZhanGuoWuxia.Backend.Beans.ActionImportantType, Name: System.String, LuaCommandFile: System.String, CostActionCount: System.Int32, ActionType: ZhanGuoWuxia.Backend.Beans.ActionClassType, RoundAfter: System.Int32, PlayOnce: System.Boolean, ShareEventId: System.String, PreEvents: { [nil]: System.String }, PreEventsAfterRound: { [System.String]: System.Int32 }, MenpaiExist: { [nil]: System.String }, HasFlags: { [nil]: System.String }, ExcludeFlags: { [nil]: System.String }, ActionConditions: ZhanGuoWuxia.Backend.Beans.ActionConditionBase[]): ZhanGuoWuxia.Backend.Beans.ActionBean
 ---@return ZhanGuoWuxia.Backend.Beans.ActionBean
 function CS.ZhanGuoWuxia.Backend.Beans.ActionBean() end
 
@@ -1784,7 +1784,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerFlagInt() end
 ---@class ZhanGuoWuxia.Backend.Beans.BattleRolePresetData: ZhanGuoWuxia.Backend.Beans.BaseBean, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
 ---@field RoleConfigId System.String
 ---@field Positions System.String
----@field private m_GenPositions userdata
+---@field private m_GenPositions { [nil]: System.Int32 }
 ---@field private m_RoleBeanId System.String
 ---@field private m_IsTempRole System.Boolean
 ---@field private m_IsMustRole System.Boolean
@@ -1798,7 +1798,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BattleRolePresetData:InitRoleIdConfig() e
 ---@private
 function CS.ZhanGuoWuxia.Backend.Beans.BattleRolePresetData:InitPositions() end
 
----@return userdata
+---@return { [nil]: System.Int32 }
 function CS.ZhanGuoWuxia.Backend.Beans.BattleRolePresetData:GetGenPositions() end
 
 ---@return System.String
@@ -1847,10 +1847,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.BattleRolePresetData() end
 ---@field Name_l10n_key System.String
 ---@field EnableAffixName System.Boolean
 ---@field Quality ZhanGuoWuxia.Backend.Beans.ItemLevel
----@field RequireItemQualities userdata
----@field RequireSubType userdata
----@field RequireEquipType userdata
----@field RequireItemIds userdata
+---@field RequireItemQualities { [nil]: ZhanGuoWuxia.Backend.Beans.ItemLevel }
+---@field RequireSubType { [nil]: ZhanGuoWuxia.Backend.Beans.ItemSubType }
+---@field RequireEquipType { [nil]: ZhanGuoWuxia.Backend.Beans.EquipType }
+---@field RequireItemIds { [nil]: System.String }
 ---@field Weight System.Int32
 ---@field Price System.Int32
 ---@field Effects ZhanGuoWuxia.Backend.Beans.ItemAffixEffectBase[]
@@ -1880,7 +1880,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixBean:TranslateText(translator) e
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.ItemAffixBean
----@overload fun(Id: System.String, Name: System.String, EnableAffixName: System.Boolean, Quality: ZhanGuoWuxia.Backend.Beans.ItemLevel, RequireItemQualities: userdata, RequireSubType: userdata, RequireEquipType: userdata, RequireItemIds: userdata, Weight: System.Int32, Price: System.Int32, Effects: ZhanGuoWuxia.Backend.Beans.ItemAffixEffectBase[]): ZhanGuoWuxia.Backend.Beans.ItemAffixBean
+---@overload fun(Id: System.String, Name: System.String, EnableAffixName: System.Boolean, Quality: ZhanGuoWuxia.Backend.Beans.ItemLevel, RequireItemQualities: { [nil]: ZhanGuoWuxia.Backend.Beans.ItemLevel }, RequireSubType: { [nil]: ZhanGuoWuxia.Backend.Beans.ItemSubType }, RequireEquipType: { [nil]: ZhanGuoWuxia.Backend.Beans.EquipType }, RequireItemIds: { [nil]: System.String }, Weight: System.Int32, Price: System.Int32, Effects: ZhanGuoWuxia.Backend.Beans.ItemAffixEffectBase[]): ZhanGuoWuxia.Backend.Beans.ItemAffixBean
 ---@return ZhanGuoWuxia.Backend.Beans.ItemAffixBean
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixBean() end
 
@@ -2429,7 +2429,7 @@ CS.ZhanGuoWuxia.Backend.Beans.AffixLifeType = {
 ---@field Pic System.String
 ---@field PicScale System.Single
 ---@field MapPosition UnityEngine.Vector2
----@field ConnectedNodes userdata
+---@field ConnectedNodes { [nil]: System.String }
 ---@field BattleScene System.String
 ---@field BattleBGM System.String
 ---@field __ID__ System.Int32
@@ -2455,7 +2455,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AreaBean:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.AreaBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.AreaBean
----@overload fun(Id: System.String, Name: System.String, BuildingList: System.String[], Develop: System.Int32, Pic: System.String, PicScale: System.Single, MapPosition: UnityEngine.Vector2, ConnectedNodes: userdata, BattleScene: System.String, BattleBGM: System.String): ZhanGuoWuxia.Backend.Beans.AreaBean
+---@overload fun(Id: System.String, Name: System.String, BuildingList: System.String[], Develop: System.Int32, Pic: System.String, PicScale: System.Single, MapPosition: UnityEngine.Vector2, ConnectedNodes: { [nil]: System.String }, BattleScene: System.String, BattleBGM: System.String): ZhanGuoWuxia.Backend.Beans.AreaBean
 ---@return ZhanGuoWuxia.Backend.Beans.AreaBean
 function CS.ZhanGuoWuxia.Backend.Beans.AreaBean() end
 
@@ -2651,8 +2651,8 @@ function CS.ZhanGuoWuxia.Backend.Beans.BigEventBean() end
 ---@field IsPositive System.Boolean
 ---@field IsSpecial System.Boolean
 ---@field BuffFlag ZhanGuoWuxia.Backend.Beans.BuffFlagType
----@field BuffRoleState userdata
----@field FailedRoleState userdata
+---@field BuffRoleState { [nil]: System.String }
+---@field FailedRoleState { [nil]: System.String }
 ---@field DefaultProperties { [System.String]: System.Single }
 ---@field MaxPile System.Int32
 ---@field IsPileRefresh System.Boolean
@@ -2683,7 +2683,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BuffBean:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.BuffBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.BuffBean
----@overload fun(Id: System.String, Name: System.String, Brief: System.String, Description: System.String, Icon: System.String, IsPositive: System.Boolean, IsSpecial: System.Boolean, BuffFlag: ZhanGuoWuxia.Backend.Beans.BuffFlagType, BuffRoleState: userdata, FailedRoleState: userdata, DefaultProperties: { [System.String]: System.Single }, MaxPile: System.Int32, IsPileRefresh: System.Boolean, Interval: System.Int32, MaxDuration: System.Int32, BuffLogicFile: System.String, DurationEffectId: System.String): ZhanGuoWuxia.Backend.Beans.BuffBean
+---@overload fun(Id: System.String, Name: System.String, Brief: System.String, Description: System.String, Icon: System.String, IsPositive: System.Boolean, IsSpecial: System.Boolean, BuffFlag: ZhanGuoWuxia.Backend.Beans.BuffFlagType, BuffRoleState: { [nil]: System.String }, FailedRoleState: { [nil]: System.String }, DefaultProperties: { [System.String]: System.Single }, MaxPile: System.Int32, IsPileRefresh: System.Boolean, Interval: System.Int32, MaxDuration: System.Int32, BuffLogicFile: System.String, DurationEffectId: System.String): ZhanGuoWuxia.Backend.Beans.BuffBean
 ---@return ZhanGuoWuxia.Backend.Beans.BuffBean
 function CS.ZhanGuoWuxia.Backend.Beans.BuffBean() end
 
@@ -3240,7 +3240,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_Skill() end
 ---@field SellCurrencyItem System.String
 ---@field SellPrice System.Int32
 ---@field ModelInfo { [System.String]: System.String }
----@field BaseBuffEffects userdata
+---@field BaseBuffEffects { [nil]: System.String }
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.ItemBean = {}
 
@@ -3264,7 +3264,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemBean:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.ItemBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.ItemBean
----@overload fun(Id: System.String, Name: System.String, ItemType: ZhanGuoWuxia.Backend.Beans.ItemType, ItemSubType: ZhanGuoWuxia.Backend.Beans.ItemSubType, EquipType: ZhanGuoWuxia.Backend.Beans.EquipType, ItemFlag: ZhanGuoWuxia.Backend.Beans.ItemFlag, UseType: ZhanGuoWuxia.Backend.Beans.UseType, UsageLimit: System.Int32, ItemLevel: ZhanGuoWuxia.Backend.Beans.ItemLevel, Pic: System.String, Desc: System.String, LuaCommandFile: System.String, LuaCommandParam: { [System.String]: System.Single }, AttrTemplate: System.String, SellCurrencyItem: System.String, SellPrice: System.Int32, ModelInfo: { [System.String]: System.String }, BaseBuffEffects: userdata): ZhanGuoWuxia.Backend.Beans.ItemBean
+---@overload fun(Id: System.String, Name: System.String, ItemType: ZhanGuoWuxia.Backend.Beans.ItemType, ItemSubType: ZhanGuoWuxia.Backend.Beans.ItemSubType, EquipType: ZhanGuoWuxia.Backend.Beans.EquipType, ItemFlag: ZhanGuoWuxia.Backend.Beans.ItemFlag, UseType: ZhanGuoWuxia.Backend.Beans.UseType, UsageLimit: System.Int32, ItemLevel: ZhanGuoWuxia.Backend.Beans.ItemLevel, Pic: System.String, Desc: System.String, LuaCommandFile: System.String, LuaCommandParam: { [System.String]: System.Single }, AttrTemplate: System.String, SellCurrencyItem: System.String, SellPrice: System.Int32, ModelInfo: { [System.String]: System.String }, BaseBuffEffects: { [nil]: System.String }): ZhanGuoWuxia.Backend.Beans.ItemBean
 ---@return ZhanGuoWuxia.Backend.Beans.ItemBean
 function CS.ZhanGuoWuxia.Backend.Beans.ItemBean() end
 
@@ -3379,9 +3379,9 @@ CS.ZhanGuoWuxia.Backend.Beans.MenpaiRelationType = {
 
 ---@class ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean: ZhanGuoWuxia.Backend.Beans.BaseBean, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
 ---@field Id System.String
----@field Scenarios userdata
+---@field Scenarios { [nil]: System.String }
 ---@field MenpaiId System.String
----@field AreaSet userdata
+---@field AreaSet { [nil]: System.String }
 ---@field RoleList System.String[]
 ---@field RecruitRoles System.String[]
 ---@field StartRandromRoleNum System.Int32
@@ -3412,7 +3412,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean:TranslateText(translator)
 function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
----@overload fun(Id: System.String, Scenarios: userdata, MenpaiId: System.String, AreaSet: userdata, RoleList: System.String[], RecruitRoles: System.String[], StartRandromRoleNum: System.Int32, LeaderId: System.String, RelationDict: { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiRelationType }, FriendShipDict: { [System.String]: System.Single }, AIName: System.String): ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
+---@overload fun(Id: System.String, Scenarios: { [nil]: System.String }, MenpaiId: System.String, AreaSet: { [nil]: System.String }, RoleList: System.String[], RecruitRoles: System.String[], StartRandromRoleNum: System.Int32, LeaderId: System.String, RelationDict: { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiRelationType }, FriendShipDict: { [System.String]: System.Single }, AIName: System.String): ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
 ---@return ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
 function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean() end
 
@@ -3740,9 +3740,9 @@ function CS.ZhanGuoWuxia.Backend.Beans.RestoreBean() end
 ---@field Pic System.String
 ---@field SkillList ZhanGuoWuxia.Backend.Beans.SkillPartialBean[]
 ---@field EquipmentList ZhanGuoWuxia.Backend.Beans.EquipmentPartialBean[]
----@field Affixes userdata
+---@field Affixes { [nil]: System.String }
 ---@field DefaultAffixLimitCount System.Int32
----@field InitialTalents userdata
+---@field InitialTalents { [nil]: System.String }
 ---@field ModelId System.String
 ---@field ActionTemplate System.String
 ---@field PrisonActionTemplate System.String
@@ -3770,7 +3770,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleBean:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.RoleBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.RoleBean
----@overload fun(Id: System.String, Name: System.String, Gender: ZhanGuoWuxia.Backend.Beans.GenderType, RoleFlagType: ZhanGuoWuxia.Backend.Beans.RoleFlag, Story: System.String, MaxRoundBattleCount: System.Int32, Level: System.Int32, RoleClass: System.String, RoleType: ZhanGuoWuxia.Backend.Beans.RoleType, Pic: System.String, SkillList: ZhanGuoWuxia.Backend.Beans.SkillPartialBean[], EquipmentList: ZhanGuoWuxia.Backend.Beans.EquipmentPartialBean[], Affixes: userdata, DefaultAffixLimitCount: System.Int32, InitialTalents: userdata, ModelId: System.String, ActionTemplate: System.String, PrisonActionTemplate: System.String, RoleVoices: ZhanGuoWuxia.Backend.Beans.RoleVoiceData[]): ZhanGuoWuxia.Backend.Beans.RoleBean
+---@overload fun(Id: System.String, Name: System.String, Gender: ZhanGuoWuxia.Backend.Beans.GenderType, RoleFlagType: ZhanGuoWuxia.Backend.Beans.RoleFlag, Story: System.String, MaxRoundBattleCount: System.Int32, Level: System.Int32, RoleClass: System.String, RoleType: ZhanGuoWuxia.Backend.Beans.RoleType, Pic: System.String, SkillList: ZhanGuoWuxia.Backend.Beans.SkillPartialBean[], EquipmentList: ZhanGuoWuxia.Backend.Beans.EquipmentPartialBean[], Affixes: { [nil]: System.String }, DefaultAffixLimitCount: System.Int32, InitialTalents: { [nil]: System.String }, ModelId: System.String, ActionTemplate: System.String, PrisonActionTemplate: System.String, RoleVoices: ZhanGuoWuxia.Backend.Beans.RoleVoiceData[]): ZhanGuoWuxia.Backend.Beans.RoleBean
 ---@return ZhanGuoWuxia.Backend.Beans.RoleBean
 function CS.ZhanGuoWuxia.Backend.Beans.RoleBean() end
 
@@ -3819,7 +3819,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleClassBean() end
 ---@field ElementCount System.Int32
 ---@field SelectCount System.Int32
 ---@field AchivementPointPerSelection System.Int32
----@field RequireAchivements userdata
+---@field RequireAchivements { [nil]: System.String }
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean = {}
 
@@ -3843,7 +3843,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean:TranslateText(tran
 function CS.ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean
----@overload fun(Id: System.String, ModifierType: ZhanGuoWuxia.Backend.Beans.RCModifierType, ModifierElementId: System.String, ModifierParam: System.String, ElementCount: System.Int32, SelectCount: System.Int32, AchivementPointPerSelection: System.Int32, RequireAchivements: userdata): ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean
+---@overload fun(Id: System.String, ModifierType: ZhanGuoWuxia.Backend.Beans.RCModifierType, ModifierElementId: System.String, ModifierParam: System.String, ElementCount: System.Int32, SelectCount: System.Int32, AchivementPointPerSelection: System.Int32, RequireAchivements: { [nil]: System.String }): ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean
 ---@return ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean
 function CS.ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean() end
 
@@ -4264,7 +4264,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillUnlockBean() end
 
 ---@class ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean: ZhanGuoWuxia.Backend.Beans.BaseBean, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
 ---@field Id System.String
----@field CompatibleTypes userdata
+---@field CompatibleTypes { [nil]: ZhanGuoWuxia.Backend.Beans.EquipType }
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean = {}
 
@@ -4288,7 +4288,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean:TranslateText(transla
 function CS.ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean
----@overload fun(Id: System.String, CompatibleTypes: userdata): ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean
+---@overload fun(Id: System.String, CompatibleTypes: { [nil]: ZhanGuoWuxia.Backend.Beans.EquipType }): ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean
 ---@return ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean
 function CS.ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean() end
 
@@ -4337,11 +4337,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbAchievement = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.AchievementBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AchievementBean }
@@ -4387,11 +4387,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbAction = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbAction:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAction:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.ActionBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAction:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ActionBean }
@@ -4437,11 +4437,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbAffix = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.AffixBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixBean }
@@ -4487,11 +4487,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean }
@@ -4537,11 +4537,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbArea = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbArea:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbArea:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.AreaBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbArea:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AreaBean }
@@ -4587,11 +4587,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbAttr = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.AttrBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrBean }
@@ -4637,11 +4637,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean }
@@ -4687,11 +4687,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbBattle = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.BattleBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleBean }
@@ -4737,11 +4737,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean }
@@ -4787,11 +4787,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.BigEventBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.BigEventBean }
@@ -4837,11 +4837,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbBuff = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.BuffBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.BuffBean }
@@ -4887,11 +4887,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbBuilding = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.BuildingBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.BuildingBean }
@@ -4937,11 +4937,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbDungeon = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonBean }
@@ -4987,11 +4987,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean }
@@ -5037,11 +5037,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean }
@@ -5087,11 +5087,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbGallery = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.GalleryBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.GalleryBean }
@@ -5137,11 +5137,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbItem = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbItem:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItem:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.ItemBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItem:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemBean }
@@ -5187,11 +5187,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean }
@@ -5237,11 +5237,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbLootPool = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.LootPoolBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.LootPoolBean }
@@ -5287,11 +5287,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbMenpai = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.MenpaiBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiBean }
@@ -5337,11 +5337,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean }
@@ -5387,11 +5387,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbModel = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbModel:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModel:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.ModelBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModel:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelBean }
@@ -5437,11 +5437,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean }
@@ -5487,11 +5487,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean }
@@ -5537,11 +5537,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbRestore = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.RestoreBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RestoreBean }
@@ -5587,11 +5587,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbRole = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbRole:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRole:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.RoleBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRole:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleBean }
@@ -5637,11 +5637,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.RoleClassBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleClassBean }
@@ -5687,11 +5687,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean }
@@ -5737,11 +5737,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbRoleName = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.NameBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.NameBean }
@@ -5787,11 +5787,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbRolePic = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.PicBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.PicBean }
@@ -5837,11 +5837,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean }
@@ -5887,11 +5887,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean }
@@ -5937,11 +5937,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbScenario = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.ScenarioBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ScenarioBean }
@@ -5987,11 +5987,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbShop = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbShop:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShop:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.ShopBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShop:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopBean }
@@ -6037,11 +6037,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbShopItem = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.ShopItemBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopItemBean }
@@ -6087,11 +6087,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbSkill = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.SkillBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillBean }
@@ -6137,11 +6137,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.SkillFormBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
@@ -6187,11 +6187,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean }
@@ -6237,11 +6237,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbTutorial = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.TutorialBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.TutorialBean }
@@ -6287,11 +6287,11 @@ CS.ZhanGuoWuxia.Backend.Beans.TbVFX = {}
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:GetAllBeans() end
 
----@overload fun(self: self, newBeans: userdata)
----@param newBeans userdata
+---@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.VFXBean })
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:Merge(newBeans) end
 
 ---@return { [System.String]: ZhanGuoWuxia.Backend.Beans.VFXBean }
@@ -6529,15 +6529,15 @@ function CS.ZhanGuoWuxia.Backend.Beans.VFXBean:ToString() end
 function CS.ZhanGuoWuxia.Backend.Beans.VFXBean() end
 
 ---@class ZhanGuoWuxia.Backend.Beans.IBeanManager
----@field Tables userdata
+---@field Tables { [nil]: ZhanGuoWuxia.Backend.Beans.ITable }
 CS.ZhanGuoWuxia.Backend.Beans.IBeanManager = {}
 
 ---@param type System.Type
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:GetAll(type) end
 
 ---@param type System.Type
----@param source userdata
+---@param source { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:Merge(type, source) end
 
 ---@overload fun(self: self, loader: (fun(arg: System.String): SimpleJSON.JSONNode)): System.Int32
@@ -6553,7 +6553,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:Dispose() end
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:GetBeanTypeCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.ITable }
 function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:get_Tables() end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -6574,13 +6574,13 @@ function CS.ZhanGuoWuxia.Backend.Beans.ITable:Resolve(_tables) end
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.ITable:get_BeanCount() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.ITable:GetAllBeans() end
 
 ---@return System.Type
 function CS.ZhanGuoWuxia.Backend.Beans.ITable:get_BeanType() end
 
----@param newBeans userdata
+---@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.ITable:Merge(newBeans) end
 
 

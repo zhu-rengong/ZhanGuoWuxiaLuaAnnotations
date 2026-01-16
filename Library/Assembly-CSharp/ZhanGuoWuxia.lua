@@ -98,7 +98,7 @@ function CS.ZhanGuoWuxia.GameRuntime:ReturnToMainMenuOrModEditor() end
 ---@return ZhanGuoWuxia.UI.SaveMetaData
 function CS.ZhanGuoWuxia.GameRuntime:LoadMetaData(index) end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.UI.FirePoint.RestoreContext }
 function CS.ZhanGuoWuxia.GameRuntime:GetRestoreContexts() end
 
 ---@return System.Boolean

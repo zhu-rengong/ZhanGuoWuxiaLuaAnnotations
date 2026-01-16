@@ -468,7 +468,7 @@ CS.ZhanGuoWuxia.Backend.LaunchErrorType = {
 
 ---@class ZhanGuoWuxia.Backend.DefaultLaunchHandler: ZhanGuoWuxia.Backend.IGameService, ZhanGuoWuxia.Backend.IGameLaunchHandler
 ---@field CanLaunch System.Boolean
----@field private m_LaunchErrors { [ZhanGuoWuxia.Backend.LaunchErrorType]: userdata }
+---@field private m_LaunchErrors { [ZhanGuoWuxia.Backend.LaunchErrorType]: { [nil]: System.Exception } }
 CS.ZhanGuoWuxia.Backend.DefaultLaunchHandler = {}
 
 ---@return System.Boolean
@@ -698,7 +698,7 @@ function CS.ZhanGuoWuxia.Backend.IReusableObject:Dispose() end
 
 
 ---@class ZhanGuoWuxia.Backend.ReusableObjectManager: ZhanGuoWuxia.Backend.IGameService
----@field private m_Pools { [System.Type]: userdata }
+---@field private m_Pools { [System.Type]: { [nil]: ZhanGuoWuxia.Backend.IReusableObject } }
 CS.ZhanGuoWuxia.Backend.ReusableObjectManager = {}
 
 function CS.ZhanGuoWuxia.Backend.ReusableObjectManager:Dispose() end
@@ -783,7 +783,7 @@ function CS.ZhanGuoWuxia.Backend.PooledMemoryStream:AssertNotDisposed() end
 ---@return System.Collections.IEnumerator
 function CS.ZhanGuoWuxia.Backend.PooledMemoryStream:GetEnumerator() end
 
----@return userdata
+---@return { [nil]: System.Byte }
 function CS.ZhanGuoWuxia.Backend.PooledMemoryStream:GetEnumerator() end
 
 ---@overload fun(buffer: System.Byte[]): ZhanGuoWuxia.Backend.PooledMemoryStream

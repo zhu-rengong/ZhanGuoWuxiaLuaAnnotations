@@ -1364,7 +1364,7 @@ function CS.System.String:GetEnumerator() end
 
 ---@private
 ---@overload fun(self: self): System.Collections.IEnumerator
----@return userdata
+---@return { [nil]: System.Char }
 function CS.System.String:GetEnumerator() end
 
 ---@return System.Text.StringRuneEnumerator
@@ -1498,7 +1498,7 @@ function CS.System.String.CopyStringContent(dest, destPos, src) end
 ---@overload fun(arg0: System.Object, arg1: System.Object): System.String
 ---@overload fun(arg0: System.Object, arg1: System.Object, arg2: System.Object): System.String
 ---@overload fun(...: System.Object): System.String
----@overload fun(values: userdata): System.String
+---@overload fun(values: { [nil]: System.String }): System.String
 ---@overload fun(str0: System.String, str1: System.String): System.String
 ---@overload fun(str0: System.String, str1: System.String, str2: System.String): System.String
 ---@overload fun(str0: System.String, str1: System.String, str2: System.String, str3: System.String): System.String
@@ -1548,7 +1548,7 @@ function CS.System.String:Insert(startIndex, value) end
 ---@overload fun(separator: System.String, ...: System.String): System.String
 ---@overload fun(separator: System.Char, value: System.String[], startIndex: System.Int32, count: System.Int32): System.String
 ---@overload fun(separator: System.String, value: System.String[], startIndex: System.Int32, count: System.Int32): System.String
----@overload fun(separator: System.String, values: userdata): System.String
+---@overload fun(separator: System.String, values: { [nil]: System.String }): System.String
 ---@overload fun(separator: System.Char, ...: System.Object): System.String
 ---@overload fun(separator: System.String, ...: System.Object): System.String
 ---@param separator System.Char

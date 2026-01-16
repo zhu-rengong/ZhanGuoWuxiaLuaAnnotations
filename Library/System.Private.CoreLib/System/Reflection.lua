@@ -3,8 +3,8 @@
 ---Namespace: System.Reflection
 
 ---@class System.Reflection.Assembly: System.Object, System.Reflection.ICustomAttributeProvider, System.Runtime.Serialization.ISerializable
----@field DefinedTypes userdata
----@field ExportedTypes userdata
+---@field DefinedTypes { [nil]: System.Reflection.TypeInfo }
+---@field ExportedTypes { [nil]: System.Type }
 ---@field CodeBase System.String
 ---@field EntryPoint System.Reflection.MethodInfo
 ---@field FullName System.String
@@ -14,10 +14,10 @@
 ---@field ReflectionOnly System.Boolean
 ---@field IsCollectible System.Boolean
 ---@field IsFullyTrusted System.Boolean
----@field CustomAttributes userdata
+---@field CustomAttributes { [nil]: System.Reflection.CustomAttributeData }
 ---@field EscapedCodeBase System.String
 ---@field ManifestModule System.Reflection.Module
----@field Modules userdata
+---@field Modules { [nil]: System.Reflection.Module }
 ---@field GlobalAssemblyCache System.Boolean
 ---@field HostContext System.Int64
 ---@field SecurityRuleSet System.Security.SecurityRuleSet
@@ -67,13 +67,13 @@ function CS.System.Reflection.Assembly.GetEntryAssemblyInternal() end
 ---@return System.UInt32
 function CS.System.Reflection.Assembly.GetAssemblyCount() end
 
----@return userdata
+---@return { [nil]: System.Reflection.TypeInfo }
 function CS.System.Reflection.Assembly:get_DefinedTypes() end
 
 ---@return System.Type[]
 function CS.System.Reflection.Assembly:GetTypes() end
 
----@return userdata
+---@return { [nil]: System.Type }
 function CS.System.Reflection.Assembly:get_ExportedTypes() end
 
 ---@return System.Type[]
@@ -136,7 +136,7 @@ function CS.System.Reflection.Assembly:GetType(name) end
 ---@return System.Boolean
 function CS.System.Reflection.Assembly:IsDefined(attributeType, inherit) end
 
----@return userdata
+---@return { [nil]: System.Reflection.CustomAttributeData }
 function CS.System.Reflection.Assembly:get_CustomAttributes() end
 
 ---@return System.Reflection.CustomAttributeData[]
@@ -173,7 +173,7 @@ function CS.System.Reflection.Assembly:GetModule(name) end
 ---@return System.Reflection.Module[]
 function CS.System.Reflection.Assembly:GetModules() end
 
----@return userdata
+---@return { [nil]: System.Reflection.Module }
 function CS.System.Reflection.Assembly:get_Modules() end
 
 ---@overload fun(self: self, getResourceModules: System.Boolean): System.Reflection.Module[]
@@ -689,7 +689,7 @@ function CS.System.Reflection.FieldInfo() end
 ---@field DeclaringType System.Type
 ---@field ReflectedType System.Type
 ---@field Module System.Reflection.Module
----@field CustomAttributes userdata
+---@field CustomAttributes { [nil]: System.Reflection.CustomAttributeData }
 ---@field IsCollectible System.Boolean
 ---@field MetadataToken System.Int32
 CS.System.Reflection.MemberInfo = {}
@@ -728,7 +728,7 @@ function CS.System.Reflection.MemberInfo:IsDefined(attributeType, inherit) end
 ---@return System.Object[]
 function CS.System.Reflection.MemberInfo:GetCustomAttributes(inherit) end
 
----@return userdata
+---@return { [nil]: System.Reflection.CustomAttributeData }
 function CS.System.Reflection.MemberInfo:get_CustomAttributes() end
 
 ---@return System.Reflection.CustomAttributeData[]
@@ -1265,7 +1265,7 @@ function CS.System.Reflection.MethodInfo() end
 ---@field ModuleVersionId System.Guid
 ---@field ScopeName System.String
 ---@field ModuleHandle System.ModuleHandle
----@field CustomAttributes userdata
+---@field CustomAttributes { [nil]: System.Reflection.CustomAttributeData }
 ---@field MetadataToken System.Int32
 ---@field FilterTypeName fun(m: System.Type, filterCriteria: System.Object): System.Boolean
 ---@field FilterTypeNameIgnoreCase fun(m: System.Type, filterCriteria: System.Object): System.Boolean
@@ -1307,7 +1307,7 @@ function CS.System.Reflection.Module:IsResource() end
 ---@return System.Boolean
 function CS.System.Reflection.Module:IsDefined(attributeType, inherit) end
 
----@return userdata
+---@return { [nil]: System.Reflection.CustomAttributeData }
 function CS.System.Reflection.Module:get_CustomAttributes() end
 
 ---@return System.Reflection.CustomAttributeData[]
@@ -1457,7 +1457,7 @@ CS.System.Reflection.ParameterAttributes = {
 ---@field DefaultValue System.Object
 ---@field RawDefaultValue System.Object
 ---@field HasDefaultValue System.Boolean
----@field CustomAttributes userdata
+---@field CustomAttributes { [nil]: System.Reflection.CustomAttributeData }
 ---@field MetadataToken System.Int32
 ---@field protected AttrsImpl System.Reflection.ParameterAttributes
 ---@field protected ClassImpl System.Type
@@ -1511,7 +1511,7 @@ function CS.System.Reflection.ParameterInfo:get_HasDefaultValue() end
 ---@return System.Boolean
 function CS.System.Reflection.ParameterInfo:IsDefined(attributeType, inherit) end
 
----@return userdata
+---@return { [nil]: System.Reflection.CustomAttributeData }
 function CS.System.Reflection.ParameterInfo:get_CustomAttributes() end
 
 ---@return System.Reflection.CustomAttributeData[]
@@ -1714,14 +1714,14 @@ CS.System.Reflection.TypeAttributes = {
 
 ---@class System.Reflection.TypeInfo: System.Type, System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect, System.Reflection.IReflectableType
 ---@field GenericTypeParameters System.Type[]
----@field DeclaredConstructors userdata
----@field DeclaredEvents userdata
----@field DeclaredFields userdata
----@field DeclaredMembers userdata
----@field DeclaredMethods userdata
----@field DeclaredNestedTypes userdata
----@field DeclaredProperties userdata
----@field ImplementedInterfaces userdata
+---@field DeclaredConstructors { [nil]: System.Reflection.ConstructorInfo }
+---@field DeclaredEvents { [nil]: System.Reflection.EventInfo }
+---@field DeclaredFields { [nil]: System.Reflection.FieldInfo }
+---@field DeclaredMembers { [nil]: System.Reflection.MemberInfo }
+---@field DeclaredMethods { [nil]: System.Reflection.MethodInfo }
+---@field DeclaredNestedTypes { [nil]: System.Reflection.TypeInfo }
+---@field DeclaredProperties { [nil]: System.Reflection.PropertyInfo }
+---@field ImplementedInterfaces { [nil]: System.Type }
 CS.System.Reflection.TypeInfo = {}
 
 ---@private
@@ -1755,31 +1755,31 @@ function CS.System.Reflection.TypeInfo:GetDeclaredNestedType(name) end
 function CS.System.Reflection.TypeInfo:GetDeclaredProperty(name) end
 
 ---@param name System.String
----@return userdata
+---@return { [nil]: System.Reflection.MethodInfo }
 function CS.System.Reflection.TypeInfo:GetDeclaredMethods(name) end
 
----@return userdata
+---@return { [nil]: System.Reflection.ConstructorInfo }
 function CS.System.Reflection.TypeInfo:get_DeclaredConstructors() end
 
----@return userdata
+---@return { [nil]: System.Reflection.EventInfo }
 function CS.System.Reflection.TypeInfo:get_DeclaredEvents() end
 
----@return userdata
+---@return { [nil]: System.Reflection.FieldInfo }
 function CS.System.Reflection.TypeInfo:get_DeclaredFields() end
 
----@return userdata
+---@return { [nil]: System.Reflection.MemberInfo }
 function CS.System.Reflection.TypeInfo:get_DeclaredMembers() end
 
----@return userdata
+---@return { [nil]: System.Reflection.MethodInfo }
 function CS.System.Reflection.TypeInfo:get_DeclaredMethods() end
 
----@return userdata
+---@return { [nil]: System.Reflection.TypeInfo }
 function CS.System.Reflection.TypeInfo:get_DeclaredNestedTypes() end
 
----@return userdata
+---@return { [nil]: System.Reflection.PropertyInfo }
 function CS.System.Reflection.TypeInfo:get_DeclaredProperties() end
 
----@return userdata
+---@return { [nil]: System.Type }
 function CS.System.Reflection.TypeInfo:get_ImplementedInterfaces() end
 
 ---@param typeInfo System.Reflection.TypeInfo

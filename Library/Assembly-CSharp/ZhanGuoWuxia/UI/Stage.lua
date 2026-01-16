@@ -21,7 +21,7 @@ function CS.ZhanGuoWuxia.UI.Stage.StageActorInfo:Clear() end
 function CS.ZhanGuoWuxia.UI.Stage.StageActorInfo() end
 
 ---@class ZhanGuoWuxia.UI.Stage.UIStage: ZhanGuoWuxia.UI.UIBase, UnityEngine.ISerializationCallbackReceiver, Sirenix.Serialization.ISupportsPrefabSerialization, ZhanGuoWuxia.UI.IUIListenerBinder, UnityEngine.EventSystems.IPointerClickHandler, UnityEngine.EventSystems.IEventSystemHandler, ZhanGuoWuxia.UI.Story.ISkippableStory
----@field AllBubbles userdata
+---@field AllBubbles { [nil]: ZhanGuoWuxia.UI.Stage.UIStageBubble }
 ---@field SkipPriority System.Int32
 ---@field ViewObject UnityEngine.GameObject
 ---@field StageRoot UnityEngine.RectTransform
@@ -47,7 +47,7 @@ function CS.ZhanGuoWuxia.UI.Stage.StageActorInfo() end
 ---@field private m_ActorsForSafeIteration ZhanGuoWuxia.UI.Stage.UIStageActor[]
 CS.ZhanGuoWuxia.UI.Stage.UIStage = {}
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.UI.Stage.UIStageBubble }
 function CS.ZhanGuoWuxia.UI.Stage.UIStage:get_AllBubbles() end
 
 ---@return System.Int32
@@ -160,7 +160,7 @@ function CS.ZhanGuoWuxia.UI.Stage.UIStage:SaveDialogueRecord(talkerName, picName
 function CS.ZhanGuoWuxia.UI.Stage.UIStage:OnPointerClick(eventData) end
 
 ---@private
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.UI.Stage.UIStageActor }
 function CS.ZhanGuoWuxia.UI.Stage.UIStage:GetActorsForSafeIteration() end
 
 function CS.ZhanGuoWuxia.UI.Stage.UIStage:TrySkipDialogue() end

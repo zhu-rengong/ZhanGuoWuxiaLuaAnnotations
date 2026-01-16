@@ -930,11 +930,11 @@ function CS.ZhanGuoWuxia.Helpers.EnumTextHelper.get_EnumConverters() end
 ---@return { [System.Type]: fun() }
 function CS.ZhanGuoWuxia.Helpers.EnumTextHelper.InitEnumTextConverters() end
 
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Helpers.EnumTextHelper.GetGameScreenModeNames() end
 
 ---@param hasColor? System.Boolean
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Helpers.EnumTextHelper.GetGameDifficultyNames(hasColor) end
 
 ---@overload fun(difficulty: ZhanGuoWuxia.Backend.RuntimeData.GameDifficulty, hasColor?: System.Boolean): System.String
@@ -1194,11 +1194,11 @@ function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetItemSubTypeName(subType) end
 function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetItemQualityLevelName(item) end
 
 ---@param attrs ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
----@return userdata
+---@return { [nil]: userdata }
 function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetRolePanelOrderedAttrs(attrs) end
 
 ---@param attrs ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
----@return userdata
+---@return { [nil]: userdata }
 function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetItemPanelOrderedAttrs(attrs) end
 
 ---@param attr userdata
@@ -1354,16 +1354,16 @@ function CS.ZhanGuoWuxia.Helpers.RegexHelper.get__db() end
 function CS.ZhanGuoWuxia.Helpers.RegexHelper.TryMatchCustomAvgNameImg(text, name, img) end
 
 ---@param text System.String
----@return userdata
+---@return { [nil]: System.Text.RegularExpressions.Match }
 function CS.ZhanGuoWuxia.Helpers.RegexHelper.MatchExpressions(text) end
 
 ---@param expression System.String
----@return userdata
+---@return { [nil]: System.Text.RegularExpressions.Match }
 function CS.ZhanGuoWuxia.Helpers.RegexHelper.MatchRuntimeVariables(expression) end
 
 ---@private
 ---@param expression System.String
----@return userdata
+---@return { [nil]: System.Text.RegularExpressions.Match }
 function CS.ZhanGuoWuxia.Helpers.RegexHelper.MatchPlayerVariables(expression) end
 
 ---@param content System.String
@@ -1395,8 +1395,8 @@ function CS.ZhanGuoWuxia.Helpers.RegexHelper() end
 ---@field SkillLevel System.Int32
 ---@field IsStatic System.Boolean
 ---@field DisplayBoth System.Boolean
----@field private m_ResolvingBuffs userdata
----@field private m_ResovingSkills userdata
+---@field private m_ResolvingBuffs { [nil]: System.String }
+---@field private m_ResovingSkills { [nil]: System.String }
 CS.ZhanGuoWuxia.Helpers.RuntimeDescriptionResolver = {}
 
 ---@private
@@ -1505,10 +1505,10 @@ function CS.ZhanGuoWuxia.Helpers.SortHelper.GetSortFunction(sortType) end
 ---@return fun(x: ZhanGuoWuxia.Backend.RuntimeData.RoleRecoverContext, y: ZhanGuoWuxia.Backend.RuntimeData.RoleRecoverContext): System.Int32
 function CS.ZhanGuoWuxia.Helpers.SortHelper.GetRecoverSortFunction(sortType) end
 
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Helpers.SortHelper.GetRCModifierTexts() end
 
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Helpers.SortHelper.GetRoleSortTextList() end
 
 
@@ -2368,7 +2368,7 @@ function CS.ZhanGuoWuxia.Helpers.UnityExtension.SetVerticalGradient(tmpText, top
 function CS.ZhanGuoWuxia.Helpers.UnityExtension.SetHorizontalGradient(tmpText, left, right) end
 
 ---@param dropdown TMPro.TMP_Dropdown
----@param options userdata
+---@param options { [nil]: System.String }
 function CS.ZhanGuoWuxia.Helpers.UnityExtension.SetStringOptions(dropdown, options) end
 
 ---@param menu UIWidgets.Menu.ContextMenu

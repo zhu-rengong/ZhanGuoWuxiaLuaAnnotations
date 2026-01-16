@@ -422,7 +422,7 @@ function CS.ZhanGuoWuxia.Lua.LuaBridge.GetMenpaiByBeanId(menpaiId) end
 ---@return ZhanGuoWuxia.Backend.RuntimeData.AreaInstance
 function CS.ZhanGuoWuxia.Lua.LuaBridge.GetMenpaiArea(menpai, index) end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.RuntimeData.AreaInstance }
 function CS.ZhanGuoWuxia.Lua.LuaBridge.GetAllAreas() end
 
 ---@param relation ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation

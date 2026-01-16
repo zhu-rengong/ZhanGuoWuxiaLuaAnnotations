@@ -3704,8 +3704,8 @@ function CS.UnityEngine.Mesh:GetBoneWeightsImpl() end
 ---@param weights UnityEngine.BoneWeight[]
 function CS.UnityEngine.Mesh:SetBoneWeightsImpl(weights) end
 
----@param bonesPerVertex userdata
----@param weights userdata
+---@param bonesPerVertex { [nil]: System.Byte }
+---@param weights { [nil]: UnityEngine.BoneWeight1 }
 function CS.UnityEngine.Mesh:SetBoneWeights(bonesPerVertex, weights) end
 
 ---@private
@@ -3715,10 +3715,10 @@ function CS.UnityEngine.Mesh:SetBoneWeights(bonesPerVertex, weights) end
 ---@param weightsSize System.Int32
 function CS.UnityEngine.Mesh:InternalSetBoneWeights(bonesPerVertex, bonesPerVertexSize, weights, weightsSize) end
 
----@return userdata
+---@return { [nil]: UnityEngine.BoneWeight1 }
 function CS.UnityEngine.Mesh:GetAllBoneWeights() end
 
----@return userdata
+---@return { [nil]: System.Byte }
 function CS.UnityEngine.Mesh:GetBonesPerVertex() end
 
 ---@private
@@ -4064,7 +4064,7 @@ function CS.UnityEngine.Mesh:get_vertexAttributeCount() end
 ---@return UnityEngine.Rendering.VertexAttributeDescriptor[]
 function CS.UnityEngine.Mesh:GetVertexAttributes() end
 
----@overload fun(self: self, vertexCount: System.Int32, attributes: userdata)
+---@overload fun(self: self, vertexCount: System.Int32, attributes: { [nil]: UnityEngine.Rendering.VertexAttributeDescriptor })
 ---@param vertexCount System.Int32
 ---@param ... UnityEngine.Rendering.VertexAttributeDescriptor
 function CS.UnityEngine.Mesh:SetVertexBufferParams(vertexCount, ...) end
@@ -6692,7 +6692,7 @@ function CS.UnityEngine.Resources.InstanceIDToObject(instanceID) end
 ---@param objects UnityEngine.Object[]
 function CS.UnityEngine.Resources.InstanceIDToObjectList(instanceIDs, instanceCount, objects) end
 
----@param instanceIDs userdata
+---@param instanceIDs { [nil]: System.Int32 }
 ---@param objects UnityEngine.Object[]
 function CS.UnityEngine.Resources.InstanceIDToObjectList(instanceIDs, objects) end
 

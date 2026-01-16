@@ -331,7 +331,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.BroadCastFlagChange(save, 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param triggerId System.String
 ---@param param? ZhanGuoWuxia.Backend.RuntimeData.ActionParam
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.ActionBean }
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetAvailableActions(save, triggerId, param) end
 
 ---@async
@@ -433,7 +433,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetMenpaiOfArea(save, area
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param itemType? ZhanGuoWuxia.Backend.Beans.ItemType
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ItemInstance }
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetPlayerBagItems(save, itemType) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
@@ -493,7 +493,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetRoleByInstanceId(save, 
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetRoles(save) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance }
 function CS.ZhanGuoWuxia.Backend.Logics.GameSaveLogic.GetRolesNotDead(save) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
@@ -649,15 +649,15 @@ function CS.ZhanGuoWuxia.Backend.Logics.ItemLogic.AttachAffix(item, creator, aff
 function CS.ZhanGuoWuxia.Backend.Logics.ItemLogic.GetAttr(itemAffix) end
 
 ---@param itemAffix ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
 function CS.ZhanGuoWuxia.Backend.Logics.ItemLogic.GetAffixSkillEffects(itemAffix) end
 
 ---@param itemAffix ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
 function CS.ZhanGuoWuxia.Backend.Logics.ItemLogic.GetAffixPassiveSkills(itemAffix) end
 
 ---@param itemAffix ZhanGuoWuxia.Backend.RuntimeData.ItemAffixInstance
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
 function CS.ZhanGuoWuxia.Backend.Logics.ItemLogic.GetAffixProactiveSkills(itemAffix) end
 
 
@@ -769,7 +769,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.SortBag(menpai, sortFunc) en
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param itemType? ZhanGuoWuxia.Backend.Beans.ItemType
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ItemInstance }
 function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetBagItems(menpai, itemType) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
@@ -878,7 +878,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.TryGetConfigOfScenario(menpa
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param scenarioId System.String
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetMenpaiRandomRolePool(menpai, scenarioId) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
@@ -893,22 +893,22 @@ function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetPresetLeaderId(menpai, sc
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param scenarioId System.String
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetPresetRoles(menpai, scenarioId) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param scenarioId System.String
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetPresetAreas(menpai, scenarioId) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param scenarioId System.String
----@return userdata
+---@return { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetPresetRelations(menpai, scenarioId) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param scenarioId System.String
----@return userdata
+---@return { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Logics.MenpaiLogic.GetPresetFriendShips(menpai, scenarioId) end
 
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
@@ -1138,7 +1138,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.EquipedSkillAtPos(role, pos) e
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
 ---@param pos System.Int32
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.RuntimeData.SkillInstance }
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetSkillsOfEquipPos(role, pos) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
@@ -1395,7 +1395,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.ChangeFatePoint(role, newPoint
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.HasUnCompatibleWeapon(role) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.AffixBean }
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetAllAvailableRandomAffixes(role) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
@@ -1421,7 +1421,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.ProgressOfLevelUp(role) end
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetRoleTalentPage(role) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetUnlockedTalentBuffs(role) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
@@ -1483,8 +1483,8 @@ CS.ZhanGuoWuxia.Backend.Logics.ShopDealResult = {
 ---@field Seller ZhanGuoWuxia.Backend.RuntimeData.ShopInstance
 ---@field Costumer ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@field CostumerItemsToSell userdata
----@field ShopItemsToBuy userdata
+---@field CostumerItemsToSell { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ICostumerTradeItem }
+---@field ShopItemsToBuy { [nil]: ZhanGuoWuxia.Backend.RuntimeData.IShopTradeItem }
 ---@field IsValid System.Boolean
 ---@field IsEmpty System.Boolean
 CS.ZhanGuoWuxia.Backend.Logics.ShopOrderContext = {}
@@ -1511,8 +1511,8 @@ function CS.ZhanGuoWuxia.Backend.Logics.ShopLogic.get__db() end
 ---@return ZhanGuoWuxia.Backend.Logics.ShopDealResult
 function CS.ZhanGuoWuxia.Backend.Logics.ShopLogic.MakeDeal(orderContext) end
 
----@param costumerItemsToSell userdata
----@param shopItemsToBuy userdata
+---@param costumerItemsToSell { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ICostumerTradeItem }
+---@param shopItemsToBuy { [nil]: ZhanGuoWuxia.Backend.RuntimeData.IShopTradeItem }
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Logics.ShopLogic.GetTradeFinalPrice(costumerItemsToSell, shopItemsToBuy) end
 
@@ -1520,7 +1520,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.ShopLogic.GetTradeFinalPrice(costumerIte
 ---@class ZhanGuoWuxia.Backend.Logics.SkillLogic: System.Object
 ---@field private LuaVM ZhanGuoWuxia.Backend.Lua.LuaManager
 ---@field private _db ZhanGuoWuxia.Backend.Beans.IBeanManager
----@field private m_EmptyEquipTypes userdata
+---@field private m_EmptyEquipTypes { [nil]: ZhanGuoWuxia.Backend.Beans.EquipType }
 CS.ZhanGuoWuxia.Backend.Logics.SkillLogic = {}
 
 ---@private
@@ -1544,15 +1544,15 @@ function CS.ZhanGuoWuxia.Backend.Logics.SkillLogic.GetUnlockedSkillFormIds(skill
 function CS.ZhanGuoWuxia.Backend.Logics.SkillLogic.GetPassiveSkillFormBeans(skill) end
 
 ---@param skill ZhanGuoWuxia.Backend.RuntimeData.SkillInstance
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
 function CS.ZhanGuoWuxia.Backend.Logics.SkillLogic.GetValidUnlockSkillForms(skill) end
 
 ---@param skill ZhanGuoWuxia.Backend.RuntimeData.SkillInstance
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
 function CS.ZhanGuoWuxia.Backend.Logics.SkillLogic.GetStrategicSkillForms(skill) end
 
 ---@param skill ZhanGuoWuxia.Backend.RuntimeData.SkillInstance
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
 function CS.ZhanGuoWuxia.Backend.Logics.SkillLogic.GetProactiveSkillForms(skill) end
 
 ---@param skill ZhanGuoWuxia.Backend.RuntimeData.SkillInstance
@@ -1578,7 +1578,7 @@ function CS.ZhanGuoWuxia.Backend.Logics.SkillLogic.ExpToNextLevel(skill) end
 function CS.ZhanGuoWuxia.Backend.Logics.SkillLogic.GetLevelUpExp(skill, plusedLevel) end
 
 ---@param skill ZhanGuoWuxia.Backend.RuntimeData.SkillInstance
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.EquipType }
 function CS.ZhanGuoWuxia.Backend.Logics.SkillLogic.GetCompatibleEquipTypes(skill) end
 
 ---@param skill ZhanGuoWuxia.Backend.RuntimeData.SkillInstance

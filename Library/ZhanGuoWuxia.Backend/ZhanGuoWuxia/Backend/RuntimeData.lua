@@ -217,9 +217,9 @@ CS.ZhanGuoWuxia.Backend.RuntimeData.JoinDungeonTeamRet = {
 ---@field DungeonType ZhanGuoWuxia.Backend.Beans.DungeonType
 ---@field DungeonProgress { [System.String]: System.Int32 }
 ---@field DungeonResult { [System.String]: System.Boolean }
----@field JoinedRoles userdata
+---@field JoinedRoles { [nil]: System.Int32 }
 ---@field JoinedRoleCount System.Int32
----@field ActiveEvents userdata
+---@field ActiveEvents { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean }
 ---@field LootPool ZhanGuoWuxia.Backend.Beans.LootPoolBean
 ---@field SuccessCount System.Int32
 ---@field FailCount System.Int32
@@ -228,10 +228,10 @@ CS.ZhanGuoWuxia.Backend.RuntimeData.JoinDungeonTeamRet = {
 ---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
 ---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@field IsValid System.Boolean
----@field private m_ActiveTaskIdCache userdata
+---@field private m_ActiveTaskIdCache { [nil]: System.String }
 ---@field private m_DungeonProgress { [System.String]: System.Int32 }
 ---@field private m_DungeonResult { [System.String]: System.Boolean }
----@field private m_JoinedRoles userdata
+---@field private m_JoinedRoles { [nil]: System.Int32 }
 ---@field private _bean ZhanGuoWuxia.Backend.Beans.DungeonBean
 ---@field InstanceId System.Int32
 ---@field BeanId System.String
@@ -283,7 +283,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:JoinDungeonTeam(rol
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:LeaveDungeonTeam(role) end
 
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:GetActiveTaskIds() end
 
 ---@return System.Boolean
@@ -323,7 +323,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get_DungeonProgress
 ---@return { [System.String]: System.Boolean }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get_DungeonResult() end
 
----@return userdata
+---@return { [nil]: System.Int32 }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance:get_JoinedRoles() end
 
 ---@return System.Int32
@@ -403,7 +403,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.DungeonInstance() end
 ---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@field IsValid System.Boolean
 ---@field RuntimeAttrs { [System.String]: System.Single }
----@field RuntimeSkills userdata
+---@field RuntimeSkills { [nil]: System.String }
 ---@field private _bean ZhanGuoWuxia.Backend.Beans.ItemAffixBean
 ---@field InstanceId System.Int32
 ---@field BeanId System.String
@@ -552,13 +552,13 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.IRoleStatGetter:GetRoleStat(statNam
 ---@field CanCapture System.Boolean
 ---@field IsCapture System.Boolean
 ---@field Affixes ZhanGuoWuxia.Backend.RuntimeData.AffixInstance[]
----@field ActiveAffixes userdata
----@field EternalAffixes userdata
+---@field ActiveAffixes { [nil]: ZhanGuoWuxia.Backend.RuntimeData.AffixInstance }
+---@field EternalAffixes { [nil]: ZhanGuoWuxia.Backend.RuntimeData.AffixInstance }
 ---@field ActiveEternalAffixCount System.Int32
 ---@field EternalAffixCount System.Int32
 ---@field MaxActiveAffixCount System.Int32
 ---@field NoAffixLimit System.Boolean
----@field UnlockTalents userdata
+---@field UnlockTalents { [nil]: System.String }
 ---@field Bean ZhanGuoWuxia.Backend.Beans.RoleBean
 ---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
 ---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
@@ -575,7 +575,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.IRoleStatGetter:GetRoleStat(statNam
 ---@field private m_RemainBattleJoinCount System.Int32
 ---@field private m_RoleActions ZhanGuoWuxia.Backend.Beans.ActionBean[]
 ---@field ImprisonMenpaiId System.Int32
----@field private m_UnlockTalents userdata
+---@field private m_UnlockTalents { [nil]: System.String }
 ---@field private m_AttrPool ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
 ---@field private _bean ZhanGuoWuxia.Backend.Beans.RoleBean
 ---@field InstanceId System.Int32
@@ -796,7 +796,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_PrisonerActionTrig
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:GetRoleActions(save) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.ActionBean }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:GetPrisonerActions(save) end
 
 ---@return System.Boolean
@@ -808,10 +808,10 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_CanCapture() end
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_IsCapture() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.RuntimeData.AffixInstance }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_ActiveAffixes() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.RuntimeData.AffixInstance }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_EternalAffixes() end
 
 ---@return System.Int32
@@ -826,7 +826,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_MaxActiveAffixCoun
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_NoAffixLimit() end
 
----@return userdata
+---@return { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance:get_UnlockTalents() end
 
 ---@overload fun(self: self, creator: ZhanGuoWuxia.Backend.RuntimeData.ICreator, ...: System.Object)
@@ -897,12 +897,12 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.RoleInstance() end
 ---@field IsLock System.Boolean
 ---@field PresetBuildings System.String[]
 ---@field Buildings ZhanGuoWuxia.Backend.RuntimeData.BuildingInstance[]
----@field Actions userdata
+---@field Actions { [nil]: ZhanGuoWuxia.Backend.Beans.ActionBean }
 ---@field Bean ZhanGuoWuxia.Backend.Beans.AreaBean
 ---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
 ---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@field IsValid System.Boolean
----@field private _actionCache userdata
+---@field private _actionCache { [nil]: ZhanGuoWuxia.Backend.Beans.ActionBean }
 ---@field AreaFlags { [System.String]: System.String }
 ---@field private _bean ZhanGuoWuxia.Backend.Beans.AreaBean
 ---@field InstanceId System.Int32
@@ -928,7 +928,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:get_PresetBuildings() 
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:RefreshAction(save) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.Beans.ActionBean }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.AreaInstance:GetAvailableActions(save) end
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
@@ -1491,7 +1491,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.LearnSkillParam.NewParam(role) end
 ---@field Id System.String
 ---@field Name System.String
 ---@field Pic System.String
----@field Areas userdata
+---@field Areas { [nil]: System.Int32 }
 ---@field IsDestroyed System.Boolean
 ---@field Bag ZhanGuoWuxia.Backend.RuntimeData.ItemInstance[]
 ---@field Roles System.Int32[]
@@ -1632,7 +1632,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.RCAffixModifier:get_QualityOrder() 
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RCAffixModifier:Apply(saveData) end
 
 ---@overload fun(affixModifierBean: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean): ZhanGuoWuxia.Backend.RuntimeData.RCAffixModifier
----@param affixModifierBeans userdata
+---@param affixModifierBeans { [nil]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean }
 ---@return ZhanGuoWuxia.Backend.RuntimeData.RCAffixModifier
 function CS.ZhanGuoWuxia.Backend.RuntimeData.RCAffixModifier(affixModifierBeans) end
 
@@ -1856,7 +1856,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ICostumerTradeItem:get_ItemInstance
 
 ---@class ZhanGuoWuxia.Backend.RuntimeData.ShopInstance: userdata
 ---@field ShopName System.String
----@field AvailableShopItems userdata
+---@field AvailableShopItems { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance }
 ---@field CurrencyId System.String
 ---@field Bean ZhanGuoWuxia.Backend.Beans.ShopBean
 ---@field protected _db ZhanGuoWuxia.Backend.Beans.IBeanManager
@@ -1872,7 +1872,7 @@ CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance = {}
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:get_ShopName() end
 
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:get_AvailableShopItems() end
 
 ---@param shopItemId System.String
@@ -1881,7 +1881,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:get_AvailableShopItems
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:TryGetShopItem(shopItemId, shopItem) end
 
 ---@param lowestQuality ZhanGuoWuxia.Backend.Beans.ItemLevel
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:GetAvailableItemsAboveQuality(lowestQuality) end
 
 ---@return System.String
@@ -1916,21 +1916,21 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:CanSellItem(item) end
 ---@param creator ZhanGuoWuxia.Backend.RuntimeData.ICreator
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:InitItems(creator) end
 
----@param shopItems userdata
+---@param shopItems { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:ReplaceShopItems(shopItems) end
 
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:RefreshItems() end
 
 ---@param areaDevelop System.Int32
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:GetUnlockedShopItems(areaDevelop) end
 
 ---@param areaDevelop System.Int32
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:GetLockedShopItems(areaDevelop) end
 
 ---@param areaDevelop System.Int32
----@return userdata
+---@return { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:GetAvailableUnlockedItems(areaDevelop) end
 
 ---@return ZhanGuoWuxia.Backend.Beans.ShopBean

@@ -281,7 +281,7 @@ function CS.DG.Tweening.Core.TweenLink(target, behaviour) end
 ---@field package isUpdateLoop System.Boolean
 ---@field package _activeTweens DG.Tweening.Tween[]
 ---@field private _pooledTweeners DG.Tweening.Tween[]
----@field private _PooledSequences userdata
+---@field private _PooledSequences { [nil]: DG.Tweening.Tween }
 ---@field private _KillList DG.Tweening.Tween[]
 ---@field private _TweenLinks { [DG.Tweening.Tween]: DG.Tweening.Core.TweenLink }
 ---@field private _totTweenLinks System.Int32
