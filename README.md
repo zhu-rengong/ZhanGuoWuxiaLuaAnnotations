@@ -19,8 +19,7 @@
 	"settings": {
 		"Lua.diagnostics.libraryFiles": "Enable",
         "Lua.workspace.ignoreDir": [
-            // 避免Mod与本体Lua注解的冲突:
-			"<本体Lua注解路径>" // .../息风谷战略 Demo/WindstopStrategy_Data/Lua/注解
+			"<忽略的本体Lua注解路径>" // .../息风谷战略 Demo/WindstopStrategy_Data/Lua/注解/ | 为了避免Mod与本体Lua注解的冲突:
 		],
 		"Lua.workspace.library": [
 			"<本仓库路径>", // 告诉LuaLS你的Lua注解位置
