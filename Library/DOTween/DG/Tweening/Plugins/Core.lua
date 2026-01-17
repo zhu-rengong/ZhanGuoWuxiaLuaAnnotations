@@ -47,7 +47,7 @@ CS.DG.Tweening.Plugins.Core.ITweenPlugin = {}
 ---@field private _stringPlugin DG.Tweening.Plugins.Core.ITweenPlugin
 ---@field private _vector3ArrayPlugin DG.Tweening.Plugins.Core.ITweenPlugin
 ---@field private _color2Plugin DG.Tweening.Plugins.Core.ITweenPlugin
----@field private _customPlugins { [System.Type]: DG.Tweening.Plugins.Core.ITweenPlugin }
+---@field private _customPlugins userdata | { [System.Type]: DG.Tweening.Plugins.Core.ITweenPlugin } | { [nil]: userdata }
 ---@field private _MaxCustomPlugins System.Int32
 CS.DG.Tweening.Plugins.Core.PluginsManager = {}
 

@@ -3,12 +3,12 @@
 ---Namespace: ZhanGuoWuxia.Backend.QuickFormation
 
 ---@class ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution: System.Object
----@field AllSlots { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFormationSlotData }
+---@field AllSlots userdata | { [System.Int32]: ZhanGuoWuxia.Backend.QuickFormation.QuickFormationSlotData } | { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFormationSlotData }
 ---@field SolutionName System.String
----@field private m_Slots ZhanGuoWuxia.Backend.QuickFormation.QuickFormationSlotData[]
+---@field private m_Slots userdata | { [System.Int32]: ZhanGuoWuxia.Backend.QuickFormation.QuickFormationSlotData } | { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFormationSlotData }
 CS.ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution = {}
 
----@return { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFormationSlotData }
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.QuickFormation.QuickFormationSlotData } | { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFormationSlotData }
 function CS.ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution:get_AllSlots() end
 
 ---@param pos System.Int32
@@ -22,22 +22,22 @@ function CS.ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution:DeleteSlot
 
 function CS.ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution:SortSlots() end
 
----@param slots { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFormationSlotData }
+---@param slots userdata | { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFormationSlotData }
 function CS.ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution:SetSlots(slots) end
 
 ---@return ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution
 function CS.ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution() end
 
 ---@class ZhanGuoWuxia.Backend.QuickFormation.QuickFormationManager: ZhanGuoWuxia.Backend.IGameService
----@field private m_Solutions ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution[]
----@field Solutions { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution }
+---@field private m_Solutions userdata | { [System.Int32]: ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution } | { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution }
+---@field Solutions userdata | { [System.Int32]: ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution } | { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution }
 CS.ZhanGuoWuxia.Backend.QuickFormation.QuickFormationManager = {}
 
 ---@private
----@return ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution } | { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution }
 function CS.ZhanGuoWuxia.Backend.QuickFormation.QuickFormationManager:get_m_Solutions() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution }
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution } | { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution }
 function CS.ZhanGuoWuxia.Backend.QuickFormation.QuickFormationManager:get_Solutions() end
 
 ---@private
@@ -53,12 +53,12 @@ function CS.ZhanGuoWuxia.Backend.QuickFormation.QuickFormationManager:BroadcastS
 function CS.ZhanGuoWuxia.Backend.QuickFormation.QuickFormationManager:BroadcastSolutionReplaced(targetSolution) end
 
 ---@param idx System.Int32
----@param slots { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFormationSlotData }
+---@param slots userdata | { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFormationSlotData }
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.QuickFormation.QuickFormationManager:OverrideSolution(idx, slots) end
 
 ---@param solutionName System.String
----@param slots { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFormationSlotData }
+---@param slots userdata | { [nil]: ZhanGuoWuxia.Backend.QuickFormation.QuickFormationSlotData }
 function CS.ZhanGuoWuxia.Backend.QuickFormation.QuickFormationManager:AddNewSolution(solutionName, slots) end
 
 ---@param solution ZhanGuoWuxia.Backend.QuickFormation.QuickFomationSolution

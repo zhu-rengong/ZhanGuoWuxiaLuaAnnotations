@@ -23,12 +23,12 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetPrevAffixId(affixBean) e
 
 ---@param affixBean ZhanGuoWuxia.Backend.Beans.AffixBean
 ---@param includeSelf? System.Boolean
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.AffixBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.AffixBean }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetPrevAffixChain(affixBean, includeSelf) end
 
 ---@param affixBean ZhanGuoWuxia.Backend.Beans.AffixBean
 ---@param includeSelf? System.Boolean
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.AffixBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.AffixBean }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetNextAffixChain(affixBean, includeSelf) end
 
 ---@param affixBean ZhanGuoWuxia.Backend.Beans.AffixBean
@@ -75,7 +75,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetRoleClassAttrTemplate(ro
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.CanLearn(skillBean, param) end
 
 ---@param skillBean ZhanGuoWuxia.Backend.Beans.SkillBean
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.AllForms(skillBean) end
 
 ---@param skillFormBean ZhanGuoWuxia.Backend.Beans.SkillFormBean
@@ -134,11 +134,11 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.IsPreEventAfterRoundOk(acti
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.IsMenpaiConditionOk(actionBean, param) end
 
 ---@param bean ZhanGuoWuxia.Backend.Beans.DungeonBean
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetAllEvents(bean) end
 
 ---@param bean ZhanGuoWuxia.Backend.Beans.DungeonBean
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetAllTasks(bean) end
 
 ---@param evtBean ZhanGuoWuxia.Backend.Beans.DungeonEventBean
@@ -172,17 +172,17 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.IsAskForPlayerFormation(bat
 ---@param battleBean ZhanGuoWuxia.Backend.Beans.BattleBean
 ---@param saveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param team System.Int32
----@return ZhanGuoWuxia.Backend.Battle.RoleFormationData[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Battle.RoleFormationData } | { [nil]: ZhanGuoWuxia.Backend.Battle.RoleFormationData }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetTeamPresetFormation(battleBean, saveData, team) end
 
 ---@param bean ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean
 ---@param difficulty ZhanGuoWuxia.Backend.RuntimeData.GameDifficulty
----@param attrs { [System.String]: System.Single }
+---@param attrs userdata | { [System.String]: System.Single } | { [nil]: userdata }
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.TryGetAttrsWithDiffculty(bean, difficulty, attrs) end
 
 ---@param bean ZhanGuoWuxia.Backend.Beans.AffixBean
----@return { [System.String]: System.Single }
+---@return userdata | { [System.String]: System.Single } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetAttrsWithDifficulty(bean) end
 
 ---@private
@@ -190,7 +190,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.GetAttrsWithDifficulty(bean
 ---@param saveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param followPlayerLevel System.Boolean
 ---@param team System.Int32
----@return { [nil]: ZhanGuoWuxia.Backend.Battle.RoleFormationData }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Battle.RoleFormationData }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.Preset2Formations(preset, saveData, followPlayerLevel, team) end
 
 ---@param rcBean ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean
@@ -200,7 +200,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanExtension.IsUnlock(rcBean) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.BeanManagerCore: System.Object, ZhanGuoWuxia.Backend.Beans.IBeanManager
 ---@field Instance ZhanGuoWuxia.Backend.Beans.IBeanManager
----@field Tables { [nil]: ZhanGuoWuxia.Backend.Beans.ITable }
+---@field Tables userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ITable }
 ---@field private _db ZhanGuoWuxia.Tables
 ---@field private _instance ZhanGuoWuxia.Backend.Beans.IBeanManager
 CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore = {}
@@ -208,15 +208,15 @@ CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore = {}
 ---@return ZhanGuoWuxia.Backend.Beans.IBeanManager
 function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore.get_Instance() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.ITable }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ITable }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore:get_Tables() end
 
 ---@param type System.Type
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore:GetAll(type) end
 
 ---@param type System.Type
----@param beans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@param beans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore:Merge(type, beans) end
 
 ---@overload fun(self: self, loader: (fun(arg: System.String): SimpleJSON.JSONNode)): System.Int32
@@ -242,8 +242,8 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore() end
 ---@field Id System.String
 ---@field Icon System.String
 ---@field PrefixType ZhanGuoWuxia.Backend.Beans.PrefixType
----@field MountEvents { [nil]: System.String }
----@field Scenarios { [nil]: System.String }
+---@field MountEvents userdata | { [nil]: System.String }
+---@field Scenarios userdata | { [nil]: System.String }
 ---@field ImportanceType ZhanGuoWuxia.Backend.Beans.ActionImportantType
 ---@field Name System.String
 ---@field Name_l10n_key System.String
@@ -253,11 +253,11 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore() end
 ---@field RoundAfter System.Int32
 ---@field PlayOnce System.Boolean
 ---@field ShareEventId System.String
----@field PreEvents { [nil]: System.String }
----@field PreEventsAfterRound { [System.String]: System.Int32 }
----@field MenpaiExist { [nil]: System.String }
----@field HasFlags { [nil]: System.String }
----@field ExcludeFlags { [nil]: System.String }
+---@field PreEvents userdata | { [nil]: System.String }
+---@field PreEventsAfterRound userdata | { [System.String]: System.Int32 } | { [nil]: userdata }
+---@field MenpaiExist userdata | { [nil]: System.String }
+---@field HasFlags userdata | { [nil]: System.String }
+---@field ExcludeFlags userdata | { [nil]: System.String }
 ---@field ActionConditions ZhanGuoWuxia.Backend.Beans.ActionConditionBase[]
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.ActionBean = {}
@@ -272,7 +272,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ActionBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ActionBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ActionBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -285,7 +285,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ActionBean:ToString() end
 function CS.ZhanGuoWuxia.Backend.Beans.ActionBean:PostInit() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.ActionBean
----@overload fun(Id: System.String, Icon: System.String, PrefixType: ZhanGuoWuxia.Backend.Beans.PrefixType, MountEvents: { [nil]: System.String }, Scenarios: { [nil]: System.String }, ImportanceType: ZhanGuoWuxia.Backend.Beans.ActionImportantType, Name: System.String, LuaCommandFile: System.String, CostActionCount: System.Int32, ActionType: ZhanGuoWuxia.Backend.Beans.ActionClassType, RoundAfter: System.Int32, PlayOnce: System.Boolean, ShareEventId: System.String, PreEvents: { [nil]: System.String }, PreEventsAfterRound: { [System.String]: System.Int32 }, MenpaiExist: { [nil]: System.String }, HasFlags: { [nil]: System.String }, ExcludeFlags: { [nil]: System.String }, ActionConditions: ZhanGuoWuxia.Backend.Beans.ActionConditionBase[]): ZhanGuoWuxia.Backend.Beans.ActionBean
+---@overload fun(Id: System.String, Icon: System.String, PrefixType: ZhanGuoWuxia.Backend.Beans.PrefixType, MountEvents: (userdata | { [nil]: System.String }), Scenarios: (userdata | { [nil]: System.String }), ImportanceType: ZhanGuoWuxia.Backend.Beans.ActionImportantType, Name: System.String, LuaCommandFile: System.String, CostActionCount: System.Int32, ActionType: ZhanGuoWuxia.Backend.Beans.ActionClassType, RoundAfter: System.Int32, PlayOnce: System.Boolean, ShareEventId: System.String, PreEvents: (userdata | { [nil]: System.String }), PreEventsAfterRound: (userdata | { [System.String]: System.Int32 } | { [nil]: userdata }), MenpaiExist: (userdata | { [nil]: System.String }), HasFlags: (userdata | { [nil]: System.String }), ExcludeFlags: (userdata | { [nil]: System.String }), ActionConditions: ZhanGuoWuxia.Backend.Beans.ActionConditionBase[]): ZhanGuoWuxia.Backend.Beans.ActionBean
 ---@return ZhanGuoWuxia.Backend.Beans.ActionBean
 function CS.ZhanGuoWuxia.Backend.Beans.ActionBean() end
 
@@ -323,7 +323,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ActionConditionBase:GetTargetDungeon(para
 ---@protected
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@param other ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
----@param battleRelationDict { [userdata]: ZhanGuoWuxia.Backend.Beans.BattleRelationType }
+---@param battleRelationDict userdata | { [userdata]: ZhanGuoWuxia.Backend.Beans.BattleRelationType } | { [nil]: userdata }
 ---@return ZhanGuoWuxia.Backend.Beans.BattleRelationType
 function CS.ZhanGuoWuxia.Backend.Beans.ActionConditionBase:BattleRelationWith(menpai, other, battleRelationDict) end
 
@@ -331,7 +331,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ActionConditionBase:BattleRelationWith(me
 ---@return ZhanGuoWuxia.Backend.Beans.ActionConditionBase
 function CS.ZhanGuoWuxia.Backend.Beans.ActionConditionBase.DeserializeActionConditionBase(_json) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ActionConditionBase:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -365,7 +365,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_FlagBool:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_FlagBool:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_FlagBool:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -400,7 +400,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_FlagInt:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_FlagInt:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_FlagInt:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -434,7 +434,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_Round:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_Round:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_Round:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -468,7 +468,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_ActionCount:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_ActionCount:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_ActionCount:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -503,7 +503,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiHasArea:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiHasArea:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiHasArea:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -538,7 +538,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiHasRole:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiHasRole:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiHasRole:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -576,7 +576,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_LuaCondition:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_LuaCondition:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_LuaCondition:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -612,7 +612,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaOwnerRelationWithMenpai:GetTypeId(
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaOwnerRelationWithMenpai:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaOwnerRelationWithMenpai:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -647,7 +647,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaNeighborWithMenpai:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaNeighborWithMenpai:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaNeighborWithMenpai:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -683,7 +683,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_DungeonTaskProgress:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_DungeonTaskProgress:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_DungeonTaskProgress:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -718,7 +718,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_DungeonHasTeam:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_DungeonHasTeam:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_DungeonHasTeam:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -752,7 +752,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaLostAnyBuilding:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaLostAnyBuilding:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaLostAnyBuilding:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -786,7 +786,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaLock:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaLock:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaLock:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -821,7 +821,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaDevelop:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaDevelop:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaDevelop:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -856,7 +856,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaFlagBool:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaFlagBool:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaFlagBool:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -892,7 +892,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaFlagInt:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaFlagInt:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaFlagInt:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -927,7 +927,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleFlagBool:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleFlagBool:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleFlagBool:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -962,7 +962,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleFavor:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleFavor:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleFavor:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -997,7 +997,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleLevel:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleLevel:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleLevel:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1032,7 +1032,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleTalentPoint:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleTalentPoint:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_RoleTalentPoint:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1068,7 +1068,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiRelation:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiRelation:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiRelation:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1104,7 +1104,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiFriendship:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiFriendship:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiFriendship:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1139,7 +1139,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiAreaCount:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiAreaCount:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiAreaCount:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1175,7 +1175,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBattle:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBattle:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBattle:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1216,7 +1216,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBuildingCount:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBuildingCount:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBuildingCount:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1250,7 +1250,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBattleArea:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBattleArea:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiBattleArea:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1284,7 +1284,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiOccupyingArea:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiOccupyingArea:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiOccupyingArea:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1318,7 +1318,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiLosingArea:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiLosingArea:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiLosingArea:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1352,7 +1352,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiDestroyed:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiDestroyed:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_MenpaiDestroyed:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1387,7 +1387,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaBuildingsOwnerHasMenpai:GetTypeId(
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaBuildingsOwnerHasMenpai:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AC_AreaBuildingsOwnerHasMenpai:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1413,7 +1413,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AttrItemBase:GetAttr(level) end
 ---@return ZhanGuoWuxia.Backend.Beans.AttrItemBase
 function CS.ZhanGuoWuxia.Backend.Beans.AttrItemBase.DeserializeAttrItemBase(_json) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AttrItemBase:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1446,7 +1446,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AttrItem_Fix:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AttrItem_Fix:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AttrItem_Fix:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1480,7 +1480,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AttrItem_LevelGrow:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AttrItem_LevelGrow:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AttrItem_LevelGrow:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1496,13 +1496,13 @@ function CS.ZhanGuoWuxia.Backend.Beans.AttrItem_LevelGrow() end
 
 ---@class ZhanGuoWuxia.Backend.Beans.AttrTemplateBean: ZhanGuoWuxia.Backend.Beans.BaseBean, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
 ---@field Id System.String
----@field AttrValues ZhanGuoWuxia.Backend.Beans.AttrItemBase[]
----@field private m_AttrCache { [System.String]: System.Single }
+---@field AttrValues userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AttrItemBase } | { [nil]: ZhanGuoWuxia.Backend.Beans.AttrItemBase }
+---@field private m_AttrCache userdata | { [System.String]: System.Single } | { [nil]: userdata }
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.AttrTemplateBean = {}
 
 ---@param level System.Int32
----@return { [System.String]: System.Single }
+---@return userdata | { [System.String]: System.Single } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AttrTemplateBean:GetAttrs(level) end
 
 ---@param _json SimpleJSON.JSONNode
@@ -1515,7 +1515,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AttrTemplateBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AttrTemplateBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AttrTemplateBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1525,7 +1525,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AttrTemplateBean:TranslateText(translator
 function CS.ZhanGuoWuxia.Backend.Beans.AttrTemplateBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.AttrTemplateBean
----@overload fun(Id: System.String, AttrValues: ZhanGuoWuxia.Backend.Beans.AttrItemBase[]): ZhanGuoWuxia.Backend.Beans.AttrTemplateBean
+---@overload fun(Id: System.String, AttrValues: (userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AttrItemBase } | { [nil]: ZhanGuoWuxia.Backend.Beans.AttrItemBase })): ZhanGuoWuxia.Backend.Beans.AttrTemplateBean
 ---@return ZhanGuoWuxia.Backend.Beans.AttrTemplateBean
 function CS.ZhanGuoWuxia.Backend.Beans.AttrTemplateBean() end
 
@@ -1560,7 +1560,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BattleConditionBase:GetCurrentTriggerSkil
 ---@return ZhanGuoWuxia.Backend.Beans.BattleConditionBase
 function CS.ZhanGuoWuxia.Backend.Beans.BattleConditionBase.DeserializeBattleConditionBase(_json) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.BattleConditionBase:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1595,7 +1595,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BC_RoleHealthPercent:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BC_RoleHealthPercent:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.BC_RoleHealthPercent:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1629,7 +1629,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BC_Round:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BC_Round:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.BC_Round:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1664,7 +1664,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerCount:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerCount:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerCount:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1698,7 +1698,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerRole:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerRole:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerRole:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1732,7 +1732,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerSkill:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerSkill:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerSkill:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1767,7 +1767,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerFlagInt:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerFlagInt:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerFlagInt:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1784,7 +1784,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BC_TriggerFlagInt() end
 ---@class ZhanGuoWuxia.Backend.Beans.BattleRolePresetData: ZhanGuoWuxia.Backend.Beans.BaseBean, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
 ---@field RoleConfigId System.String
 ---@field Positions System.String
----@field private m_GenPositions { [nil]: System.Int32 }
+---@field private m_GenPositions userdata | { [nil]: System.Int32 }
 ---@field private m_RoleBeanId System.String
 ---@field private m_IsTempRole System.Boolean
 ---@field private m_IsMustRole System.Boolean
@@ -1798,7 +1798,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BattleRolePresetData:InitRoleIdConfig() e
 ---@private
 function CS.ZhanGuoWuxia.Backend.Beans.BattleRolePresetData:InitPositions() end
 
----@return { [nil]: System.Int32 }
+---@return userdata | { [nil]: System.Int32 }
 function CS.ZhanGuoWuxia.Backend.Beans.BattleRolePresetData:GetGenPositions() end
 
 ---@return System.String
@@ -1823,7 +1823,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BattleRolePresetData:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BattleRolePresetData:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.BattleRolePresetData:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1847,10 +1847,10 @@ function CS.ZhanGuoWuxia.Backend.Beans.BattleRolePresetData() end
 ---@field Name_l10n_key System.String
 ---@field EnableAffixName System.Boolean
 ---@field Quality ZhanGuoWuxia.Backend.Beans.ItemLevel
----@field RequireItemQualities { [nil]: ZhanGuoWuxia.Backend.Beans.ItemLevel }
----@field RequireSubType { [nil]: ZhanGuoWuxia.Backend.Beans.ItemSubType }
----@field RequireEquipType { [nil]: ZhanGuoWuxia.Backend.Beans.EquipType }
----@field RequireItemIds { [nil]: System.String }
+---@field RequireItemQualities userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ItemLevel }
+---@field RequireSubType userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ItemSubType }
+---@field RequireEquipType userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.EquipType }
+---@field RequireItemIds userdata | { [nil]: System.String }
 ---@field Weight System.Int32
 ---@field Price System.Int32
 ---@field Effects ZhanGuoWuxia.Backend.Beans.ItemAffixEffectBase[]
@@ -1870,7 +1870,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1880,7 +1880,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixBean:TranslateText(translator) e
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.ItemAffixBean
----@overload fun(Id: System.String, Name: System.String, EnableAffixName: System.Boolean, Quality: ZhanGuoWuxia.Backend.Beans.ItemLevel, RequireItemQualities: { [nil]: ZhanGuoWuxia.Backend.Beans.ItemLevel }, RequireSubType: { [nil]: ZhanGuoWuxia.Backend.Beans.ItemSubType }, RequireEquipType: { [nil]: ZhanGuoWuxia.Backend.Beans.EquipType }, RequireItemIds: { [nil]: System.String }, Weight: System.Int32, Price: System.Int32, Effects: ZhanGuoWuxia.Backend.Beans.ItemAffixEffectBase[]): ZhanGuoWuxia.Backend.Beans.ItemAffixBean
+---@overload fun(Id: System.String, Name: System.String, EnableAffixName: System.Boolean, Quality: ZhanGuoWuxia.Backend.Beans.ItemLevel, RequireItemQualities: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ItemLevel }), RequireSubType: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ItemSubType }), RequireEquipType: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.EquipType }), RequireItemIds: (userdata | { [nil]: System.String }), Weight: System.Int32, Price: System.Int32, Effects: ZhanGuoWuxia.Backend.Beans.ItemAffixEffectBase[]): ZhanGuoWuxia.Backend.Beans.ItemAffixBean
 ---@return ZhanGuoWuxia.Backend.Beans.ItemAffixBean
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixBean() end
 
@@ -1908,7 +1908,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.LootData:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.LootData:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.LootData:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1933,7 +1933,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillConditionBase:IsOk(param) end
 ---@return ZhanGuoWuxia.Backend.Beans.SkillConditionBase
 function CS.ZhanGuoWuxia.Backend.Beans.SkillConditionBase.DeserializeSkillConditionBase(_json) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.SkillConditionBase:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -1966,7 +1966,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleLearnedSkill:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleLearnedSkill:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleLearnedSkill:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2000,7 +2000,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleAttr:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleAttr:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleAttr:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2033,7 +2033,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleLevel:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleLevel:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleLevel:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2056,7 +2056,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SC_RoleLevel() end
 ---@field DamageFormula System.String
 ---@field MinFluctuation System.Single
 ---@field MaxFluctuation System.Single
----@field Attr { [System.String]: System.Single }
+---@field Attr userdata | { [System.String]: System.Single } | { [nil]: userdata }
 ---@field Icon System.String
 ---@field CoolDown System.Int32
 ---@field SkillFlag ZhanGuoWuxia.Backend.Beans.SkillFlag
@@ -2092,7 +2092,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillFormBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SkillFormBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.SkillFormBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2102,7 +2102,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillFormBean:TranslateText(translator) e
 function CS.ZhanGuoWuxia.Backend.Beans.SkillFormBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.SkillFormBean
----@overload fun(Id: System.String, Name: System.String, Description: System.String, DamageFormula: System.String, MinFluctuation: System.Single, MaxFluctuation: System.Single, Attr: { [System.String]: System.Single }, Icon: System.String, CoolDown: System.Int32, SkillFlag: ZhanGuoWuxia.Backend.Beans.SkillFlag, MaxCastCount: System.Int32, ContinueCountPerRound: System.Int32, FormType: ZhanGuoWuxia.Backend.Beans.SkillFormType, SubSkillType: ZhanGuoWuxia.Backend.Beans.SubSkillType, MovePosType: ZhanGuoWuxia.Backend.Beans.SkillMovePosType, SkillCastPosSelectType: ZhanGuoWuxia.Backend.Beans.SkillCastPosSelectType, CastPosMustHaveRole: System.Boolean, SkillRange: ZhanGuoWuxia.Backend.Beans.SkillRangeType, DamageType: ZhanGuoWuxia.Backend.Beans.DamageType, DamageScaleType: ZhanGuoWuxia.Backend.Beans.DamageScaleType, SkillTargetType: ZhanGuoWuxia.Backend.Beans.SkillCastTargetType, CastDisplayFileName: System.String, SkillNameDisplayType: ZhanGuoWuxia.Backend.Beans.SkillNameDisplayType, LogicFile: System.String): ZhanGuoWuxia.Backend.Beans.SkillFormBean
+---@overload fun(Id: System.String, Name: System.String, Description: System.String, DamageFormula: System.String, MinFluctuation: System.Single, MaxFluctuation: System.Single, Attr: (userdata | { [System.String]: System.Single } | { [nil]: userdata }), Icon: System.String, CoolDown: System.Int32, SkillFlag: ZhanGuoWuxia.Backend.Beans.SkillFlag, MaxCastCount: System.Int32, ContinueCountPerRound: System.Int32, FormType: ZhanGuoWuxia.Backend.Beans.SkillFormType, SubSkillType: ZhanGuoWuxia.Backend.Beans.SubSkillType, MovePosType: ZhanGuoWuxia.Backend.Beans.SkillMovePosType, SkillCastPosSelectType: ZhanGuoWuxia.Backend.Beans.SkillCastPosSelectType, CastPosMustHaveRole: System.Boolean, SkillRange: ZhanGuoWuxia.Backend.Beans.SkillRangeType, DamageType: ZhanGuoWuxia.Backend.Beans.DamageType, DamageScaleType: ZhanGuoWuxia.Backend.Beans.DamageScaleType, SkillTargetType: ZhanGuoWuxia.Backend.Beans.SkillCastTargetType, CastDisplayFileName: System.String, SkillNameDisplayType: ZhanGuoWuxia.Backend.Beans.SkillNameDisplayType, LogicFile: System.String): ZhanGuoWuxia.Backend.Beans.SkillFormBean
 ---@overload fun(): ZhanGuoWuxia.Backend.Beans.SkillFormBean
 ---@return ZhanGuoWuxia.Backend.Beans.SkillFormBean
 function CS.ZhanGuoWuxia.Backend.Beans.SkillFormBean() end
@@ -2118,7 +2118,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TalentConditionBase:IsOk(param) end
 ---@return ZhanGuoWuxia.Backend.Beans.TalentConditionBase
 function CS.ZhanGuoWuxia.Backend.Beans.TalentConditionBase.DeserializeTalentConditionBase(_json) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TalentConditionBase:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2153,7 +2153,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TC_RoleAttr:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TC_RoleAttr:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TC_RoleAttr:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2187,7 +2187,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TC_RoleLevel:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TC_RoleLevel:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TC_RoleLevel:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2221,7 +2221,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TC_UnlockTalent:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TC_UnlockTalent:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TC_UnlockTalent:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2259,7 +2259,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TalentElement:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TalentElement:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TalentElement:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2297,7 +2297,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AchievementBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AchievementBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AchievementBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2334,11 +2334,11 @@ CS.ZhanGuoWuxia.Backend.Beans.AC_ExistCheckType = {
 
 ---@class ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean: ZhanGuoWuxia.Backend.Beans.BaseBean, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
 ---@field Id System.String
----@field CasualAttrs { [System.String]: System.Single }
----@field SimpleAttrs { [System.String]: System.Single }
----@field NormalAttrs { [System.String]: System.Single }
----@field HardAttrs { [System.String]: System.Single }
----@field ExpertAttrs { [System.String]: System.Single }
+---@field CasualAttrs userdata | { [System.String]: System.Single } | { [nil]: userdata }
+---@field SimpleAttrs userdata | { [System.String]: System.Single } | { [nil]: userdata }
+---@field NormalAttrs userdata | { [System.String]: System.Single } | { [nil]: userdata }
+---@field HardAttrs userdata | { [System.String]: System.Single } | { [nil]: userdata }
+---@field ExpertAttrs userdata | { [System.String]: System.Single } | { [nil]: userdata }
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean = {}
 
@@ -2352,7 +2352,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2362,7 +2362,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean:TranslateText(translator
 function CS.ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean
----@overload fun(Id: System.String, CasualAttrs: { [System.String]: System.Single }, SimpleAttrs: { [System.String]: System.Single }, NormalAttrs: { [System.String]: System.Single }, HardAttrs: { [System.String]: System.Single }, ExpertAttrs: { [System.String]: System.Single }): ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean
+---@overload fun(Id: System.String, CasualAttrs: (userdata | { [System.String]: System.Single } | { [nil]: userdata }), SimpleAttrs: (userdata | { [System.String]: System.Single } | { [nil]: userdata }), NormalAttrs: (userdata | { [System.String]: System.Single } | { [nil]: userdata }), HardAttrs: (userdata | { [System.String]: System.Single } | { [nil]: userdata }), ExpertAttrs: (userdata | { [System.String]: System.Single } | { [nil]: userdata })): ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean
 ---@return ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean
 function CS.ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean() end
 
@@ -2375,7 +2375,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean() end
 ---@field AffixDescription System.String
 ---@field AffixDescription_l10n_key System.String
 ---@field LifeType ZhanGuoWuxia.Backend.Beans.AffixLifeType
----@field RoleAttr { [System.String]: System.Single }
+---@field RoleAttr userdata | { [System.String]: System.Single } | { [nil]: userdata }
 ---@field BattleBuffId System.String
 ---@field AffixFlag ZhanGuoWuxia.Backend.Beans.AffixFlag
 ---@field NextLevelAffix System.String
@@ -2392,7 +2392,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AffixBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AffixBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AffixBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2402,7 +2402,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AffixBean:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.AffixBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.AffixBean
----@overload fun(Id: System.String, Pic: System.String, AffixQuality: ZhanGuoWuxia.Backend.Beans.ItemLevel, AffixName: System.String, AffixDescription: System.String, LifeType: ZhanGuoWuxia.Backend.Beans.AffixLifeType, RoleAttr: { [System.String]: System.Single }, BattleBuffId: System.String, AffixFlag: ZhanGuoWuxia.Backend.Beans.AffixFlag, NextLevelAffix: System.String): ZhanGuoWuxia.Backend.Beans.AffixBean
+---@overload fun(Id: System.String, Pic: System.String, AffixQuality: ZhanGuoWuxia.Backend.Beans.ItemLevel, AffixName: System.String, AffixDescription: System.String, LifeType: ZhanGuoWuxia.Backend.Beans.AffixLifeType, RoleAttr: (userdata | { [System.String]: System.Single } | { [nil]: userdata }), BattleBuffId: System.String, AffixFlag: ZhanGuoWuxia.Backend.Beans.AffixFlag, NextLevelAffix: System.String): ZhanGuoWuxia.Backend.Beans.AffixBean
 ---@return ZhanGuoWuxia.Backend.Beans.AffixBean
 function CS.ZhanGuoWuxia.Backend.Beans.AffixBean() end
 
@@ -2424,12 +2424,12 @@ CS.ZhanGuoWuxia.Backend.Beans.AffixLifeType = {
 ---@field Id System.String
 ---@field Name System.String
 ---@field Name_l10n_key System.String
----@field BuildingList System.String[]
+---@field BuildingList userdata | { [System.Int32]: System.String } | { [nil]: System.String }
 ---@field Develop System.Int32
 ---@field Pic System.String
 ---@field PicScale System.Single
 ---@field MapPosition UnityEngine.Vector2
----@field ConnectedNodes { [nil]: System.String }
+---@field ConnectedNodes userdata | { [nil]: System.String }
 ---@field BattleScene System.String
 ---@field BattleBGM System.String
 ---@field __ID__ System.Int32
@@ -2445,7 +2445,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AreaBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AreaBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AreaBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2455,7 +2455,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AreaBean:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.AreaBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.AreaBean
----@overload fun(Id: System.String, Name: System.String, BuildingList: System.String[], Develop: System.Int32, Pic: System.String, PicScale: System.Single, MapPosition: UnityEngine.Vector2, ConnectedNodes: { [nil]: System.String }, BattleScene: System.String, BattleBGM: System.String): ZhanGuoWuxia.Backend.Beans.AreaBean
+---@overload fun(Id: System.String, Name: System.String, BuildingList: (userdata | { [System.Int32]: System.String } | { [nil]: System.String }), Develop: System.Int32, Pic: System.String, PicScale: System.Single, MapPosition: UnityEngine.Vector2, ConnectedNodes: (userdata | { [nil]: System.String }), BattleScene: System.String, BattleBGM: System.String): ZhanGuoWuxia.Backend.Beans.AreaBean
 ---@return ZhanGuoWuxia.Backend.Beans.AreaBean
 function CS.ZhanGuoWuxia.Backend.Beans.AreaBean() end
 
@@ -2484,7 +2484,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.AttrBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.AttrBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.AttrBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2512,10 +2512,10 @@ CS.ZhanGuoWuxia.Backend.Beans.AttrShowType = {
 ---@field OverrideMaxRoleCount System.Int32
 ---@field Scene System.String
 ---@field BGM System.String
----@field BattleTriggers System.String[]
+---@field BattleTriggers userdata | { [System.Int32]: System.String } | { [nil]: System.String }
 ---@field BattleAI System.String
----@field Team1 ZhanGuoWuxia.Backend.Beans.BattleRolePresetData[]
----@field Team2 ZhanGuoWuxia.Backend.Beans.BattleRolePresetData[]
+---@field Team1 userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BattleRolePresetData } | { [nil]: ZhanGuoWuxia.Backend.Beans.BattleRolePresetData }
+---@field Team2 userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BattleRolePresetData } | { [nil]: ZhanGuoWuxia.Backend.Beans.BattleRolePresetData }
 ---@field BattleFlag ZhanGuoWuxia.Backend.Beans.BattleConfigFlag
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.BattleBean = {}
@@ -2530,7 +2530,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BattleBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BattleBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.BattleBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2540,7 +2540,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BattleBean:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.BattleBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.BattleBean
----@overload fun(Id: System.String, BattleName: System.String, MaxTurn: System.Int32, OverrideMaxRoleCount: System.Int32, Scene: System.String, BGM: System.String, BattleTriggers: System.String[], BattleAI: System.String, Team1: ZhanGuoWuxia.Backend.Beans.BattleRolePresetData[], Team2: ZhanGuoWuxia.Backend.Beans.BattleRolePresetData[], BattleFlag: ZhanGuoWuxia.Backend.Beans.BattleConfigFlag): ZhanGuoWuxia.Backend.Beans.BattleBean
+---@overload fun(Id: System.String, BattleName: System.String, MaxTurn: System.Int32, OverrideMaxRoleCount: System.Int32, Scene: System.String, BGM: System.String, BattleTriggers: (userdata | { [System.Int32]: System.String } | { [nil]: System.String }), BattleAI: System.String, Team1: (userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BattleRolePresetData } | { [nil]: ZhanGuoWuxia.Backend.Beans.BattleRolePresetData }), Team2: (userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BattleRolePresetData } | { [nil]: ZhanGuoWuxia.Backend.Beans.BattleRolePresetData }), BattleFlag: ZhanGuoWuxia.Backend.Beans.BattleConfigFlag): ZhanGuoWuxia.Backend.Beans.BattleBean
 ---@return ZhanGuoWuxia.Backend.Beans.BattleBean
 function CS.ZhanGuoWuxia.Backend.Beans.BattleBean() end
 
@@ -2591,7 +2591,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BattleTriggerBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BattleTriggerBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.BattleTriggerBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2626,7 +2626,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BigEventBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BigEventBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.BigEventBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2651,9 +2651,9 @@ function CS.ZhanGuoWuxia.Backend.Beans.BigEventBean() end
 ---@field IsPositive System.Boolean
 ---@field IsSpecial System.Boolean
 ---@field BuffFlag ZhanGuoWuxia.Backend.Beans.BuffFlagType
----@field BuffRoleState { [nil]: System.String }
----@field FailedRoleState { [nil]: System.String }
----@field DefaultProperties { [System.String]: System.Single }
+---@field BuffRoleState userdata | { [nil]: System.String }
+---@field FailedRoleState userdata | { [nil]: System.String }
+---@field DefaultProperties userdata | { [System.String]: System.Single } | { [nil]: userdata }
 ---@field MaxPile System.Int32
 ---@field IsPileRefresh System.Boolean
 ---@field Interval System.Int32
@@ -2673,7 +2673,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BuffBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BuffBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.BuffBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2683,7 +2683,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BuffBean:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.BuffBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.BuffBean
----@overload fun(Id: System.String, Name: System.String, Brief: System.String, Description: System.String, Icon: System.String, IsPositive: System.Boolean, IsSpecial: System.Boolean, BuffFlag: ZhanGuoWuxia.Backend.Beans.BuffFlagType, BuffRoleState: { [nil]: System.String }, FailedRoleState: { [nil]: System.String }, DefaultProperties: { [System.String]: System.Single }, MaxPile: System.Int32, IsPileRefresh: System.Boolean, Interval: System.Int32, MaxDuration: System.Int32, BuffLogicFile: System.String, DurationEffectId: System.String): ZhanGuoWuxia.Backend.Beans.BuffBean
+---@overload fun(Id: System.String, Name: System.String, Brief: System.String, Description: System.String, Icon: System.String, IsPositive: System.Boolean, IsSpecial: System.Boolean, BuffFlag: ZhanGuoWuxia.Backend.Beans.BuffFlagType, BuffRoleState: (userdata | { [nil]: System.String }), FailedRoleState: (userdata | { [nil]: System.String }), DefaultProperties: (userdata | { [System.String]: System.Single } | { [nil]: userdata }), MaxPile: System.Int32, IsPileRefresh: System.Boolean, Interval: System.Int32, MaxDuration: System.Int32, BuffLogicFile: System.String, DurationEffectId: System.String): ZhanGuoWuxia.Backend.Beans.BuffBean
 ---@return ZhanGuoWuxia.Backend.Beans.BuffBean
 function CS.ZhanGuoWuxia.Backend.Beans.BuffBean() end
 
@@ -2713,7 +2713,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.BuildingBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.BuildingBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.BuildingBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2763,7 +2763,7 @@ CS.ZhanGuoWuxia.Backend.Beans.DamageType = {
 ---@field Pic System.String
 ---@field BGM System.String
 ---@field DungeonType ZhanGuoWuxia.Backend.Beans.DungeonType
----@field MustRoles System.String[]
+---@field MustRoles userdata | { [System.Int32]: System.String } | { [nil]: System.String }
 ---@field MaxJoinRoleNum System.Int32
 ---@field OwnedAreaId System.String
 ---@field LootPoolId System.String
@@ -2780,7 +2780,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.DungeonBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.DungeonBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.DungeonBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2790,7 +2790,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.DungeonBean:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.DungeonBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.DungeonBean
----@overload fun(Id: System.String, Name: System.String, Desc: System.String, Pic: System.String, BGM: System.String, DungeonType: ZhanGuoWuxia.Backend.Beans.DungeonType, MustRoles: System.String[], MaxJoinRoleNum: System.Int32, OwnedAreaId: System.String, LootPoolId: System.String): ZhanGuoWuxia.Backend.Beans.DungeonBean
+---@overload fun(Id: System.String, Name: System.String, Desc: System.String, Pic: System.String, BGM: System.String, DungeonType: ZhanGuoWuxia.Backend.Beans.DungeonType, MustRoles: (userdata | { [System.Int32]: System.String } | { [nil]: System.String }), MaxJoinRoleNum: System.Int32, OwnedAreaId: System.String, LootPoolId: System.String): ZhanGuoWuxia.Backend.Beans.DungeonBean
 ---@return ZhanGuoWuxia.Backend.Beans.DungeonBean
 function CS.ZhanGuoWuxia.Backend.Beans.DungeonBean() end
 
@@ -2821,7 +2821,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.DungeonEventBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.DungeonEventBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.DungeonEventBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2870,7 +2870,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.DungeonTaskBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.DungeonTaskBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.DungeonTaskBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2912,7 +2912,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.EquipmentPartialBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.EquipmentPartialBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.EquipmentPartialBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2968,7 +2968,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.GalleryBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.GalleryBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.GalleryBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -2996,7 +2996,7 @@ CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffectBase = {}
 ---@return ZhanGuoWuxia.Backend.Beans.ItemAffixEffectBase
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffectBase.DeserializeItemAffixEffectBase(_json) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffectBase:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3026,7 +3026,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_Attr:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_Attr:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_Attr:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3041,7 +3041,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_Attr:ToString() end
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_Attr() end
 
 ---@class ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroup: ZhanGuoWuxia.Backend.Beans.BaseBean, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
----@field AttrIds System.String[]
+---@field AttrIds userdata | { [System.Int32]: System.String } | { [nil]: System.String }
 ---@field MinValue System.Single
 ---@field MaxValue System.Single
 ---@field __ID__ System.Int32
@@ -3057,7 +3057,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroup:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroup:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroup:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3067,12 +3067,12 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroup:TranslateText(t
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroup:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroup
----@overload fun(AttrIds: System.String[], MinValue: System.Single, MaxValue: System.Single): ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroup
+---@overload fun(AttrIds: (userdata | { [System.Int32]: System.String } | { [nil]: System.String }), MinValue: System.Single, MaxValue: System.Single): ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroup
 ---@return ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroup
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroup() end
 
 ---@class ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRange: ZhanGuoWuxia.Backend.Beans.ItemAffixEffectBase, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
----@field AttrIds System.String[]
+---@field AttrIds userdata | { [System.Int32]: System.String } | { [nil]: System.String }
 ---@field MinValue System.Single
 ---@field MaxValue System.Single
 ---@field __ID__ System.Int32
@@ -3088,7 +3088,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRange:GetTypeId(
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRange:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRange:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3098,7 +3098,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRange:TranslateT
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRange:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRange
----@overload fun(AttrIds: System.String[], MinValue: System.Single, MaxValue: System.Single): ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRange
+---@overload fun(AttrIds: (userdata | { [System.Int32]: System.String } | { [nil]: System.String }), MinValue: System.Single, MaxValue: System.Single): ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRange
 ---@return ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRange
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRange() end
 
@@ -3117,7 +3117,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRangeList:GetTyp
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRangeList:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrGroupRangeList:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3148,7 +3148,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrRange:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrRange:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrRange:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3163,7 +3163,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrRange:ToString() end
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_AttrRange() end
 
 ---@class ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_RandomSkill: ZhanGuoWuxia.Backend.Beans.ItemAffixEffectBase, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
----@field RandomSkills System.String[]
+---@field RandomSkills userdata | { [System.Int32]: System.String } | { [nil]: System.String }
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_RandomSkill = {}
 
@@ -3177,7 +3177,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_RandomSkill:GetTypeId() e
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_RandomSkill:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_RandomSkill:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3187,7 +3187,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_RandomSkill:TranslateText
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_RandomSkill:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_RandomSkill
----@overload fun(RandomSkills: System.String[]): ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_RandomSkill
+---@overload fun(RandomSkills: (userdata | { [System.Int32]: System.String } | { [nil]: System.String })): ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_RandomSkill
 ---@return ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_RandomSkill
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_RandomSkill() end
 
@@ -3206,7 +3206,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_Skill:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_Skill:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_Skill:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3235,12 +3235,12 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemAffixEffect_Skill() end
 ---@field Desc System.String
 ---@field Desc_l10n_key System.String
 ---@field LuaCommandFile System.String
----@field LuaCommandParam { [System.String]: System.Single }
+---@field LuaCommandParam userdata | { [System.String]: System.Single } | { [nil]: userdata }
 ---@field AttrTemplate System.String
 ---@field SellCurrencyItem System.String
 ---@field SellPrice System.Int32
----@field ModelInfo { [System.String]: System.String }
----@field BaseBuffEffects { [nil]: System.String }
+---@field ModelInfo userdata | { [System.String]: System.String } | { [nil]: userdata }
+---@field BaseBuffEffects userdata | { [nil]: System.String }
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.ItemBean = {}
 
@@ -3254,7 +3254,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ItemBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ItemBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3264,7 +3264,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ItemBean:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.ItemBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.ItemBean
----@overload fun(Id: System.String, Name: System.String, ItemType: ZhanGuoWuxia.Backend.Beans.ItemType, ItemSubType: ZhanGuoWuxia.Backend.Beans.ItemSubType, EquipType: ZhanGuoWuxia.Backend.Beans.EquipType, ItemFlag: ZhanGuoWuxia.Backend.Beans.ItemFlag, UseType: ZhanGuoWuxia.Backend.Beans.UseType, UsageLimit: System.Int32, ItemLevel: ZhanGuoWuxia.Backend.Beans.ItemLevel, Pic: System.String, Desc: System.String, LuaCommandFile: System.String, LuaCommandParam: { [System.String]: System.Single }, AttrTemplate: System.String, SellCurrencyItem: System.String, SellPrice: System.Int32, ModelInfo: { [System.String]: System.String }, BaseBuffEffects: { [nil]: System.String }): ZhanGuoWuxia.Backend.Beans.ItemBean
+---@overload fun(Id: System.String, Name: System.String, ItemType: ZhanGuoWuxia.Backend.Beans.ItemType, ItemSubType: ZhanGuoWuxia.Backend.Beans.ItemSubType, EquipType: ZhanGuoWuxia.Backend.Beans.EquipType, ItemFlag: ZhanGuoWuxia.Backend.Beans.ItemFlag, UseType: ZhanGuoWuxia.Backend.Beans.UseType, UsageLimit: System.Int32, ItemLevel: ZhanGuoWuxia.Backend.Beans.ItemLevel, Pic: System.String, Desc: System.String, LuaCommandFile: System.String, LuaCommandParam: (userdata | { [System.String]: System.Single } | { [nil]: userdata }), AttrTemplate: System.String, SellCurrencyItem: System.String, SellPrice: System.Int32, ModelInfo: (userdata | { [System.String]: System.String } | { [nil]: userdata }), BaseBuffEffects: (userdata | { [nil]: System.String })): ZhanGuoWuxia.Backend.Beans.ItemBean
 ---@return ZhanGuoWuxia.Backend.Beans.ItemBean
 function CS.ZhanGuoWuxia.Backend.Beans.ItemBean() end
 
@@ -3305,8 +3305,8 @@ CS.ZhanGuoWuxia.Backend.Beans.ItemType = {
 
 ---@class ZhanGuoWuxia.Backend.Beans.LootPoolBean: ZhanGuoWuxia.Backend.Beans.BaseBean, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
 ---@field Id System.String
----@field FixedLoots ZhanGuoWuxia.Backend.Beans.LootData[]
----@field RandomLoots ZhanGuoWuxia.Backend.Beans.LootData[]
+---@field FixedLoots userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.LootData } | { [nil]: ZhanGuoWuxia.Backend.Beans.LootData }
+---@field RandomLoots userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.LootData } | { [nil]: ZhanGuoWuxia.Backend.Beans.LootData }
 ---@field RandomDropCount System.Int32
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.LootPoolBean = {}
@@ -3321,7 +3321,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.LootPoolBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.LootPoolBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.LootPoolBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3331,7 +3331,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.LootPoolBean:TranslateText(translator) en
 function CS.ZhanGuoWuxia.Backend.Beans.LootPoolBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.LootPoolBean
----@overload fun(Id: System.String, FixedLoots: ZhanGuoWuxia.Backend.Beans.LootData[], RandomLoots: ZhanGuoWuxia.Backend.Beans.LootData[], RandomDropCount: System.Int32): ZhanGuoWuxia.Backend.Beans.LootPoolBean
+---@overload fun(Id: System.String, FixedLoots: (userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.LootData } | { [nil]: ZhanGuoWuxia.Backend.Beans.LootData }), RandomLoots: (userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.LootData } | { [nil]: ZhanGuoWuxia.Backend.Beans.LootData }), RandomDropCount: System.Int32): ZhanGuoWuxia.Backend.Beans.LootPoolBean
 ---@return ZhanGuoWuxia.Backend.Beans.LootPoolBean
 function CS.ZhanGuoWuxia.Backend.Beans.LootPoolBean() end
 
@@ -3356,7 +3356,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.MenpaiBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.MenpaiBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.MenpaiBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3379,15 +3379,15 @@ CS.ZhanGuoWuxia.Backend.Beans.MenpaiRelationType = {
 
 ---@class ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean: ZhanGuoWuxia.Backend.Beans.BaseBean, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
 ---@field Id System.String
----@field Scenarios { [nil]: System.String }
+---@field Scenarios userdata | { [nil]: System.String }
 ---@field MenpaiId System.String
----@field AreaSet { [nil]: System.String }
----@field RoleList System.String[]
----@field RecruitRoles System.String[]
+---@field AreaSet userdata | { [nil]: System.String }
+---@field RoleList userdata | { [System.Int32]: System.String } | { [nil]: System.String }
+---@field RecruitRoles userdata | { [System.Int32]: System.String } | { [nil]: System.String }
 ---@field StartRandromRoleNum System.Int32
 ---@field LeaderId System.String
----@field RelationDict { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiRelationType }
----@field FriendShipDict { [System.String]: System.Single }
+---@field RelationDict userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiRelationType } | { [nil]: userdata }
+---@field FriendShipDict userdata | { [System.String]: System.Single } | { [nil]: userdata }
 ---@field AIName System.String
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean = {}
@@ -3402,7 +3402,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3412,7 +3412,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean:TranslateText(translator)
 function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
----@overload fun(Id: System.String, Scenarios: { [nil]: System.String }, MenpaiId: System.String, AreaSet: { [nil]: System.String }, RoleList: System.String[], RecruitRoles: System.String[], StartRandromRoleNum: System.Int32, LeaderId: System.String, RelationDict: { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiRelationType }, FriendShipDict: { [System.String]: System.Single }, AIName: System.String): ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
+---@overload fun(Id: System.String, Scenarios: (userdata | { [nil]: System.String }), MenpaiId: System.String, AreaSet: (userdata | { [nil]: System.String }), RoleList: (userdata | { [System.Int32]: System.String } | { [nil]: System.String }), RecruitRoles: (userdata | { [System.Int32]: System.String } | { [nil]: System.String }), StartRandromRoleNum: System.Int32, LeaderId: System.String, RelationDict: (userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiRelationType } | { [nil]: userdata }), FriendShipDict: (userdata | { [System.String]: System.Single } | { [nil]: userdata }), AIName: System.String): ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
 ---@return ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
 function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean() end
 
@@ -3422,8 +3422,8 @@ function CS.ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean() end
 ---@field ModelType ZhanGuoWuxia.Backend.Beans.ModelType
 ---@field ModelHeight System.Single
 ---@field CompleteModelPath System.String
----@field ModelComponents { [ZhanGuoWuxia.Backend.Beans.ModelComponentType]: System.String }
----@field ModelColorList ZhanGuoWuxia.Backend.Beans.ModelColorBean[]
+---@field ModelComponents userdata | { [ZhanGuoWuxia.Backend.Beans.ModelComponentType]: System.String } | { [nil]: userdata }
+---@field ModelColorList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ModelColorBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ModelColorBean }
 ---@field ModelScale System.Single
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.ModelBean = {}
@@ -3438,7 +3438,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ModelBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ModelBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ModelBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3448,7 +3448,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ModelBean:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.ModelBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.ModelBean
----@overload fun(Id: System.String, ControllerName: System.String, ModelType: ZhanGuoWuxia.Backend.Beans.ModelType, ModelHeight: System.Single, CompleteModelPath: System.String, ModelComponents: { [ZhanGuoWuxia.Backend.Beans.ModelComponentType]: System.String }, ModelColorList: ZhanGuoWuxia.Backend.Beans.ModelColorBean[], ModelScale: System.Single): ZhanGuoWuxia.Backend.Beans.ModelBean
+---@overload fun(Id: System.String, ControllerName: System.String, ModelType: ZhanGuoWuxia.Backend.Beans.ModelType, ModelHeight: System.Single, CompleteModelPath: System.String, ModelComponents: (userdata | { [ZhanGuoWuxia.Backend.Beans.ModelComponentType]: System.String } | { [nil]: userdata }), ModelColorList: (userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ModelColorBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ModelColorBean }), ModelScale: System.Single): ZhanGuoWuxia.Backend.Beans.ModelBean
 ---@return ZhanGuoWuxia.Backend.Beans.ModelBean
 function CS.ZhanGuoWuxia.Backend.Beans.ModelBean() end
 
@@ -3470,7 +3470,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ModelColorBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ModelColorBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ModelColorBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3503,7 +3503,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ModelComponentBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ModelComponentBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ModelComponentBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3559,7 +3559,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.NameBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.NameBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.NameBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3603,7 +3603,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.PermanentResourceBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.PermanentResourceBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.PermanentResourceBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3641,7 +3641,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.PicBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.PicBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.PicBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3711,7 +3711,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RestoreBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.RestoreBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.RestoreBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3738,15 +3738,15 @@ function CS.ZhanGuoWuxia.Backend.Beans.RestoreBean() end
 ---@field RoleClass System.String
 ---@field RoleType ZhanGuoWuxia.Backend.Beans.RoleType
 ---@field Pic System.String
----@field SkillList ZhanGuoWuxia.Backend.Beans.SkillPartialBean[]
----@field EquipmentList ZhanGuoWuxia.Backend.Beans.EquipmentPartialBean[]
----@field Affixes { [nil]: System.String }
+---@field SkillList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.SkillPartialBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.SkillPartialBean }
+---@field EquipmentList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.EquipmentPartialBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.EquipmentPartialBean }
+---@field Affixes userdata | { [nil]: System.String }
 ---@field DefaultAffixLimitCount System.Int32
----@field InitialTalents { [nil]: System.String }
+---@field InitialTalents userdata | { [nil]: System.String }
 ---@field ModelId System.String
 ---@field ActionTemplate System.String
 ---@field PrisonActionTemplate System.String
----@field RoleVoices ZhanGuoWuxia.Backend.Beans.RoleVoiceData[]
+---@field RoleVoices userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleVoiceData } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleVoiceData }
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.RoleBean = {}
 
@@ -3760,7 +3760,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.RoleBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.RoleBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3770,7 +3770,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleBean:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.RoleBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.RoleBean
----@overload fun(Id: System.String, Name: System.String, Gender: ZhanGuoWuxia.Backend.Beans.GenderType, RoleFlagType: ZhanGuoWuxia.Backend.Beans.RoleFlag, Story: System.String, MaxRoundBattleCount: System.Int32, Level: System.Int32, RoleClass: System.String, RoleType: ZhanGuoWuxia.Backend.Beans.RoleType, Pic: System.String, SkillList: ZhanGuoWuxia.Backend.Beans.SkillPartialBean[], EquipmentList: ZhanGuoWuxia.Backend.Beans.EquipmentPartialBean[], Affixes: { [nil]: System.String }, DefaultAffixLimitCount: System.Int32, InitialTalents: { [nil]: System.String }, ModelId: System.String, ActionTemplate: System.String, PrisonActionTemplate: System.String, RoleVoices: ZhanGuoWuxia.Backend.Beans.RoleVoiceData[]): ZhanGuoWuxia.Backend.Beans.RoleBean
+---@overload fun(Id: System.String, Name: System.String, Gender: ZhanGuoWuxia.Backend.Beans.GenderType, RoleFlagType: ZhanGuoWuxia.Backend.Beans.RoleFlag, Story: System.String, MaxRoundBattleCount: System.Int32, Level: System.Int32, RoleClass: System.String, RoleType: ZhanGuoWuxia.Backend.Beans.RoleType, Pic: System.String, SkillList: (userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.SkillPartialBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.SkillPartialBean }), EquipmentList: (userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.EquipmentPartialBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.EquipmentPartialBean }), Affixes: (userdata | { [nil]: System.String }), DefaultAffixLimitCount: System.Int32, InitialTalents: (userdata | { [nil]: System.String }), ModelId: System.String, ActionTemplate: System.String, PrisonActionTemplate: System.String, RoleVoices: (userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleVoiceData } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleVoiceData })): ZhanGuoWuxia.Backend.Beans.RoleBean
 ---@return ZhanGuoWuxia.Backend.Beans.RoleBean
 function CS.ZhanGuoWuxia.Backend.Beans.RoleBean() end
 
@@ -3797,7 +3797,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleClassBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.RoleClassBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.RoleClassBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3819,7 +3819,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleClassBean() end
 ---@field ElementCount System.Int32
 ---@field SelectCount System.Int32
 ---@field AchivementPointPerSelection System.Int32
----@field RequireAchivements { [nil]: System.String }
+---@field RequireAchivements userdata | { [nil]: System.String }
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean = {}
 
@@ -3833,7 +3833,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3843,7 +3843,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean:TranslateText(tran
 function CS.ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean
----@overload fun(Id: System.String, ModifierType: ZhanGuoWuxia.Backend.Beans.RCModifierType, ModifierElementId: System.String, ModifierParam: System.String, ElementCount: System.Int32, SelectCount: System.Int32, AchivementPointPerSelection: System.Int32, RequireAchivements: { [nil]: System.String }): ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean
+---@overload fun(Id: System.String, ModifierType: ZhanGuoWuxia.Backend.Beans.RCModifierType, ModifierElementId: System.String, ModifierParam: System.String, ElementCount: System.Int32, SelectCount: System.Int32, AchivementPointPerSelection: System.Int32, RequireAchivements: (userdata | { [nil]: System.String })): ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean
 ---@return ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean
 function CS.ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean() end
 
@@ -3866,7 +3866,7 @@ CS.ZhanGuoWuxia.Backend.Beans.RoleNameType = {
 ---@field Id System.String
 ---@field Name System.String
 ---@field Name_l10n_key System.String
----@field TalentList ZhanGuoWuxia.Backend.Beans.TalentElement[]
+---@field TalentList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.TalentElement } | { [nil]: ZhanGuoWuxia.Backend.Beans.TalentElement }
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.RoleTalentBean = {}
 
@@ -3880,7 +3880,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleTalentBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.RoleTalentBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.RoleTalentBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3890,7 +3890,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleTalentBean:TranslateText(translator) 
 function CS.ZhanGuoWuxia.Backend.Beans.RoleTalentBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.RoleTalentBean
----@overload fun(Id: System.String, Name: System.String, TalentList: ZhanGuoWuxia.Backend.Beans.TalentElement[]): ZhanGuoWuxia.Backend.Beans.RoleTalentBean
+---@overload fun(Id: System.String, Name: System.String, TalentList: (userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.TalentElement } | { [nil]: ZhanGuoWuxia.Backend.Beans.TalentElement })): ZhanGuoWuxia.Backend.Beans.RoleTalentBean
 ---@return ZhanGuoWuxia.Backend.Beans.RoleTalentBean
 function CS.ZhanGuoWuxia.Backend.Beans.RoleTalentBean() end
 
@@ -3910,7 +3910,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3948,7 +3948,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleVoiceData:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.RoleVoiceData:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.RoleVoiceData:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3974,7 +3974,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.RoleVoiceData() end
 ---@field LuaEntry System.String
 ---@field ScenarioFlag ZhanGuoWuxia.Backend.Beans.ScenarioFlag
 ---@field MapBGM System.String
----@field Flags { [System.String]: System.String }
+---@field Flags userdata | { [System.String]: System.String } | { [nil]: userdata }
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.ScenarioBean = {}
 
@@ -3988,7 +3988,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ScenarioBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ScenarioBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ScenarioBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -3998,7 +3998,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ScenarioBean:TranslateText(translator) en
 function CS.ZhanGuoWuxia.Backend.Beans.ScenarioBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.ScenarioBean
----@overload fun(Id: System.String, Name: System.String, PlayerId: System.String, PlayerMenpaiId: System.String, Pic: System.String, Desc: System.String, LuaEntry: System.String, ScenarioFlag: ZhanGuoWuxia.Backend.Beans.ScenarioFlag, MapBGM: System.String, Flags: { [System.String]: System.String }): ZhanGuoWuxia.Backend.Beans.ScenarioBean
+---@overload fun(Id: System.String, Name: System.String, PlayerId: System.String, PlayerMenpaiId: System.String, Pic: System.String, Desc: System.String, LuaEntry: System.String, ScenarioFlag: ZhanGuoWuxia.Backend.Beans.ScenarioFlag, MapBGM: System.String, Flags: (userdata | { [System.String]: System.String } | { [nil]: userdata })): ZhanGuoWuxia.Backend.Beans.ScenarioBean
 ---@return ZhanGuoWuxia.Backend.Beans.ScenarioBean
 function CS.ZhanGuoWuxia.Backend.Beans.ScenarioBean() end
 
@@ -4015,7 +4015,7 @@ CS.ZhanGuoWuxia.Backend.Beans.ScenarioFlag = {
 ---@field ShopName System.String
 ---@field ShopName_l10n_key System.String
 ---@field CurrencyItemId System.String
----@field ShopItems System.String[]
+---@field ShopItems userdata | { [System.Int32]: System.String } | { [nil]: System.String }
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.ShopBean = {}
 
@@ -4029,7 +4029,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ShopBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ShopBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ShopBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4039,7 +4039,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ShopBean:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.ShopBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.ShopBean
----@overload fun(Id: System.String, ShopName: System.String, CurrencyItemId: System.String, ShopItems: System.String[]): ZhanGuoWuxia.Backend.Beans.ShopBean
+---@overload fun(Id: System.String, ShopName: System.String, CurrencyItemId: System.String, ShopItems: (userdata | { [System.Int32]: System.String } | { [nil]: System.String })): ZhanGuoWuxia.Backend.Beans.ShopBean
 ---@return ZhanGuoWuxia.Backend.Beans.ShopBean
 function CS.ZhanGuoWuxia.Backend.Beans.ShopBean() end
 
@@ -4062,7 +4062,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.ShopItemBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ShopItemBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ShopItemBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4109,7 +4109,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SkillBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.SkillBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4193,7 +4193,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillPartialBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SkillPartialBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.SkillPartialBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4248,7 +4248,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillUnlockBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SkillUnlockBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.SkillUnlockBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4264,7 +4264,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillUnlockBean() end
 
 ---@class ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean: ZhanGuoWuxia.Backend.Beans.BaseBean, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
 ---@field Id System.String
----@field CompatibleTypes { [nil]: ZhanGuoWuxia.Backend.Beans.EquipType }
+---@field CompatibleTypes userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.EquipType }
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean = {}
 
@@ -4278,7 +4278,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4288,7 +4288,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean:TranslateText(transla
 function CS.ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean
----@overload fun(Id: System.String, CompatibleTypes: { [nil]: ZhanGuoWuxia.Backend.Beans.EquipType }): ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean
+---@overload fun(Id: System.String, CompatibleTypes: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.EquipType })): ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean
 ---@return ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean
 function CS.ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean() end
 
@@ -4311,7 +4311,7 @@ CS.ZhanGuoWuxia.Backend.Beans.TalentEffectBase = {}
 ---@return ZhanGuoWuxia.Backend.Beans.TalentEffectBase
 function CS.ZhanGuoWuxia.Backend.Beans.TalentEffectBase.DeserializeTalentEffectBase(_json) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TalentEffectBase:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4327,27 +4327,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TalentEffectBase(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbAchievement: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.AchievementBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AchievementBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.AchievementBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AchievementBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AchievementBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AchievementBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AchievementBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.AchievementBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AchievementBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AchievementBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AchievementBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbAchievement = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.AchievementBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.AchievementBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AchievementBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AchievementBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.AchievementBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AchievementBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AchievementBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:get_DataList() end
 
 ---@param key System.String
@@ -4362,7 +4362,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.AchievementBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4377,27 +4377,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAchievement(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbAction: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.ActionBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ActionBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.ActionBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ActionBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ActionBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ActionBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ActionBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.ActionBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ActionBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ActionBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ActionBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbAction = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbAction:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAction:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.ActionBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ActionBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAction:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ActionBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ActionBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAction:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.ActionBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ActionBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ActionBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAction:get_DataList() end
 
 ---@param key System.String
@@ -4412,7 +4412,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAction:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.ActionBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbAction:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAction:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4427,27 +4427,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAction(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbAffix: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.AffixBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AffixBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AffixBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.AffixBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AffixBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AffixBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbAffix = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.AffixBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.AffixBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.AffixBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AffixBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AffixBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:get_DataList() end
 
 ---@param key System.String
@@ -4462,7 +4462,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.AffixBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffix:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4477,27 +4477,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAffix(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:get_DataList() end
 
 ---@param key System.String
@@ -4512,7 +4512,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.AffixAttrFixBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4527,27 +4527,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAffixAttrFix(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbArea: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.AreaBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AreaBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.AreaBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AreaBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AreaBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AreaBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AreaBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.AreaBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AreaBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AreaBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AreaBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbArea = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbArea:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbArea:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.AreaBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.AreaBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbArea:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AreaBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AreaBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbArea:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.AreaBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AreaBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AreaBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbArea:get_DataList() end
 
 ---@param key System.String
@@ -4562,7 +4562,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbArea:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.AreaBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbArea:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbArea:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4577,27 +4577,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbArea(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbAttr: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.AttrBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AttrBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AttrBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.AttrBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AttrBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AttrBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbAttr = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.AttrBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.AttrBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.AttrBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AttrBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AttrBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:get_DataList() end
 
 ---@param key System.String
@@ -4612,7 +4612,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.AttrBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttr:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4627,27 +4627,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAttr(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbAttrTemplate: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.AttrTemplateBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.AttrTemplateBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.AttrTemplateBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.AttrTemplateBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:get_DataList() end
 
 ---@param key System.String
@@ -4662,7 +4662,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.AttrTemplateBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4677,27 +4677,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbAttrTemplate(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbBattle: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.BattleBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BattleBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.BattleBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.BattleBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BattleBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.BattleBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbBattle = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.BattleBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BattleBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.BattleBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BattleBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.BattleBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:get_DataList() end
 
 ---@param key System.String
@@ -4712,7 +4712,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.BattleBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattle:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4727,27 +4727,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBattle(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbBattleTrigger: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.BattleTriggerBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.BattleTriggerBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.BattleTriggerBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.BattleTriggerBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:get_DataList() end
 
 ---@param key System.String
@@ -4762,7 +4762,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.BattleTriggerBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4777,27 +4777,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBattleTrigger(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbBigEvent: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.BigEventBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BigEventBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.BigEventBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.BigEventBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BigEventBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.BigEventBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BigEventBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.BigEventBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.BigEventBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BigEventBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.BigEventBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.BigEventBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BigEventBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.BigEventBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.BigEventBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.BigEventBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BigEventBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.BigEventBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:get_DataList() end
 
 ---@param key System.String
@@ -4812,7 +4812,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.BigEventBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4827,27 +4827,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBigEvent(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbBuff: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.BuffBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BuffBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.BuffBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.BuffBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BuffBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.BuffBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BuffBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.BuffBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.BuffBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BuffBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.BuffBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbBuff = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.BuffBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BuffBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.BuffBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.BuffBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.BuffBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BuffBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.BuffBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:get_DataList() end
 
 ---@param key System.String
@@ -4862,7 +4862,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.BuffBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuff:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4877,27 +4877,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBuff(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbBuilding: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.BuildingBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BuildingBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.BuildingBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.BuildingBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BuildingBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.BuildingBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.BuildingBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.BuildingBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.BuildingBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BuildingBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.BuildingBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbBuilding = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.BuildingBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BuildingBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.BuildingBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.BuildingBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.BuildingBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.BuildingBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.BuildingBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:get_DataList() end
 
 ---@param key System.String
@@ -4912,7 +4912,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.BuildingBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4927,27 +4927,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbBuilding(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbDungeon: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.DungeonBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.DungeonBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.DungeonBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.DungeonBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbDungeon = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.DungeonBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.DungeonBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:get_DataList() end
 
 ---@param key System.String
@@ -4962,7 +4962,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.DungeonBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -4977,27 +4977,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbDungeon(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbDungeonEvent: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.DungeonEventBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.DungeonEventBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.DungeonEventBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonEventBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:get_DataList() end
 
 ---@param key System.String
@@ -5012,7 +5012,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.DungeonEventBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5027,27 +5027,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonEvent(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbDungeonTask: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.DungeonTaskBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.DungeonTaskBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.DungeonTaskBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.DungeonTaskBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:get_DataList() end
 
 ---@param key System.String
@@ -5062,7 +5062,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.DungeonTaskBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5077,27 +5077,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbDungeonTask(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbGallery: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.GalleryBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.GalleryBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.GalleryBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.GalleryBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.GalleryBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.GalleryBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.GalleryBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.GalleryBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.GalleryBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.GalleryBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.GalleryBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbGallery = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.GalleryBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.GalleryBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.GalleryBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.GalleryBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.GalleryBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.GalleryBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.GalleryBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:get_DataList() end
 
 ---@param key System.String
@@ -5112,7 +5112,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.GalleryBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbGallery:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5127,27 +5127,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbGallery(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbItem: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.ItemBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ItemBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ItemBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.ItemBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ItemBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ItemBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbItem = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbItem:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItem:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.ItemBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ItemBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItem:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItem:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.ItemBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ItemBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ItemBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItem:get_DataList() end
 
 ---@param key System.String
@@ -5162,7 +5162,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbItem:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.ItemBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbItem:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItem:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5177,27 +5177,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbItem(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbItemAffix: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.ItemAffixBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.ItemAffixBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.ItemAffixBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ItemAffixBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:get_DataList() end
 
 ---@param key System.String
@@ -5212,7 +5212,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.ItemAffixBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5227,27 +5227,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbItemAffix(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbLootPool: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.LootPoolBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.LootPoolBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.LootPoolBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.LootPoolBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.LootPoolBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.LootPoolBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.LootPoolBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.LootPoolBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.LootPoolBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.LootPoolBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.LootPoolBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbLootPool = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.LootPoolBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.LootPoolBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.LootPoolBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.LootPoolBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.LootPoolBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.LootPoolBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.LootPoolBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:get_DataList() end
 
 ---@param key System.String
@@ -5262,7 +5262,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.LootPoolBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5277,27 +5277,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbLootPool(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbMenpai: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.MenpaiBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.MenpaiBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.MenpaiBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.MenpaiBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.MenpaiBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.MenpaiBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbMenpai = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.MenpaiBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.MenpaiBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.MenpaiBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.MenpaiBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.MenpaiBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:get_DataList() end
 
 ---@param key System.String
@@ -5312,7 +5312,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.MenpaiBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5327,27 +5327,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbMenpai(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:get_DataList() end
 
 ---@param key System.String
@@ -5362,7 +5362,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.MenpaiSetUpBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5377,27 +5377,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbMenpaiSetUp(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbModel: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.ModelBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ModelBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ModelBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.ModelBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ModelBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ModelBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbModel = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbModel:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModel:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.ModelBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ModelBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModel:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModel:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.ModelBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ModelBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ModelBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModel:get_DataList() end
 
 ---@param key System.String
@@ -5412,7 +5412,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbModel:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.ModelBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbModel:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModel:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5427,27 +5427,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbModel(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbModelComponent: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.ModelComponentBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.ModelComponentBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.ModelComponentBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ModelComponentBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:get_DataList() end
 
 ---@param key System.String
@@ -5462,7 +5462,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.ModelComponentBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5477,27 +5477,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbModelComponent(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbPermanentResource: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.PermanentResourceBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.PermanentResourceBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.PermanentResourceBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.PermanentResourceBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:get_DataList() end
 
 ---@param key System.String
@@ -5512,7 +5512,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.PermanentResourceBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5527,27 +5527,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbPermanentResource(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbRestore: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.RestoreBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RestoreBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.RestoreBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RestoreBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RestoreBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RestoreBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RestoreBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.RestoreBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RestoreBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RestoreBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RestoreBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbRestore = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.RestoreBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.RestoreBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RestoreBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RestoreBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.RestoreBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RestoreBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RestoreBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:get_DataList() end
 
 ---@param key System.String
@@ -5562,7 +5562,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.RestoreBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRestore:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5577,27 +5577,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRestore(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbRole: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.RoleBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.RoleBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbRole = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbRole:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRole:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.RoleBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRole:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRole:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.RoleBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRole:get_DataList() end
 
 ---@param key System.String
@@ -5612,7 +5612,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRole:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.RoleBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbRole:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRole:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5627,27 +5627,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRole(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbRoleClass: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleClassBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleClassBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.RoleClassBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleClassBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleClassBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleClassBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleClassBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.RoleClassBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleClassBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleClassBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleClassBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.RoleClassBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleClassBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleClassBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleClassBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.RoleClassBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleClassBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleClassBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:get_DataList() end
 
 ---@param key System.String
@@ -5662,7 +5662,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.RoleClassBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5677,27 +5677,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleClass(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:get_DataList() end
 
 ---@param key System.String
@@ -5712,7 +5712,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.RoleCreateModifierBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5727,27 +5727,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleCreateModifier(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbRoleName: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.NameBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.NameBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.NameBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.NameBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.NameBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.NameBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.NameBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.NameBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.NameBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.NameBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.NameBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbRoleName = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.NameBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.NameBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.NameBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.NameBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.NameBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.NameBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.NameBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:get_DataList() end
 
 ---@param key System.String
@@ -5762,7 +5762,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.NameBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5777,27 +5777,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleName(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbRolePic: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.PicBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.PicBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.PicBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.PicBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.PicBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.PicBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.PicBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.PicBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.PicBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.PicBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.PicBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbRolePic = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.PicBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.PicBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.PicBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.PicBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.PicBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.PicBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.PicBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:get_DataList() end
 
 ---@param key System.String
@@ -5812,7 +5812,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.PicBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5827,27 +5827,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRolePic(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbRoleTalent: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.RoleTalentBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.RoleTalentBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.RoleTalentBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleTalentBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:get_DataList() end
 
 ---@param key System.String
@@ -5862,7 +5862,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.RoleTalentBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5877,27 +5877,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalent(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:get_DataList() end
 
 ---@param key System.String
@@ -5912,7 +5912,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.RoleTalentConditionBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5927,27 +5927,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbRoleTalentCondition(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbScenario: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.ScenarioBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ScenarioBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.ScenarioBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ScenarioBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ScenarioBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ScenarioBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ScenarioBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.ScenarioBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ScenarioBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ScenarioBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ScenarioBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbScenario = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.ScenarioBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ScenarioBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ScenarioBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ScenarioBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.ScenarioBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ScenarioBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ScenarioBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:get_DataList() end
 
 ---@param key System.String
@@ -5962,7 +5962,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.ScenarioBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbScenario:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -5977,27 +5977,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbScenario(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbShop: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.ShopBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ShopBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ShopBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.ShopBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ShopBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ShopBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbShop = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbShop:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShop:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.ShopBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ShopBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShop:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShop:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.ShopBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ShopBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ShopBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShop:get_DataList() end
 
 ---@param key System.String
@@ -6012,7 +6012,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbShop:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.ShopBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbShop:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShop:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -6027,27 +6027,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbShop(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbShopItem: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopItemBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopItemBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.ShopItemBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopItemBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ShopItemBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ShopItemBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopItemBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.ShopItemBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopItemBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ShopItemBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ShopItemBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbShopItem = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.ShopItemBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ShopItemBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopItemBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.ShopItemBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.ShopItemBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.ShopItemBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.ShopItemBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:get_DataList() end
 
 ---@param key System.String
@@ -6062,7 +6062,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.ShopItemBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -6077,27 +6077,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbShopItem(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbSkill: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.SkillBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.SkillBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.SkillBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.SkillBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.SkillBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.SkillBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbSkill = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.SkillBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.SkillBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.SkillBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.SkillBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.SkillBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:get_DataList() end
 
 ---@param key System.String
@@ -6112,7 +6112,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.SkillBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkill:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -6127,27 +6127,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbSkill(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbSkillForm: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.SkillFormBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillFormBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.SkillFormBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.SkillFormBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillFormBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.SkillFormBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.SkillFormBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillFormBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.SkillFormBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.SkillFormBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.SkillFormBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:get_DataList() end
 
 ---@param key System.String
@@ -6162,7 +6162,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.SkillFormBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -6177,27 +6177,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbSkillForm(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:get_DataList() end
 
 ---@param key System.String
@@ -6212,7 +6212,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.SkillWeaponRuleBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -6227,27 +6227,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbSkillWeaponRule(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbTutorial: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.TutorialBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.TutorialBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.TutorialBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.TutorialBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.TutorialBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.TutorialBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.TutorialBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.TutorialBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.TutorialBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.TutorialBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.TutorialBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbTutorial = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.TutorialBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.TutorialBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.TutorialBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.TutorialBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.TutorialBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.TutorialBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.TutorialBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:get_DataList() end
 
 ---@param key System.String
@@ -6262,7 +6262,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.TutorialBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -6277,27 +6277,27 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbTutorial(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TbVFX: System.Object, ZhanGuoWuxia.Backend.Beans.ITable, { [System.String]: ZhanGuoWuxia.Backend.Beans.VFXBean }
 ---@field BeanCount System.Int32
----@field DataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.VFXBean }
----@field DataList ZhanGuoWuxia.Backend.Beans.VFXBean[]
+---@field DataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.VFXBean } | { [nil]: userdata }
+---@field DataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.VFXBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.VFXBean }
 ---@field BeanType System.Type
----@field private _dataMap { [System.String]: ZhanGuoWuxia.Backend.Beans.VFXBean }
----@field private _dataList ZhanGuoWuxia.Backend.Beans.VFXBean[]
+---@field private _dataMap userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.VFXBean } | { [nil]: userdata }
+---@field private _dataList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.VFXBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.VFXBean }
 CS.ZhanGuoWuxia.Backend.Beans.TbVFX = {}
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:GetAllBeans() end
 
----@overload fun(self: self, newBeans: { [nil]: ZhanGuoWuxia.Backend.Beans.VFXBean })
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@overload fun(self: self, newBeans: (userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.VFXBean }))
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:Merge(newBeans) end
 
----@return { [System.String]: ZhanGuoWuxia.Backend.Beans.VFXBean }
+---@return userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.VFXBean } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:get_DataMap() end
 
----@return ZhanGuoWuxia.Backend.Beans.VFXBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.VFXBean } | { [nil]: ZhanGuoWuxia.Backend.Beans.VFXBean }
 function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:get_DataList() end
 
 ---@param key System.String
@@ -6312,7 +6312,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:Get(key) end
 ---@return ZhanGuoWuxia.Backend.Beans.VFXBean
 function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:get_Item(key) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -6326,7 +6326,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TbVFX:get_BeanType() end
 function CS.ZhanGuoWuxia.Backend.Beans.TbVFX(_json) end
 
 ---@class ZhanGuoWuxia.Backend.Beans.TE_Attr: ZhanGuoWuxia.Backend.Beans.TalentEffectBase, Bright.Serialization.ITypeId, Plugins.LubanLib.IPrimaryKey
----@field Attrs { [System.String]: System.Single }
+---@field Attrs userdata | { [System.String]: System.Single } | { [nil]: userdata }
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.TE_Attr = {}
 
@@ -6340,7 +6340,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TE_Attr:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TE_Attr:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TE_Attr:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -6350,7 +6350,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TE_Attr:TranslateText(translator) end
 function CS.ZhanGuoWuxia.Backend.Beans.TE_Attr:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.TE_Attr
----@overload fun(Attrs: { [System.String]: System.Single }): ZhanGuoWuxia.Backend.Beans.TE_Attr
+---@overload fun(Attrs: (userdata | { [System.String]: System.Single } | { [nil]: userdata })): ZhanGuoWuxia.Backend.Beans.TE_Attr
 ---@return ZhanGuoWuxia.Backend.Beans.TE_Attr
 function CS.ZhanGuoWuxia.Backend.Beans.TE_Attr() end
 
@@ -6369,7 +6369,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TE_Buff:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TE_Buff:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TE_Buff:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -6398,7 +6398,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TE_Skill:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TE_Skill:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TE_Skill:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -6416,7 +6416,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TE_Skill() end
 ---@field TutorialId System.String
 ---@field Title System.String
 ---@field Title_l10n_key System.String
----@field StepList ZhanGuoWuxia.Backend.Beans.TutorialStep[]
+---@field StepList userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.TutorialStep } | { [nil]: ZhanGuoWuxia.Backend.Beans.TutorialStep }
 ---@field TutorialType ZhanGuoWuxia.Backend.Beans.TutorialType
 ---@field __ID__ System.Int32
 CS.ZhanGuoWuxia.Backend.Beans.TutorialBean = {}
@@ -6431,7 +6431,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TutorialBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TutorialBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TutorialBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -6441,7 +6441,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TutorialBean:TranslateText(translator) en
 function CS.ZhanGuoWuxia.Backend.Beans.TutorialBean:ToString() end
 
 ---@overload fun(_json: SimpleJSON.JSONNode): ZhanGuoWuxia.Backend.Beans.TutorialBean
----@overload fun(TutorialId: System.String, Title: System.String, StepList: ZhanGuoWuxia.Backend.Beans.TutorialStep[], TutorialType: ZhanGuoWuxia.Backend.Beans.TutorialType): ZhanGuoWuxia.Backend.Beans.TutorialBean
+---@overload fun(TutorialId: System.String, Title: System.String, StepList: (userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.TutorialStep } | { [nil]: ZhanGuoWuxia.Backend.Beans.TutorialStep }), TutorialType: ZhanGuoWuxia.Backend.Beans.TutorialType): ZhanGuoWuxia.Backend.Beans.TutorialBean
 ---@return ZhanGuoWuxia.Backend.Beans.TutorialBean
 function CS.ZhanGuoWuxia.Backend.Beans.TutorialBean() end
 
@@ -6462,7 +6462,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.TutorialStep:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.TutorialStep:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.TutorialStep:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -6514,7 +6514,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.VFXBean:GetTypeId() end
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.Beans.VFXBean:GetPrimaryKey() end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.VFXBean:Resolve(_tables) end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -6529,15 +6529,15 @@ function CS.ZhanGuoWuxia.Backend.Beans.VFXBean:ToString() end
 function CS.ZhanGuoWuxia.Backend.Beans.VFXBean() end
 
 ---@class ZhanGuoWuxia.Backend.Beans.IBeanManager
----@field Tables { [nil]: ZhanGuoWuxia.Backend.Beans.ITable }
+---@field Tables userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ITable }
 CS.ZhanGuoWuxia.Backend.Beans.IBeanManager = {}
 
 ---@param type System.Type
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:GetAll(type) end
 
 ---@param type System.Type
----@param source { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@param source userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:Merge(type, source) end
 
 ---@overload fun(self: self, loader: (fun(arg: System.String): SimpleJSON.JSONNode)): System.Int32
@@ -6553,7 +6553,7 @@ function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:Dispose() end
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:GetBeanTypeCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.ITable }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ITable }
 function CS.ZhanGuoWuxia.Backend.Beans.IBeanManager:get_Tables() end
 
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
@@ -6568,19 +6568,19 @@ CS.ZhanGuoWuxia.Backend.Beans.ITable = {}
 ---@param translator fun(arg1: System.String, arg2: System.String): System.String
 function CS.ZhanGuoWuxia.Backend.Beans.ITable:TranslateText(translator) end
 
----@param _tables { [System.String]: System.Object }
+---@param _tables userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Beans.ITable:Resolve(_tables) end
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Beans.ITable:get_BeanCount() end
 
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.ITable:GetAllBeans() end
 
 ---@return System.Type
 function CS.ZhanGuoWuxia.Backend.Beans.ITable:get_BeanType() end
 
----@param newBeans { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
+---@param newBeans userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.ITable:Merge(newBeans) end
 
 

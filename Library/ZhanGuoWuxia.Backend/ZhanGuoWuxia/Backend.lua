@@ -311,8 +311,8 @@ function CS.ZhanGuoWuxia.Backend.DifficultyParamKey() end
 ---@field IsIgnoreJoinBattleCount System.Boolean
 ---@field AdditionJoinBattleCount System.Int32
 ---@field IsItemUsageLimited System.Boolean
----@field PlayerBuffs System.String[]
----@field EnemyBuffs System.String[]
+---@field PlayerBuffs userdata | { [System.Int32]: System.String } | { [nil]: System.String }
+---@field EnemyBuffs userdata | { [System.Int32]: System.String } | { [nil]: System.String }
 ---@field BattleExpAddition System.Single
 ---@field BattleFailKeepExpFactor System.Single
 ---@field DeathRoleKeepExpFactor System.Single
@@ -331,10 +331,10 @@ function CS.ZhanGuoWuxia.Backend.Difficulty:get_AdditionJoinBattleCount() end
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Difficulty:get_IsItemUsageLimited() end
 
----@return System.String[]
+---@return userdata | { [System.Int32]: System.String } | { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Difficulty:get_PlayerBuffs() end
 
----@return System.String[]
+---@return userdata | { [System.Int32]: System.String } | { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Difficulty:get_EnemyBuffs() end
 
 ---@return System.Single
@@ -362,17 +362,17 @@ function CS.ZhanGuoWuxia.Backend.Difficulty:get_ActionCountModifier() end
 function CS.ZhanGuoWuxia.Backend.Difficulty() end
 
 ---@class ZhanGuoWuxia.Backend.GameCore: userdata
----@field protected m_Services { [System.Type]: ZhanGuoWuxia.Backend.IGameService }
+---@field protected m_Services userdata | { [System.Type]: ZhanGuoWuxia.Backend.IGameService } | { [nil]: userdata }
 ---@field IsRunTime System.Boolean
 ---@field Instance ZhanGuoWuxia.Backend.GameCore
 ---@field private m_IsRuntime System.Boolean
----@field protected _internalServices { [System.Type]: ZhanGuoWuxia.Backend.IGameService }
----@field private m_UpdatedServices ZhanGuoWuxia.Backend.IGameService[]
+---@field protected _internalServices userdata | { [System.Type]: ZhanGuoWuxia.Backend.IGameService } | { [nil]: userdata }
+---@field private m_UpdatedServices userdata | { [System.Int32]: ZhanGuoWuxia.Backend.IGameService } | { [nil]: ZhanGuoWuxia.Backend.IGameService }
 ---@field protected _instance ZhanGuoWuxia.Backend.GameCore
 CS.ZhanGuoWuxia.Backend.GameCore = {}
 
 ---@protected
----@return { [System.Type]: ZhanGuoWuxia.Backend.IGameService }
+---@return userdata | { [System.Type]: ZhanGuoWuxia.Backend.IGameService } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.GameCore.get_m_Services() end
 
 ---@return System.Boolean
@@ -468,7 +468,7 @@ CS.ZhanGuoWuxia.Backend.LaunchErrorType = {
 
 ---@class ZhanGuoWuxia.Backend.DefaultLaunchHandler: ZhanGuoWuxia.Backend.IGameService, ZhanGuoWuxia.Backend.IGameLaunchHandler
 ---@field CanLaunch System.Boolean
----@field private m_LaunchErrors { [ZhanGuoWuxia.Backend.LaunchErrorType]: { [nil]: System.Exception } }
+---@field private m_LaunchErrors userdata | { [ZhanGuoWuxia.Backend.LaunchErrorType]: userdata } | { [nil]: userdata }
 CS.ZhanGuoWuxia.Backend.DefaultLaunchHandler = {}
 
 ---@return System.Boolean
@@ -480,11 +480,11 @@ function CS.ZhanGuoWuxia.Backend.DefaultLaunchHandler:AddError(type, exception) 
 
 ---@private
 ---@param type ZhanGuoWuxia.Backend.LaunchErrorType
----@return System.Exception[]
+---@return userdata | { [System.Int32]: System.Exception } | { [nil]: System.Exception }
 function CS.ZhanGuoWuxia.Backend.DefaultLaunchHandler:GetErrors(type) end
 
 ---@param launchErrorType ZhanGuoWuxia.Backend.LaunchErrorType
----@return System.Exception[]
+---@return userdata | { [System.Int32]: System.Exception } | { [nil]: System.Exception }
 function CS.ZhanGuoWuxia.Backend.DefaultLaunchHandler:PopErrors(launchErrorType) end
 
 ---@param exception System.Exception
@@ -530,7 +530,7 @@ function CS.ZhanGuoWuxia.Backend.UserResolution:Equals(obj) end
 ---@class ZhanGuoWuxia.Backend.UserSetting: ZhanGuoWuxia.Backend.IGameService
 ---@field private UserPreference ZhanGuoWuxia.SimplePlayerPrefs
 ---@field CurrentResolution ZhanGuoWuxia.Backend.UserResolution
----@field Resolutions ZhanGuoWuxia.Backend.UserResolution[]
+---@field Resolutions userdata | { [System.Int32]: ZhanGuoWuxia.Backend.UserResolution } | { [nil]: ZhanGuoWuxia.Backend.UserResolution }
 ---@field Vsync System.Boolean
 ---@field RunInBackground System.Boolean
 ---@field FrameRate System.Int32
@@ -564,7 +564,7 @@ function CS.ZhanGuoWuxia.Backend.UserSetting:LoadOther() end
 ---@return ZhanGuoWuxia.Backend.UserResolution
 function CS.ZhanGuoWuxia.Backend.UserSetting:get_CurrentResolution() end
 
----@return ZhanGuoWuxia.Backend.UserResolution[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.UserResolution } | { [nil]: ZhanGuoWuxia.Backend.UserResolution }
 function CS.ZhanGuoWuxia.Backend.UserSetting:get_Resolutions() end
 
 ---@param width System.Int32
@@ -641,7 +641,7 @@ function CS.ZhanGuoWuxia.Backend.UserSetting:get_CanAdjustBattleSpeed() end
 ---@param value System.Boolean
 function CS.ZhanGuoWuxia.Backend.UserSetting:set_CanAdjustBattleSpeed(value) end
 
----@return ZhanGuoWuxia.Backend.Translation.TranslationDefinition[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Translation.TranslationDefinition } | { [nil]: ZhanGuoWuxia.Backend.Translation.TranslationDefinition }
 function CS.ZhanGuoWuxia.Backend.UserSetting:GetLanguageDefinitions() end
 
 ---@param idx System.Int32
@@ -698,7 +698,7 @@ function CS.ZhanGuoWuxia.Backend.IReusableObject:Dispose() end
 
 
 ---@class ZhanGuoWuxia.Backend.ReusableObjectManager: ZhanGuoWuxia.Backend.IGameService
----@field private m_Pools { [System.Type]: { [nil]: ZhanGuoWuxia.Backend.IReusableObject } }
+---@field private m_Pools userdata | { [System.Type]: userdata } | { [nil]: userdata }
 CS.ZhanGuoWuxia.Backend.ReusableObjectManager = {}
 
 function CS.ZhanGuoWuxia.Backend.ReusableObjectManager:Dispose() end
@@ -706,7 +706,7 @@ function CS.ZhanGuoWuxia.Backend.ReusableObjectManager:Dispose() end
 ---@return ZhanGuoWuxia.Backend.ReusableObjectManager
 function CS.ZhanGuoWuxia.Backend.ReusableObjectManager() end
 
----@class ZhanGuoWuxia.Backend.PooledMemoryStream: System.IO.Stream, System.IDisposable, System.IAsyncDisposable, System.Collections.IEnumerable
+---@class ZhanGuoWuxia.Backend.PooledMemoryStream: System.IO.Stream, System.IDisposable, System.IAsyncDisposable, System.Collections.IEnumerable, { [nil]: System.Byte }
 ---@field CanRead System.Boolean
 ---@field CanSeek System.Boolean
 ---@field CanWrite System.Boolean
@@ -783,7 +783,7 @@ function CS.ZhanGuoWuxia.Backend.PooledMemoryStream:AssertNotDisposed() end
 ---@return System.Collections.IEnumerator
 function CS.ZhanGuoWuxia.Backend.PooledMemoryStream:GetEnumerator() end
 
----@return { [nil]: System.Byte }
+---@return userdata | { [nil]: System.Byte }
 function CS.ZhanGuoWuxia.Backend.PooledMemoryStream:GetEnumerator() end
 
 ---@overload fun(buffer: System.Byte[]): ZhanGuoWuxia.Backend.PooledMemoryStream

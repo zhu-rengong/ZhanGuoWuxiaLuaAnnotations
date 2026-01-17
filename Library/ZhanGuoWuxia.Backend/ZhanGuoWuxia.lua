@@ -3,10 +3,10 @@
 ---Namespace: ZhanGuoWuxia
 
 ---@class ZhanGuoWuxia.PlayerPrefsData: System.Object
----@field m_IntDic { [System.String]: System.Int32 }
----@field m_BoolDic { [System.String]: System.Boolean }
----@field m_FloatDic { [System.String]: System.Single }
----@field m_StringDic { [System.String]: System.String }
+---@field m_IntDic userdata | { [System.String]: System.Int32 } | { [nil]: userdata }
+---@field m_BoolDic userdata | { [System.String]: System.Boolean } | { [nil]: userdata }
+---@field m_FloatDic userdata | { [System.String]: System.Single } | { [nil]: userdata }
+---@field m_StringDic userdata | { [System.String]: System.String } | { [nil]: userdata }
 CS.ZhanGuoWuxia.PlayerPrefsData = {}
 
 function CS.ZhanGuoWuxia.PlayerPrefsData:Clear() end

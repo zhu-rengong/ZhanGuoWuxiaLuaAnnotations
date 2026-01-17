@@ -118,12 +118,12 @@ function CS.ZhanGuoWuxia.Backend.AchievementSystem.AchievementProgressWrap:SetPr
 function CS.ZhanGuoWuxia.Backend.AchievementSystem.AchievementProgressWrap() end
 
 ---@class ZhanGuoWuxia.Backend.AchievementSystem.AchievementService: ZhanGuoWuxia.Backend.IGameService
----@field Achivements { [nil]: ZhanGuoWuxia.Backend.AchievementSystem.AchievementData }
+---@field Achivements userdata | { [System.Int32]: ZhanGuoWuxia.Backend.AchievementSystem.AchievementData } | { [nil]: ZhanGuoWuxia.Backend.AchievementSystem.AchievementData }
 ---@field UnlockedPoint System.Int32
----@field private m_Achivements ZhanGuoWuxia.Backend.AchievementSystem.AchievementData[]
+---@field private m_Achivements userdata | { [System.Int32]: ZhanGuoWuxia.Backend.AchievementSystem.AchievementData } | { [nil]: ZhanGuoWuxia.Backend.AchievementSystem.AchievementData }
 CS.ZhanGuoWuxia.Backend.AchievementSystem.AchievementService = {}
 
----@return { [nil]: ZhanGuoWuxia.Backend.AchievementSystem.AchievementData }
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.AchievementSystem.AchievementData } | { [nil]: ZhanGuoWuxia.Backend.AchievementSystem.AchievementData }
 function CS.ZhanGuoWuxia.Backend.AchievementSystem.AchievementService:get_Achivements() end
 
 ---@return System.Int32

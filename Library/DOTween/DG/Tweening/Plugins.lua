@@ -1312,7 +1312,7 @@ function CS.DG.Tweening.Plugins.Vector4Plugin() end
 
 ---@class DG.Tweening.Plugins.StringPlugin: userdata, DG.Tweening.Plugins.Core.ITweenPlugin
 ---@field private _Buffer System.Text.StringBuilder
----@field private _OpenedTags System.Char[]
+---@field private _OpenedTags userdata | { [System.Int32]: System.Char } | { [nil]: System.Char }
 CS.DG.Tweening.Plugins.StringPlugin = {}
 
 ---@overload fun(self: self, t: userdata, fromValue: System.String, setImmediately: System.Boolean, isRelative: System.Boolean)

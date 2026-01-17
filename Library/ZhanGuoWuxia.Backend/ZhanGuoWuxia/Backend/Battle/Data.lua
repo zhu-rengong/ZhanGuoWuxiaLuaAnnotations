@@ -27,10 +27,10 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleActionResult() end
 ---@class ZhanGuoWuxia.Backend.Battle.Data.BattleHelper: System.Object
 ---@field private _db ZhanGuoWuxia.Backend.Beans.IBeanManager
 ---@field private LuaVM ZhanGuoWuxia.Backend.Lua.LuaManager
----@field AllPos { [nil]: System.Int32 }
+---@field AllPos userdata | { [nil]: System.Int32 }
 ---@field private m_AllPos userdata
----@field private m_StatNeedCalculate { [nil]: System.String }
----@field private m_StatsExceptFromCalculation { [nil]: System.String }
+---@field private m_StatNeedCalculate userdata | { [nil]: System.String }
+---@field private m_StatsExceptFromCalculation userdata | { [nil]: System.String }
 CS.ZhanGuoWuxia.Backend.Battle.Data.BattleHelper = {}
 
 ---@private
@@ -41,11 +41,11 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleHelper.get__db() end
 ---@return ZhanGuoWuxia.Backend.Lua.LuaManager
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleHelper.get_LuaVM() end
 
----@return { [nil]: System.Int32 }
+---@return userdata | { [nil]: System.Int32 }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleHelper.get_AllPos() end
 
 ---@private
----@return { [nil]: System.Int32 }
+---@return userdata | { [nil]: System.Int32 }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleHelper.GetAllPos() end
 
 ---@param battleField ZhanGuoWuxia.Backend.Battle.BattleField
@@ -56,7 +56,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleHelper.GetAllPos() end
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleHelper.CreateBattleBuff(battleField, buffId, pile, duration) end
 
 ---@private
----@return { [nil]: System.String }
+---@return userdata | { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleHelper.GetAllStatKeys() end
 
 ---@param battleRole ZhanGuoWuxia.Backend.Battle.BattleRoleInstance
@@ -106,10 +106,10 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleHelper.Pos2RowCol(pos) end
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleHelper.RowCol2Pos(row, col) end
 
----@param result { [nil]: System.Int32 }
+---@param result userdata | { [nil]: System.Int32 }
 ---@param range ZhanGuoWuxia.Backend.Beans.SkillRangeType
 ---@param originPos System.Int32
----@return { [nil]: System.Int32 }
+---@return userdata | { [nil]: System.Int32 }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleHelper.GetSkillRange(result, range, originPos) end
 
 ---@param caster ZhanGuoWuxia.Backend.Battle.BattleRoleInstance
@@ -211,14 +211,14 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleRoleSkipResult:OnRecycle() en
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleRoleSkipResult() end
 
 ---@class ZhanGuoWuxia.Backend.Battle.Data.BattleRoleStat: System.Object
----@field AllStats { [System.String]: System.Single }
----@field private m_StatData { [System.String]: System.Single }
+---@field AllStats userdata | { [System.String]: System.Single } | { [nil]: userdata }
+---@field private m_StatData userdata | { [System.String]: System.Single } | { [nil]: userdata }
 CS.ZhanGuoWuxia.Backend.Battle.Data.BattleRoleStat = {}
 
----@return { [System.String]: System.Single }
+---@return userdata | { [System.String]: System.Single } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleRoleStat:get_AllStats() end
 
----@param newStat { [System.String]: System.Single }
+---@param newStat userdata | { [System.String]: System.Single } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleRoleStat:Merge(newStat) end
 
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleRoleStat:ClearData() end
@@ -248,8 +248,8 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation:IsEmpty() end
 function CS.ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation() end
 
 ---@class ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam: System.Object
----@field Team1 ZhanGuoWuxia.Backend.Battle.RoleFormationData[]
----@field Team2 ZhanGuoWuxia.Backend.Battle.RoleFormationData[]
+---@field Team1 userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Battle.RoleFormationData } | { [nil]: ZhanGuoWuxia.Backend.Battle.RoleFormationData }
+---@field Team2 userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Battle.RoleFormationData } | { [nil]: ZhanGuoWuxia.Backend.Battle.RoleFormationData }
 ---@field BattleName System.String
 ---@field Scene System.String
 ---@field MaxTurn System.Int32
@@ -259,14 +259,14 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation() end
 ---@field Team2AI System.String
 ---@field IsQuick System.Boolean
 ---@field IsBatchMode System.Boolean
----@field OnSubstitutesRequired fun(): { [nil]: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance }
+---@field OnSubstitutesRequired fun(): userdata | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance }
 ---@field IsAttrition System.Boolean
 ---@field DisableJoinBattleCount System.Boolean
 ---@field BGM System.String
 ---@field ProvideExp System.Boolean
 ---@field NoWound System.Boolean
----@field BattleTriggers System.String[]
----@field RolesAIMustControl System.String[]
+---@field BattleTriggers userdata | { [System.Int32]: System.String } | { [nil]: System.String }
+---@field RolesAIMustControl userdata | { [System.Int32]: System.String } | { [nil]: System.String }
 ---@field TerritoryRelation ZhanGuoWuxia.Backend.Battle.Data.TerritoryRelation
 ---@field IsAskForPlayerFormation System.Boolean
 ---@field ShowQuickWhenFormation System.Boolean
@@ -298,15 +298,15 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:IsInTeam2(role) en
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:IsInTeam(role, team) end
 
----@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance } | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:GetTeam1CaptureableRoles() end
 
----@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance } | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:GetTeam2CaptureableRoles() end
 
 ---@private
----@param formation { [nil]: ZhanGuoWuxia.Backend.Battle.RoleFormationData }
----@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
+---@param formation userdata | { [nil]: ZhanGuoWuxia.Backend.Battle.RoleFormationData }
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance } | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:FindRolesCanCaptured(formation) end
 
 ---@private
@@ -314,18 +314,18 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:FindRolesCanCaptur
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:IsRoleInSave(role) end
 
----@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance } | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:GetTeam1Roles() end
 
----@return ZhanGuoWuxia.Backend.RuntimeData.RoleInstance[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance } | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.RoleInstance }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:GetTeam2Roles() end
 
 ---@param team System.Int32
----@return ZhanGuoWuxia.Backend.Battle.RoleFormationData[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Battle.RoleFormationData } | { [nil]: ZhanGuoWuxia.Backend.Battle.RoleFormationData }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:GetTeamFormation(team) end
 
 ---@param team System.Int32
----@param formation ZhanGuoWuxia.Backend.Battle.RoleFormationData[]
+---@param formation userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Battle.RoleFormationData } | { [nil]: ZhanGuoWuxia.Backend.Battle.RoleFormationData }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.BattleStartParam:SetTeamFormation(team, formation) end
 
 ---@return System.Int32
@@ -757,7 +757,7 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.DeathResult() end
 
 ---@class ZhanGuoWuxia.Backend.Battle.Data.PlayerFormationResult: System.Object
 ---@field IsGiveUp System.Boolean
----@field Formation ZhanGuoWuxia.Backend.Battle.RoleFormationData[]
+---@field Formation userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Battle.RoleFormationData } | { [nil]: ZhanGuoWuxia.Backend.Battle.RoleFormationData }
 CS.ZhanGuoWuxia.Backend.Battle.Data.PlayerFormationResult = {}
 
 ---@return ZhanGuoWuxia.Backend.Battle.Data.PlayerFormationResult
@@ -942,18 +942,18 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.RolePerform_BubbleResult.NewResult(
 function CS.ZhanGuoWuxia.Backend.Battle.Data.RolePerform_BubbleResult() end
 
 ---@class ZhanGuoWuxia.Backend.Battle.Data.SkillHitTypeSet: System.Object
----@field private m_HitBattleRoleIds { [ZhanGuoWuxia.Backend.Battle.Data.ActionHitType]: { [nil]: System.Int32 } }
----@field private m_CritRoleIds { [ZhanGuoWuxia.Backend.Battle.Data.CriticalRet]: { [nil]: System.Int32 } }
+---@field private m_HitBattleRoleIds userdata | { [ZhanGuoWuxia.Backend.Battle.Data.ActionHitType]: userdata } | { [nil]: userdata }
+---@field private m_CritRoleIds userdata | { [ZhanGuoWuxia.Backend.Battle.Data.CriticalRet]: userdata } | { [nil]: userdata }
 CS.ZhanGuoWuxia.Backend.Battle.Data.SkillHitTypeSet = {}
 
 function CS.ZhanGuoWuxia.Backend.Battle.Data.SkillHitTypeSet:Clear() end
 
 ---@param actionHitType ZhanGuoWuxia.Backend.Battle.Data.ActionHitType
----@return { [nil]: System.Int32 }
+---@return userdata | { [nil]: System.Int32 }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.SkillHitTypeSet:GetRoleIdsByHitType(actionHitType) end
 
 ---@param critType ZhanGuoWuxia.Backend.Battle.Data.CriticalRet
----@return { [nil]: System.Int32 }
+---@return userdata | { [nil]: System.Int32 }
 function CS.ZhanGuoWuxia.Backend.Battle.Data.SkillHitTypeSet:GetRoleIdsByCritType(critType) end
 
 ---@overload fun(self: self, critType: ZhanGuoWuxia.Backend.Battle.Data.CriticalRet, roleInstanceId: System.Int32)
@@ -967,8 +967,8 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.SkillHitTypeSet() end
 ---@class ZhanGuoWuxia.Backend.Battle.Data.StatKeyIdMapper: System.Object
 ---@field private Default ZhanGuoWuxia.Backend.Battle.Data.StatKeyIdMapper
 ---@field private m_NextId System.Int32
----@field private m_IdToKeys { [System.Int32]: System.String }
----@field private m_KeysToId { [System.String]: System.Int32 }
+---@field private m_IdToKeys userdata | { [System.Int32]: System.String } | { [nil]: userdata }
+---@field private m_KeysToId userdata | { [System.String]: System.Int32 } | { [nil]: userdata }
 CS.ZhanGuoWuxia.Backend.Battle.Data.StatKeyIdMapper = {}
 
 ---@private

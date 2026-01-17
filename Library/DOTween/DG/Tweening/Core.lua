@@ -281,9 +281,9 @@ function CS.DG.Tweening.Core.TweenLink(target, behaviour) end
 ---@field package isUpdateLoop System.Boolean
 ---@field package _activeTweens DG.Tweening.Tween[]
 ---@field private _pooledTweeners DG.Tweening.Tween[]
----@field private _PooledSequences { [nil]: DG.Tweening.Tween }
----@field private _KillList DG.Tweening.Tween[]
----@field private _TweenLinks { [DG.Tweening.Tween]: DG.Tweening.Core.TweenLink }
+---@field private _PooledSequences userdata | { [nil]: DG.Tweening.Tween }
+---@field private _KillList userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
+---@field private _TweenLinks userdata | { [DG.Tweening.Tween]: DG.Tweening.Core.TweenLink } | { [nil]: userdata }
 ---@field private _totTweenLinks System.Int32
 ---@field private _maxActiveLookupId System.Int32
 ---@field private _requiresActiveReorganization System.Boolean
@@ -450,30 +450,30 @@ function CS.DG.Tweening.Core.TweenManager.TotalTweensById(id, playingOnly) end
 
 ---@package
 ---@param playing System.Boolean
----@param fillableList? DG.Tweening.Tween[]
----@return DG.Tweening.Tween[]
+---@param fillableList? userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
+---@return userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
 function CS.DG.Tweening.Core.TweenManager.GetActiveTweens(playing, fillableList) end
 
 ---@package
 ---@param id System.Object
 ---@param playingOnly System.Boolean
----@param fillableList? DG.Tweening.Tween[]
----@return DG.Tweening.Tween[]
+---@param fillableList? userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
+---@return userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
 function CS.DG.Tweening.Core.TweenManager.GetTweensById(id, playingOnly, fillableList) end
 
 ---@private
 ---@param id System.Object
 ---@param playingOnly System.Boolean
 ---@param addToList System.Boolean
----@param fillableList DG.Tweening.Tween[]
+---@param fillableList userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
 ---@return System.Int32
 function CS.DG.Tweening.Core.TweenManager.DoGetTweensById(id, playingOnly, addToList, fillableList) end
 
 ---@package
 ---@param target System.Object
 ---@param playingOnly System.Boolean
----@param fillableList? DG.Tweening.Tween[]
----@return DG.Tweening.Tween[]
+---@param fillableList? userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
+---@return userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
 function CS.DG.Tweening.Core.TweenManager.GetTweensByTarget(target, playingOnly, fillableList) end
 
 ---@private
@@ -493,7 +493,7 @@ function CS.DG.Tweening.Core.TweenManager.AddActiveTween(t) end
 function CS.DG.Tweening.Core.TweenManager.ReorganizeActiveTweens() end
 
 ---@private
----@param tweens DG.Tweening.Tween[]
+---@param tweens userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
 function CS.DG.Tweening.Core.TweenManager.DespawnActiveTweens(tweens) end
 
 ---@private

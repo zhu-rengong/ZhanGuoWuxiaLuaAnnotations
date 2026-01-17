@@ -10,7 +10,7 @@
 ---@field TotalAchievementPoint System.Int32
 ---@field CurrentMapBGM System.String
 ---@field Instance ZhanGuoWuxia.GameRuntime
----@field private m_SaveMetaCache { [System.String]: ZhanGuoWuxia.UI.SaveMetaData }
+---@field private m_SaveMetaCache userdata | { [System.String]: ZhanGuoWuxia.UI.SaveMetaData } | { [nil]: userdata }
 ---@field private FirePointLastViewedKey System.String
 ---@field protected _instance ZhanGuoWuxia.GameRuntime
 CS.ZhanGuoWuxia.GameRuntime = {}
@@ -98,7 +98,7 @@ function CS.ZhanGuoWuxia.GameRuntime:ReturnToMainMenuOrModEditor() end
 ---@return ZhanGuoWuxia.UI.SaveMetaData
 function CS.ZhanGuoWuxia.GameRuntime:LoadMetaData(index) end
 
----@return { [nil]: ZhanGuoWuxia.UI.FirePoint.RestoreContext }
+---@return userdata | { [nil]: ZhanGuoWuxia.UI.FirePoint.RestoreContext }
 function CS.ZhanGuoWuxia.GameRuntime:GetRestoreContexts() end
 
 ---@return System.Boolean

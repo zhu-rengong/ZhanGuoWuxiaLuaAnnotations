@@ -45,7 +45,7 @@ CS.ZhanGuoWuxia.Backend.TimeControl.UpdateMode = {
 ---@field IsEditMode System.Boolean
 ---@field IsGameMode System.Boolean
 ---@field CurrentTimeScale System.Single
----@field private m_TimeLayers { [ZhanGuoWuxia.Backend.TimeControl.TimeLayer]: System.Single }
+---@field private m_TimeLayers userdata | { [ZhanGuoWuxia.Backend.TimeControl.TimeLayer]: System.Single } | { [nil]: userdata }
 ---@field private m_UpdateMode ZhanGuoWuxia.Backend.TimeControl.UpdateMode
 ---@field private DefaultTimeScale System.Single
 CS.ZhanGuoWuxia.Backend.TimeControl.TimerManager = {}

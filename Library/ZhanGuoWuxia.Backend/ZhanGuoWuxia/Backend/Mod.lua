@@ -61,7 +61,7 @@ CS.ZhanGuoWuxia.Backend.Mod.SaveRet = {
 ---@class ZhanGuoWuxia.Backend.Mod.IEditorBeanController
 ---@field DataFilePath System.String
 ---@field BeanType System.Type
----@field DataSource ZhanGuoWuxia.Backend.Mod.IEditorBean[]
+---@field DataSource userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Mod.IEditorBean } | { [nil]: ZhanGuoWuxia.Backend.Mod.IEditorBean }
 ---@field IsDirty System.Boolean
 CS.ZhanGuoWuxia.Backend.Mod.IEditorBeanController = {}
 
@@ -71,7 +71,7 @@ function CS.ZhanGuoWuxia.Backend.Mod.IEditorBeanController:get_DataFilePath() en
 ---@return System.Type
 function CS.ZhanGuoWuxia.Backend.Mod.IEditorBeanController:get_BeanType() end
 
----@return ZhanGuoWuxia.Backend.Mod.IEditorBean[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Mod.IEditorBean } | { [nil]: ZhanGuoWuxia.Backend.Mod.IEditorBean }
 function CS.ZhanGuoWuxia.Backend.Mod.IEditorBeanController:get_DataSource() end
 
 ---@return System.Boolean
@@ -177,7 +177,7 @@ function CS.ZhanGuoWuxia.Backend.Mod.IModAsset:Rename(newName) end
 
 
 ---@class ZhanGuoWuxia.Backend.Mod.IModAssetManager
----@field SupportExtensions { [nil]: System.String }
+---@field SupportExtensions userdata | { [nil]: System.String }
 CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager = {}
 
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:Dispose() end
@@ -201,13 +201,13 @@ function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:IsValidAsset(path) end
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:DeleteAsset(path) end
 
----@param paths { [nil]: System.String }
+---@param paths userdata | { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:DeleteManyAssets(paths) end
 
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:RefreshAllAssets() end
 
 ---@param folder System.String
----@return { [nil]: ZhanGuoWuxia.Backend.Mod.IModAsset }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Mod.IModAsset }
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:GetAssetsInFolder(folder) end
 
 ---@param subFolder System.String
@@ -223,7 +223,7 @@ function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:RenameAsset(asset, newName
 ---@return ZhanGuoWuxia.Backend.Mod.IModAsset
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:LoadAssetAtPath(relativePath) end
 
----@return { [nil]: System.String }
+---@return userdata | { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:get_SupportExtensions() end
 
 function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:Save() end
@@ -231,11 +231,11 @@ function CS.ZhanGuoWuxia.Backend.Mod.IModAssetManager:Save() end
 
 ---@class ZhanGuoWuxia.Backend.Mod.EmptyAssetManager: System.Object, ZhanGuoWuxia.Backend.Mod.IModAssetManager
 ---@field Default ZhanGuoWuxia.Backend.Mod.EmptyAssetManager
----@field SupportExtensions { [nil]: System.String }
----@field private m_SupportExtensions { [nil]: System.String }
+---@field SupportExtensions userdata | { [nil]: System.String }
+---@field private m_SupportExtensions userdata | { [nil]: System.String }
 CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager = {}
 
----@return { [nil]: System.String }
+---@return userdata | { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager:get_SupportExtensions() end
 
 function CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager:Save() end
@@ -261,13 +261,13 @@ function CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager:IsValidAsset(path) end
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager:DeleteAsset(path) end
 
----@param paths { [nil]: System.String }
+---@param paths userdata | { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager:DeleteManyAssets(paths) end
 
 function CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager:RefreshAllAssets() end
 
 ---@param folder System.String
----@return { [nil]: ZhanGuoWuxia.Backend.Mod.IModAsset }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Mod.IModAsset }
 function CS.ZhanGuoWuxia.Backend.Mod.EmptyAssetManager:GetAssetsInFolder(folder) end
 
 ---@param subFolder System.String
@@ -429,14 +429,14 @@ CS.ZhanGuoWuxia.Backend.Mod.ModShopSortType = {
 ---@field Order ZhanGuoWuxia.Backend.Mod.ModShopSortType
 ---@field PageSize System.Int32
 ---@field Page System.Int32
----@field Tags { [nil]: System.String }
+---@field Tags userdata | { [nil]: System.String }
 CS.ZhanGuoWuxia.Backend.Mod.QueryModParam = {}
 
 ---@return ZhanGuoWuxia.Backend.Mod.QueryModParam
 function CS.ZhanGuoWuxia.Backend.Mod.QueryModParam() end
 
 ---@class ZhanGuoWuxia.Backend.Mod.QueryModResult: System.Object
----@field ModItems ZhanGuoWuxia.Backend.Mod.IModShopItem[]
+---@field ModItems userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Mod.IModShopItem } | { [nil]: ZhanGuoWuxia.Backend.Mod.IModShopItem }
 ---@field TotalPage System.Int32
 ---@field IsEmpty System.Boolean
 CS.ZhanGuoWuxia.Backend.Mod.QueryModResult = {}
@@ -448,7 +448,7 @@ function CS.ZhanGuoWuxia.Backend.Mod.QueryModResult:get_IsEmpty() end
 function CS.ZhanGuoWuxia.Backend.Mod.QueryModResult() end
 
 ---@class ZhanGuoWuxia.Backend.Mod.IModShopController: System.Object
----@field protected m_DownloadTasks { [System.UInt64]: ZhanGuoWuxia.Backend.Mod.IModDownloadTask }
+---@field protected m_DownloadTasks userdata | { [System.UInt64]: ZhanGuoWuxia.Backend.Mod.IModDownloadTask } | { [nil]: userdata }
 CS.ZhanGuoWuxia.Backend.Mod.IModShopController = {}
 
 ---@param param ZhanGuoWuxia.Backend.Mod.QueryModParam

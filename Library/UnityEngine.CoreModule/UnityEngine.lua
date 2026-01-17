@@ -873,7 +873,7 @@ function CS.UnityEngine.Camera:RenderWithShader(shader, replacementTag) end
 
 function CS.UnityEngine.Camera:RenderDontRestore() end
 
----@param renderRequests UnityEngine.Camera.RenderRequest[]
+---@param renderRequests userdata | { [System.Int32]: UnityEngine.Camera.RenderRequest } | { [nil]: UnityEngine.Camera.RenderRequest }
 function CS.UnityEngine.Camera:SubmitRenderRequests(renderRequests) end
 
 ---@private
@@ -2082,13 +2082,13 @@ function CS.UnityEngine.Renderer:get_sharedMaterials() end
 ---@param value UnityEngine.Material[]
 function CS.UnityEngine.Renderer:set_sharedMaterials(value) end
 
----@param m UnityEngine.Material[]
+---@param m userdata | { [System.Int32]: UnityEngine.Material } | { [nil]: UnityEngine.Material }
 function CS.UnityEngine.Renderer:GetMaterials(m) end
 
----@param m UnityEngine.Material[]
+---@param m userdata | { [System.Int32]: UnityEngine.Material } | { [nil]: UnityEngine.Material }
 function CS.UnityEngine.Renderer:GetSharedMaterials(m) end
 
----@param result UnityEngine.Rendering.ReflectionProbeBlendInfo[]
+---@param result userdata | { [System.Int32]: UnityEngine.Rendering.ReflectionProbeBlendInfo } | { [nil]: UnityEngine.Rendering.ReflectionProbeBlendInfo }
 function CS.UnityEngine.Renderer:GetClosestReflectionProbes(result) end
 
 ---@private
@@ -2441,11 +2441,11 @@ function CS.UnityEngine.Material:set_shaderKeywords(value) end
 ---@return System.Int32
 function CS.UnityEngine.Material:ComputeCRC() end
 
----@overload fun(self: self, outNames: System.String[])
+---@overload fun(self: self, outNames: (userdata | { [System.Int32]: System.String } | { [nil]: System.String }))
 ---@return System.String[]
 function CS.UnityEngine.Material:GetTexturePropertyNames() end
 
----@overload fun(self: self, outNames: System.Int32[])
+---@overload fun(self: self, outNames: (userdata | { [System.Int32]: System.Int32 } | { [nil]: System.Int32 }))
 ---@return System.Int32[]
 function CS.UnityEngine.Material:GetTexturePropertyNameIDs() end
 
@@ -2662,22 +2662,22 @@ function CS.UnityEngine.Material:SetMatrixArray(name, values, count) end
 
 ---@private
 ---@param name System.Int32
----@param values System.Single[]
+---@param values userdata | { [System.Int32]: System.Single } | { [nil]: System.Single }
 function CS.UnityEngine.Material:ExtractFloatArray(name, values) end
 
 ---@private
 ---@param name System.Int32
----@param values UnityEngine.Vector4[]
+---@param values userdata | { [System.Int32]: UnityEngine.Vector4 } | { [nil]: UnityEngine.Vector4 }
 function CS.UnityEngine.Material:ExtractVectorArray(name, values) end
 
 ---@private
 ---@param name System.Int32
----@param values UnityEngine.Color[]
+---@param values userdata | { [System.Int32]: UnityEngine.Color } | { [nil]: UnityEngine.Color }
 function CS.UnityEngine.Material:ExtractColorArray(name, values) end
 
 ---@private
 ---@param name System.Int32
----@param values UnityEngine.Matrix4x4[]
+---@param values userdata | { [System.Int32]: UnityEngine.Matrix4x4 } | { [nil]: UnityEngine.Matrix4x4 }
 function CS.UnityEngine.Material:ExtractMatrixArray(name, values) end
 
 ---@overload fun(self: self, nameID: System.Int32, value: System.Int32)
@@ -2733,32 +2733,32 @@ function CS.UnityEngine.Material:SetBuffer(name, value) end
 ---@param size System.Int32
 function CS.UnityEngine.Material:SetConstantBuffer(name, value, offset, size) end
 
----@overload fun(self: self, nameID: System.Int32, values: System.Single[])
+---@overload fun(self: self, nameID: System.Int32, values: (userdata | { [System.Int32]: System.Single } | { [nil]: System.Single }))
 ---@overload fun(self: self, name: System.String, values: System.Single[])
 ---@overload fun(self: self, nameID: System.Int32, values: System.Single[])
 ---@param name System.String
----@param values System.Single[]
+---@param values userdata | { [System.Int32]: System.Single } | { [nil]: System.Single }
 function CS.UnityEngine.Material:SetFloatArray(name, values) end
 
----@overload fun(self: self, nameID: System.Int32, values: UnityEngine.Color[])
+---@overload fun(self: self, nameID: System.Int32, values: (userdata | { [System.Int32]: UnityEngine.Color } | { [nil]: UnityEngine.Color }))
 ---@overload fun(self: self, name: System.String, values: UnityEngine.Color[])
 ---@overload fun(self: self, nameID: System.Int32, values: UnityEngine.Color[])
 ---@param name System.String
----@param values UnityEngine.Color[]
+---@param values userdata | { [System.Int32]: UnityEngine.Color } | { [nil]: UnityEngine.Color }
 function CS.UnityEngine.Material:SetColorArray(name, values) end
 
----@overload fun(self: self, nameID: System.Int32, values: UnityEngine.Vector4[])
+---@overload fun(self: self, nameID: System.Int32, values: (userdata | { [System.Int32]: UnityEngine.Vector4 } | { [nil]: UnityEngine.Vector4 }))
 ---@overload fun(self: self, name: System.String, values: UnityEngine.Vector4[])
 ---@overload fun(self: self, nameID: System.Int32, values: UnityEngine.Vector4[])
 ---@param name System.String
----@param values UnityEngine.Vector4[]
+---@param values userdata | { [System.Int32]: UnityEngine.Vector4 } | { [nil]: UnityEngine.Vector4 }
 function CS.UnityEngine.Material:SetVectorArray(name, values) end
 
----@overload fun(self: self, nameID: System.Int32, values: UnityEngine.Matrix4x4[])
+---@overload fun(self: self, nameID: System.Int32, values: (userdata | { [System.Int32]: UnityEngine.Matrix4x4 } | { [nil]: UnityEngine.Matrix4x4 }))
 ---@overload fun(self: self, name: System.String, values: UnityEngine.Matrix4x4[])
 ---@overload fun(self: self, nameID: System.Int32, values: UnityEngine.Matrix4x4[])
 ---@param name System.String
----@param values UnityEngine.Matrix4x4[]
+---@param values userdata | { [System.Int32]: UnityEngine.Matrix4x4 } | { [nil]: UnityEngine.Matrix4x4 }
 function CS.UnityEngine.Material:SetMatrixArray(name, values) end
 
 ---@overload fun(self: self, nameID: System.Int32): System.Int32
@@ -2797,29 +2797,29 @@ function CS.UnityEngine.Material:GetMatrix(name) end
 function CS.UnityEngine.Material:GetTexture(name) end
 
 ---@overload fun(self: self, nameID: System.Int32): System.Single[]
----@overload fun(self: self, name: System.String, values: System.Single[])
----@overload fun(self: self, nameID: System.Int32, values: System.Single[])
+---@overload fun(self: self, name: System.String, values: (userdata | { [System.Int32]: System.Single } | { [nil]: System.Single }))
+---@overload fun(self: self, nameID: System.Int32, values: (userdata | { [System.Int32]: System.Single } | { [nil]: System.Single }))
 ---@param name System.String
 ---@return System.Single[]
 function CS.UnityEngine.Material:GetFloatArray(name) end
 
 ---@overload fun(self: self, nameID: System.Int32): UnityEngine.Color[]
----@overload fun(self: self, name: System.String, values: UnityEngine.Color[])
----@overload fun(self: self, nameID: System.Int32, values: UnityEngine.Color[])
+---@overload fun(self: self, name: System.String, values: (userdata | { [System.Int32]: UnityEngine.Color } | { [nil]: UnityEngine.Color }))
+---@overload fun(self: self, nameID: System.Int32, values: (userdata | { [System.Int32]: UnityEngine.Color } | { [nil]: UnityEngine.Color }))
 ---@param name System.String
 ---@return UnityEngine.Color[]
 function CS.UnityEngine.Material:GetColorArray(name) end
 
 ---@overload fun(self: self, nameID: System.Int32): UnityEngine.Vector4[]
----@overload fun(self: self, name: System.String, values: UnityEngine.Vector4[])
----@overload fun(self: self, nameID: System.Int32, values: UnityEngine.Vector4[])
+---@overload fun(self: self, name: System.String, values: (userdata | { [System.Int32]: UnityEngine.Vector4 } | { [nil]: UnityEngine.Vector4 }))
+---@overload fun(self: self, nameID: System.Int32, values: (userdata | { [System.Int32]: UnityEngine.Vector4 } | { [nil]: UnityEngine.Vector4 }))
 ---@param name System.String
 ---@return UnityEngine.Vector4[]
 function CS.UnityEngine.Material:GetVectorArray(name) end
 
 ---@overload fun(self: self, nameID: System.Int32): UnityEngine.Matrix4x4[]
----@overload fun(self: self, name: System.String, values: UnityEngine.Matrix4x4[])
----@overload fun(self: self, nameID: System.Int32, values: UnityEngine.Matrix4x4[])
+---@overload fun(self: self, name: System.String, values: (userdata | { [System.Int32]: UnityEngine.Matrix4x4 } | { [nil]: UnityEngine.Matrix4x4 }))
+---@overload fun(self: self, nameID: System.Int32, values: (userdata | { [System.Int32]: UnityEngine.Matrix4x4 } | { [nil]: UnityEngine.Matrix4x4 }))
 ---@param name System.String
 ---@return UnityEngine.Matrix4x4[]
 function CS.UnityEngine.Material:GetMatrixArray(name) end
@@ -3471,7 +3471,7 @@ function CS.UnityEngine.Mesh:GetVertexAttributesAlloc() end
 function CS.UnityEngine.Mesh:GetVertexAttributesArray(attributes) end
 
 ---@private
----@param attributes UnityEngine.Rendering.VertexAttributeDescriptor[]
+---@param attributes userdata | { [System.Int32]: UnityEngine.Rendering.VertexAttributeDescriptor } | { [nil]: UnityEngine.Rendering.VertexAttributeDescriptor }
 ---@return System.Int32
 function CS.UnityEngine.Mesh:GetVertexAttributesList(attributes) end
 
@@ -3704,8 +3704,8 @@ function CS.UnityEngine.Mesh:GetBoneWeightsImpl() end
 ---@param weights UnityEngine.BoneWeight[]
 function CS.UnityEngine.Mesh:SetBoneWeightsImpl(weights) end
 
----@param bonesPerVertex { [nil]: System.Byte }
----@param weights { [nil]: UnityEngine.BoneWeight1 }
+---@param bonesPerVertex userdata | { [System.Int32]: System.Byte } | { [nil]: System.Byte }
+---@param weights userdata | { [System.Int32]: UnityEngine.BoneWeight1 } | { [nil]: UnityEngine.BoneWeight1 }
 function CS.UnityEngine.Mesh:SetBoneWeights(bonesPerVertex, weights) end
 
 ---@private
@@ -3715,10 +3715,10 @@ function CS.UnityEngine.Mesh:SetBoneWeights(bonesPerVertex, weights) end
 ---@param weightsSize System.Int32
 function CS.UnityEngine.Mesh:InternalSetBoneWeights(bonesPerVertex, bonesPerVertexSize, weights, weightsSize) end
 
----@return { [nil]: UnityEngine.BoneWeight1 }
+---@return userdata | { [System.Int32]: UnityEngine.BoneWeight1 } | { [nil]: UnityEngine.BoneWeight1 }
 function CS.UnityEngine.Mesh:GetAllBoneWeights() end
 
----@return { [nil]: System.Byte }
+---@return userdata | { [System.Int32]: System.Byte } | { [nil]: System.Byte }
 function CS.UnityEngine.Mesh:GetBonesPerVertex() end
 
 ---@private
@@ -3969,65 +3969,65 @@ function CS.UnityEngine.Mesh:get_colors32() end
 ---@param value UnityEngine.Color32[]
 function CS.UnityEngine.Mesh:set_colors32(value) end
 
----@param vertices UnityEngine.Vector3[]
+---@param vertices userdata | { [System.Int32]: UnityEngine.Vector3 } | { [nil]: UnityEngine.Vector3 }
 function CS.UnityEngine.Mesh:GetVertices(vertices) end
 
----@overload fun(self: self, inVertices: UnityEngine.Vector3[], start: System.Int32, length: System.Int32)
----@overload fun(self: self, inVertices: UnityEngine.Vector3[], start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
+---@overload fun(self: self, inVertices: (userdata | { [System.Int32]: UnityEngine.Vector3 } | { [nil]: UnityEngine.Vector3 }), start: System.Int32, length: System.Int32)
+---@overload fun(self: self, inVertices: (userdata | { [System.Int32]: UnityEngine.Vector3 } | { [nil]: UnityEngine.Vector3 }), start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
 ---@overload fun(self: self, inVertices: UnityEngine.Vector3[])
 ---@overload fun(self: self, inVertices: UnityEngine.Vector3[], start: System.Int32, length: System.Int32)
 ---@overload fun(self: self, inVertices: UnityEngine.Vector3[], start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
----@param inVertices UnityEngine.Vector3[]
+---@param inVertices userdata | { [System.Int32]: UnityEngine.Vector3 } | { [nil]: UnityEngine.Vector3 }
 function CS.UnityEngine.Mesh:SetVertices(inVertices) end
 
----@param normals UnityEngine.Vector3[]
+---@param normals userdata | { [System.Int32]: UnityEngine.Vector3 } | { [nil]: UnityEngine.Vector3 }
 function CS.UnityEngine.Mesh:GetNormals(normals) end
 
----@overload fun(self: self, inNormals: UnityEngine.Vector3[], start: System.Int32, length: System.Int32)
----@overload fun(self: self, inNormals: UnityEngine.Vector3[], start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
+---@overload fun(self: self, inNormals: (userdata | { [System.Int32]: UnityEngine.Vector3 } | { [nil]: UnityEngine.Vector3 }), start: System.Int32, length: System.Int32)
+---@overload fun(self: self, inNormals: (userdata | { [System.Int32]: UnityEngine.Vector3 } | { [nil]: UnityEngine.Vector3 }), start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
 ---@overload fun(self: self, inNormals: UnityEngine.Vector3[])
 ---@overload fun(self: self, inNormals: UnityEngine.Vector3[], start: System.Int32, length: System.Int32)
 ---@overload fun(self: self, inNormals: UnityEngine.Vector3[], start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
----@param inNormals UnityEngine.Vector3[]
+---@param inNormals userdata | { [System.Int32]: UnityEngine.Vector3 } | { [nil]: UnityEngine.Vector3 }
 function CS.UnityEngine.Mesh:SetNormals(inNormals) end
 
----@param tangents UnityEngine.Vector4[]
+---@param tangents userdata | { [System.Int32]: UnityEngine.Vector4 } | { [nil]: UnityEngine.Vector4 }
 function CS.UnityEngine.Mesh:GetTangents(tangents) end
 
----@overload fun(self: self, inTangents: UnityEngine.Vector4[], start: System.Int32, length: System.Int32)
----@overload fun(self: self, inTangents: UnityEngine.Vector4[], start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
+---@overload fun(self: self, inTangents: (userdata | { [System.Int32]: UnityEngine.Vector4 } | { [nil]: UnityEngine.Vector4 }), start: System.Int32, length: System.Int32)
+---@overload fun(self: self, inTangents: (userdata | { [System.Int32]: UnityEngine.Vector4 } | { [nil]: UnityEngine.Vector4 }), start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
 ---@overload fun(self: self, inTangents: UnityEngine.Vector4[])
 ---@overload fun(self: self, inTangents: UnityEngine.Vector4[], start: System.Int32, length: System.Int32)
 ---@overload fun(self: self, inTangents: UnityEngine.Vector4[], start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
----@param inTangents UnityEngine.Vector4[]
+---@param inTangents userdata | { [System.Int32]: UnityEngine.Vector4 } | { [nil]: UnityEngine.Vector4 }
 function CS.UnityEngine.Mesh:SetTangents(inTangents) end
 
----@overload fun(self: self, colors: UnityEngine.Color32[])
----@param colors UnityEngine.Color[]
+---@overload fun(self: self, colors: (userdata | { [System.Int32]: UnityEngine.Color32 } | { [nil]: UnityEngine.Color32 }))
+---@param colors userdata | { [System.Int32]: UnityEngine.Color } | { [nil]: UnityEngine.Color }
 function CS.UnityEngine.Mesh:GetColors(colors) end
 
----@overload fun(self: self, inColors: UnityEngine.Color[], start: System.Int32, length: System.Int32)
----@overload fun(self: self, inColors: UnityEngine.Color[], start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
+---@overload fun(self: self, inColors: (userdata | { [System.Int32]: UnityEngine.Color } | { [nil]: UnityEngine.Color }), start: System.Int32, length: System.Int32)
+---@overload fun(self: self, inColors: (userdata | { [System.Int32]: UnityEngine.Color } | { [nil]: UnityEngine.Color }), start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
 ---@overload fun(self: self, inColors: UnityEngine.Color[])
 ---@overload fun(self: self, inColors: UnityEngine.Color[], start: System.Int32, length: System.Int32)
 ---@overload fun(self: self, inColors: UnityEngine.Color[], start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
+---@overload fun(self: self, inColors: (userdata | { [System.Int32]: UnityEngine.Color32 } | { [nil]: UnityEngine.Color32 }))
+---@overload fun(self: self, inColors: (userdata | { [System.Int32]: UnityEngine.Color32 } | { [nil]: UnityEngine.Color32 }), start: System.Int32, length: System.Int32)
+---@overload fun(self: self, inColors: (userdata | { [System.Int32]: UnityEngine.Color32 } | { [nil]: UnityEngine.Color32 }), start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
 ---@overload fun(self: self, inColors: UnityEngine.Color32[])
 ---@overload fun(self: self, inColors: UnityEngine.Color32[], start: System.Int32, length: System.Int32)
 ---@overload fun(self: self, inColors: UnityEngine.Color32[], start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
----@overload fun(self: self, inColors: UnityEngine.Color32[])
----@overload fun(self: self, inColors: UnityEngine.Color32[], start: System.Int32, length: System.Int32)
----@overload fun(self: self, inColors: UnityEngine.Color32[], start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
----@param inColors UnityEngine.Color[]
+---@param inColors userdata | { [System.Int32]: UnityEngine.Color } | { [nil]: UnityEngine.Color }
 function CS.UnityEngine.Mesh:SetColors(inColors) end
 
----@overload fun(self: self, channel: System.Int32, uvs: UnityEngine.Vector3[])
----@overload fun(self: self, channel: System.Int32, uvs: UnityEngine.Vector4[])
----@overload fun(self: self, channel: System.Int32, uvs: UnityEngine.Vector2[], start: System.Int32, length: System.Int32)
----@overload fun(self: self, channel: System.Int32, uvs: UnityEngine.Vector2[], start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
----@overload fun(self: self, channel: System.Int32, uvs: UnityEngine.Vector3[], start: System.Int32, length: System.Int32)
----@overload fun(self: self, channel: System.Int32, uvs: UnityEngine.Vector3[], start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
----@overload fun(self: self, channel: System.Int32, uvs: UnityEngine.Vector4[], start: System.Int32, length: System.Int32)
----@overload fun(self: self, channel: System.Int32, uvs: UnityEngine.Vector4[], start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
+---@overload fun(self: self, channel: System.Int32, uvs: (userdata | { [System.Int32]: UnityEngine.Vector3 } | { [nil]: UnityEngine.Vector3 }))
+---@overload fun(self: self, channel: System.Int32, uvs: (userdata | { [System.Int32]: UnityEngine.Vector4 } | { [nil]: UnityEngine.Vector4 }))
+---@overload fun(self: self, channel: System.Int32, uvs: (userdata | { [System.Int32]: UnityEngine.Vector2 } | { [nil]: UnityEngine.Vector2 }), start: System.Int32, length: System.Int32)
+---@overload fun(self: self, channel: System.Int32, uvs: (userdata | { [System.Int32]: UnityEngine.Vector2 } | { [nil]: UnityEngine.Vector2 }), start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
+---@overload fun(self: self, channel: System.Int32, uvs: (userdata | { [System.Int32]: UnityEngine.Vector3 } | { [nil]: UnityEngine.Vector3 }), start: System.Int32, length: System.Int32)
+---@overload fun(self: self, channel: System.Int32, uvs: (userdata | { [System.Int32]: UnityEngine.Vector3 } | { [nil]: UnityEngine.Vector3 }), start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
+---@overload fun(self: self, channel: System.Int32, uvs: (userdata | { [System.Int32]: UnityEngine.Vector4 } | { [nil]: UnityEngine.Vector4 }), start: System.Int32, length: System.Int32)
+---@overload fun(self: self, channel: System.Int32, uvs: (userdata | { [System.Int32]: UnityEngine.Vector4 } | { [nil]: UnityEngine.Vector4 }), start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
 ---@overload fun(self: self, channel: System.Int32, uvs: UnityEngine.Vector2[])
 ---@overload fun(self: self, channel: System.Int32, uvs: UnityEngine.Vector3[])
 ---@overload fun(self: self, channel: System.Int32, uvs: UnityEngine.Vector4[])
@@ -4038,7 +4038,7 @@ function CS.UnityEngine.Mesh:SetColors(inColors) end
 ---@overload fun(self: self, channel: System.Int32, uvs: UnityEngine.Vector4[], start: System.Int32, length: System.Int32)
 ---@overload fun(self: self, channel: System.Int32, uvs: UnityEngine.Vector4[], start: System.Int32, length: System.Int32, flags: UnityEngine.Rendering.MeshUpdateFlags)
 ---@param channel System.Int32
----@param uvs UnityEngine.Vector2[]
+---@param uvs userdata | { [System.Int32]: UnityEngine.Vector2 } | { [nil]: UnityEngine.Vector2 }
 function CS.UnityEngine.Mesh:SetUVs(channel, uvs) end
 
 ---@private
@@ -4050,27 +4050,27 @@ function CS.UnityEngine.Mesh:SetUVs(channel, uvs) end
 ---@param flags UnityEngine.Rendering.MeshUpdateFlags
 function CS.UnityEngine.Mesh:SetUvsImpl(uvIndex, dim, uvs, arrayStart, arraySize, flags) end
 
----@overload fun(self: self, channel: System.Int32, uvs: UnityEngine.Vector3[])
----@overload fun(self: self, channel: System.Int32, uvs: UnityEngine.Vector4[])
+---@overload fun(self: self, channel: System.Int32, uvs: (userdata | { [System.Int32]: UnityEngine.Vector3 } | { [nil]: UnityEngine.Vector3 }))
+---@overload fun(self: self, channel: System.Int32, uvs: (userdata | { [System.Int32]: UnityEngine.Vector4 } | { [nil]: UnityEngine.Vector4 }))
 ---@param channel System.Int32
----@param uvs UnityEngine.Vector2[]
+---@param uvs userdata | { [System.Int32]: UnityEngine.Vector2 } | { [nil]: UnityEngine.Vector2 }
 function CS.UnityEngine.Mesh:GetUVs(channel, uvs) end
 
 ---@return System.Int32
 function CS.UnityEngine.Mesh:get_vertexAttributeCount() end
 
 ---@overload fun(self: self, attributes: UnityEngine.Rendering.VertexAttributeDescriptor[]): System.Int32
----@overload fun(self: self, attributes: UnityEngine.Rendering.VertexAttributeDescriptor[]): System.Int32
+---@overload fun(self: self, attributes: (userdata | { [System.Int32]: UnityEngine.Rendering.VertexAttributeDescriptor } | { [nil]: UnityEngine.Rendering.VertexAttributeDescriptor })): System.Int32
 ---@return UnityEngine.Rendering.VertexAttributeDescriptor[]
 function CS.UnityEngine.Mesh:GetVertexAttributes() end
 
----@overload fun(self: self, vertexCount: System.Int32, attributes: { [nil]: UnityEngine.Rendering.VertexAttributeDescriptor })
+---@overload fun(self: self, vertexCount: System.Int32, attributes: (userdata | { [System.Int32]: UnityEngine.Rendering.VertexAttributeDescriptor } | { [nil]: UnityEngine.Rendering.VertexAttributeDescriptor }))
 ---@param vertexCount System.Int32
 ---@param ... UnityEngine.Rendering.VertexAttributeDescriptor
 function CS.UnityEngine.Mesh:SetVertexBufferParams(vertexCount, ...) end
 
 ---@overload fun(meshes: UnityEngine.Mesh[]): UnityEngine.Mesh.MeshDataArray
----@overload fun(meshes: UnityEngine.Mesh[]): UnityEngine.Mesh.MeshDataArray
+---@overload fun(meshes: (userdata | { [System.Int32]: UnityEngine.Mesh } | { [nil]: UnityEngine.Mesh })): UnityEngine.Mesh.MeshDataArray
 ---@param mesh UnityEngine.Mesh
 ---@return UnityEngine.Mesh.MeshDataArray
 function CS.UnityEngine.Mesh.AcquireReadOnlyMeshData(mesh) end
@@ -4080,7 +4080,7 @@ function CS.UnityEngine.Mesh.AcquireReadOnlyMeshData(mesh) end
 function CS.UnityEngine.Mesh.AllocateWritableMeshData(meshCount) end
 
 ---@overload fun(data: UnityEngine.Mesh.MeshDataArray, meshes: UnityEngine.Mesh[], flags?: UnityEngine.Rendering.MeshUpdateFlags)
----@overload fun(data: UnityEngine.Mesh.MeshDataArray, meshes: UnityEngine.Mesh[], flags?: UnityEngine.Rendering.MeshUpdateFlags)
+---@overload fun(data: UnityEngine.Mesh.MeshDataArray, meshes: (userdata | { [System.Int32]: UnityEngine.Mesh } | { [nil]: UnityEngine.Mesh }), flags?: UnityEngine.Rendering.MeshUpdateFlags)
 ---@param data UnityEngine.Mesh.MeshDataArray
 ---@param mesh UnityEngine.Mesh
 ---@param flags? UnityEngine.Rendering.MeshUpdateFlags
@@ -4119,17 +4119,17 @@ function CS.UnityEngine.Mesh:get_triangles() end
 function CS.UnityEngine.Mesh:set_triangles(value) end
 
 ---@overload fun(self: self, submesh: System.Int32, applyBaseVertex: System.Boolean): System.Int32[]
----@overload fun(self: self, triangles: System.Int32[], submesh: System.Int32)
----@overload fun(self: self, triangles: System.Int32[], submesh: System.Int32, applyBaseVertex: System.Boolean)
----@overload fun(self: self, triangles: System.UInt16[], submesh: System.Int32, applyBaseVertex?: System.Boolean)
+---@overload fun(self: self, triangles: (userdata | { [System.Int32]: System.Int32 } | { [nil]: System.Int32 }), submesh: System.Int32)
+---@overload fun(self: self, triangles: (userdata | { [System.Int32]: System.Int32 } | { [nil]: System.Int32 }), submesh: System.Int32, applyBaseVertex: System.Boolean)
+---@overload fun(self: self, triangles: (userdata | { [System.Int32]: System.UInt16 } | { [nil]: System.UInt16 }), submesh: System.Int32, applyBaseVertex?: System.Boolean)
 ---@param submesh System.Int32
 ---@return System.Int32[]
 function CS.UnityEngine.Mesh:GetTriangles(submesh) end
 
 ---@overload fun(self: self, submesh: System.Int32, applyBaseVertex: System.Boolean): System.Int32[]
----@overload fun(self: self, indices: System.Int32[], submesh: System.Int32)
----@overload fun(self: self, indices: System.Int32[], submesh: System.Int32, applyBaseVertex: System.Boolean)
----@overload fun(self: self, indices: System.UInt16[], submesh: System.Int32, applyBaseVertex?: System.Boolean)
+---@overload fun(self: self, indices: (userdata | { [System.Int32]: System.Int32 } | { [nil]: System.Int32 }), submesh: System.Int32)
+---@overload fun(self: self, indices: (userdata | { [System.Int32]: System.Int32 } | { [nil]: System.Int32 }), submesh: System.Int32, applyBaseVertex: System.Boolean)
+---@overload fun(self: self, indices: (userdata | { [System.Int32]: System.UInt16 } | { [nil]: System.UInt16 }), submesh: System.Int32, applyBaseVertex?: System.Boolean)
 ---@param submesh System.Int32
 ---@return System.Int32[]
 function CS.UnityEngine.Mesh:GetIndices(submesh) end
@@ -4168,12 +4168,12 @@ function CS.UnityEngine.Mesh:SetTrianglesImpl(submesh, indicesFormat, triangles,
 ---@overload fun(self: self, triangles: System.Int32[], trianglesStart: System.Int32, trianglesLength: System.Int32, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
 ---@overload fun(self: self, triangles: System.UInt16[], submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
 ---@overload fun(self: self, triangles: System.UInt16[], trianglesStart: System.Int32, trianglesLength: System.Int32, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
----@overload fun(self: self, triangles: System.Int32[], submesh: System.Int32)
----@overload fun(self: self, triangles: System.Int32[], submesh: System.Int32, calculateBounds: System.Boolean)
----@overload fun(self: self, triangles: System.Int32[], submesh: System.Int32, calculateBounds: System.Boolean, baseVertex: System.Int32)
----@overload fun(self: self, triangles: System.Int32[], trianglesStart: System.Int32, trianglesLength: System.Int32, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
----@overload fun(self: self, triangles: System.UInt16[], submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
----@overload fun(self: self, triangles: System.UInt16[], trianglesStart: System.Int32, trianglesLength: System.Int32, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
+---@overload fun(self: self, triangles: (userdata | { [System.Int32]: System.Int32 } | { [nil]: System.Int32 }), submesh: System.Int32)
+---@overload fun(self: self, triangles: (userdata | { [System.Int32]: System.Int32 } | { [nil]: System.Int32 }), submesh: System.Int32, calculateBounds: System.Boolean)
+---@overload fun(self: self, triangles: (userdata | { [System.Int32]: System.Int32 } | { [nil]: System.Int32 }), submesh: System.Int32, calculateBounds: System.Boolean, baseVertex: System.Int32)
+---@overload fun(self: self, triangles: (userdata | { [System.Int32]: System.Int32 } | { [nil]: System.Int32 }), trianglesStart: System.Int32, trianglesLength: System.Int32, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
+---@overload fun(self: self, triangles: (userdata | { [System.Int32]: System.UInt16 } | { [nil]: System.UInt16 }), submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
+---@overload fun(self: self, triangles: (userdata | { [System.Int32]: System.UInt16 } | { [nil]: System.UInt16 }), trianglesStart: System.Int32, trianglesLength: System.Int32, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
 ---@param triangles System.Int32[]
 ---@param submesh System.Int32
 function CS.UnityEngine.Mesh:SetTriangles(triangles, submesh) end
@@ -4183,28 +4183,28 @@ function CS.UnityEngine.Mesh:SetTriangles(triangles, submesh) end
 ---@overload fun(self: self, indices: System.Int32[], indicesStart: System.Int32, indicesLength: System.Int32, topology: UnityEngine.MeshTopology, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
 ---@overload fun(self: self, indices: System.UInt16[], topology: UnityEngine.MeshTopology, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
 ---@overload fun(self: self, indices: System.UInt16[], indicesStart: System.Int32, indicesLength: System.Int32, topology: UnityEngine.MeshTopology, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
----@overload fun(self: self, indices: System.Int32[], topology: UnityEngine.MeshTopology, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
----@overload fun(self: self, indices: System.Int32[], indicesStart: System.Int32, indicesLength: System.Int32, topology: UnityEngine.MeshTopology, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
----@overload fun(self: self, indices: System.UInt16[], topology: UnityEngine.MeshTopology, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
----@overload fun(self: self, indices: System.UInt16[], indicesStart: System.Int32, indicesLength: System.Int32, topology: UnityEngine.MeshTopology, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
+---@overload fun(self: self, indices: (userdata | { [System.Int32]: System.Int32 } | { [nil]: System.Int32 }), topology: UnityEngine.MeshTopology, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
+---@overload fun(self: self, indices: (userdata | { [System.Int32]: System.Int32 } | { [nil]: System.Int32 }), indicesStart: System.Int32, indicesLength: System.Int32, topology: UnityEngine.MeshTopology, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
+---@overload fun(self: self, indices: (userdata | { [System.Int32]: System.UInt16 } | { [nil]: System.UInt16 }), topology: UnityEngine.MeshTopology, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
+---@overload fun(self: self, indices: (userdata | { [System.Int32]: System.UInt16 } | { [nil]: System.UInt16 }), indicesStart: System.Int32, indicesLength: System.Int32, topology: UnityEngine.MeshTopology, submesh: System.Int32, calculateBounds?: System.Boolean, baseVertex?: System.Int32)
 ---@param indices System.Int32[]
 ---@param topology UnityEngine.MeshTopology
 ---@param submesh System.Int32
 function CS.UnityEngine.Mesh:SetIndices(indices, topology, submesh) end
 
 ---@overload fun(self: self, desc: UnityEngine.Rendering.SubMeshDescriptor[], flags?: UnityEngine.Rendering.MeshUpdateFlags)
----@overload fun(self: self, desc: UnityEngine.Rendering.SubMeshDescriptor[], start: System.Int32, count: System.Int32, flags?: UnityEngine.Rendering.MeshUpdateFlags)
----@overload fun(self: self, desc: UnityEngine.Rendering.SubMeshDescriptor[], flags?: UnityEngine.Rendering.MeshUpdateFlags)
+---@overload fun(self: self, desc: (userdata | { [System.Int32]: UnityEngine.Rendering.SubMeshDescriptor } | { [nil]: UnityEngine.Rendering.SubMeshDescriptor }), start: System.Int32, count: System.Int32, flags?: UnityEngine.Rendering.MeshUpdateFlags)
+---@overload fun(self: self, desc: (userdata | { [System.Int32]: UnityEngine.Rendering.SubMeshDescriptor } | { [nil]: UnityEngine.Rendering.SubMeshDescriptor }), flags?: UnityEngine.Rendering.MeshUpdateFlags)
 ---@param desc UnityEngine.Rendering.SubMeshDescriptor[]
 ---@param start System.Int32
 ---@param count System.Int32
 ---@param flags? UnityEngine.Rendering.MeshUpdateFlags
 function CS.UnityEngine.Mesh:SetSubMeshes(desc, start, count, flags) end
 
----@param bindposes UnityEngine.Matrix4x4[]
+---@param bindposes userdata | { [System.Int32]: UnityEngine.Matrix4x4 } | { [nil]: UnityEngine.Matrix4x4 }
 function CS.UnityEngine.Mesh:GetBindposes(bindposes) end
 
----@param boneWeights UnityEngine.BoneWeight[]
+---@param boneWeights userdata | { [System.Int32]: UnityEngine.BoneWeight } | { [nil]: UnityEngine.BoneWeight }
 function CS.UnityEngine.Mesh:GetBoneWeights(boneWeights) end
 
 ---@return UnityEngine.BoneWeight[]
@@ -4878,7 +4878,7 @@ function CS.UnityEngine.Texture2D:ReadPixels(source, destX, destY, recalculateMi
 ---@param sizes UnityEngine.Vector2[]
 ---@param padding System.Int32
 ---@param atlasSize System.Int32
----@param results UnityEngine.Rect[]
+---@param results userdata | { [System.Int32]: UnityEngine.Rect } | { [nil]: UnityEngine.Rect }
 ---@return System.Boolean
 function CS.UnityEngine.Texture2D.GenerateAtlas(sizes, padding, atlasSize, results) end
 
@@ -6689,11 +6689,11 @@ function CS.UnityEngine.Resources.InstanceIDToObject(instanceID) end
 ---@private
 ---@param instanceIDs System.IntPtr
 ---@param instanceCount System.Int32
----@param objects UnityEngine.Object[]
+---@param objects userdata | { [System.Int32]: UnityEngine.Object } | { [nil]: UnityEngine.Object }
 function CS.UnityEngine.Resources.InstanceIDToObjectList(instanceIDs, instanceCount, objects) end
 
----@param instanceIDs { [nil]: System.Int32 }
----@param objects UnityEngine.Object[]
+---@param instanceIDs userdata | { [System.Int32]: System.Int32 } | { [nil]: System.Int32 }
+---@param objects userdata | { [System.Int32]: UnityEngine.Object } | { [nil]: UnityEngine.Object }
 function CS.UnityEngine.Resources.InstanceIDToObjectList(instanceIDs, objects) end
 
 ---@return UnityEngine.Resources
@@ -6767,7 +6767,7 @@ function CS.UnityEngine.Component:GetComponentInParent(t, includeInactive) end
 ---@return UnityEngine.Component[]
 function CS.UnityEngine.Component:GetComponentsInParent(t, includeInactive) end
 
----@overload fun(self: self, type: System.Type, results: UnityEngine.Component[])
+---@overload fun(self: self, type: System.Type, results: (userdata | { [System.Int32]: UnityEngine.Component } | { [nil]: UnityEngine.Component }))
 ---@param type System.Type
 ---@return UnityEngine.Component[]
 function CS.UnityEngine.Component:GetComponents(type) end
@@ -6868,7 +6868,7 @@ function CS.UnityEngine.GameObject:GetComponentInParent(type, includeInactive) e
 ---@return System.Array
 function CS.UnityEngine.GameObject:GetComponentsInternal(type, useSearchTypeAsArrayReturnType, recursive, includeInactive, reverse, resultList) end
 
----@overload fun(self: self, type: System.Type, results: UnityEngine.Component[])
+---@overload fun(self: self, type: System.Type, results: (userdata | { [System.Int32]: UnityEngine.Component } | { [nil]: UnityEngine.Component }))
 ---@param type System.Type
 ---@return UnityEngine.Component[]
 function CS.UnityEngine.GameObject:GetComponents(type) end
@@ -8477,17 +8477,17 @@ function CS.UnityEngine.Sprite:GetPhysicsShapePointCount(shapeIdx) end
 function CS.UnityEngine.Sprite:Internal_GetPhysicsShapePointCount(shapeIdx) end
 
 ---@param shapeIdx System.Int32
----@param physicsShape UnityEngine.Vector2[]
+---@param physicsShape userdata | { [System.Int32]: UnityEngine.Vector2 } | { [nil]: UnityEngine.Vector2 }
 ---@return System.Int32
 function CS.UnityEngine.Sprite:GetPhysicsShape(shapeIdx, physicsShape) end
 
 ---@private
 ---@param sprite UnityEngine.Sprite
 ---@param shapeIdx System.Int32
----@param physicsShape UnityEngine.Vector2[]
+---@param physicsShape userdata | { [System.Int32]: UnityEngine.Vector2 } | { [nil]: UnityEngine.Vector2 }
 function CS.UnityEngine.Sprite.GetPhysicsShapeImpl(sprite, shapeIdx, physicsShape) end
 
----@param physicsShapes UnityEngine.Vector2[][]
+---@param physicsShapes userdata | { [System.Int32]: UnityEngine.Vector2[] } | { [nil]: UnityEngine.Vector2[] }
 function CS.UnityEngine.Sprite:OverridePhysicsShape(physicsShapes) end
 
 ---@private

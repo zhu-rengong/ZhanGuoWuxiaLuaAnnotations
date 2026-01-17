@@ -34,8 +34,8 @@
 ---@field UseUserOverride System.Boolean
 ---@field IsReadOnly System.Boolean
 ---@field package HasInvariantCultureName System.Boolean
----@field private CachedCulturesByName { [System.String]: System.Globalization.CultureInfo }
----@field private CachedCulturesByLcid { [System.Int32]: System.Globalization.CultureInfo }
+---@field private CachedCulturesByName userdata | { [System.String]: System.Globalization.CultureInfo } | { [nil]: userdata }
+---@field private CachedCulturesByLcid userdata | { [System.Int32]: System.Globalization.CultureInfo } | { [nil]: userdata }
 ---@field package UserDefaultLocaleName System.String
 ---@field private _isReadOnly System.Boolean
 ---@field private _compareInfo System.Globalization.CompareInfo
@@ -57,8 +57,8 @@
 ---@field private s_DefaultThreadCurrentCulture System.Globalization.CultureInfo
 ---@field private s_asyncLocalCurrentCulture userdata
 ---@field private s_asyncLocalCurrentUICulture userdata
----@field private s_cachedCulturesByName { [System.String]: System.Globalization.CultureInfo }
----@field private s_cachedCulturesByLcid { [System.Int32]: System.Globalization.CultureInfo }
+---@field private s_cachedCulturesByName userdata | { [System.String]: System.Globalization.CultureInfo } | { [nil]: userdata }
+---@field private s_cachedCulturesByLcid userdata | { [System.Int32]: System.Globalization.CultureInfo } | { [nil]: userdata }
 ---@field private s_currentThreadCulture System.Globalization.CultureInfo
 ---@field private s_currentThreadUICulture System.Globalization.CultureInfo
 ---@field package LOCALE_NEUTRAL System.Int32
@@ -277,11 +277,11 @@ function CS.System.Globalization.CultureInfo:get_HasInvariantCultureName() end
 function CS.System.Globalization.CultureInfo.GetCultureInfo(culture) end
 
 ---@private
----@return { [System.String]: System.Globalization.CultureInfo }
+---@return userdata | { [System.String]: System.Globalization.CultureInfo } | { [nil]: userdata }
 function CS.System.Globalization.CultureInfo.get_CachedCulturesByName() end
 
 ---@private
----@return { [System.Int32]: System.Globalization.CultureInfo }
+---@return userdata | { [System.Int32]: System.Globalization.CultureInfo } | { [nil]: userdata }
 function CS.System.Globalization.CultureInfo.get_CachedCulturesByLcid() end
 
 ---@param name System.String

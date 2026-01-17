@@ -130,7 +130,7 @@ CS.DG.Tweening.DOCurve = {}
 ---@field package maxActiveTweenersReached System.Int32
 ---@field package maxActiveSequencesReached System.Int32
 ---@field package safeModeReport DG.Tweening.Core.SafeModeReport
----@field package GizmosDelegates (fun())[]
+---@field package GizmosDelegates userdata | { [System.Int32]: DG.Tweening.TweenCallback } | { [nil]: fun() }
 ---@field package initialized System.Boolean
 ---@field private _isQuittingFrame System.Int32
 CS.DG.Tweening.DOTween = {}
@@ -420,24 +420,24 @@ function CS.DG.Tweening.DOTween.TotalPlayingTweens() end
 ---@return System.Int32
 function CS.DG.Tweening.DOTween.TotalTweensById(id, playingOnly) end
 
----@param fillableList? DG.Tweening.Tween[]
----@return DG.Tweening.Tween[]
+---@param fillableList? userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
+---@return userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
 function CS.DG.Tweening.DOTween.PlayingTweens(fillableList) end
 
----@param fillableList? DG.Tweening.Tween[]
----@return DG.Tweening.Tween[]
+---@param fillableList? userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
+---@return userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
 function CS.DG.Tweening.DOTween.PausedTweens(fillableList) end
 
 ---@param id System.Object
 ---@param playingOnly? System.Boolean
----@param fillableList? DG.Tweening.Tween[]
----@return DG.Tweening.Tween[]
+---@param fillableList? userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
+---@return userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
 function CS.DG.Tweening.DOTween.TweensById(id, playingOnly, fillableList) end
 
 ---@param target System.Object
 ---@param playingOnly? System.Boolean
----@param fillableList? DG.Tweening.Tween[]
----@return DG.Tweening.Tween[]
+---@param fillableList? userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
+---@return userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
 function CS.DG.Tweening.DOTween.TweensByTarget(target, playingOnly, fillableList) end
 
 ---@private
@@ -796,8 +796,8 @@ CS.DG.Tweening.LoopType = {
 }
 
 ---@class DG.Tweening.Sequence: DG.Tweening.Tween
----@field package sequencedTweens DG.Tweening.Tween[]
----@field private _sequencedObjs DG.Tweening.Core.ABSSequentiable[]
+---@field package sequencedTweens userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
+---@field private _sequencedObjs userdata | { [System.Int32]: DG.Tweening.Core.ABSSequentiable } | { [nil]: DG.Tweening.Core.ABSSequentiable }
 ---@field package lastTweenInsertTime System.Single
 CS.DG.Tweening.Sequence = {}
 
@@ -890,7 +890,7 @@ function CS.DG.Tweening.Sequence.DoApplyTween(s, prevPosition, prevCompletedLoop
 function CS.DG.Tweening.Sequence.ApplyInternalCycle(s, fromPos, toPos, updateMode, useInverse, prevPosIsInverse, multiCycleStep) end
 
 ---@private
----@param list DG.Tweening.Core.ABSSequentiable[]
+---@param list userdata | { [System.Int32]: DG.Tweening.Core.ABSSequentiable } | { [nil]: DG.Tweening.Core.ABSSequentiable }
 function CS.DG.Tweening.Sequence.StableSortSequencedObjs(list) end
 
 ---@private
@@ -2041,7 +2041,7 @@ CS.DG.Tweening.DOCurve.CubicBezier = {}
 ---@return UnityEngine.Vector3
 function CS.DG.Tweening.DOCurve.CubicBezier.GetPointOnSegment(startPoint, startControlPoint, endPoint, endControlPoint, factor) end
 
----@overload fun(addToList: UnityEngine.Vector3[], startPoint: UnityEngine.Vector3, startControlPoint: UnityEngine.Vector3, endPoint: UnityEngine.Vector3, endControlPoint: UnityEngine.Vector3, resolution?: System.Int32)
+---@overload fun(addToList: (userdata | { [System.Int32]: UnityEngine.Vector3 } | { [nil]: UnityEngine.Vector3 }), startPoint: UnityEngine.Vector3, startControlPoint: UnityEngine.Vector3, endPoint: UnityEngine.Vector3, endControlPoint: UnityEngine.Vector3, resolution?: System.Int32)
 ---@param startPoint UnityEngine.Vector3
 ---@param startControlPoint UnityEngine.Vector3
 ---@param endPoint UnityEngine.Vector3

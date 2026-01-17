@@ -195,11 +195,11 @@ function CS.ZhanGuoWuxia.Helpers.BeanHelper.NameWithColor(itemBean) end
 function CS.ZhanGuoWuxia.Helpers.BeanHelper.GetColor(skillBean) end
 
 ---@param poolBean ZhanGuoWuxia.Backend.Beans.LootPoolBean
----@return ZhanGuoWuxia.Backend.Beans.LootData[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.LootData } | { [nil]: ZhanGuoWuxia.Backend.Beans.LootData }
 function CS.ZhanGuoWuxia.Helpers.BeanHelper.GetPreviewFixedLoots(poolBean) end
 
 ---@param poolBean ZhanGuoWuxia.Backend.Beans.LootPoolBean
----@return ZhanGuoWuxia.Backend.Beans.LootData[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Beans.LootData } | { [nil]: ZhanGuoWuxia.Backend.Beans.LootData }
 function CS.ZhanGuoWuxia.Helpers.BeanHelper.GetPreviewRandomLoots(poolBean) end
 
 ---@param formSkill ZhanGuoWuxia.Backend.Beans.SkillFormBean
@@ -272,7 +272,7 @@ function CS.ZhanGuoWuxia.Helpers.BeanHelper.GetAttrName(attrId) end
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Helpers.BeanHelper.IsPercentAttr(attrId) end
 
----@param components { [ZhanGuoWuxia.Backend.Beans.ModelComponentType]: System.String }
+---@param components userdata | { [ZhanGuoWuxia.Backend.Beans.ModelComponentType]: System.String } | { [nil]: userdata }
 ---@param componentType ZhanGuoWuxia.Backend.Beans.ModelComponentType
 ---@param result System.String
 ---@return System.Boolean
@@ -402,7 +402,7 @@ CS.ZhanGuoWuxia.Helpers.BgmSnapShotLayer = {
 ---@field tag System.String
 ---@field name System.String
 ---@field hideFlags UnityEngine.HideFlags
----@field private m_SnappedBgm { [ZhanGuoWuxia.Helpers.BgmSnapShotLayer]: System.String }
+---@field private m_SnappedBgm userdata | { [ZhanGuoWuxia.Helpers.BgmSnapShotLayer]: System.String } | { [nil]: userdata }
 ---@field private m_CachedPtr System.IntPtr
 ---@field package OffsetOfInstanceIDInCPlusPlusObject System.Int32
 ---@field private objectIsNullMessage System.String
@@ -607,7 +607,7 @@ function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:GetComponentInParent(t, includ
 ---@return UnityEngine.Component[]
 function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:GetComponentsInParent(t, includeInactive) end
 
----@overload fun(self: self, type: System.Type, results: UnityEngine.Component[])
+---@overload fun(self: self, type: System.Type, results: (userdata | { [System.Int32]: UnityEngine.Component } | { [nil]: UnityEngine.Component }))
 ---@param type System.Type
 ---@return UnityEngine.Component[]
 function CS.ZhanGuoWuxia.Helpers.BgmSwitchManager:GetComponents(type) end
@@ -918,23 +918,23 @@ function CS.ZhanGuoWuxia.Helpers.BypassCertificate:ValidateCertificate(certifica
 function CS.ZhanGuoWuxia.Helpers.BypassCertificate() end
 
 ---@class ZhanGuoWuxia.Helpers.EnumTextHelper: System.Object
----@field private EnumConverters { [System.Type]: fun() }
+---@field private EnumConverters userdata | { [System.Type]: System.MulticastDelegate } | { [nil]: userdata }
 ---@field private m_EnumConverteLazyLoader userdata
 CS.ZhanGuoWuxia.Helpers.EnumTextHelper = {}
 
 ---@private
----@return { [System.Type]: fun() }
+---@return userdata | { [System.Type]: System.MulticastDelegate } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Helpers.EnumTextHelper.get_EnumConverters() end
 
 ---@private
----@return { [System.Type]: fun() }
+---@return userdata | { [System.Type]: System.MulticastDelegate } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Helpers.EnumTextHelper.InitEnumTextConverters() end
 
----@return { [nil]: System.String }
+---@return userdata | { [nil]: System.String }
 function CS.ZhanGuoWuxia.Helpers.EnumTextHelper.GetGameScreenModeNames() end
 
 ---@param hasColor? System.Boolean
----@return { [nil]: System.String }
+---@return userdata | { [nil]: System.String }
 function CS.ZhanGuoWuxia.Helpers.EnumTextHelper.GetGameDifficultyNames(hasColor) end
 
 ---@overload fun(difficulty: ZhanGuoWuxia.Backend.RuntimeData.GameDifficulty, hasColor?: System.Boolean): System.String
@@ -1011,7 +1011,7 @@ function CS.ZhanGuoWuxia.Helpers.ImageLoadRequest() end
 
 ---@class ZhanGuoWuxia.Helpers.ImageHelper: userdata
 ---@field Instance ZhanGuoWuxia.Helpers.ImageHelper
----@field private m_AllRequests { [System.Int32]: ZhanGuoWuxia.Helpers.ImageLoadRequest }
+---@field private m_AllRequests userdata | { [System.Int32]: ZhanGuoWuxia.Helpers.ImageLoadRequest } | { [nil]: userdata }
 ---@field protected _instance ZhanGuoWuxia.Helpers.ImageHelper
 CS.ZhanGuoWuxia.Helpers.ImageHelper = {}
 
@@ -1194,11 +1194,11 @@ function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetItemSubTypeName(subType) end
 function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetItemQualityLevelName(item) end
 
 ---@param attrs ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
----@return { [nil]: userdata }
+---@return userdata | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetRolePanelOrderedAttrs(attrs) end
 
 ---@param attrs ZhanGuoWuxia.Backend.RuntimeData.BaseStringDictionary
----@return { [nil]: userdata }
+---@return userdata | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Helpers.InstanceHelper.GetItemPanelOrderedAttrs(attrs) end
 
 ---@param attr userdata
@@ -1354,16 +1354,16 @@ function CS.ZhanGuoWuxia.Helpers.RegexHelper.get__db() end
 function CS.ZhanGuoWuxia.Helpers.RegexHelper.TryMatchCustomAvgNameImg(text, name, img) end
 
 ---@param text System.String
----@return { [nil]: System.Text.RegularExpressions.Match }
+---@return userdata | { [nil]: System.Text.RegularExpressions.Match }
 function CS.ZhanGuoWuxia.Helpers.RegexHelper.MatchExpressions(text) end
 
 ---@param expression System.String
----@return { [nil]: System.Text.RegularExpressions.Match }
+---@return userdata | { [nil]: System.Text.RegularExpressions.Match }
 function CS.ZhanGuoWuxia.Helpers.RegexHelper.MatchRuntimeVariables(expression) end
 
 ---@private
 ---@param expression System.String
----@return { [nil]: System.Text.RegularExpressions.Match }
+---@return userdata | { [nil]: System.Text.RegularExpressions.Match }
 function CS.ZhanGuoWuxia.Helpers.RegexHelper.MatchPlayerVariables(expression) end
 
 ---@param content System.String
@@ -1395,8 +1395,8 @@ function CS.ZhanGuoWuxia.Helpers.RegexHelper() end
 ---@field SkillLevel System.Int32
 ---@field IsStatic System.Boolean
 ---@field DisplayBoth System.Boolean
----@field private m_ResolvingBuffs { [nil]: System.String }
----@field private m_ResovingSkills { [nil]: System.String }
+---@field private m_ResolvingBuffs userdata | { [nil]: System.String }
+---@field private m_ResovingSkills userdata | { [nil]: System.String }
 CS.ZhanGuoWuxia.Helpers.RuntimeDescriptionResolver = {}
 
 ---@private
@@ -1505,10 +1505,10 @@ function CS.ZhanGuoWuxia.Helpers.SortHelper.GetSortFunction(sortType) end
 ---@return fun(x: ZhanGuoWuxia.Backend.RuntimeData.RoleRecoverContext, y: ZhanGuoWuxia.Backend.RuntimeData.RoleRecoverContext): System.Int32
 function CS.ZhanGuoWuxia.Helpers.SortHelper.GetRecoverSortFunction(sortType) end
 
----@return { [nil]: System.String }
+---@return userdata | { [nil]: System.String }
 function CS.ZhanGuoWuxia.Helpers.SortHelper.GetRCModifierTexts() end
 
----@return { [nil]: System.String }
+---@return userdata | { [nil]: System.String }
 function CS.ZhanGuoWuxia.Helpers.SortHelper.GetRoleSortTextList() end
 
 
@@ -1529,7 +1529,7 @@ function CS.ZhanGuoWuxia.Helpers.SortHelper.GetRoleSortTextList() end
 ---@field private m_SkipInterval System.Single
 ---@field private m_Skip System.Boolean
 ---@field private m_StorySkiper ZhanGuoWuxia.UI.Story.UIStorySkiper
----@field private m_PrevTargets ZhanGuoWuxia.UI.Story.ISkippableStory[]
+---@field private m_PrevTargets userdata | { [System.Int32]: ZhanGuoWuxia.UI.Story.ISkippableStory } | { [nil]: ZhanGuoWuxia.UI.Story.ISkippableStory }
 ---@field private m_CachedPtr System.IntPtr
 ---@field package OffsetOfInstanceIDInCPlusPlusObject System.Int32
 ---@field private objectIsNullMessage System.String
@@ -1737,7 +1737,7 @@ function CS.ZhanGuoWuxia.Helpers.StoryManager:GetComponentInParent(t, includeIna
 ---@return UnityEngine.Component[]
 function CS.ZhanGuoWuxia.Helpers.StoryManager:GetComponentsInParent(t, includeInactive) end
 
----@overload fun(self: self, type: System.Type, results: UnityEngine.Component[])
+---@overload fun(self: self, type: System.Type, results: (userdata | { [System.Int32]: UnityEngine.Component } | { [nil]: UnityEngine.Component }))
 ---@param type System.Type
 ---@return UnityEngine.Component[]
 function CS.ZhanGuoWuxia.Helpers.StoryManager:GetComponents(type) end
@@ -2368,7 +2368,7 @@ function CS.ZhanGuoWuxia.Helpers.UnityExtension.SetVerticalGradient(tmpText, top
 function CS.ZhanGuoWuxia.Helpers.UnityExtension.SetHorizontalGradient(tmpText, left, right) end
 
 ---@param dropdown TMPro.TMP_Dropdown
----@param options { [nil]: System.String }
+---@param options userdata | { [nil]: System.String }
 function CS.ZhanGuoWuxia.Helpers.UnityExtension.SetStringOptions(dropdown, options) end
 
 ---@param menu UIWidgets.Menu.ContextMenu

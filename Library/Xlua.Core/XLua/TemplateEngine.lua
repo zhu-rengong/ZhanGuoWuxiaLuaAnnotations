@@ -40,7 +40,7 @@ function CS.XLua.TemplateEngine.Parser.EscapeString(input) end
 function CS.XLua.TemplateEngine.Parser.GetRegexString() end
 
 ---@param snippet System.String
----@return XLua.TemplateEngine.Chunk[]
+---@return userdata | { [System.Int32]: XLua.TemplateEngine.Chunk } | { [nil]: XLua.TemplateEngine.Chunk }
 function CS.XLua.TemplateEngine.Parser.Parse(snippet) end
 
 ---@private
@@ -53,7 +53,7 @@ function CS.XLua.TemplateEngine.Parser() end
 ---@field private templateExecuteFunction fun(L: System.IntPtr): System.Int32
 CS.XLua.TemplateEngine.LuaTemplate = {}
 
----@param chunks XLua.TemplateEngine.Chunk[]
+---@param chunks userdata | { [System.Int32]: XLua.TemplateEngine.Chunk } | { [nil]: XLua.TemplateEngine.Chunk }
 ---@return System.String
 function CS.XLua.TemplateEngine.LuaTemplate.ComposeCode(chunks) end
 

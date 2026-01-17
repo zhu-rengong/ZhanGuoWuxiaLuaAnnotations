@@ -16,8 +16,8 @@ CS.ZhanGuoWuxia.Backend.Map.MapBaseData = {}
 function CS.ZhanGuoWuxia.Backend.Map.MapBaseData() end
 
 ---@class ZhanGuoWuxia.Backend.Map.MapManager: ZhanGuoWuxia.Backend.IGameService
----@field DynamicElements ZhanGuoWuxia.Backend.Map.MapElementMoveData[]
----@field StaticElements ZhanGuoWuxia.Backend.Map.MapStaticElementData[]
+---@field DynamicElements userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Map.MapElementMoveData } | { [nil]: ZhanGuoWuxia.Backend.Map.MapElementMoveData }
+---@field StaticElements userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Map.MapStaticElementData } | { [nil]: ZhanGuoWuxia.Backend.Map.MapStaticElementData }
 ---@field MapBaseData ZhanGuoWuxia.Backend.Map.MapBaseData
 ---@field MapElementPreset ZhanGuoWuxia.Backend.Map.MapForeGroundElementSet
 ---@field private _db ZhanGuoWuxia.Backend.Beans.IBeanManager
@@ -27,10 +27,10 @@ function CS.ZhanGuoWuxia.Backend.Map.MapBaseData() end
 ---@field private DefaultMapElementPath System.String
 CS.ZhanGuoWuxia.Backend.Map.MapManager = {}
 
----@return ZhanGuoWuxia.Backend.Map.MapElementMoveData[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Map.MapElementMoveData } | { [nil]: ZhanGuoWuxia.Backend.Map.MapElementMoveData }
 function CS.ZhanGuoWuxia.Backend.Map.MapManager:get_DynamicElements() end
 
----@return ZhanGuoWuxia.Backend.Map.MapStaticElementData[]
+---@return userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Map.MapStaticElementData } | { [nil]: ZhanGuoWuxia.Backend.Map.MapStaticElementData }
 function CS.ZhanGuoWuxia.Backend.Map.MapManager:get_StaticElements() end
 
 ---@return ZhanGuoWuxia.Backend.Map.MapBaseData
@@ -51,7 +51,7 @@ function CS.ZhanGuoWuxia.Backend.Map.MapManager:MergeMapElements(mapElementSet) 
 
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@param triggerId System.String
----@return { [nil]: ZhanGuoWuxia.Backend.Beans.ActionBean }
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.ActionBean }
 function CS.ZhanGuoWuxia.Backend.Map.MapManager:GetActionsByTriggerId(save, triggerId) end
 
 ---@private
@@ -105,8 +105,8 @@ function CS.ZhanGuoWuxia.Backend.Map.MapStaticElementData() end
 ---@class ZhanGuoWuxia.Backend.Map.MapForeGroundElementSet: System.Object
 ---@field HasDynamicElements System.Boolean
 ---@field HasStaticElements System.Boolean
----@field DynamicElements ZhanGuoWuxia.Backend.Map.MapElementMoveData[]
----@field StaticElements ZhanGuoWuxia.Backend.Map.MapStaticElementData[]
+---@field DynamicElements userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Map.MapElementMoveData } | { [nil]: ZhanGuoWuxia.Backend.Map.MapElementMoveData }
+---@field StaticElements userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Map.MapStaticElementData } | { [nil]: ZhanGuoWuxia.Backend.Map.MapStaticElementData }
 ---@field IsOverWrite System.Boolean
 ---@field MinDynamicAppearInterval System.Single
 ---@field MaxDynamicAppearInterval System.Single

@@ -20,13 +20,13 @@ function CS.ZhanGuoWuxia.Backend.Lua.ILuaManager:get_LuaEnv() end
 ---@field IsExecuting System.Boolean
 ---@field private _isInitialized System.Boolean
 ---@field private _luaEnv XLua.LuaEnv
----@field private _signalStack { [nil]: userdata }
+---@field private _signalStack userdata | { [nil]: userdata }
 ---@field private _loader fun(filepath: System.String): System.Byte[]
 ---@field private _scriptEnv XLua.LuaTable
----@field private m_LuaRequirePaths { [nil]: System.String }
----@field private m_TempFunc { [System.String]: XLua.LuaFunction }
----@field private m_GlobalFunc { [System.String]: XLua.LuaFunction }
----@field private m_TablePool { [nil]: XLua.LuaTable }
+---@field private m_LuaRequirePaths userdata | { [nil]: System.String }
+---@field private m_TempFunc userdata | { [System.String]: XLua.LuaFunction } | { [nil]: userdata }
+---@field private m_GlobalFunc userdata | { [System.String]: XLua.LuaFunction } | { [nil]: userdata }
+---@field private m_TablePool userdata | { [nil]: XLua.LuaTable }
 ---@field private _lastGCTime System.Single
 ---@field private _GCInterval System.Single
 CS.ZhanGuoWuxia.Backend.Lua.LuaManager = {}
@@ -66,7 +66,7 @@ function CS.ZhanGuoWuxia.Backend.Lua.LuaManager:RequireTable(moduleName) end
 
 ---@param functionName System.String
 ---@param moduleName System.String
----@param args? { [System.String]: System.Object }
+---@param args? userdata | { [System.String]: System.Object } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Lua.LuaManager:CallMemberFunction(functionName, moduleName, args) end
 
 ---@private

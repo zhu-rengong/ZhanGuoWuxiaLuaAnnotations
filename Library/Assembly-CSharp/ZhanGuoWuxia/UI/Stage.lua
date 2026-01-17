@@ -21,7 +21,7 @@ function CS.ZhanGuoWuxia.UI.Stage.StageActorInfo:Clear() end
 function CS.ZhanGuoWuxia.UI.Stage.StageActorInfo() end
 
 ---@class ZhanGuoWuxia.UI.Stage.UIStage: ZhanGuoWuxia.UI.UIBase, UnityEngine.ISerializationCallbackReceiver, Sirenix.Serialization.ISupportsPrefabSerialization, ZhanGuoWuxia.UI.IUIListenerBinder, UnityEngine.EventSystems.IPointerClickHandler, UnityEngine.EventSystems.IEventSystemHandler, ZhanGuoWuxia.UI.Story.ISkippableStory
----@field AllBubbles { [nil]: ZhanGuoWuxia.UI.Stage.UIStageBubble }
+---@field AllBubbles userdata | { [nil]: ZhanGuoWuxia.UI.Stage.UIStageBubble }
 ---@field SkipPriority System.Int32
 ---@field ViewObject UnityEngine.GameObject
 ---@field StageRoot UnityEngine.RectTransform
@@ -38,16 +38,16 @@ function CS.ZhanGuoWuxia.UI.Stage.StageActorInfo() end
 ---@field private m_Effect Coffee.UIEffects.UIEffect
 ---@field private m_EffectTweener Coffee.UIEffects.UIEffectTweener
 ---@field private m_SceneName TMPro.TextMeshProUGUI
----@field private m_Actors { [System.String]: ZhanGuoWuxia.UI.Stage.UIStageActor }
----@field private m_Bubbles { [System.String]: { [ZhanGuoWuxia.UI.Stage.StageBubbleType]: ZhanGuoWuxia.UI.Stage.UIStageBubble } }
+---@field private m_Actors userdata | { [System.String]: ZhanGuoWuxia.UI.Stage.UIStageActor } | { [nil]: userdata }
+---@field private m_Bubbles userdata | { [System.String]: userdata } | { [nil]: userdata }
 ---@field private m_DefaultScale UnityEngine.Vector3
 ---@field private m_DefaultPosition UnityEngine.Vector2
 ---@field private _isFinished System.Boolean
 ---@field private _currentType ZhanGuoWuxia.UI.Stage.UIStage.DialogueType
----@field private m_ActorsForSafeIteration ZhanGuoWuxia.UI.Stage.UIStageActor[]
+---@field private m_ActorsForSafeIteration userdata | { [System.Int32]: ZhanGuoWuxia.UI.Stage.UIStageActor } | { [nil]: ZhanGuoWuxia.UI.Stage.UIStageActor }
 CS.ZhanGuoWuxia.UI.Stage.UIStage = {}
 
----@return { [nil]: ZhanGuoWuxia.UI.Stage.UIStageBubble }
+---@return userdata | { [nil]: ZhanGuoWuxia.UI.Stage.UIStageBubble }
 function CS.ZhanGuoWuxia.UI.Stage.UIStage:get_AllBubbles() end
 
 ---@return System.Int32
@@ -145,7 +145,7 @@ function CS.ZhanGuoWuxia.UI.Stage.UIStage:SetNarration(roleId, content) end
 function CS.ZhanGuoWuxia.UI.Stage.UIStage:SetDialogueData(roleId, content) end
 
 ---@async
----@param dialogues ZhanGuoWuxia.UI.Stage.UIStage.DialogueGroup[]
+---@param dialogues userdata | { [System.Int32]: ZhanGuoWuxia.UI.Stage.UIStage.DialogueGroup } | { [nil]: ZhanGuoWuxia.UI.Stage.UIStage.DialogueGroup }
 ---@return Cysharp.Threading.Tasks.UniTask
 function CS.ZhanGuoWuxia.UI.Stage.UIStage:SetDialogueDataGroup(dialogues) end
 
@@ -160,7 +160,7 @@ function CS.ZhanGuoWuxia.UI.Stage.UIStage:SaveDialogueRecord(talkerName, picName
 function CS.ZhanGuoWuxia.UI.Stage.UIStage:OnPointerClick(eventData) end
 
 ---@private
----@return { [nil]: ZhanGuoWuxia.UI.Stage.UIStageActor }
+---@return userdata | { [nil]: ZhanGuoWuxia.UI.Stage.UIStageActor }
 function CS.ZhanGuoWuxia.UI.Stage.UIStage:GetActorsForSafeIteration() end
 
 function CS.ZhanGuoWuxia.UI.Stage.UIStage:TrySkipDialogue() end
@@ -232,7 +232,7 @@ function CS.ZhanGuoWuxia.UI.Stage.UIStage.SetBubbleOffsetY(roleId, offsetY, bubb
 function CS.ZhanGuoWuxia.UI.Stage.UIStage.DisplayDialogue(roleId, content) end
 
 ---@async
----@param dialogues ZhanGuoWuxia.UI.Stage.UIStage.DialogueGroup[]
+---@param dialogues userdata | { [System.Int32]: ZhanGuoWuxia.UI.Stage.UIStage.DialogueGroup } | { [nil]: ZhanGuoWuxia.UI.Stage.UIStage.DialogueGroup }
 ---@return Cysharp.Threading.Tasks.UniTask
 function CS.ZhanGuoWuxia.UI.Stage.UIStage.DisplayDialogueGroup(dialogues) end
 
@@ -286,12 +286,12 @@ CS.ZhanGuoWuxia.UI.Stage.RoleIdType = {
 ---@field private m_RoleImg UnityEngine.UI.Image
 ---@field private m_Effect Coffee.UIEffects.UIEffect
 ---@field private m_EffectTweener Coffee.UIEffects.UIEffectTweener
----@field private m_AttachNodes { [ZhanGuoWuxia.UI.Stage.AttachNodeType]: UnityEngine.Transform }
+---@field private m_AttachNodes userdata | { [ZhanGuoWuxia.UI.Stage.AttachNodeType]: UnityEngine.Transform } | { [nil]: userdata }
 ---@field private m_ActorInfo ZhanGuoWuxia.UI.Stage.StageActorInfo
 ---@field private m_IsFaceLeft System.Boolean
----@field private m_ActorTwns DG.Tweening.Tween[]
+---@field private m_ActorTwns userdata | { [System.Int32]: DG.Tweening.Tween } | { [nil]: DG.Tweening.Tween }
 ---@field private m_CurrentEmoji UnityEngine.GameObject
----@field private m_ActiveVFXs ZhanGuoWuxia.VFX.VFXObject[]
+---@field private m_ActiveVFXs userdata | { [System.Int32]: ZhanGuoWuxia.VFX.VFXObject } | { [nil]: ZhanGuoWuxia.VFX.VFXObject }
 ---@field PrefabPath System.String
 ---@field private DefaultPicName System.String
 CS.ZhanGuoWuxia.UI.Stage.UIStageActor = {}

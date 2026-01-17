@@ -290,7 +290,7 @@ function CS.ZhanGuoWuxia.Backend.Tools.MathTool.Positive_Percent_Formula(baseVal
 ---@return UnityEngine.Color32
 function CS.ZhanGuoWuxia.Backend.Tools.MathTool.RandomColor() end
 
----@param source { [nil]: System.Int32 }
+---@param source userdata | { [nil]: System.Int32 }
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.Tools.MathTool.Median(source) end
 
@@ -306,12 +306,12 @@ function CS.ZhanGuoWuxia.Backend.Tools.MathTool.SafeClamp(target, number1, numbe
 CS.ZhanGuoWuxia.Backend.Tools.StringTool = {}
 
 ---@param str System.String
----@return { [nil]: System.String }
+---@return userdata | { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Tools.StringTool.AsLines(str) end
 
 ---@param str System.String
 ---@param c System.Char
----@return { [nil]: System.String }
+---@return userdata | { [nil]: System.String }
 function CS.ZhanGuoWuxia.Backend.Tools.StringTool.SplitPlus(str, c) end
 
 ---@param str System.String
@@ -323,20 +323,20 @@ function CS.ZhanGuoWuxia.Backend.Tools.StringTool.SplitInto(str, split, first, s
 ---@param str System.String
 ---@param split1? System.Char
 ---@param split2? System.Char
----@return { [System.String]: System.Single }
+---@return userdata | { [System.String]: System.Single } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Tools.StringTool.SplitIntoDictFloat(str, split1, split2) end
 
 ---@param str System.String
 ---@param split1? System.Char
 ---@param split2? System.Char
----@return { [System.String]: System.String }
+---@return userdata | { [System.String]: System.String } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Tools.StringTool.SplitStroDict(str, split1, split2) end
 
 ---@param str System.String
 ---@param split1? System.Char
 ---@param split2? System.Char
 ---@param split3? System.Char
----@return { [System.Int32]: userdata[] }
+---@return userdata | { [System.Int32]: userdata } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Tools.StringTool.SplitIntTupleStrIntDict(str, split1, split2, split3) end
 
 ---@param str System.String

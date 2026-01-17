@@ -45,7 +45,7 @@ function CS.XLua.CopyByValue.IsStruct(type) end
 ---@class XLua.DelegateBridgeBase: XLua.LuaBase, System.IDisposable
 ---@field private firstKey System.Type
 ---@field private firstValue fun()
----@field private bindTo { [System.Type]: fun() }
+---@field private bindTo userdata | { [System.Type]: System.Delegate } | { [nil]: userdata }
 ---@field protected errorFuncRef System.Int32
 CS.XLua.DelegateBridgeBase = {}
 
@@ -204,16 +204,16 @@ CS.XLua.HotfixDelegateAttribute = {}
 function CS.XLua.HotfixDelegateAttribute() end
 
 ---@class XLua.SysGenConfig: System.Object
----@field private GCOptimize System.Type[]
----@field private AdditionalProperties { [System.Type]: System.String[] }
+---@field private GCOptimize userdata | { [System.Int32]: System.Type } | { [nil]: System.Type }
+---@field private AdditionalProperties userdata | { [System.Type]: userdata } | { [nil]: userdata }
 CS.XLua.SysGenConfig = {}
 
 ---@private
----@return System.Type[]
+---@return userdata | { [System.Int32]: System.Type } | { [nil]: System.Type }
 function CS.XLua.SysGenConfig.get_GCOptimize() end
 
 ---@private
----@return { [System.Type]: System.String[] }
+---@return userdata | { [System.Type]: userdata } | { [nil]: userdata }
 function CS.XLua.SysGenConfig.get_AdditionalProperties() end
 
 
@@ -224,8 +224,8 @@ function CS.XLua.SysGenConfig.get_AdditionalProperties() end
 ---@field package genTryArraySetPtr fun(type: System.Type, L: System.IntPtr, translator: XLua.ObjectTranslator, obj: System.Object, array_idx: System.Int32, obj_idx: System.Int32): System.Boolean
 ---@field package objectTranslatorPool XLua.ObjectTranslatorPool
 ---@field package LUA_REGISTRYINDEX System.Int32
----@field package supportOp { [System.String]: System.String }
----@field package extensionMethodMap { [System.Type]: { [nil]: System.Reflection.MethodInfo } }
+---@field package supportOp userdata | { [System.String]: System.String } | { [nil]: userdata }
+---@field package extensionMethodMap userdata | { [System.Type]: userdata } | { [nil]: userdata }
 ---@field package LazyReflectionWrap fun(L: System.IntPtr): System.Int32
 ---@field package delegate_birdge_type System.Type
 ---@field private initState System.Int32
@@ -290,11 +290,11 @@ function CS.XLua.LuaBase(reference, luaenv) end
 ---@field private max_check_per_tick System.Int32
 ---@field private object_valid_checker fun(arg: System.Object): System.Boolean
 ---@field private disposed System.Boolean
----@field private refQueue { [nil]: XLua.LuaEnv.GCAction }
+---@field private refQueue userdata | { [nil]: XLua.LuaEnv.GCAction }
 ---@field private init_xlua System.String
----@field package customLoaders (fun(filepath: System.String): System.Byte[])[]
----@field package buildin_initer { [System.String]: fun(L: System.IntPtr): System.Int32 }
----@field private initers (fun(arg1: XLua.LuaEnv, arg2: XLua.ObjectTranslator))[]
+---@field package customLoaders userdata | { [System.Int32]: XLua.LuaEnv.CustomLoader } | { [nil]: fun(filepath: System.String): System.Byte[] }
+---@field package buildin_initer userdata | { [System.String]: XLua.LuaDLL.lua_CSFunction } | { [nil]: userdata }
+---@field private initers userdata | { [System.Int32]: userdata } | { [nil]: fun(arg1: XLua.LuaEnv, arg2: XLua.ObjectTranslator) }
 ---@field CSHARP_NAMESPACE System.String
 ---@field MAIN_SHREAD System.String
 ---@field private LIB_VERSION_EXPECT System.Int32
@@ -496,7 +496,7 @@ function CS.XLua.OverloadMethodWrap(translator, targetType, method) end
 
 ---@class XLua.MethodWrap: System.Object
 ---@field private methodName System.String
----@field private overloads XLua.OverloadMethodWrap[]
+---@field private overloads userdata | { [System.Int32]: XLua.OverloadMethodWrap } | { [nil]: XLua.OverloadMethodWrap }
 ---@field private forceCheck System.Boolean
 CS.XLua.MethodWrap = {}
 
@@ -505,7 +505,7 @@ CS.XLua.MethodWrap = {}
 function CS.XLua.MethodWrap:Call(L) end
 
 ---@param methodName System.String
----@param overloads XLua.OverloadMethodWrap[]
+---@param overloads userdata | { [System.Int32]: XLua.OverloadMethodWrap } | { [nil]: XLua.OverloadMethodWrap }
 ---@param forceCheck System.Boolean
 ---@return XLua.MethodWrap
 function CS.XLua.MethodWrap(methodName, overloads, forceCheck) end
@@ -514,9 +514,9 @@ function CS.XLua.MethodWrap(methodName, overloads, forceCheck) end
 ---@field private translator XLua.ObjectTranslator
 ---@field private objCheckers XLua.ObjectCheckers
 ---@field private objCasters XLua.ObjectCasters
----@field private constructorCache { [System.Type]: fun(L: System.IntPtr): System.Int32 }
----@field private methodsCache { [System.Type]: { [System.String]: fun(L: System.IntPtr): System.Int32 } }
----@field private delegateCache { [System.Type]: fun(L: System.IntPtr): System.Int32 }
+---@field private constructorCache userdata | { [System.Type]: XLua.LuaDLL.lua_CSFunction } | { [nil]: userdata }
+---@field private methodsCache userdata | { [System.Type]: userdata } | { [nil]: userdata }
+---@field private delegateCache userdata | { [System.Type]: XLua.LuaDLL.lua_CSFunction } | { [nil]: userdata }
 CS.XLua.MethodWrapsCache = {}
 
 ---@param type System.Type
@@ -544,7 +544,7 @@ function CS.XLua.MethodWrapsCache:GetEventWrap(type, eventName) end
 
 ---@param type System.Type
 ---@param methodName System.String
----@param methodBases { [nil]: System.Reflection.MemberInfo }
+---@param methodBases userdata | { [nil]: System.Reflection.MemberInfo }
 ---@param forceCheck? System.Boolean
 ---@return XLua.MethodWrap
 function CS.XLua.MethodWrapsCache:_GenMethodWrap(type, methodName, methodBases, forceCheck) end
@@ -611,7 +611,7 @@ function CS.XLua.ObjectCast:EndInvoke(result) end
 function CS.XLua.ObjectCast(object, method) end
 
 ---@class XLua.ObjectCheckers: System.Object
----@field private checkersMap { [System.Type]: fun(L: System.IntPtr, idx: System.Int32): System.Boolean }
+---@field private checkersMap userdata | { [System.Type]: XLua.ObjectCheck } | { [nil]: userdata }
 ---@field private translator XLua.ObjectTranslator
 CS.XLua.ObjectCheckers = {}
 
@@ -703,7 +703,7 @@ function CS.XLua.ObjectCheckers:GetChecker(type) end
 function CS.XLua.ObjectCheckers(translator) end
 
 ---@class XLua.ObjectCasters: System.Object
----@field private castersMap { [System.Type]: fun(L: System.IntPtr, idx: System.Int32, target: System.Object): System.Object }
+---@field private castersMap userdata | { [System.Type]: XLua.ObjectCast } | { [nil]: userdata }
 ---@field private translator XLua.ObjectTranslator
 CS.XLua.ObjectCasters = {}
 
@@ -904,7 +904,7 @@ function CS.XLua.ObjectPool:Replace(index, o) end
 ---@param check_pos System.Int32
 ---@param max_check System.Int32
 ---@param checker fun(arg: System.Object): System.Boolean
----@param reverse_map { [System.Object]: System.Int32 }
+---@param reverse_map userdata | { [System.Object]: System.Int32 } | { [nil]: userdata }
 ---@return System.Int32
 function CS.XLua.ObjectPool:Check(check_pos, max_check, checker, reverse_map) end
 
@@ -1008,38 +1008,38 @@ function CS.XLua.LuaIndexes.set_LUA_REGISTRYINDEX(value) end
 ---@field package objectCheckers XLua.ObjectCheckers
 ---@field objectCasters XLua.ObjectCasters
 ---@field package objects XLua.ObjectPool
----@field package reverseMap { [System.Object]: System.Int32 }
+---@field package reverseMap userdata | { [System.Object]: System.Int32 } | { [nil]: userdata }
 ---@field package luaEnv XLua.LuaEnv
 ---@field package metaFunctions XLua.StaticLuaCallbacks
----@field package assemblies System.Reflection.Assembly[]
+---@field package assemblies userdata | { [System.Int32]: System.Reflection.Assembly } | { [nil]: System.Reflection.Assembly }
 ---@field private importTypeFunction fun(L: System.IntPtr): System.Int32
 ---@field private loadAssemblyFunction fun(L: System.IntPtr): System.Int32
 ---@field private castFunction fun(L: System.IntPtr): System.Int32
----@field private delayWrap { [System.Type]: fun(obj: System.IntPtr) }
----@field private interfaceBridgeCreators { [System.Type]: fun(arg1: System.Int32, arg2: XLua.LuaEnv): XLua.LuaBase }
----@field private aliasCfg { [System.Type]: System.Type }
----@field private loaded_types { [System.Type]: System.Boolean }
+---@field private delayWrap userdata | { [System.Type]: userdata } | { [nil]: userdata }
+---@field private interfaceBridgeCreators userdata | { [System.Type]: userdata } | { [nil]: userdata }
+---@field private aliasCfg userdata | { [System.Type]: System.Type } | { [nil]: userdata }
+---@field private loaded_types userdata | { [System.Type]: System.Boolean } | { [nil]: userdata }
 ---@field cacheRef System.Int32
 ---@field private delegate_birdge_type System.Type
 ---@field private genericAction System.Reflection.MethodInfo[]
 ---@field private genericFunc System.Reflection.MethodInfo[]
----@field private delegateCreatorCache { [System.Type]: fun(arg: XLua.DelegateBridgeBase): fun() }
----@field private delegate_bridges { [System.Int32]: System.WeakReference }
+---@field private delegateCreatorCache userdata | { [System.Type]: userdata } | { [nil]: userdata }
+---@field private delegate_bridges userdata | { [System.Int32]: System.WeakReference } | { [nil]: userdata }
 ---@field private common_array_meta System.Int32
 ---@field private common_delegate_meta System.Int32
 ---@field private enumerable_pairs_func System.Int32
----@field private typeIdMap { [System.Type]: System.Int32 }
----@field private typeMap { [System.Int32]: System.Type }
----@field private privateAccessibleFlags { [nil]: System.Type }
----@field private enumMap { [System.Object]: System.Int32 }
----@field private fix_cs_functions (fun(L: System.IntPtr): System.Int32)[]
----@field private custom_push_funcs { [System.Type]: fun(L: System.IntPtr, obj: System.Object) }
----@field private custom_get_funcs { [System.Type]: fun(L: System.IntPtr, idx: System.Int32): System.Object }
----@field private custom_update_funcs { [System.Type]: fun(L: System.IntPtr, idx: System.Int32, obj: System.Object) }
----@field private _default_push_func { [XLua.FuncTypeMapKey]: fun() }
----@field private default_get_func { [XLua.FuncTypeMapKey]: fun() }
----@field private _addition_push_func { [System.Type]: fun() }
----@field private _addition_get_func { [System.Type]: fun() }
+---@field private typeIdMap userdata | { [System.Type]: System.Int32 } | { [nil]: userdata }
+---@field private typeMap userdata | { [System.Int32]: System.Type } | { [nil]: userdata }
+---@field private privateAccessibleFlags userdata | { [nil]: System.Type }
+---@field private enumMap userdata | { [System.Object]: System.Int32 } | { [nil]: userdata }
+---@field private fix_cs_functions userdata | { [System.Int32]: XLua.LuaDLL.lua_CSFunction } | { [nil]: fun(L: System.IntPtr): System.Int32 }
+---@field private custom_push_funcs userdata | { [System.Type]: XLua.ObjectTranslator.PushCSObject } | { [nil]: userdata }
+---@field private custom_get_funcs userdata | { [System.Type]: XLua.ObjectTranslator.GetCSObject } | { [nil]: userdata }
+---@field private custom_update_funcs userdata | { [System.Type]: XLua.ObjectTranslator.UpdateCSObject } | { [nil]: userdata }
+---@field private _default_push_func userdata | { [XLua.FuncTypeMapKey]: System.Delegate } | { [nil]: userdata }
+---@field private default_get_func userdata | { [XLua.FuncTypeMapKey]: System.Delegate } | { [nil]: userdata }
+---@field private _addition_push_func userdata | { [System.Type]: System.Delegate } | { [nil]: userdata }
+---@field private _addition_get_func userdata | { [System.Type]: System.Delegate } | { [nil]: userdata }
 ---@field private decimal_type_id System.Int32
 CS.XLua.ObjectTranslator = {}
 
@@ -1061,7 +1061,7 @@ function CS.XLua.ObjectTranslator:TryDelayWrapLoader(L, type) end
 function CS.XLua.ObjectTranslator:Alias(type, alias) end
 
 ---@private
----@param assemblies_usorted { [nil]: System.Reflection.Assembly }
+---@param assemblies_usorted userdata | { [nil]: System.Reflection.Assembly }
 ---@param name System.String
 function CS.XLua.ObjectTranslator:addAssemblieByName(assemblies_usorted, name) end
 
@@ -1304,7 +1304,7 @@ function CS.XLua.ObjectTranslator(luaenv, L) end
 
 ---@class XLua.ObjectTranslatorPool: System.Object
 ---@field Instance XLua.ObjectTranslatorPool
----@field private translators { [System.IntPtr]: System.WeakReference }
+---@field private translators userdata | { [System.IntPtr]: System.WeakReference } | { [nil]: userdata }
 ---@field private lastPtr System.IntPtr
 ---@field private lastTranslator XLua.ObjectTranslator
 CS.XLua.ObjectTranslatorPool = {}
@@ -1624,7 +1624,7 @@ function CS.XLua.Utils.LoadField(L, idx, field_name) end
 function CS.XLua.Utils.GetMainState(L) end
 
 ---@param exclude_generic_definition? System.Boolean
----@return System.Type[]
+---@return userdata | { [System.Int32]: System.Type } | { [nil]: System.Type }
 function CS.XLua.Utils.GetAllTypes(exclude_generic_definition) end
 
 ---@private
@@ -1658,7 +1658,7 @@ function CS.XLua.Utils.genEnumCastFrom(type) end
 
 ---@package
 ---@param type_to_be_extend System.Type
----@return { [nil]: System.Reflection.MethodInfo }
+---@return userdata | { [nil]: System.Reflection.MethodInfo }
 function CS.XLua.Utils.GetExtensionMethodsOf(type_to_be_extend) end
 
 ---@private
@@ -1762,7 +1762,7 @@ function CS.XLua.Utils.EndClassRegister(type, L, translator) end
 
 ---@private
 ---@param type System.Type
----@return System.String[]
+---@return userdata | { [System.Int32]: System.String } | { [nil]: System.String }
 function CS.XLua.Utils.getPathOfType(type) end
 
 ---@param L System.IntPtr
