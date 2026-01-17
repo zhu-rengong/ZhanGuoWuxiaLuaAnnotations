@@ -3031,7 +3031,7 @@ function CS.System.Delegate:GetTarget() end
 ---@return System.Object
 function CS.System.Delegate:Clone() end
 
----@overload fun(...: fun()): fun()
+---@overload fun(...: (fun())): fun()
 ---@param a fun()
 ---@param b fun()
 ---@return fun()
@@ -3047,7 +3047,7 @@ function CS.System.Delegate:CombineImpl(d) end
 ---@return fun()
 function CS.System.Delegate:RemoveImpl(d) end
 
----@return fun()[]
+---@return (fun())[]
 function CS.System.Delegate:GetInvocationList() end
 
 ---@param ... System.Object
@@ -5987,7 +5987,7 @@ function CS.System.MulticastDelegate.EqualInvocationLists(a, b, start, count) en
 ---@return fun()
 function CS.System.MulticastDelegate:RemoveImpl(value) end
 
----@return fun()[]
+---@return (fun())[]
 function CS.System.MulticastDelegate:GetInvocationList() end
 
 ---@param d1 fun()

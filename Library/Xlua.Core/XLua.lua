@@ -292,9 +292,9 @@ function CS.XLua.LuaBase(reference, luaenv) end
 ---@field private disposed System.Boolean
 ---@field private refQueue { [nil]: XLua.LuaEnv.GCAction }
 ---@field private init_xlua System.String
----@field package customLoaders fun(filepath: System.String): System.Byte[][]
+---@field package customLoaders (fun(filepath: System.String): System.Byte[])[]
 ---@field package buildin_initer { [System.String]: fun(L: System.IntPtr): System.Int32 }
----@field private initers fun(arg1: XLua.LuaEnv, arg2: XLua.ObjectTranslator)[]
+---@field private initers (fun(arg1: XLua.LuaEnv, arg2: XLua.ObjectTranslator))[]
 ---@field CSHARP_NAMESPACE System.String
 ---@field MAIN_SHREAD System.String
 ---@field private LIB_VERSION_EXPECT System.Int32
@@ -462,8 +462,8 @@ function CS.XLua.LuaTable(reference, luaenv) end
 ---@field private translator XLua.ObjectTranslator
 ---@field private targetType System.Type
 ---@field private method System.Reflection.MethodBase
----@field private checkArray fun(L: System.IntPtr, idx: System.Int32): System.Boolean[]
----@field private castArray fun(L: System.IntPtr, idx: System.Int32, target: System.Object): System.Object[]
+---@field private checkArray (fun(L: System.IntPtr, idx: System.Int32): System.Boolean)[]
+---@field private castArray (fun(L: System.IntPtr, idx: System.Int32, target: System.Object): System.Object)[]
 ---@field private inPosArray System.Int32[]
 ---@field private outPosArray System.Int32[]
 ---@field private isOptionalArray System.Boolean[]
@@ -1032,7 +1032,7 @@ function CS.XLua.LuaIndexes.set_LUA_REGISTRYINDEX(value) end
 ---@field private typeMap { [System.Int32]: System.Type }
 ---@field private privateAccessibleFlags { [nil]: System.Type }
 ---@field private enumMap { [System.Object]: System.Int32 }
----@field private fix_cs_functions fun(L: System.IntPtr): System.Int32[]
+---@field private fix_cs_functions (fun(L: System.IntPtr): System.Int32)[]
 ---@field private custom_push_funcs { [System.Type]: fun(L: System.IntPtr, obj: System.Object) }
 ---@field private custom_get_funcs { [System.Type]: fun(L: System.IntPtr, idx: System.Int32): System.Object }
 ---@field private custom_update_funcs { [System.Type]: fun(L: System.IntPtr, idx: System.Int32, obj: System.Object) }

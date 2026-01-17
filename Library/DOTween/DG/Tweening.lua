@@ -130,7 +130,7 @@ CS.DG.Tweening.DOCurve = {}
 ---@field package maxActiveTweenersReached System.Int32
 ---@field package maxActiveSequencesReached System.Int32
 ---@field package safeModeReport DG.Tweening.Core.SafeModeReport
----@field package GizmosDelegates fun()[]
+---@field package GizmosDelegates (fun())[]
 ---@field package initialized System.Boolean
 ---@field private _isQuittingFrame System.Int32
 CS.DG.Tweening.DOTween = {}
@@ -1583,9 +1583,9 @@ function CS.DG.Tweening.TweenSettingsExtensions.From(t, fromAlphaValue, setImmed
 function CS.DG.Tweening.TweenSettingsExtensions.SetOptions(t, snapping) end
 
 ---@overload fun(t: userdata, lookAtPosition: UnityEngine.Vector3, stableZRotation: System.Boolean): userdata
----@overload fun(t: userdata, lookAtTransform: UnityEngine.Transform, forwardDirection?: UnityEngine.Vector3|nil, up?: UnityEngine.Vector3|nil): userdata
+---@overload fun(t: userdata, lookAtTransform: UnityEngine.Transform, forwardDirection?: (UnityEngine.Vector3|nil), up?: (UnityEngine.Vector3|nil)): userdata
 ---@overload fun(t: userdata, lookAtTransform: UnityEngine.Transform, stableZRotation: System.Boolean): userdata
----@overload fun(t: userdata, lookAhead: System.Single, forwardDirection?: UnityEngine.Vector3|nil, up?: UnityEngine.Vector3|nil): userdata
+---@overload fun(t: userdata, lookAhead: System.Single, forwardDirection?: (UnityEngine.Vector3|nil), up?: (UnityEngine.Vector3|nil)): userdata
 ---@overload fun(t: userdata, lookAhead: System.Single, stableZRotation: System.Boolean): userdata
 ---@param t userdata
 ---@param lookAtPosition UnityEngine.Vector3
