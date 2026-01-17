@@ -130,7 +130,7 @@ CS.DG.Tweening.DOCurve = {}
 ---@field package maxActiveTweenersReached System.Int32
 ---@field package maxActiveSequencesReached System.Int32
 ---@field package safeModeReport DG.Tweening.Core.SafeModeReport
----@field package GizmosDelegates userdata | { [System.Int32]: DG.Tweening.TweenCallback } | { [nil]: fun() }
+---@field package GizmosDelegates userdata | { [System.Int32]: fun() } | { [nil]: fun() }
 ---@field package initialized System.Boolean
 ---@field private _isQuittingFrame System.Int32
 CS.DG.Tweening.DOTween = {}

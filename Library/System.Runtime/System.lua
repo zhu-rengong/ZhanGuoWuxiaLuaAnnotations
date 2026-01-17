@@ -102,10 +102,10 @@ function CS.System.IntPtr:CompareTo(value) end
 ---@return System.String
 function CS.System.IntPtr:ToString() end
 
----@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte& }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char& }), provider?: System.IFormatProvider): System.Boolean
----@param destination userdata | { [System.Int32]: System.Char& }
+---@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char }), provider?: System.IFormatProvider): System.Boolean
+---@param destination userdata | { [System.Int32]: System.Char }
 ---@param charsWritten System.Int32
----@param format? userdata | { [System.Int32]: System.Char& }
+---@param format? userdata | { [System.Int32]: System.Char }
 ---@param provider? System.IFormatProvider
 ---@return System.Boolean
 function CS.System.IntPtr:TryFormat(destination, charsWritten, format, provider) end
@@ -113,22 +113,22 @@ function CS.System.IntPtr:TryFormat(destination, charsWritten, format, provider)
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles): System.IntPtr
 ---@overload fun(s: System.String, provider: System.IFormatProvider): System.IntPtr
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider): System.IntPtr
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider): System.IntPtr
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.IntPtr
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.IntPtr
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider): System.IntPtr
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider): System.IntPtr
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.IntPtr
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.IntPtr
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider): System.IntPtr
 ---@param s System.String
 ---@return System.IntPtr
 function CS.System.IntPtr.Parse(s) end
 
 ---@overload fun(s: System.String, provider: System.IFormatProvider, result: System.IntPtr): System.Boolean
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.IntPtr): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), result: System.IntPtr): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), result: System.IntPtr): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider, result: System.IntPtr): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.IntPtr): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.IntPtr): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider, result: System.IntPtr): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), result: System.IntPtr): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), result: System.IntPtr): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider, result: System.IntPtr): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.IntPtr): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.IntPtr): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider, result: System.IntPtr): System.Boolean
 ---@param s System.String
 ---@param result System.IntPtr
 ---@return System.Boolean
@@ -178,14 +178,14 @@ function CS.System.IntPtr.RotateRight(value, rotateAmount) end
 function CS.System.IntPtr.TrailingZeroCount(value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.IntPtr
 ---@return System.Boolean
 function CS.System.IntPtr.TryReadBigEndian(source, isUnsigned, value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.IntPtr
 ---@return System.Boolean
@@ -200,13 +200,13 @@ function CS.System.IntPtr:GetShortestBitLength() end
 function CS.System.IntPtr:GetByteCount() end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.IntPtr:TryWriteBigEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.IntPtr:TryWriteLittleEndian(destination, bytesWritten) end
@@ -598,7 +598,7 @@ function CS.System.Boolean:GetHashCode() end
 ---@return System.String
 function CS.System.Boolean:ToString() end
 
----@param destination userdata | { [System.Int32]: System.Char& }
+---@param destination userdata | { [System.Int32]: System.Char }
 ---@param charsWritten System.Int32
 ---@return System.Boolean
 function CS.System.Boolean:TryFormat(destination, charsWritten) end
@@ -614,29 +614,29 @@ function CS.System.Boolean:Equals(obj) end
 function CS.System.Boolean:CompareTo(obj) end
 
 ---@package
----@param value userdata | { [System.Int32]: System.Char& }
+---@param value userdata | { [System.Int32]: System.Char }
 ---@return System.Boolean
 function CS.System.Boolean.IsTrueStringIgnoreCase(value) end
 
 ---@package
----@param value userdata | { [System.Int32]: System.Char& }
+---@param value userdata | { [System.Int32]: System.Char }
 ---@return System.Boolean
 function CS.System.Boolean.IsFalseStringIgnoreCase(value) end
 
----@overload fun(value: (userdata | { [System.Int32]: System.Char& })): System.Boolean
+---@overload fun(value: (userdata | { [System.Int32]: System.Char })): System.Boolean
 ---@param value System.String
 ---@return System.Boolean
 function CS.System.Boolean.Parse(value) end
 
----@overload fun(value: (userdata | { [System.Int32]: System.Char& }), result: System.Boolean): System.Boolean
+---@overload fun(value: (userdata | { [System.Int32]: System.Char }), result: System.Boolean): System.Boolean
 ---@param value System.String
 ---@param result System.Boolean
 ---@return System.Boolean
 function CS.System.Boolean.TryParse(value, result) end
 
 ---@private
----@param value userdata | { [System.Int32]: System.Char& }
----@return userdata | { [System.Int32]: System.Char& }
+---@param value userdata | { [System.Int32]: System.Char }
+---@return userdata | { [System.Int32]: System.Char }
 function CS.System.Boolean.TrimWhiteSpaceAndNull(value) end
 
 ---@return System.TypeCode
@@ -719,14 +719,14 @@ function CS.System.Boolean:ToDateTime(provider) end
 function CS.System.Boolean:ToType(type, provider) end
 
 ---@private
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider): System.Boolean
 ---@param s System.String
 ---@param provider System.IFormatProvider
 ---@return System.Boolean
 function CS.System.Boolean.Parse(s, provider) end
 
 ---@private
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider, result: System.Boolean): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider, result: System.Boolean): System.Boolean
 ---@param s System.String
 ---@param provider System.IFormatProvider
 ---@param result System.Boolean
@@ -772,22 +772,22 @@ function CS.System.Byte:GetHashCode() end
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles): System.Byte
 ---@overload fun(s: System.String, provider: System.IFormatProvider): System.Byte
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider): System.Byte
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Byte
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider): System.Byte
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Byte
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider): System.Byte
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Byte
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider): System.Byte
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Byte
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider): System.Byte
 ---@param s System.String
 ---@return System.Byte
 function CS.System.Byte.Parse(s) end
 
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), result: System.Byte): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), result: System.Byte): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), result: System.Byte): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), result: System.Byte): System.Boolean
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Byte): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Byte): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Byte): System.Boolean
 ---@overload fun(s: System.String, provider: System.IFormatProvider, result: System.Byte): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider, result: System.Byte): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Byte): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider, result: System.Byte): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider, result: System.Byte): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Byte): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider, result: System.Byte): System.Boolean
 ---@param s System.String
 ---@param result System.Byte
 ---@return System.Boolean
@@ -799,10 +799,10 @@ function CS.System.Byte.TryParse(s, result) end
 ---@return System.String
 function CS.System.Byte:ToString() end
 
----@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte& }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char& }), provider?: System.IFormatProvider): System.Boolean
----@param destination userdata | { [System.Int32]: System.Char& }
+---@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char }), provider?: System.IFormatProvider): System.Boolean
+---@param destination userdata | { [System.Int32]: System.Char }
 ---@param charsWritten System.Int32
----@param format? userdata | { [System.Int32]: System.Char& }
+---@param format? userdata | { [System.Int32]: System.Char }
 ---@param provider? System.IFormatProvider
 ---@return System.Boolean
 function CS.System.Byte:TryFormat(destination, charsWritten, format, provider) end
@@ -930,14 +930,14 @@ function CS.System.Byte.RotateRight(value, rotateAmount) end
 function CS.System.Byte.TrailingZeroCount(value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.Byte
 ---@return System.Boolean
 function CS.System.Byte.TryReadBigEndian(source, isUnsigned, value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.Byte
 ---@return System.Boolean
@@ -952,13 +952,13 @@ function CS.System.Byte:GetShortestBitLength() end
 function CS.System.Byte:GetByteCount() end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Byte:TryWriteBigEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Byte:TryWriteLittleEndian(destination, bytesWritten) end
@@ -1349,7 +1349,7 @@ function CS.System.Byte.MultiplyBy16(value) end
 
 
 ---@class System.Char: System.ValueType, System.IComparable, System.IConvertible, System.ISpanFormattable, System.IFormattable, System.IUtf8SpanFormattable, string
----@field private Latin1CharInfo userdata | { [System.Int32]: System.Byte& }
+---@field private Latin1CharInfo userdata | { [System.Int32]: System.Byte }
 ---@field private ["System.Numerics.IAdditiveIdentity<System.Char,System.Char>.AdditiveIdentity"] System.Char
 ---@field private ["System.Numerics.IBinaryNumber<System.Char>.AllBitsSet"] System.Char
 ---@field private ["System.Numerics.IMinMaxValue<System.Char>.MinValue"] System.Char
@@ -1369,7 +1369,7 @@ function CS.System.Byte.MultiplyBy16(value) end
 CS.System.Char = {}
 
 ---@private
----@return userdata | { [System.Int32]: System.Byte& }
+---@return userdata | { [System.Int32]: System.Byte }
 function CS.System.Char.get_Latin1CharInfo() end
 
 ---@private
@@ -1408,10 +1408,10 @@ function CS.System.Char:ToString() end
 function CS.System.Char.ToString(c) end
 
 ---@private
----@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte& }), bytesWritten: System.Int32, format: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider): System.Boolean
----@param destination userdata | { [System.Int32]: System.Char& }
+---@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte }), bytesWritten: System.Int32, format: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider): System.Boolean
+---@param destination userdata | { [System.Int32]: System.Char }
 ---@param charsWritten System.Int32
----@param format userdata | { [System.Int32]: System.Char& }
+---@param format userdata | { [System.Int32]: System.Char }
 ---@param provider System.IFormatProvider
 ---@return System.Boolean
 function CS.System.Char:TryFormat(destination, charsWritten, format, provider) end
@@ -1427,7 +1427,7 @@ function CS.System.Char:ToString(format, formatProvider) end
 function CS.System.Char.Parse(s) end
 
 ---@package
----@param s userdata | { [System.Int32]: System.Char& }
+---@param s userdata | { [System.Int32]: System.Char }
 ---@return System.Char
 function CS.System.Char.Parse(s) end
 
@@ -1437,7 +1437,7 @@ function CS.System.Char.Parse(s) end
 function CS.System.Char.TryParse(s, result) end
 
 ---@package
----@param s userdata | { [System.Int32]: System.Char& }
+---@param s userdata | { [System.Int32]: System.Char }
 ---@param result System.Char
 ---@return System.Boolean
 function CS.System.Char.TryParse(s, result) end
@@ -1770,14 +1770,14 @@ function CS.System.Char.RotateRight(value, rotateAmount) end
 function CS.System.Char.TrailingZeroCount(value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.Char
 ---@return System.Boolean
 function CS.System.Char.TryReadBigEndian(source, isUnsigned, value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.Char
 ---@return System.Boolean
@@ -1792,13 +1792,13 @@ function CS.System.Char:GetShortestBitLength() end
 function CS.System.Char:GetByteCount() end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Char:TryWriteBigEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Char:TryWriteLittleEndian(destination, bytesWritten) end
@@ -2059,9 +2059,9 @@ function CS.System.Char.MinMagnitude(x, y) end
 function CS.System.Char.MinMagnitudeNumber(x, y) end
 
 ---@private
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider): System.Char
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider): System.Char
 ---@overload fun(s: System.String, provider: System.IFormatProvider): System.Char
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider): System.Char
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider): System.Char
 ---@param s System.String
 ---@param style System.Globalization.NumberStyles
 ---@param provider System.IFormatProvider
@@ -2069,9 +2069,9 @@ function CS.System.Char.MinMagnitudeNumber(x, y) end
 function CS.System.Char.Parse(s, style, provider) end
 
 ---@private
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Char): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Char): System.Boolean
 ---@overload fun(s: System.String, provider: System.IFormatProvider, result: System.Char): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider, result: System.Char): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider, result: System.Char): System.Boolean
 ---@param s System.String
 ---@param style System.Globalization.NumberStyles
 ---@param provider System.IFormatProvider
@@ -2316,10 +2316,10 @@ function CS.System.Decimal.Floor(d) end
 ---@return System.String
 function CS.System.Decimal:ToString() end
 
----@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte& }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char& }), provider?: System.IFormatProvider): System.Boolean
----@param destination userdata | { [System.Int32]: System.Char& }
+---@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char }), provider?: System.IFormatProvider): System.Boolean
+---@param destination userdata | { [System.Int32]: System.Char }
 ---@param charsWritten System.Int32
----@param format? userdata | { [System.Int32]: System.Char& }
+---@param format? userdata | { [System.Int32]: System.Char }
 ---@param provider? System.IFormatProvider
 ---@return System.Boolean
 function CS.System.Decimal:TryFormat(destination, charsWritten, format, provider) end
@@ -2327,45 +2327,45 @@ function CS.System.Decimal:TryFormat(destination, charsWritten, format, provider
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles): System.Decimal
 ---@overload fun(s: System.String, provider: System.IFormatProvider): System.Decimal
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider): System.Decimal
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Decimal
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider): System.Decimal
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Decimal
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider): System.Decimal
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Decimal
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider): System.Decimal
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Decimal
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider): System.Decimal
 ---@param s System.String
 ---@return System.Decimal
 function CS.System.Decimal.Parse(s) end
 
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), result: System.Decimal): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), result: System.Decimal): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), result: System.Decimal): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), result: System.Decimal): System.Boolean
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Decimal): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Decimal): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Decimal): System.Boolean
 ---@overload fun(s: System.String, provider: System.IFormatProvider, result: System.Decimal): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider, result: System.Decimal): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Decimal): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider, result: System.Decimal): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider, result: System.Decimal): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Decimal): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider, result: System.Decimal): System.Boolean
 ---@param s System.String
 ---@param result System.Decimal
 ---@return System.Boolean
 function CS.System.Decimal.TryParse(s, result) end
 
----@overload fun(d: System.Decimal, destination: (userdata | { [System.Int32]: System.Int32& })): System.Int32
+---@overload fun(d: System.Decimal, destination: (userdata | { [System.Int32]: System.Int32 })): System.Int32
 ---@param d System.Decimal
 ---@return System.Int32[]
 function CS.System.Decimal.GetBits(d) end
 
 ---@param d System.Decimal
----@param destination userdata | { [System.Int32]: System.Int32& }
+---@param destination userdata | { [System.Int32]: System.Int32 }
 ---@param valuesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Decimal.TryGetBits(d, destination, valuesWritten) end
 
 ---@package
 ---@param d System.Decimal
----@param buffer userdata | { [System.Int32]: System.Byte& }
+---@param buffer userdata | { [System.Int32]: System.Byte }
 function CS.System.Decimal.GetBytes(d, buffer) end
 
 ---@package
----@param span userdata | { [System.Int32]: System.Byte& }
+---@param span userdata | { [System.Int32]: System.Byte }
 ---@return System.Decimal
 function CS.System.Decimal.ToDecimal(span) end
 
@@ -2649,25 +2649,25 @@ function CS.System.Decimal:GetSignificandByteCount() end
 function CS.System.Decimal:GetSignificandBitLength() end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Decimal:TryWriteExponentBigEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Decimal:TryWriteExponentLittleEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Decimal:TryWriteSignificandBigEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Decimal:TryWriteSignificandLittleEndian(destination, bytesWritten) end
@@ -2889,7 +2889,7 @@ function CS.System.Decimal.DecDivMod1E9(value) end
 ---@overload fun(value: System.Double): System.Decimal
 ---@overload fun(info: System.Runtime.Serialization.SerializationInfo, context: System.Runtime.Serialization.StreamingContext): System.Decimal
 ---@overload fun(bits: System.Int32[]): System.Decimal
----@overload fun(bits: (userdata | { [System.Int32]: System.Int32& })): System.Decimal
+---@overload fun(bits: (userdata | { [System.Int32]: System.Int32 })): System.Decimal
 ---@overload fun(lo: System.Int32, mid: System.Int32, hi: System.Int32, isNegative: System.Boolean, scale: System.Byte): System.Decimal
 ---@overload fun(lo: System.Int32, mid: System.Int32, hi: System.Int32, flags: System.Int32): System.Decimal
 ---@overload fun(d: System.Decimal, flags: System.Int32): System.Decimal
@@ -3251,10 +3251,10 @@ function CS.System.Double:GetHashCode() end
 ---@return System.String
 function CS.System.Double:ToString() end
 
----@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte& }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char& }), provider?: System.IFormatProvider): System.Boolean
----@param destination userdata | { [System.Int32]: System.Char& }
+---@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char }), provider?: System.IFormatProvider): System.Boolean
+---@param destination userdata | { [System.Int32]: System.Char }
 ---@param charsWritten System.Int32
----@param format? userdata | { [System.Int32]: System.Char& }
+---@param format? userdata | { [System.Int32]: System.Char }
 ---@param provider? System.IFormatProvider
 ---@return System.Boolean
 function CS.System.Double:TryFormat(destination, charsWritten, format, provider) end
@@ -3262,22 +3262,22 @@ function CS.System.Double:TryFormat(destination, charsWritten, format, provider)
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles): System.Double
 ---@overload fun(s: System.String, provider: System.IFormatProvider): System.Double
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider): System.Double
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Double
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider): System.Double
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Double
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider): System.Double
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Double
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider): System.Double
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Double
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider): System.Double
 ---@param s System.String
 ---@return System.Double
 function CS.System.Double.Parse(s) end
 
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), result: System.Double): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), result: System.Double): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), result: System.Double): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), result: System.Double): System.Boolean
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Double): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Double): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Double): System.Boolean
 ---@overload fun(s: System.String, provider: System.IFormatProvider, result: System.Double): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider, result: System.Double): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Double): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider, result: System.Double): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider, result: System.Double): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Double): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider, result: System.Double): System.Boolean
 ---@param s System.String
 ---@param result System.Double
 ---@return System.Boolean
@@ -3478,25 +3478,25 @@ function CS.System.Double:GetSignificandByteCount() end
 function CS.System.Double:GetSignificandBitLength() end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Double:TryWriteExponentBigEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Double:TryWriteExponentLittleEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Double:TryWriteSignificandBigEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Double:TryWriteSignificandLittleEndian(destination, bytesWritten) end
@@ -4140,10 +4140,10 @@ function CS.System.Int16:GetHashCode() end
 ---@return System.String
 function CS.System.Int16:ToString() end
 
----@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte& }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char& }), provider?: System.IFormatProvider): System.Boolean
----@param destination userdata | { [System.Int32]: System.Char& }
+---@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char }), provider?: System.IFormatProvider): System.Boolean
+---@param destination userdata | { [System.Int32]: System.Char }
 ---@param charsWritten System.Int32
----@param format? userdata | { [System.Int32]: System.Char& }
+---@param format? userdata | { [System.Int32]: System.Char }
 ---@param provider? System.IFormatProvider
 ---@return System.Boolean
 function CS.System.Int16:TryFormat(destination, charsWritten, format, provider) end
@@ -4151,22 +4151,22 @@ function CS.System.Int16:TryFormat(destination, charsWritten, format, provider) 
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles): System.Int16
 ---@overload fun(s: System.String, provider: System.IFormatProvider): System.Int16
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider): System.Int16
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Int16
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider): System.Int16
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Int16
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider): System.Int16
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Int16
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider): System.Int16
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Int16
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider): System.Int16
 ---@param s System.String
 ---@return System.Int16
 function CS.System.Int16.Parse(s) end
 
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), result: System.Int16): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), result: System.Int16): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), result: System.Int16): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), result: System.Int16): System.Boolean
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Int16): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Int16): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Int16): System.Boolean
 ---@overload fun(s: System.String, provider: System.IFormatProvider, result: System.Int16): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider, result: System.Int16): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Int16): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider, result: System.Int16): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider, result: System.Int16): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Int16): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider, result: System.Int16): System.Boolean
 ---@param s System.String
 ---@param result System.Int16
 ---@return System.Boolean
@@ -4295,14 +4295,14 @@ function CS.System.Int16.RotateRight(value, rotateAmount) end
 function CS.System.Int16.TrailingZeroCount(value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.Int16
 ---@return System.Boolean
 function CS.System.Int16.TryReadBigEndian(source, isUnsigned, value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.Int16
 ---@return System.Boolean
@@ -4317,13 +4317,13 @@ function CS.System.Int16:GetShortestBitLength() end
 function CS.System.Int16:GetByteCount() end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Int16:TryWriteBigEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Int16:TryWriteLittleEndian(destination, bytesWritten) end
@@ -4736,10 +4736,10 @@ function CS.System.Int32:GetHashCode() end
 ---@return System.String
 function CS.System.Int32:ToString() end
 
----@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte& }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char& }), provider?: System.IFormatProvider): System.Boolean
----@param destination userdata | { [System.Int32]: System.Char& }
+---@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char }), provider?: System.IFormatProvider): System.Boolean
+---@param destination userdata | { [System.Int32]: System.Char }
 ---@param charsWritten System.Int32
----@param format? userdata | { [System.Int32]: System.Char& }
+---@param format? userdata | { [System.Int32]: System.Char }
 ---@param provider? System.IFormatProvider
 ---@return System.Boolean
 function CS.System.Int32:TryFormat(destination, charsWritten, format, provider) end
@@ -4747,22 +4747,22 @@ function CS.System.Int32:TryFormat(destination, charsWritten, format, provider) 
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles): System.Int32
 ---@overload fun(s: System.String, provider: System.IFormatProvider): System.Int32
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider): System.Int32
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Int32
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider): System.Int32
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Int32
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider): System.Int32
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Int32
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider): System.Int32
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Int32
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider): System.Int32
 ---@param s System.String
 ---@return System.Int32
 function CS.System.Int32.Parse(s) end
 
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), result: System.Int32): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), result: System.Int32): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), result: System.Int32): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), result: System.Int32): System.Boolean
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Int32): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Int32): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Int32): System.Boolean
 ---@overload fun(s: System.String, provider: System.IFormatProvider, result: System.Int32): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider, result: System.Int32): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Int32): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider, result: System.Int32): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider, result: System.Int32): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Int32): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider, result: System.Int32): System.Boolean
 ---@param s System.String
 ---@param result System.Int32
 ---@return System.Boolean
@@ -4891,14 +4891,14 @@ function CS.System.Int32.RotateRight(value, rotateAmount) end
 function CS.System.Int32.TrailingZeroCount(value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.Int32
 ---@return System.Boolean
 function CS.System.Int32.TryReadBigEndian(source, isUnsigned, value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.Int32
 ---@return System.Boolean
@@ -4913,13 +4913,13 @@ function CS.System.Int32:GetShortestBitLength() end
 function CS.System.Int32:GetByteCount() end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Int32:TryWriteBigEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Int32:TryWriteLittleEndian(destination, bytesWritten) end
@@ -5332,10 +5332,10 @@ function CS.System.Int64:GetHashCode() end
 ---@return System.String
 function CS.System.Int64:ToString() end
 
----@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte& }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char& }), provider?: System.IFormatProvider): System.Boolean
----@param destination userdata | { [System.Int32]: System.Char& }
+---@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char }), provider?: System.IFormatProvider): System.Boolean
+---@param destination userdata | { [System.Int32]: System.Char }
 ---@param charsWritten System.Int32
----@param format? userdata | { [System.Int32]: System.Char& }
+---@param format? userdata | { [System.Int32]: System.Char }
 ---@param provider? System.IFormatProvider
 ---@return System.Boolean
 function CS.System.Int64:TryFormat(destination, charsWritten, format, provider) end
@@ -5343,22 +5343,22 @@ function CS.System.Int64:TryFormat(destination, charsWritten, format, provider) 
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles): System.Int64
 ---@overload fun(s: System.String, provider: System.IFormatProvider): System.Int64
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider): System.Int64
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Int64
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider): System.Int64
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Int64
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider): System.Int64
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Int64
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider): System.Int64
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Int64
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider): System.Int64
 ---@param s System.String
 ---@return System.Int64
 function CS.System.Int64.Parse(s) end
 
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), result: System.Int64): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), result: System.Int64): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), result: System.Int64): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), result: System.Int64): System.Boolean
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Int64): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Int64): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Int64): System.Boolean
 ---@overload fun(s: System.String, provider: System.IFormatProvider, result: System.Int64): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider, result: System.Int64): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Int64): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider, result: System.Int64): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider, result: System.Int64): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Int64): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider, result: System.Int64): System.Boolean
 ---@param s System.String
 ---@param result System.Int64
 ---@return System.Boolean
@@ -5487,14 +5487,14 @@ function CS.System.Int64.RotateRight(value, rotateAmount) end
 function CS.System.Int64.TrailingZeroCount(value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.Int64
 ---@return System.Boolean
 function CS.System.Int64.TryReadBigEndian(source, isUnsigned, value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.Int64
 ---@return System.Boolean
@@ -5509,13 +5509,13 @@ function CS.System.Int64:GetShortestBitLength() end
 function CS.System.Int64:GetByteCount() end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Int64:TryWriteBigEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Int64:TryWriteLittleEndian(destination, bytesWritten) end
@@ -5892,9 +5892,9 @@ function CS.System.Int64.MultiplyBy16(value) end
 ---@class System.ISpanFormattable: System.IFormattable
 CS.System.ISpanFormattable = {}
 
----@param destination userdata | { [System.Int32]: System.Char& }
+---@param destination userdata | { [System.Int32]: System.Char }
 ---@param charsWritten System.Int32
----@param format userdata | { [System.Int32]: System.Char& }
+---@param format userdata | { [System.Int32]: System.Char }
 ---@param provider System.IFormatProvider
 ---@return System.Boolean
 function CS.System.ISpanFormattable:TryFormat(destination, charsWritten, format, provider) end
@@ -5903,9 +5903,9 @@ function CS.System.ISpanFormattable:TryFormat(destination, charsWritten, format,
 ---@class System.IUtf8SpanFormattable
 CS.System.IUtf8SpanFormattable = {}
 
----@param utf8Destination userdata | { [System.Int32]: System.Byte& }
+---@param utf8Destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
----@param format userdata | { [System.Int32]: System.Char& }
+---@param format userdata | { [System.Int32]: System.Char }
 ---@param provider System.IFormatProvider
 ---@return System.Boolean
 function CS.System.IUtf8SpanFormattable:TryFormat(utf8Destination, bytesWritten, format, provider) end
@@ -6143,10 +6143,10 @@ function CS.System.SByte:GetHashCode() end
 ---@return System.String
 function CS.System.SByte:ToString() end
 
----@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte& }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char& }), provider?: System.IFormatProvider): System.Boolean
----@param destination userdata | { [System.Int32]: System.Char& }
+---@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char }), provider?: System.IFormatProvider): System.Boolean
+---@param destination userdata | { [System.Int32]: System.Char }
 ---@param charsWritten System.Int32
----@param format? userdata | { [System.Int32]: System.Char& }
+---@param format? userdata | { [System.Int32]: System.Char }
 ---@param provider? System.IFormatProvider
 ---@return System.Boolean
 function CS.System.SByte:TryFormat(destination, charsWritten, format, provider) end
@@ -6154,22 +6154,22 @@ function CS.System.SByte:TryFormat(destination, charsWritten, format, provider) 
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles): System.SByte
 ---@overload fun(s: System.String, provider: System.IFormatProvider): System.SByte
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider): System.SByte
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.SByte
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider): System.SByte
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.SByte
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider): System.SByte
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.SByte
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider): System.SByte
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.SByte
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider): System.SByte
 ---@param s System.String
 ---@return System.SByte
 function CS.System.SByte.Parse(s) end
 
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), result: System.SByte): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), result: System.SByte): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), result: System.SByte): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), result: System.SByte): System.Boolean
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.SByte): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.SByte): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.SByte): System.Boolean
 ---@overload fun(s: System.String, provider: System.IFormatProvider, result: System.SByte): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider, result: System.SByte): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.SByte): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider, result: System.SByte): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider, result: System.SByte): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.SByte): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider, result: System.SByte): System.Boolean
 ---@param s System.String
 ---@param result System.SByte
 ---@return System.Boolean
@@ -6298,14 +6298,14 @@ function CS.System.SByte.RotateRight(value, rotateAmount) end
 function CS.System.SByte.TrailingZeroCount(value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.SByte
 ---@return System.Boolean
 function CS.System.SByte.TryReadBigEndian(source, isUnsigned, value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.SByte
 ---@return System.Boolean
@@ -6320,13 +6320,13 @@ function CS.System.SByte:GetShortestBitLength() end
 function CS.System.SByte:GetByteCount() end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.SByte:TryWriteBigEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.SByte:TryWriteLittleEndian(destination, bytesWritten) end
@@ -6863,10 +6863,10 @@ function CS.System.Single:GetHashCode() end
 ---@return System.String
 function CS.System.Single:ToString() end
 
----@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte& }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char& }), provider?: System.IFormatProvider): System.Boolean
----@param destination userdata | { [System.Int32]: System.Char& }
+---@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char }), provider?: System.IFormatProvider): System.Boolean
+---@param destination userdata | { [System.Int32]: System.Char }
 ---@param charsWritten System.Int32
----@param format? userdata | { [System.Int32]: System.Char& }
+---@param format? userdata | { [System.Int32]: System.Char }
 ---@param provider? System.IFormatProvider
 ---@return System.Boolean
 function CS.System.Single:TryFormat(destination, charsWritten, format, provider) end
@@ -6874,22 +6874,22 @@ function CS.System.Single:TryFormat(destination, charsWritten, format, provider)
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles): System.Single
 ---@overload fun(s: System.String, provider: System.IFormatProvider): System.Single
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider): System.Single
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Single
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider): System.Single
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Single
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider): System.Single
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Single
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider): System.Single
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.Single
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider): System.Single
 ---@param s System.String
 ---@return System.Single
 function CS.System.Single.Parse(s) end
 
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), result: System.Single): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), result: System.Single): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), result: System.Single): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), result: System.Single): System.Boolean
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Single): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Single): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Single): System.Boolean
 ---@overload fun(s: System.String, provider: System.IFormatProvider, result: System.Single): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider, result: System.Single): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Single): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider, result: System.Single): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider, result: System.Single): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.Single): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider, result: System.Single): System.Boolean
 ---@param s System.String
 ---@param result System.Single
 ---@return System.Boolean
@@ -7090,25 +7090,25 @@ function CS.System.Single:GetSignificandByteCount() end
 function CS.System.Single:GetSignificandBitLength() end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Single:TryWriteExponentBigEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Single:TryWriteExponentLittleEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Single:TryWriteSignificandBigEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Single:TryWriteSignificandLittleEndian(destination, bytesWritten) end
@@ -7600,7 +7600,7 @@ function CS.System.Single.SinForIntervalPiBy4(x) end
 function CS.System.Single.TanForIntervalPiBy4(x, isReciprocal) end
 
 
----@class System.String: System.Object, System.IComparable, System.Collections.IEnumerable, System.IConvertible, System.ICloneable, string, { [System.Int32]: System.Char }, { [nil]: System.Char }
+---@class System.String: System.Object, System.IComparable, System.Collections.IEnumerable, System.IConvertible, System.ICloneable, string | { [System.Int32]: System.Char } | { [nil]: System.Char }
 ---@field Length System.Int32
 ---@field private _stringLength System.Int32
 ---@field private _firstChar System.Char
@@ -7700,8 +7700,8 @@ function CS.System.String.Compare(strA, strB) end
 function CS.System.String.CompareOrdinal(strA, strB) end
 
 ---@package
----@param strA userdata | { [System.Int32]: System.Char& }
----@param strB userdata | { [System.Int32]: System.Char& }
+---@param strA userdata | { [System.Int32]: System.Char }
+---@param strB userdata | { [System.Int32]: System.Char }
 ---@return System.Int32
 function CS.System.String.CompareOrdinal(strA, strB) end
 
@@ -7747,13 +7747,13 @@ function CS.System.String:GetHashCode() end
 ---@return System.Int32
 function CS.System.String:GetHashCodeOrdinalIgnoreCase() end
 
----@overload fun(value: (userdata | { [System.Int32]: System.Char& }), comparisonType: System.StringComparison): System.Int32
----@param value userdata | { [System.Int32]: System.Char& }
+---@overload fun(value: (userdata | { [System.Int32]: System.Char }), comparisonType: System.StringComparison): System.Int32
+---@param value userdata | { [System.Int32]: System.Char }
 ---@return System.Int32
 function CS.System.String.GetHashCode(value) end
 
 ---@package
----@param value userdata | { [System.Int32]: System.Char& }
+---@param value userdata | { [System.Int32]: System.Char }
 ---@return System.Int32
 function CS.System.String.GetHashCodeOrdinalIgnoreCase(value) end
 
@@ -7794,7 +7794,7 @@ function CS.System.String.GetCompareOptionsFromOrdinalStringComparison(compariso
 ---@overload fun(value: System.SByte*, startIndex: System.Int32, length: System.Int32): System.String
 ---@overload fun(value: System.SByte*, startIndex: System.Int32, length: System.Int32, enc: System.Text.Encoding): System.String
 ---@overload fun(c: System.Char, count: System.Int32): System.String
----@overload fun(value: (userdata | { [System.Int32]: System.Char& })): System.String
+---@overload fun(value: (userdata | { [System.Int32]: System.Char })): System.String
 ---@param value System.Char[]
 ---@return System.String
 function CS.System.String.Ctor(value) end
@@ -7805,20 +7805,20 @@ function CS.System.String.Ctor(value) end
 ---@return System.String
 function CS.System.String.CreateStringForSByteConstructor(pb, numBytes) end
 
----@overload fun(provider: System.IFormatProvider, initialBuffer: (userdata | { [System.Int32]: System.Char& }), handler: System.Runtime.CompilerServices.DefaultInterpolatedStringHandler): System.String
+---@overload fun(provider: System.IFormatProvider, initialBuffer: (userdata | { [System.Int32]: System.Char }), handler: System.Runtime.CompilerServices.DefaultInterpolatedStringHandler): System.String
 ---@param provider System.IFormatProvider
 ---@param handler System.Runtime.CompilerServices.DefaultInterpolatedStringHandler
 ---@return System.String
 function CS.System.String.Create(provider, handler) end
 
 ---@param value System.String
----@return userdata | { [System.Int32]: System.Char& }
+---@return userdata | { [System.Int32]: System.Char }
 function CS.System.String.op_Implicit(value) end
 
 ---@package
 ---@param startIndex System.Int32
 ---@param count System.Int32
----@param slice userdata | { [System.Int32]: System.Char& }
+---@param slice userdata | { [System.Int32]: System.Char }
 ---@return System.Boolean
 function CS.System.String:TryGetSpan(startIndex, count, slice) end
 
@@ -7829,14 +7829,14 @@ function CS.System.String:Clone() end
 ---@return System.String
 function CS.System.String.Copy(str) end
 
----@overload fun(self: self, destination: (userdata | { [System.Int32]: System.Char& }))
+---@overload fun(self: self, destination: (userdata | { [System.Int32]: System.Char }))
 ---@param sourceIndex System.Int32
 ---@param destination System.Char[]
 ---@param destinationIndex System.Int32
 ---@param count System.Int32
 function CS.System.String:CopyTo(sourceIndex, destination, destinationIndex, count) end
 
----@param destination userdata | { [System.Int32]: System.Char& }
+---@param destination userdata | { [System.Int32]: System.Char }
 ---@return System.Boolean
 function CS.System.String:TryCopyTo(destination) end
 
@@ -7996,14 +7996,14 @@ function CS.System.String:get_Chars(index) end
 function CS.System.String:get_Length() end
 
 ---@private
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider): System.String
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider): System.String
 ---@param s System.String
 ---@param provider System.IFormatProvider
 ---@return System.String
 function CS.System.String.Parse(s, provider) end
 
 ---@private
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider, result: System.String): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider, result: System.String): System.Boolean
 ---@param s System.String
 ---@param provider System.IFormatProvider
 ---@param result System.String
@@ -8023,20 +8023,20 @@ function CS.System.String.CopyStringContent(dest, destPos, src) end
 ---@overload fun(str0: System.String, str1: System.String): System.String
 ---@overload fun(str0: System.String, str1: System.String, str2: System.String): System.String
 ---@overload fun(str0: System.String, str1: System.String, str2: System.String, str3: System.String): System.String
----@overload fun(str0: (userdata | { [System.Int32]: System.Char& }), str1: (userdata | { [System.Int32]: System.Char& })): System.String
----@overload fun(str0: (userdata | { [System.Int32]: System.Char& }), str1: (userdata | { [System.Int32]: System.Char& }), str2: (userdata | { [System.Int32]: System.Char& })): System.String
----@overload fun(str0: (userdata | { [System.Int32]: System.Char& }), str1: (userdata | { [System.Int32]: System.Char& }), str2: (userdata | { [System.Int32]: System.Char& }), str3: (userdata | { [System.Int32]: System.Char& })): System.String
+---@overload fun(str0: (userdata | { [System.Int32]: System.Char }), str1: (userdata | { [System.Int32]: System.Char })): System.String
+---@overload fun(str0: (userdata | { [System.Int32]: System.Char }), str1: (userdata | { [System.Int32]: System.Char }), str2: (userdata | { [System.Int32]: System.Char })): System.String
+---@overload fun(str0: (userdata | { [System.Int32]: System.Char }), str1: (userdata | { [System.Int32]: System.Char }), str2: (userdata | { [System.Int32]: System.Char }), str3: (userdata | { [System.Int32]: System.Char })): System.String
 ---@overload fun(...: System.String): System.String
 ---@param arg0 System.Object
 ---@return System.String
 function CS.System.String.Concat(arg0) end
 
 ---@package
----@param str0 userdata | { [System.Int32]: System.Char& }
----@param str1 userdata | { [System.Int32]: System.Char& }
----@param str2 userdata | { [System.Int32]: System.Char& }
----@param str3 userdata | { [System.Int32]: System.Char& }
----@param str4 userdata | { [System.Int32]: System.Char& }
+---@param str0 userdata | { [System.Int32]: System.Char }
+---@param str1 userdata | { [System.Int32]: System.Char }
+---@param str2 userdata | { [System.Int32]: System.Char }
+---@param str3 userdata | { [System.Int32]: System.Char }
+---@param str4 userdata | { [System.Int32]: System.Char }
 ---@return System.String
 function CS.System.String.Concat(str0, str1, str2, str3, str4) end
 
@@ -8048,7 +8048,7 @@ function CS.System.String.Concat(str0, str1, str2, str3, str4) end
 ---@overload fun(provider: System.IFormatProvider, format: System.String, arg0: System.Object, arg1: System.Object, arg2: System.Object): System.String
 ---@overload fun(provider: System.IFormatProvider, format: System.String, ...: System.Object): System.String
 ---@overload fun(provider: System.IFormatProvider, format: System.Text.CompositeFormat, ...: System.Object): System.String
----@overload fun(provider: System.IFormatProvider, format: System.Text.CompositeFormat, args: (userdata | { [System.Int32]: System.Object& })): System.String
+---@overload fun(provider: System.IFormatProvider, format: System.Text.CompositeFormat, args: (userdata | { [System.Int32]: System.Object })): System.String
 ---@param format System.String
 ---@param arg0 System.Object
 ---@return System.String
@@ -8057,7 +8057,7 @@ function CS.System.String.Format(format, arg0) end
 ---@private
 ---@param provider System.IFormatProvider
 ---@param format System.String
----@param args userdata | { [System.Int32]: System.Object& }
+---@param args userdata | { [System.Int32]: System.Object }
 ---@return System.String
 function CS.System.String.FormatHelper(provider, format, args) end
 
@@ -8078,9 +8078,9 @@ function CS.System.String:Insert(startIndex, value) end
 function CS.System.String.Join(separator, ...) end
 
 ---@private
----@overload fun(separator: (userdata | { [System.Int32]: System.Char& }), values: System.Object[]): System.String
----@overload fun(separator: (userdata | { [System.Int32]: System.Char& }), values: (userdata | { [System.Int32]: System.String& })): System.String
----@param separator userdata | { [System.Int32]: System.Char& }
+---@overload fun(separator: (userdata | { [System.Int32]: System.Char }), values: System.Object[]): System.String
+---@overload fun(separator: (userdata | { [System.Int32]: System.Char }), values: (userdata | { [System.Int32]: System.String })): System.String
+---@param separator userdata | { [System.Int32]: System.Char }
 ---@param value System.String[]
 ---@param startIndex System.Int32
 ---@param count System.Int32
@@ -8122,9 +8122,9 @@ function CS.System.String:Replace(oldValue, newValue, ignoreCase, culture) end
 function CS.System.String:ReplaceCore(oldValue, newValue, ci, options) end
 
 ---@private
----@param searchSpace userdata | { [System.Int32]: System.Char& }
----@param oldValue userdata | { [System.Int32]: System.Char& }
----@param newValue userdata | { [System.Int32]: System.Char& }
+---@param searchSpace userdata | { [System.Int32]: System.Char }
+---@param oldValue userdata | { [System.Int32]: System.Char }
+---@param newValue userdata | { [System.Int32]: System.Char }
 ---@param compareInfo System.Globalization.CompareInfo
 ---@param options System.Globalization.CompareOptions
 ---@return System.String
@@ -8133,7 +8133,7 @@ function CS.System.String.ReplaceCore(searchSpace, oldValue, newValue, compareIn
 ---@private
 ---@param oldValueLength System.Int32
 ---@param newValue System.String
----@param indices userdata | { [System.Int32]: System.Int32& }
+---@param indices userdata | { [System.Int32]: System.Int32 }
 ---@return System.String
 function CS.System.String:ReplaceHelper(oldValueLength, newValue, indices) end
 
@@ -8147,7 +8147,7 @@ function CS.System.String:ReplaceLineEndings() end
 function CS.System.String:ReplaceLineEndingsCore(replacementText) end
 
 ---@private
----@param text userdata | { [System.Int32]: System.Char& }
+---@param text userdata | { [System.Int32]: System.Char }
 ---@param replacementText System.String
 ---@param stride System.Int32
 ---@return System.Int32
@@ -8174,7 +8174,7 @@ function CS.System.String:Split(separator, options) end
 ---@private
 ---@overload fun(self: self, separator: System.String, separators: System.String[], count: System.Int32, options: System.StringSplitOptions): System.String[]
 ---@overload fun(self: self, separator: System.String, count: System.Int32, options: System.StringSplitOptions): System.String[]
----@param separators userdata | { [System.Int32]: System.Char& }
+---@param separators userdata | { [System.Int32]: System.Char }
 ---@param count System.Int32
 ---@param options System.StringSplitOptions
 ---@return System.String[]
@@ -8187,16 +8187,16 @@ function CS.System.String:SplitInternal(separators, count, options) end
 function CS.System.String:CreateSplitArrayOfThisAsSoleValue(options, count) end
 
 ---@private
----@param sepList userdata | { [System.Int32]: System.Int32& }
----@param lengthList userdata | { [System.Int32]: System.Int32& }
+---@param sepList userdata | { [System.Int32]: System.Int32 }
+---@param lengthList userdata | { [System.Int32]: System.Int32 }
 ---@param defaultLength System.Int32
 ---@param count System.Int32
 ---@return System.String[]
 function CS.System.String:SplitWithoutPostProcessing(sepList, lengthList, defaultLength, count) end
 
 ---@private
----@param sepList userdata | { [System.Int32]: System.Int32& }
----@param lengthList userdata | { [System.Int32]: System.Int32& }
+---@param sepList userdata | { [System.Int32]: System.Int32 }
+---@param lengthList userdata | { [System.Int32]: System.Int32 }
 ---@param defaultLength System.Int32
 ---@param count System.Int32
 ---@param options System.StringSplitOptions
@@ -8204,24 +8204,24 @@ function CS.System.String:SplitWithoutPostProcessing(sepList, lengthList, defaul
 function CS.System.String:SplitWithPostProcessing(sepList, lengthList, defaultLength, count, options) end
 
 ---@package
----@overload fun(source: (userdata | { [System.Int32]: System.Char& }), separators: (userdata | { [System.Int32]: System.String& }), sepListBuilder: userdata | { [System.Int32]: System.Int32& }, lengthListBuilder: userdata | { [System.Int32]: System.Int32& })
----@param source userdata | { [System.Int32]: System.Char& }
----@param separators userdata | { [System.Int32]: System.Char& }
----@param sepListBuilder userdata | { [System.Int32]: System.Int32& }
+---@overload fun(source: (userdata | { [System.Int32]: System.Char }), separators: (userdata | { [System.Int32]: System.String }), sepListBuilder: userdata | { [System.Int32]: System.Int32 }, lengthListBuilder: userdata | { [System.Int32]: System.Int32 })
+---@param source userdata | { [System.Int32]: System.Char }
+---@param separators userdata | { [System.Int32]: System.Char }
+---@param sepListBuilder userdata | { [System.Int32]: System.Int32 }
 function CS.System.String.MakeSeparatorListAny(source, separators, sepListBuilder) end
 
 ---@private
----@param sourceSpan userdata | { [System.Int32]: System.Char& }
----@param sepListBuilder userdata | { [System.Int32]: System.Int32& }
+---@param sourceSpan userdata | { [System.Int32]: System.Char }
+---@param sepListBuilder userdata | { [System.Int32]: System.Int32 }
 ---@param c System.Char
 ---@param c2 System.Char
 ---@param c3 System.Char
 function CS.System.String.MakeSeparatorListVectorized(sourceSpan, sepListBuilder, c, c2, c3) end
 
 ---@package
----@param source userdata | { [System.Int32]: System.Char& }
----@param separator userdata | { [System.Int32]: System.Char& }
----@param sepListBuilder userdata | { [System.Int32]: System.Int32& }
+---@param source userdata | { [System.Int32]: System.Char }
+---@param separator userdata | { [System.Int32]: System.Char }
+---@param sepListBuilder userdata | { [System.Int32]: System.Int32 }
 function CS.System.String.MakeSeparatorList(source, separator, sepListBuilder) end
 
 ---@package
@@ -8347,7 +8347,7 @@ function CS.System.String:LastIndexOfAny(anyOf) end
 ---@overload fun(value: System.SByte*, startIndex: System.Int32, length: System.Int32): System.String
 ---@overload fun(value: System.SByte*, startIndex: System.Int32, length: System.Int32, enc: System.Text.Encoding): System.String
 ---@overload fun(c: System.Char, count: System.Int32): System.String
----@overload fun(value: (userdata | { [System.Int32]: System.Char& })): System.String
+---@overload fun(value: (userdata | { [System.Int32]: System.Char })): System.String
 ---@param value System.Char[]
 ---@return System.String
 function CS.System.String(value) end
@@ -9214,10 +9214,10 @@ function CS.System.UInt16:GetHashCode() end
 ---@return System.String
 function CS.System.UInt16:ToString() end
 
----@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte& }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char& }), provider?: System.IFormatProvider): System.Boolean
----@param destination userdata | { [System.Int32]: System.Char& }
+---@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char }), provider?: System.IFormatProvider): System.Boolean
+---@param destination userdata | { [System.Int32]: System.Char }
 ---@param charsWritten System.Int32
----@param format? userdata | { [System.Int32]: System.Char& }
+---@param format? userdata | { [System.Int32]: System.Char }
 ---@param provider? System.IFormatProvider
 ---@return System.Boolean
 function CS.System.UInt16:TryFormat(destination, charsWritten, format, provider) end
@@ -9225,22 +9225,22 @@ function CS.System.UInt16:TryFormat(destination, charsWritten, format, provider)
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles): System.UInt16
 ---@overload fun(s: System.String, provider: System.IFormatProvider): System.UInt16
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider): System.UInt16
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.UInt16
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider): System.UInt16
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.UInt16
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider): System.UInt16
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.UInt16
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider): System.UInt16
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.UInt16
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider): System.UInt16
 ---@param s System.String
 ---@return System.UInt16
 function CS.System.UInt16.Parse(s) end
 
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), result: System.UInt16): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), result: System.UInt16): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), result: System.UInt16): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), result: System.UInt16): System.Boolean
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.UInt16): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.UInt16): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.UInt16): System.Boolean
 ---@overload fun(s: System.String, provider: System.IFormatProvider, result: System.UInt16): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider, result: System.UInt16): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.UInt16): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider, result: System.UInt16): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider, result: System.UInt16): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.UInt16): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider, result: System.UInt16): System.Boolean
 ---@param s System.String
 ---@param result System.UInt16
 ---@return System.Boolean
@@ -9369,14 +9369,14 @@ function CS.System.UInt16.RotateRight(value, rotateAmount) end
 function CS.System.UInt16.TrailingZeroCount(value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.UInt16
 ---@return System.Boolean
 function CS.System.UInt16.TryReadBigEndian(source, isUnsigned, value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.UInt16
 ---@return System.Boolean
@@ -9391,13 +9391,13 @@ function CS.System.UInt16:GetShortestBitLength() end
 function CS.System.UInt16:GetByteCount() end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.UInt16:TryWriteBigEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.UInt16:TryWriteLittleEndian(destination, bytesWritten) end
@@ -9811,10 +9811,10 @@ function CS.System.UInt32:GetHashCode() end
 ---@return System.String
 function CS.System.UInt32:ToString() end
 
----@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte& }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char& }), provider?: System.IFormatProvider): System.Boolean
----@param destination userdata | { [System.Int32]: System.Char& }
+---@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char }), provider?: System.IFormatProvider): System.Boolean
+---@param destination userdata | { [System.Int32]: System.Char }
 ---@param charsWritten System.Int32
----@param format? userdata | { [System.Int32]: System.Char& }
+---@param format? userdata | { [System.Int32]: System.Char }
 ---@param provider? System.IFormatProvider
 ---@return System.Boolean
 function CS.System.UInt32:TryFormat(destination, charsWritten, format, provider) end
@@ -9822,22 +9822,22 @@ function CS.System.UInt32:TryFormat(destination, charsWritten, format, provider)
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles): System.UInt32
 ---@overload fun(s: System.String, provider: System.IFormatProvider): System.UInt32
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider): System.UInt32
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.UInt32
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider): System.UInt32
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.UInt32
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider): System.UInt32
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.UInt32
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider): System.UInt32
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.UInt32
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider): System.UInt32
 ---@param s System.String
 ---@return System.UInt32
 function CS.System.UInt32.Parse(s) end
 
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), result: System.UInt32): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), result: System.UInt32): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), result: System.UInt32): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), result: System.UInt32): System.Boolean
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.UInt32): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.UInt32): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.UInt32): System.Boolean
 ---@overload fun(s: System.String, provider: System.IFormatProvider, result: System.UInt32): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider, result: System.UInt32): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.UInt32): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider, result: System.UInt32): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider, result: System.UInt32): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.UInt32): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider, result: System.UInt32): System.Boolean
 ---@param s System.String
 ---@param result System.UInt32
 ---@return System.Boolean
@@ -9966,14 +9966,14 @@ function CS.System.UInt32.RotateRight(value, rotateAmount) end
 function CS.System.UInt32.TrailingZeroCount(value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.UInt32
 ---@return System.Boolean
 function CS.System.UInt32.TryReadBigEndian(source, isUnsigned, value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.UInt32
 ---@return System.Boolean
@@ -9988,13 +9988,13 @@ function CS.System.UInt32:GetShortestBitLength() end
 function CS.System.UInt32:GetByteCount() end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.UInt32:TryWriteBigEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.UInt32:TryWriteLittleEndian(destination, bytesWritten) end
@@ -10408,10 +10408,10 @@ function CS.System.UInt64:GetHashCode() end
 ---@return System.String
 function CS.System.UInt64:ToString() end
 
----@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte& }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char& }), provider?: System.IFormatProvider): System.Boolean
----@param destination userdata | { [System.Int32]: System.Char& }
+---@overload fun(self: self, utf8Destination: (userdata | { [System.Int32]: System.Byte }), bytesWritten: System.Int32, format?: (userdata | { [System.Int32]: System.Char }), provider?: System.IFormatProvider): System.Boolean
+---@param destination userdata | { [System.Int32]: System.Char }
 ---@param charsWritten System.Int32
----@param format? userdata | { [System.Int32]: System.Char& }
+---@param format? userdata | { [System.Int32]: System.Char }
 ---@param provider? System.IFormatProvider
 ---@return System.Boolean
 function CS.System.UInt64:TryFormat(destination, charsWritten, format, provider) end
@@ -10419,22 +10419,22 @@ function CS.System.UInt64:TryFormat(destination, charsWritten, format, provider)
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles): System.UInt64
 ---@overload fun(s: System.String, provider: System.IFormatProvider): System.UInt64
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider): System.UInt64
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.UInt64
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider): System.UInt64
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.UInt64
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider): System.UInt64
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.UInt64
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider): System.UInt64
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style?: System.Globalization.NumberStyles, provider?: System.IFormatProvider): System.UInt64
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider): System.UInt64
 ---@param s System.String
 ---@return System.UInt64
 function CS.System.UInt64.Parse(s) end
 
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), result: System.UInt64): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), result: System.UInt64): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), result: System.UInt64): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), result: System.UInt64): System.Boolean
 ---@overload fun(s: System.String, style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.UInt64): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.UInt64): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.UInt64): System.Boolean
 ---@overload fun(s: System.String, provider: System.IFormatProvider, result: System.UInt64): System.Boolean
----@overload fun(s: (userdata | { [System.Int32]: System.Char& }), provider: System.IFormatProvider, result: System.UInt64): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.UInt64): System.Boolean
----@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte& }), provider: System.IFormatProvider, result: System.UInt64): System.Boolean
+---@overload fun(s: (userdata | { [System.Int32]: System.Char }), provider: System.IFormatProvider, result: System.UInt64): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), style: System.Globalization.NumberStyles, provider: System.IFormatProvider, result: System.UInt64): System.Boolean
+---@overload fun(utf8Text: (userdata | { [System.Int32]: System.Byte }), provider: System.IFormatProvider, result: System.UInt64): System.Boolean
 ---@param s System.String
 ---@param result System.UInt64
 ---@return System.Boolean
@@ -10563,14 +10563,14 @@ function CS.System.UInt64.RotateRight(value, rotateAmount) end
 function CS.System.UInt64.TrailingZeroCount(value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.UInt64
 ---@return System.Boolean
 function CS.System.UInt64.TryReadBigEndian(source, isUnsigned, value) end
 
 ---@private
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 ---@param isUnsigned System.Boolean
 ---@param value System.UInt64
 ---@return System.Boolean
@@ -10585,13 +10585,13 @@ function CS.System.UInt64:GetShortestBitLength() end
 function CS.System.UInt64:GetByteCount() end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.UInt64:TryWriteBigEndian(destination, bytesWritten) end
 
 ---@private
----@param destination userdata | { [System.Int32]: System.Byte& }
+---@param destination userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.UInt64:TryWriteLittleEndian(destination, bytesWritten) end

@@ -9,8 +9,8 @@ CS.ZhanGuoWuxia.Backend.Event.GameEvent = {}
 function CS.ZhanGuoWuxia.Backend.Event.GameEvent() end
 
 ---@class ZhanGuoWuxia.Backend.Event.EventManager: System.Object
----@field private s_Events userdata | { [System.Type]: userdata } | { [nil]: userdata }
----@field private s_EventLookups userdata | { [System.Delegate]: userdata } | { [nil]: userdata }
+---@field private s_Events userdata | { [System.Type]: fun(obj: ZhanGuoWuxia.Backend.Event.GameEvent) } | { [nil]: userdata }
+---@field private s_EventLookups userdata | { [fun()]: fun(obj: ZhanGuoWuxia.Backend.Event.GameEvent) } | { [nil]: userdata }
 CS.ZhanGuoWuxia.Backend.Event.EventManager = {}
 
 ---@param evt ZhanGuoWuxia.Backend.Event.GameEvent

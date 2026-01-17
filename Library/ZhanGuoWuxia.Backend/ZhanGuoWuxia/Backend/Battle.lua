@@ -455,14 +455,14 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleFieldFactory.Create(param, saveDat
 
 ---@class ZhanGuoWuxia.Backend.Battle.BattleAction: System.Object, ZhanGuoWuxia.Backend.Pattern.IPoolObject
 ---@field RecordNodeType ZhanGuoWuxia.Backend.Battle.RecordNodeType
----@field private m_ActionResults userdata | { [System.Type]: userdata } | { [nil]: userdata }
+---@field private m_ActionResults userdata | { [System.Type]: userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Battle.Data.BattleActionResult } | { [nil]: ZhanGuoWuxia.Backend.Battle.Data.BattleActionResult } } | { [nil]: userdata }
 ---@field private m_IsRecycled System.Boolean
----@field private _lazyRef userdata | { [System.Type]: userdata } | { [nil]: userdata }
+---@field private _lazyRef userdata | { [System.Type]: userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Battle.Data.BattleActionResult } | { [nil]: ZhanGuoWuxia.Backend.Battle.Data.BattleActionResult } } | { [nil]: userdata }
 ---@field private m_CurrentResultOrder System.Int32
 CS.ZhanGuoWuxia.Backend.Battle.BattleAction = {}
 
 ---@private
----@return userdata | { [System.Type]: userdata } | { [nil]: userdata }
+---@return userdata | { [System.Type]: userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Battle.Data.BattleActionResult } | { [nil]: ZhanGuoWuxia.Backend.Battle.Data.BattleActionResult } } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Battle.BattleAction:get_m_ActionResults() end
 
 ---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Battle.Data.BattleActionResult }

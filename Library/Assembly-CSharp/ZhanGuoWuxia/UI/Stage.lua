@@ -39,7 +39,7 @@ function CS.ZhanGuoWuxia.UI.Stage.StageActorInfo() end
 ---@field private m_EffectTweener Coffee.UIEffects.UIEffectTweener
 ---@field private m_SceneName TMPro.TextMeshProUGUI
 ---@field private m_Actors userdata | { [System.String]: ZhanGuoWuxia.UI.Stage.UIStageActor } | { [nil]: userdata }
----@field private m_Bubbles userdata | { [System.String]: userdata } | { [nil]: userdata }
+---@field private m_Bubbles userdata | { [System.String]: userdata | { [ZhanGuoWuxia.UI.Stage.StageBubbleType]: ZhanGuoWuxia.UI.Stage.UIStageBubble } | { [nil]: userdata } } | { [nil]: userdata }
 ---@field private m_DefaultScale UnityEngine.Vector3
 ---@field private m_DefaultPosition UnityEngine.Vector2
 ---@field private _isFinished System.Boolean

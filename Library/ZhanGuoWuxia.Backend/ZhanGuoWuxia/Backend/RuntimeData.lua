@@ -1235,7 +1235,7 @@ CS.ZhanGuoWuxia.Backend.RuntimeData.GameDifficulty = {
 
 ---@class ZhanGuoWuxia.Backend.RuntimeData.DummyTable: System.Object
 ---@field Default ZhanGuoWuxia.Backend.RuntimeData.DummyTable
----@field private m_Cache userdata | { [System.Type]: userdata } | { [nil]: userdata }
+---@field private m_Cache userdata | { [System.Type]: userdata | { [System.String]: ZhanGuoWuxia.Backend.Beans.BaseBean } | { [nil]: userdata } } | { [nil]: userdata }
 ---@field private _instance ZhanGuoWuxia.Backend.RuntimeData.DummyTable
 CS.ZhanGuoWuxia.Backend.RuntimeData.DummyTable = {}
 

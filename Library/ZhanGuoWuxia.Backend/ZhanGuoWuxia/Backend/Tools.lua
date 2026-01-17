@@ -336,7 +336,7 @@ function CS.ZhanGuoWuxia.Backend.Tools.StringTool.SplitStroDict(str, split1, spl
 ---@param split1? System.Char
 ---@param split2? System.Char
 ---@param split3? System.Char
----@return userdata | { [System.Int32]: userdata } | { [nil]: userdata }
+---@return userdata | { [System.Int32]: userdata | { [System.Int32]: userdata } | { [nil]: userdata } } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Backend.Tools.StringTool.SplitIntTupleStrIntDict(str, split1, split2, split3) end
 
 ---@param str System.String

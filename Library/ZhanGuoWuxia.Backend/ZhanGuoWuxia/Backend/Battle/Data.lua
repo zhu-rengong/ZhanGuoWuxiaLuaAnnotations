@@ -942,8 +942,8 @@ function CS.ZhanGuoWuxia.Backend.Battle.Data.RolePerform_BubbleResult.NewResult(
 function CS.ZhanGuoWuxia.Backend.Battle.Data.RolePerform_BubbleResult() end
 
 ---@class ZhanGuoWuxia.Backend.Battle.Data.SkillHitTypeSet: System.Object
----@field private m_HitBattleRoleIds userdata | { [ZhanGuoWuxia.Backend.Battle.Data.ActionHitType]: userdata } | { [nil]: userdata }
----@field private m_CritRoleIds userdata | { [ZhanGuoWuxia.Backend.Battle.Data.CriticalRet]: userdata } | { [nil]: userdata }
+---@field private m_HitBattleRoleIds userdata | { [ZhanGuoWuxia.Backend.Battle.Data.ActionHitType]: userdata | { [nil]: System.Int32 } } | { [nil]: userdata }
+---@field private m_CritRoleIds userdata | { [ZhanGuoWuxia.Backend.Battle.Data.CriticalRet]: userdata | { [nil]: System.Int32 } } | { [nil]: userdata }
 CS.ZhanGuoWuxia.Backend.Battle.Data.SkillHitTypeSet = {}
 
 function CS.ZhanGuoWuxia.Backend.Battle.Data.SkillHitTypeSet:Clear() end

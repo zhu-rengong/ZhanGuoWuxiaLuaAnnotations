@@ -468,7 +468,7 @@ CS.ZhanGuoWuxia.Backend.LaunchErrorType = {
 
 ---@class ZhanGuoWuxia.Backend.DefaultLaunchHandler: ZhanGuoWuxia.Backend.IGameService, ZhanGuoWuxia.Backend.IGameLaunchHandler
 ---@field CanLaunch System.Boolean
----@field private m_LaunchErrors userdata | { [ZhanGuoWuxia.Backend.LaunchErrorType]: userdata } | { [nil]: userdata }
+---@field private m_LaunchErrors userdata | { [ZhanGuoWuxia.Backend.LaunchErrorType]: userdata | { [nil]: System.Exception } } | { [nil]: userdata }
 CS.ZhanGuoWuxia.Backend.DefaultLaunchHandler = {}
 
 ---@return System.Boolean
@@ -698,7 +698,7 @@ function CS.ZhanGuoWuxia.Backend.IReusableObject:Dispose() end
 
 
 ---@class ZhanGuoWuxia.Backend.ReusableObjectManager: ZhanGuoWuxia.Backend.IGameService
----@field private m_Pools userdata | { [System.Type]: userdata } | { [nil]: userdata }
+---@field private m_Pools userdata | { [System.Type]: userdata | { [nil]: ZhanGuoWuxia.Backend.IReusableObject } } | { [nil]: userdata }
 CS.ZhanGuoWuxia.Backend.ReusableObjectManager = {}
 
 function CS.ZhanGuoWuxia.Backend.ReusableObjectManager:Dispose() end

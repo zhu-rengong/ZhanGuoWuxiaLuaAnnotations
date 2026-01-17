@@ -27,7 +27,7 @@ function CS.System.Text.Decoder:Reset() end
 
 ---@overload fun(self: self, bytes: System.Byte[], index: System.Int32, count: System.Int32, flush: System.Boolean): System.Int32
 ---@overload fun(self: self, bytes: System.Byte*, count: System.Int32, flush: System.Boolean): System.Int32
----@overload fun(self: self, bytes: (userdata | { [System.Int32]: System.Byte& }), flush: System.Boolean): System.Int32
+---@overload fun(self: self, bytes: (userdata | { [System.Int32]: System.Byte }), flush: System.Boolean): System.Int32
 ---@param bytes System.Byte[]
 ---@param index System.Int32
 ---@param count System.Int32
@@ -36,7 +36,7 @@ function CS.System.Text.Decoder:GetCharCount(bytes, index, count) end
 
 ---@overload fun(self: self, bytes: System.Byte[], byteIndex: System.Int32, byteCount: System.Int32, chars: System.Char[], charIndex: System.Int32, flush: System.Boolean): System.Int32
 ---@overload fun(self: self, bytes: System.Byte*, byteCount: System.Int32, chars: System.Char*, charCount: System.Int32, flush: System.Boolean): System.Int32
----@overload fun(self: self, bytes: (userdata | { [System.Int32]: System.Byte& }), chars: (userdata | { [System.Int32]: System.Char& }), flush: System.Boolean): System.Int32
+---@overload fun(self: self, bytes: (userdata | { [System.Int32]: System.Byte }), chars: (userdata | { [System.Int32]: System.Char }), flush: System.Boolean): System.Int32
 ---@param bytes System.Byte[]
 ---@param byteIndex System.Int32
 ---@param byteCount System.Int32
@@ -46,7 +46,7 @@ function CS.System.Text.Decoder:GetCharCount(bytes, index, count) end
 function CS.System.Text.Decoder:GetChars(bytes, byteIndex, byteCount, chars, charIndex) end
 
 ---@overload fun(self: self, bytes: System.Byte*, byteCount: System.Int32, chars: System.Char*, charCount: System.Int32, flush: System.Boolean, bytesUsed: System.Int32, charsUsed: System.Int32, completed: System.Boolean)
----@overload fun(self: self, bytes: (userdata | { [System.Int32]: System.Byte& }), chars: (userdata | { [System.Int32]: System.Char& }), flush: System.Boolean, bytesUsed: System.Int32, charsUsed: System.Int32, completed: System.Boolean)
+---@overload fun(self: self, bytes: (userdata | { [System.Int32]: System.Byte }), chars: (userdata | { [System.Int32]: System.Char }), flush: System.Boolean, bytesUsed: System.Int32, charsUsed: System.Int32, completed: System.Boolean)
 ---@param bytes System.Byte[]
 ---@param byteIndex System.Int32
 ---@param byteCount System.Int32
@@ -87,7 +87,7 @@ function CS.System.Text.Encoder:get_InternalHasFallbackBuffer() end
 function CS.System.Text.Encoder:Reset() end
 
 ---@overload fun(self: self, chars: System.Char*, count: System.Int32, flush: System.Boolean): System.Int32
----@overload fun(self: self, chars: (userdata | { [System.Int32]: System.Char& }), flush: System.Boolean): System.Int32
+---@overload fun(self: self, chars: (userdata | { [System.Int32]: System.Char }), flush: System.Boolean): System.Int32
 ---@param chars System.Char[]
 ---@param index System.Int32
 ---@param count System.Int32
@@ -96,7 +96,7 @@ function CS.System.Text.Encoder:Reset() end
 function CS.System.Text.Encoder:GetByteCount(chars, index, count, flush) end
 
 ---@overload fun(self: self, chars: System.Char*, charCount: System.Int32, bytes: System.Byte*, byteCount: System.Int32, flush: System.Boolean): System.Int32
----@overload fun(self: self, chars: (userdata | { [System.Int32]: System.Char& }), bytes: (userdata | { [System.Int32]: System.Byte& }), flush: System.Boolean): System.Int32
+---@overload fun(self: self, chars: (userdata | { [System.Int32]: System.Char }), bytes: (userdata | { [System.Int32]: System.Byte }), flush: System.Boolean): System.Int32
 ---@param chars System.Char[]
 ---@param charIndex System.Int32
 ---@param charCount System.Int32
@@ -107,7 +107,7 @@ function CS.System.Text.Encoder:GetByteCount(chars, index, count, flush) end
 function CS.System.Text.Encoder:GetBytes(chars, charIndex, charCount, bytes, byteIndex, flush) end
 
 ---@overload fun(self: self, chars: System.Char*, charCount: System.Int32, bytes: System.Byte*, byteCount: System.Int32, flush: System.Boolean, charsUsed: System.Int32, bytesUsed: System.Int32, completed: System.Boolean)
----@overload fun(self: self, chars: (userdata | { [System.Int32]: System.Char& }), bytes: (userdata | { [System.Int32]: System.Byte& }), flush: System.Boolean, charsUsed: System.Int32, bytesUsed: System.Int32, completed: System.Boolean)
+---@overload fun(self: self, chars: (userdata | { [System.Int32]: System.Char }), bytes: (userdata | { [System.Int32]: System.Byte }), flush: System.Boolean, charsUsed: System.Int32, bytesUsed: System.Int32, completed: System.Boolean)
 ---@param chars System.Char[]
 ---@param charIndex System.Int32
 ---@param charCount System.Int32
@@ -126,7 +126,7 @@ function CS.System.Text.Encoder() end
 
 ---@class System.Text.Encoding: System.Object, System.ICloneable
 ---@field Default System.Text.Encoding
----@field Preamble userdata | { [System.Int32]: System.Byte& }
+---@field Preamble userdata | { [System.Int32]: System.Byte }
 ---@field BodyName System.String
 ---@field EncodingName System.String
 ---@field HeaderName System.String
@@ -192,7 +192,7 @@ function CS.System.Text.Encoding.GetEncodings() end
 ---@return System.Byte[]
 function CS.System.Text.Encoding:GetPreamble() end
 
----@return userdata | { [System.Int32]: System.Byte& }
+---@return userdata | { [System.Int32]: System.Byte }
 function CS.System.Text.Encoding:get_Preamble() end
 
 ---@private
@@ -259,7 +259,7 @@ function CS.System.Text.Encoding.get_Latin1() end
 ---@overload fun(self: self, chars: System.Char[], index: System.Int32, count: System.Int32): System.Int32
 ---@overload fun(self: self, s: System.String, index: System.Int32, count: System.Int32): System.Int32
 ---@overload fun(self: self, chars: System.Char*, count: System.Int32): System.Int32
----@overload fun(self: self, chars: (userdata | { [System.Int32]: System.Char& })): System.Int32
+---@overload fun(self: self, chars: (userdata | { [System.Int32]: System.Char })): System.Int32
 ---@param chars System.Char[]
 ---@return System.Int32
 function CS.System.Text.Encoding:GetByteCount(chars) end
@@ -270,20 +270,20 @@ function CS.System.Text.Encoding:GetByteCount(chars) end
 ---@overload fun(self: self, s: System.String, index: System.Int32, count: System.Int32): System.Byte[]
 ---@overload fun(self: self, s: System.String, charIndex: System.Int32, charCount: System.Int32, bytes: System.Byte[], byteIndex: System.Int32): System.Int32
 ---@overload fun(self: self, chars: System.Char*, charCount: System.Int32, bytes: System.Byte*, byteCount: System.Int32): System.Int32
----@overload fun(self: self, chars: (userdata | { [System.Int32]: System.Char& }), bytes: (userdata | { [System.Int32]: System.Byte& })): System.Int32
+---@overload fun(self: self, chars: (userdata | { [System.Int32]: System.Char }), bytes: (userdata | { [System.Int32]: System.Byte })): System.Int32
 ---@param chars System.Char[]
 ---@return System.Byte[]
 function CS.System.Text.Encoding:GetBytes(chars) end
 
----@param chars userdata | { [System.Int32]: System.Char& }
----@param bytes userdata | { [System.Int32]: System.Byte& }
+---@param chars userdata | { [System.Int32]: System.Char }
+---@param bytes userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Boolean
 function CS.System.Text.Encoding:TryGetBytes(chars, bytes, bytesWritten) end
 
 ---@overload fun(self: self, bytes: System.Byte[], index: System.Int32, count: System.Int32): System.Int32
 ---@overload fun(self: self, bytes: System.Byte*, count: System.Int32): System.Int32
----@overload fun(self: self, bytes: (userdata | { [System.Int32]: System.Byte& })): System.Int32
+---@overload fun(self: self, bytes: (userdata | { [System.Int32]: System.Byte })): System.Int32
 ---@param bytes System.Byte[]
 ---@return System.Int32
 function CS.System.Text.Encoding:GetCharCount(bytes) end
@@ -291,18 +291,18 @@ function CS.System.Text.Encoding:GetCharCount(bytes) end
 ---@overload fun(self: self, bytes: System.Byte[], index: System.Int32, count: System.Int32): System.Char[]
 ---@overload fun(self: self, bytes: System.Byte[], byteIndex: System.Int32, byteCount: System.Int32, chars: System.Char[], charIndex: System.Int32): System.Int32
 ---@overload fun(self: self, bytes: System.Byte*, byteCount: System.Int32, chars: System.Char*, charCount: System.Int32): System.Int32
----@overload fun(self: self, bytes: (userdata | { [System.Int32]: System.Byte& }), chars: (userdata | { [System.Int32]: System.Char& })): System.Int32
+---@overload fun(self: self, bytes: (userdata | { [System.Int32]: System.Byte }), chars: (userdata | { [System.Int32]: System.Char })): System.Int32
 ---@param bytes System.Byte[]
 ---@return System.Char[]
 function CS.System.Text.Encoding:GetChars(bytes) end
 
----@param bytes userdata | { [System.Int32]: System.Byte& }
----@param chars userdata | { [System.Int32]: System.Char& }
+---@param bytes userdata | { [System.Int32]: System.Byte }
+---@param chars userdata | { [System.Int32]: System.Char }
 ---@param charsWritten System.Int32
 ---@return System.Boolean
 function CS.System.Text.Encoding:TryGetChars(bytes, chars, charsWritten) end
 
----@overload fun(self: self, bytes: (userdata | { [System.Int32]: System.Byte& })): System.String
+---@overload fun(self: self, bytes: (userdata | { [System.Int32]: System.Byte })): System.String
 ---@overload fun(self: self, bytes: System.Byte[]): System.String
 ---@overload fun(self: self, bytes: System.Byte[], index: System.Int32, count: System.Int32): System.String
 ---@param bytes System.Byte*
@@ -380,7 +380,7 @@ function CS.System.Text.Encoding.ThrowConversionOverflow() end
 function CS.System.Text.Encoding:ThrowCharsOverflow() end
 
 ---@package
----@param bytes userdata | { [System.Int32]: System.Byte& }
+---@param bytes userdata | { [System.Int32]: System.Byte }
 ---@param value System.Text.Rune
 ---@param bytesConsumed System.Int32
 ---@return System.Buffers.OperationStatus
@@ -388,7 +388,7 @@ function CS.System.Text.Encoding:DecodeFirstRune(bytes, value, bytesConsumed) en
 
 ---@package
 ---@param value System.Text.Rune
----@param bytes userdata | { [System.Int32]: System.Byte& }
+---@param bytes userdata | { [System.Int32]: System.Byte }
 ---@param bytesWritten System.Int32
 ---@return System.Buffers.OperationStatus
 function CS.System.Text.Encoding:EncodeRune(value, bytes, bytesWritten) end
@@ -413,7 +413,7 @@ function CS.System.Text.Encoding:GetByteCount(pChars, charCount, encoder) end
 ---@return System.Int32
 function CS.System.Text.Encoding:GetByteCountFast(pChars, charsLength, fallback, charsConsumed) end
 
----@overload fun(self: self, chars: (userdata | { [System.Int32]: System.Char& }), originalCharsLength: System.Int32, encoder: System.Text.EncoderNLS): System.Int32
+---@overload fun(self: self, chars: (userdata | { [System.Int32]: System.Char }), originalCharsLength: System.Int32, encoder: System.Text.EncoderNLS): System.Int32
 ---@param pCharsOriginal System.Char*
 ---@param originalCharCount System.Int32
 ---@param charsConsumedSoFar System.Int32
@@ -445,7 +445,7 @@ function CS.System.Text.Encoding:GetBytes(pChars, charCount, pBytes, byteCount, 
 ---@return System.Int32
 function CS.System.Text.Encoding:GetBytesFast(pChars, charsLength, pBytes, bytesLength, charsConsumed) end
 
----@overload fun(self: self, chars: (userdata | { [System.Int32]: System.Char& }), originalCharsLength: System.Int32, bytes: (userdata | { [System.Int32]: System.Byte& }), originalBytesLength: System.Int32, encoder: System.Text.EncoderNLS, throwForDestinationOverflow?: System.Boolean): System.Int32
+---@overload fun(self: self, chars: (userdata | { [System.Int32]: System.Char }), originalCharsLength: System.Int32, bytes: (userdata | { [System.Int32]: System.Byte }), originalBytesLength: System.Int32, encoder: System.Text.EncoderNLS, throwForDestinationOverflow?: System.Boolean): System.Int32
 ---@param pOriginalChars System.Char*
 ---@param originalCharCount System.Int32
 ---@param pOriginalBytes System.Byte*
@@ -488,7 +488,7 @@ function CS.System.Text.Encoding:GetCharCountFast(pBytes, bytesLength, fallback,
 function CS.System.Text.Encoding:GetCharCountWithFallback(pBytesOriginal, originalByteCount, bytesConsumedSoFar) end
 
 ---@private
----@overload fun(self: self, bytes: (userdata | { [System.Int32]: System.Byte& }), originalBytesLength: System.Int32, decoder: System.Text.DecoderNLS): System.Int32
+---@overload fun(self: self, bytes: (userdata | { [System.Int32]: System.Byte }), originalBytesLength: System.Int32, decoder: System.Text.DecoderNLS): System.Int32
 ---@param pOriginalBytes System.Byte*
 ---@param originalByteCount System.Int32
 ---@param bytesConsumedSoFar System.Int32
@@ -514,7 +514,7 @@ function CS.System.Text.Encoding:GetChars(pBytes, byteCount, pChars, charCount, 
 function CS.System.Text.Encoding:GetCharsFast(pBytes, bytesLength, pChars, charsLength, bytesConsumed) end
 
 ---@overload fun(self: self, pOriginalBytes: System.Byte*, originalByteCount: System.Int32, pOriginalChars: System.Char*, originalCharCount: System.Int32, bytesConsumedSoFar: System.Int32, charsWrittenSoFar: System.Int32, decoder: System.Text.DecoderNLS): System.Int32
----@overload fun(self: self, bytes: (userdata | { [System.Int32]: System.Byte& }), originalBytesLength: System.Int32, chars: (userdata | { [System.Int32]: System.Char& }), originalCharsLength: System.Int32, decoder: System.Text.DecoderNLS, throwForDestinationOverflow?: System.Boolean): System.Int32
+---@overload fun(self: self, bytes: (userdata | { [System.Int32]: System.Byte }), originalBytesLength: System.Int32, chars: (userdata | { [System.Int32]: System.Char }), originalCharsLength: System.Int32, decoder: System.Text.DecoderNLS, throwForDestinationOverflow?: System.Boolean): System.Int32
 ---@param pOriginalBytes System.Byte*
 ---@param originalByteCount System.Int32
 ---@param pOriginalChars System.Char*
@@ -536,7 +536,7 @@ function CS.System.Text.Encoding() end
 ---@field Capacity System.Int32
 ---@field MaxCapacity System.Int32
 ---@field Length System.Int32
----@field private RemainingCurrentChunk userdata | { [System.Int32]: System.Char& }
+---@field private RemainingCurrentChunk userdata | { [System.Int32]: System.Char }
 ---@field package m_ChunkChars System.Char[]
 ---@field package m_ChunkPrevious System.Text.StringBuilder
 ---@field package m_ChunkLength System.Int32
@@ -555,7 +555,7 @@ function CS.System.Text.StringBuilder:GetReplaceBufferCapacity(requiredCapacity)
 function CS.System.Text.StringBuilder:ReplaceBufferInternal(newBuffer, newLength) end
 
 ---@package
----@param source userdata | { [System.Int32]: System.Byte& }
+---@param source userdata | { [System.Int32]: System.Byte }
 function CS.System.Text.StringBuilder:ReplaceBufferUtf8Internal(source) end
 
 ---@package
@@ -630,7 +630,7 @@ function CS.System.Text.StringBuilder:GetChunks() end
 ---@overload fun(self: self, value: System.UInt64): System.Text.StringBuilder
 ---@overload fun(self: self, value: System.Object): System.Text.StringBuilder
 ---@overload fun(self: self, value: System.Char[]): System.Text.StringBuilder
----@overload fun(self: self, value: (userdata | { [System.Int32]: System.Char& })): System.Text.StringBuilder
+---@overload fun(self: self, value: (userdata | { [System.Int32]: System.Char })): System.Text.StringBuilder
 ---@overload fun(self: self, value: userdata): System.Text.StringBuilder
 ---@overload fun(self: self, handler: System.Text.StringBuilder.AppendInterpolatedStringHandler): System.Text.StringBuilder
 ---@overload fun(self: self, provider: System.IFormatProvider, handler: System.Text.StringBuilder.AppendInterpolatedStringHandler): System.Text.StringBuilder
@@ -660,7 +660,7 @@ function CS.System.Text.StringBuilder:AppendCore(value, startIndex, count) end
 ---@return System.Text.StringBuilder
 function CS.System.Text.StringBuilder:AppendLine() end
 
----@overload fun(self: self, sourceIndex: System.Int32, destination: (userdata | { [System.Int32]: System.Char& }), count: System.Int32)
+---@overload fun(self: self, sourceIndex: System.Int32, destination: (userdata | { [System.Int32]: System.Char }), count: System.Int32)
 ---@param sourceIndex System.Int32
 ---@param destination System.Char[]
 ---@param destinationIndex System.Int32
@@ -684,7 +684,7 @@ function CS.System.Text.StringBuilder:CopyTo(sourceIndex, destination, destinati
 ---@overload fun(self: self, index: System.Int32, value: System.UInt32): System.Text.StringBuilder
 ---@overload fun(self: self, index: System.Int32, value: System.UInt64): System.Text.StringBuilder
 ---@overload fun(self: self, index: System.Int32, value: System.Object): System.Text.StringBuilder
----@overload fun(self: self, index: System.Int32, value: (userdata | { [System.Int32]: System.Char& })): System.Text.StringBuilder
+---@overload fun(self: self, index: System.Int32, value: (userdata | { [System.Int32]: System.Char })): System.Text.StringBuilder
 ---@param index System.Int32
 ---@param value System.String
 ---@param count System.Int32
@@ -694,7 +694,7 @@ function CS.System.Text.StringBuilder:Insert(index, value, count) end
 ---@private
 ---@overload fun(self: self, index: System.Int32, value: System.Char, valueCount: System.Int32)
 ---@param index System.Int32
----@param value userdata | { [System.Int32]: System.Char& }
+---@param value userdata | { [System.Int32]: System.Char }
 ---@param count System.Int32
 ---@return System.Text.StringBuilder
 function CS.System.Text.StringBuilder:Insert(index, value, count) end
@@ -720,7 +720,7 @@ function CS.System.Text.StringBuilder:AppendJoin(separator, ...) end
 ---@overload fun(self: self, provider: System.IFormatProvider, format: System.String, arg0: System.Object, arg1: System.Object, arg2: System.Object): System.Text.StringBuilder
 ---@overload fun(self: self, provider: System.IFormatProvider, format: System.String, ...: System.Object): System.Text.StringBuilder
 ---@overload fun(self: self, provider: System.IFormatProvider, format: System.Text.CompositeFormat, ...: System.Object): System.Text.StringBuilder
----@overload fun(self: self, provider: System.IFormatProvider, format: System.Text.CompositeFormat, args: (userdata | { [System.Int32]: System.Object& })): System.Text.StringBuilder
+---@overload fun(self: self, provider: System.IFormatProvider, format: System.Text.CompositeFormat, args: (userdata | { [System.Int32]: System.Object })): System.Text.StringBuilder
 ---@param format System.String
 ---@param arg0 System.Object
 ---@return System.Text.StringBuilder
@@ -729,7 +729,7 @@ function CS.System.Text.StringBuilder:AppendFormat(format, arg0) end
 ---@package
 ---@param provider System.IFormatProvider
 ---@param format System.String
----@param args userdata | { [System.Int32]: System.Object& }
+---@param args userdata | { [System.Int32]: System.Object }
 ---@return System.Text.StringBuilder
 function CS.System.Text.StringBuilder:AppendFormatHelper(provider, format, args) end
 
@@ -741,7 +741,7 @@ function CS.System.Text.StringBuilder:AppendFormatHelper(provider, format, args)
 ---@return System.Text.StringBuilder
 function CS.System.Text.StringBuilder:Replace(oldValue, newValue) end
 
----@overload fun(self: self, span: (userdata | { [System.Int32]: System.Char& })): System.Boolean
+---@overload fun(self: self, span: (userdata | { [System.Int32]: System.Char })): System.Boolean
 ---@param sb System.Text.StringBuilder
 ---@return System.Boolean
 function CS.System.Text.StringBuilder:Equals(sb) end
@@ -752,7 +752,7 @@ function CS.System.Text.StringBuilder:Equals(sb) end
 function CS.System.Text.StringBuilder:Append(value, valueCount) end
 
 ---@private
----@param replacements userdata | { [System.Int32]: System.Int32& }
+---@param replacements userdata | { [System.Int32]: System.Int32 }
 ---@param sourceChunk System.Text.StringBuilder
 ---@param removeCount System.Int32
 ---@param value System.String
@@ -779,7 +779,7 @@ function CS.System.Text.StringBuilder:ReplaceInPlaceAtChunk(chunk, indexInChunk,
 function CS.System.Text.StringBuilder:FindChunkForIndex(index) end
 
 ---@private
----@return userdata | { [System.Int32]: System.Char& }
+---@return userdata | { [System.Int32]: System.Char }
 function CS.System.Text.StringBuilder:get_RemainingCurrentChunk() end
 
 ---@private

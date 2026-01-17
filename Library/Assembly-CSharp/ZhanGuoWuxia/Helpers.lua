@@ -918,16 +918,16 @@ function CS.ZhanGuoWuxia.Helpers.BypassCertificate:ValidateCertificate(certifica
 function CS.ZhanGuoWuxia.Helpers.BypassCertificate() end
 
 ---@class ZhanGuoWuxia.Helpers.EnumTextHelper: System.Object
----@field private EnumConverters userdata | { [System.Type]: System.MulticastDelegate } | { [nil]: userdata }
+---@field private EnumConverters userdata | { [System.Type]: fun() } | { [nil]: userdata }
 ---@field private m_EnumConverteLazyLoader userdata
 CS.ZhanGuoWuxia.Helpers.EnumTextHelper = {}
 
 ---@private
----@return userdata | { [System.Type]: System.MulticastDelegate } | { [nil]: userdata }
+---@return userdata | { [System.Type]: fun() } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Helpers.EnumTextHelper.get_EnumConverters() end
 
 ---@private
----@return userdata | { [System.Type]: System.MulticastDelegate } | { [nil]: userdata }
+---@return userdata | { [System.Type]: fun() } | { [nil]: userdata }
 function CS.ZhanGuoWuxia.Helpers.EnumTextHelper.InitEnumTextConverters() end
 
 ---@return userdata | { [nil]: System.String }
