@@ -156,6 +156,12 @@
         "ZhanGuoWuxia.Backend.*",
       ]
     },
+    {
+      "path": "F:/SteamLibrary/steamapps/common/息风谷战略/WindstopStrategy_Data/Managed/LubanLib.dll",
+      "types": [
+        "Bright.*",
+      ]
+    },
   ],
   "outputDir": "H:/Source/Repos/ZhanGuoWuxia/annotations/Library"
 }

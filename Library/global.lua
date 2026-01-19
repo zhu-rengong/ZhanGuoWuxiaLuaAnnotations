@@ -1,5 +1,10 @@
 ---@meta
 CS = {
+    Bright = {
+        Common = {},
+        Config = {},
+        Serialization = {}
+    },
     DG = {
         Tweening = {
             Core = {
