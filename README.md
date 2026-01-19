@@ -30,7 +30,7 @@
 			"<忽略的本体Lua注解路径>" // .../息风谷战略 Demo/WindstopStrategy_Data/Lua/注解/
 		],
 		"Lua.diagnostics.disable": [
-			"invisible",
+			// "invisible", // 遵循C#规范定义的访问权限，私有的、受保护的字段均不可见
 			"undefined-doc-name",
 			"undefined-global",
 			"undefined-field",
