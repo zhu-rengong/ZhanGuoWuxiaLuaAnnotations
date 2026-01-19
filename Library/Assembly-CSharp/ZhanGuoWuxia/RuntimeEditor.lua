@@ -230,3 +230,62 @@ function CS.ZhanGuoWuxia.RuntimeEditor.GameModuleBase:UnInitialize() end
 ---@return ZhanGuoWuxia.RuntimeEditor.GameModuleBase
 function CS.ZhanGuoWuxia.RuntimeEditor.GameModuleBase() end
 
+---@class ZhanGuoWuxia.RuntimeEditor.IGameModule
+CS.ZhanGuoWuxia.RuntimeEditor.IGameModule = {}
+
+---@return Cysharp.Threading.Tasks.UniTask
+function CS.ZhanGuoWuxia.RuntimeEditor.IGameModule:Initialize() end
+
+function CS.ZhanGuoWuxia.RuntimeEditor.IGameModule:UnInitialize() end
+
+
+---@class ZhanGuoWuxia.RuntimeEditor.LocalGameModule: ZhanGuoWuxia.RuntimeEditor.GameModuleBase, ZhanGuoWuxia.RuntimeEditor.IGameModule
+---@field ModRootPath System.String
+---@field IsPlatformSupported System.Boolean
+---@field private m_FolderPath System.String
+CS.ZhanGuoWuxia.RuntimeEditor.LocalGameModule = {}
+
+---@return System.String
+function CS.ZhanGuoWuxia.RuntimeEditor.LocalGameModule:get_ModRootPath() end
+
+---@private
+---@return System.Boolean
+function CS.ZhanGuoWuxia.RuntimeEditor.LocalGameModule:HasDll() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.RuntimeEditor.LocalGameModule:get_IsPlatformSupported() end
+
+---@param folderPath System.String
+---@return ZhanGuoWuxia.RuntimeEditor.LocalGameModule
+function CS.ZhanGuoWuxia.RuntimeEditor.LocalGameModule(folderPath) end
+
+---@class ZhanGuoWuxia.RuntimeEditor.SteamGameModule: ZhanGuoWuxia.RuntimeEditor.GameModuleBase, ZhanGuoWuxia.RuntimeEditor.IGameModule
+---@field IsValid System.Boolean
+---@field ModRootPath System.String
+---@field IsPlatformSupported System.Boolean
+---@field private m_FileId Steamworks.Data.PublishedFileId
+---@field private m_FolderPath System.String
+---@field private m_ItemRef Steamworks.Ugc.Item
+CS.ZhanGuoWuxia.RuntimeEditor.SteamGameModule = {}
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.RuntimeEditor.SteamGameModule:get_IsValid() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.RuntimeEditor.SteamGameModule:get_ModRootPath() end
+
+---@private
+---@return System.Boolean
+function CS.ZhanGuoWuxia.RuntimeEditor.SteamGameModule:HasDll() end
+
+---@return System.Boolean
+function CS.ZhanGuoWuxia.RuntimeEditor.SteamGameModule:get_IsPlatformSupported() end
+
+---@async
+---@return userdata
+function CS.ZhanGuoWuxia.RuntimeEditor.SteamGameModule:Delete() end
+
+---@param id Steamworks.Data.PublishedFileId
+---@return ZhanGuoWuxia.RuntimeEditor.SteamGameModule
+function CS.ZhanGuoWuxia.RuntimeEditor.SteamGameModule(id) end
+
