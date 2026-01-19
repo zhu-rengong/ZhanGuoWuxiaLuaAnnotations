@@ -56,6 +56,7 @@ CS = {
         },
         Helpers = {},
         Lua = {},
+        RuntimeEditor = {},
         UI = {
             Stage = {}
         }

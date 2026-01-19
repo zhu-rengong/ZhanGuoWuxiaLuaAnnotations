@@ -1485,6 +1485,7 @@ CS.ZhanGuoWuxia.Backend.Logics.ShopDealResult = {
 ---@field SaveData ZhanGuoWuxia.Backend.RuntimeData.GameSave
 ---@field CostumerItemsToSell userdata | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ICostumerTradeItem }
 ---@field ShopItemsToBuy userdata | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.IShopTradeItem }
+---@field BuybackItemsToBuy userdata | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.IBuybackTradeItem }
 ---@field IsValid System.Boolean
 ---@field IsEmpty System.Boolean
 CS.ZhanGuoWuxia.Backend.Logics.ShopOrderContext = {}
@@ -1513,8 +1514,22 @@ function CS.ZhanGuoWuxia.Backend.Logics.ShopLogic.MakeDeal(orderContext) end
 
 ---@param costumerItemsToSell userdata | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ICostumerTradeItem }
 ---@param shopItemsToBuy userdata | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.IShopTradeItem }
+---@param buybackItemsToBuy userdata | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.IBuybackTradeItem }
 ---@return System.Int32
-function CS.ZhanGuoWuxia.Backend.Logics.ShopLogic.GetTradeFinalPrice(costumerItemsToSell, shopItemsToBuy) end
+function CS.ZhanGuoWuxia.Backend.Logics.ShopLogic.GetTradeFinalPrice(costumerItemsToSell, shopItemsToBuy, buybackItemsToBuy) end
+
+---@private
+---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
+---@param original ZhanGuoWuxia.Backend.RuntimeData.ItemInstance
+---@param count System.Int32
+---@return ZhanGuoWuxia.Backend.RuntimeData.ItemInstance
+function CS.ZhanGuoWuxia.Backend.Logics.ShopLogic.CloneItemForBuyback(save, original, count) end
+
+---@private
+---@param item1 ZhanGuoWuxia.Backend.RuntimeData.ItemInstance
+---@param item2 ZhanGuoWuxia.Backend.RuntimeData.ItemInstance
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.Logics.ShopLogic.ItemAffixMatches(item1, item2) end
 
 
 ---@class ZhanGuoWuxia.Backend.Logics.SkillLogic: System.Object

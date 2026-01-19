@@ -54,11 +54,13 @@
 ---@field DemoMaxRound System.Int32
 ---@field MaxStrategyCountPerGroup System.Int32
 ---@field AutoSaveIndex System.Int32
+---@field RoundFinishAutoSaveIndex System.Int32
 ---@field MaxRoleEquipments System.Int32
 ---@field MaxRoleEquippedSkills System.Int32
 ---@field MaxInventoryCount System.Int32
 ---@field MaxTeamPosCount System.Int32
 ---@field AreaBattleMaxTurn System.Int32
+---@field AreaBattleAttackMaxTurn System.Int32
 ---@field TeamMaxRow System.Int32
 ---@field TeamMaxCol System.Int32
 ---@field ParryDamageBaseRate System.Single
@@ -202,6 +204,10 @@ function CS.ZhanGuoWuxia.Backend.GameConst.get_FateEssenceCostIncrement() end
 
 ---@return System.Int32
 function CS.ZhanGuoWuxia.Backend.GameConst.get_DefaultDropCardCount() end
+
+---@param itemLevel System.Int32
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.GameConst.GetSkillTeachCost(itemLevel) end
 
 ---@overload fun(): ZhanGuoWuxia.Backend.GameConst
 ---@return ZhanGuoWuxia.Backend.GameConst

@@ -1815,6 +1815,35 @@ CS.ZhanGuoWuxia.Backend.RuntimeData.IRoleCreateModifier = {}
 function CS.ZhanGuoWuxia.Backend.RuntimeData.IRoleCreateModifier:Apply(saveData) end
 
 
+---@class ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance: System.Object
+---@field OriginalItem ZhanGuoWuxia.Backend.RuntimeData.ItemInstance
+---@field OriginalSellPrice System.Int32
+---@field CreatedRound System.Int32
+---@field BuybackPricePerItem System.Int32
+---@field ItemType ZhanGuoWuxia.Backend.Beans.ItemType
+CS.ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance = {}
+
+---@return System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance:get_BuybackPricePerItem() end
+
+---@return ZhanGuoWuxia.Backend.Beans.ItemType
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance:get_ItemType() end
+
+---@param currentRound System.Int32
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance:IsExpired(currentRound) end
+
+---@param other ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance:CanMergeWith(other) end
+
+---@param other ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance:MergeWith(other) end
+
+---@overload fun(originalItem: ZhanGuoWuxia.Backend.RuntimeData.ItemInstance, originalSellPrice: System.Int32, createdRound: System.Int32): ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance
+---@return ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance
+function CS.ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance() end
+
 ---@class ZhanGuoWuxia.Backend.RuntimeData.ITradeItem
 ---@field Price System.Int32
 ---@field TradeCount System.Int32
@@ -1846,6 +1875,14 @@ CS.ZhanGuoWuxia.Backend.RuntimeData.IShopTradeItem = {}
 function CS.ZhanGuoWuxia.Backend.RuntimeData.IShopTradeItem:get_ShopProductId() end
 
 
+---@class ZhanGuoWuxia.Backend.RuntimeData.IBuybackTradeItem: ZhanGuoWuxia.Backend.RuntimeData.ITradeItem
+---@field BuybackItemInstance ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance
+CS.ZhanGuoWuxia.Backend.RuntimeData.IBuybackTradeItem = {}
+
+---@return ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance
+function CS.ZhanGuoWuxia.Backend.RuntimeData.IBuybackTradeItem:get_BuybackItemInstance() end
+
+
 ---@class ZhanGuoWuxia.Backend.RuntimeData.ICostumerTradeItem: ZhanGuoWuxia.Backend.RuntimeData.ITradeItem
 ---@field ItemInstanceToSell ZhanGuoWuxia.Backend.RuntimeData.ItemInstance
 CS.ZhanGuoWuxia.Backend.RuntimeData.ICostumerTradeItem = {}
@@ -1856,6 +1893,7 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ICostumerTradeItem:get_ItemInstance
 
 ---@class ZhanGuoWuxia.Backend.RuntimeData.ShopInstance: userdata
 ---@field ShopName System.String
+---@field AvailableBuybackItems userdata | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance }
 ---@field AvailableShopItems userdata | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance }
 ---@field CurrencyId System.String
 ---@field Bean ZhanGuoWuxia.Backend.Beans.ShopBean
@@ -1864,6 +1902,8 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ICostumerTradeItem:get_ItemInstance
 ---@field IsValid System.Boolean
 ---@field private m_ShopItems userdata | { [System.Int32]: ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance } | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance }
 ---@field private m_IsShopReplaced System.Boolean
+---@field private m_BuybackItems userdata | { [System.Int32]: ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance } | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance }
+---@field private MAX_BUYBACK_CAPACITY System.Int32
 ---@field private _bean ZhanGuoWuxia.Backend.Beans.ShopBean
 ---@field InstanceId System.Int32
 ---@field BeanId System.String
@@ -1871,6 +1911,9 @@ CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance = {}
 
 ---@return System.String
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:get_ShopName() end
+
+---@return userdata | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance }
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:get_AvailableBuybackItems() end
 
 ---@return userdata | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:get_AvailableShopItems() end
@@ -1895,6 +1938,17 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:OnCreated(creator, ...
 ---@overload fun(self: self, save: ZhanGuoWuxia.Backend.RuntimeData.GameSave)
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:OnLoaded(save) end
+
+---@private
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:RegisterEventListeners() end
+
+---@private
+---@param evt ZhanGuoWuxia.Backend.Event.GameRoundChangedEvent
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:OnGameRoundChanged(evt) end
+
+---@private
+---@param currentRound System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:CleanupExpiredBuybackItems(currentRound) end
 
 ---@private
 ---@param save ZhanGuoWuxia.Backend.RuntimeData.GameSave
@@ -1932,6 +1986,15 @@ function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:GetLockedShopItems(are
 ---@param areaDevelop System.Int32
 ---@return userdata | { [nil]: ZhanGuoWuxia.Backend.RuntimeData.ShopItemInstance }
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:GetAvailableUnlockedItems(areaDevelop) end
+
+---@param soldItem ZhanGuoWuxia.Backend.RuntimeData.ItemInstance
+---@param soldPrice System.Int32
+---@param currentRound System.Int32
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:AddBuybackItem(soldItem, soldPrice, currentRound) end
+
+---@param buybackItem ZhanGuoWuxia.Backend.RuntimeData.BuybackItemInstance
+---@return System.Boolean
+function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:RemoveBuybackItem(buybackItem) end
 
 ---@return ZhanGuoWuxia.Backend.Beans.ShopBean
 function CS.ZhanGuoWuxia.Backend.RuntimeData.ShopInstance:get_Bean() end

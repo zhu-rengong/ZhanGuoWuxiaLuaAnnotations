@@ -139,6 +139,7 @@
         "ZhanGuoWuxia.Lua.*",
         "ZhanGuoWuxia.Helpers.*",
         "ZhanGuoWuxia.UI.Stage.*",
+        "ZhanGuoWuxia.RuntimeEditor.GameModuleBase",
       ]
     },
     {
