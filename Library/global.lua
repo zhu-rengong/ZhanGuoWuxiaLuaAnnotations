@@ -61,7 +61,13 @@ CS = {
         },
         Helpers = {},
         Lua = {},
-        RuntimeEditor = {},
+        RuntimeEditor = {
+            Controller = {},
+            Mod = {
+                ModShop = {}
+            },
+            ModShop = {}
+        },
         UI = {
             Stage = {}
         }
