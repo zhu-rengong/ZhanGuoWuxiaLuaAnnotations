@@ -420,8 +420,9 @@ function CS.ZhanGuoWuxia.Backend.Mod.IModShopItem:Delete() end
 
 ---@enum ZhanGuoWuxia.Backend.Mod.ModShopSortType
 CS.ZhanGuoWuxia.Backend.Mod.ModShopSortType = {
-    CreateTime = 0,
-    Popularity = 1
+    Popularity = 0,
+    DownloadNum = 1,
+    UpdateTime = 2
 }
 
 ---@class ZhanGuoWuxia.Backend.Mod.QueryModParam: System.Object

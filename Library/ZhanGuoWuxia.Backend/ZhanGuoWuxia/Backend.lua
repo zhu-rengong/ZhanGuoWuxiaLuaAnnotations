@@ -3,6 +3,8 @@
 ---Namespace: ZhanGuoWuxia.Backend
 
 ---@class ZhanGuoWuxia.Backend.GameConst: System.Object
+---@field DefaultToolTipWidth System.Single
+---@field WideToolTipWidth System.Single
 ---@field private LuaVM ZhanGuoWuxia.Backend.Lua.LuaManager
 ---@field AppIdPath System.String
 ---@field TapTapSdkOptionPath System.String
@@ -47,8 +49,6 @@
 ---@field DefaultContinueActionMaxCount System.Int32
 ---@field DefaultFlawDamageModifier System.Single
 ---@field bundleExtension System.String
----@field DefaultToolTipWidth System.Single
----@field WideToolTipWidth System.Single
 ---@field EmptySceneName System.String
 ---@field DefaultAppId System.UInt32
 ---@field DemoMaxRound System.Int32
@@ -80,6 +80,12 @@
 ---@field DefaultFlawRound System.Int32
 ---@field DefaultScenarioId System.String
 CS.ZhanGuoWuxia.Backend.GameConst = {}
+
+---@return System.Single
+function CS.ZhanGuoWuxia.Backend.GameConst.get_DefaultToolTipWidth() end
+
+---@return System.Single
+function CS.ZhanGuoWuxia.Backend.GameConst.get_WideToolTipWidth() end
 
 ---@private
 ---@return ZhanGuoWuxia.Backend.Lua.LuaManager

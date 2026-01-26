@@ -212,6 +212,11 @@ function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore.get_Instance() end
 function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore:get_Tables() end
 
 ---@param type System.Type
+---@param key System.String
+---@return ZhanGuoWuxia.Backend.Beans.BaseBean
+function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore:Get(type, key) end
+
+---@param type System.Type
 ---@return userdata | { [nil]: ZhanGuoWuxia.Backend.Beans.BaseBean }
 function CS.ZhanGuoWuxia.Backend.Beans.BeanManagerCore:GetAll(type) end
 

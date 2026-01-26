@@ -9012,6 +9012,11 @@ function CS.ZhanGuoWuxia.RuntimeEditor.ModManager() end
 ---@field IsDone System.Boolean
 ---@field private m_DisableCancellation System.Threading.CancellationTokenSource
 ---@field private m_ModItem ZhanGuoWuxia.RuntimeEditor.ModShop.SteamMod
+---@field private m_LastReportedProgress System.Single
+---@field private m_LastRealProgress System.Single
+---@field private MIN_PROGRESS_INCREMENT System.Single
+---@field private MAX_FAKE_PROGRESS System.Single
+---@field private POLL_INTERVAL_MS System.Int32
 CS.ZhanGuoWuxia.RuntimeEditor.SteamModDownloadTask = {}
 
 ---@return ZhanGuoWuxia.Backend.Mod.IModShopItem
@@ -9031,8 +9036,20 @@ function CS.ZhanGuoWuxia.RuntimeEditor.SteamModDownloadTask:Cancel() end
 function CS.ZhanGuoWuxia.RuntimeEditor.SteamModDownloadTask:DownloadAsync(shopItem) end
 
 ---@private
+---@async
+---@param item Steamworks.Ugc.Item
+---@param ct System.Threading.CancellationToken
+---@return Cysharp.Threading.Tasks.UniTask
+function CS.ZhanGuoWuxia.RuntimeEditor.SteamModDownloadTask:MonitorProgressAsync(item, ct) end
+
+---@private
+---@param realProgress System.Single
+---@return System.Single
+function CS.ZhanGuoWuxia.RuntimeEditor.SteamModDownloadTask:CalculateSmoothProgress(realProgress) end
+
+---@private
 ---@param progress System.Single
-function CS.ZhanGuoWuxia.RuntimeEditor.SteamModDownloadTask:OnDownloading(progress) end
+function CS.ZhanGuoWuxia.RuntimeEditor.SteamModDownloadTask:UpdateProgress(progress) end
 
 ---@private
 function CS.ZhanGuoWuxia.RuntimeEditor.SteamModDownloadTask:OnSuccess() end

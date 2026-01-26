@@ -8,6 +8,7 @@
 ---@field Title System.String
 ---@field Cover System.String
 ---@field Desc System.String
+---@field PreviewURL System.String
 ---@field private m_Tags System.String[]
 ---@field Tag System.String
 ---@field Size System.String
@@ -34,6 +35,9 @@ function CS.ZhanGuoWuxia.RuntimeEditor.ModShop.SteamMod:get_Cover() end
 
 ---@return System.String
 function CS.ZhanGuoWuxia.RuntimeEditor.ModShop.SteamMod:get_Desc() end
+
+---@return System.String
+function CS.ZhanGuoWuxia.RuntimeEditor.ModShop.SteamMod:get_PreviewURL() end
 
 ---@private
 ---@return System.String[]

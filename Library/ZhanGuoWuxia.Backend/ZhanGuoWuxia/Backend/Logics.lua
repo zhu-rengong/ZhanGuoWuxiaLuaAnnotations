@@ -1467,6 +1467,10 @@ function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.GetSprintStateName(role) end
 
 ---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
 ---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
+function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.UnEquipAllItems(role, menpai) end
+
+---@param role ZhanGuoWuxia.Backend.RuntimeData.RoleInstance
+---@param menpai ZhanGuoWuxia.Backend.RuntimeData.MenpaiInstance
 ---@return System.Boolean
 function CS.ZhanGuoWuxia.Backend.Logics.RoleLogic.AutoEquipBestItems(role, menpai) end
 

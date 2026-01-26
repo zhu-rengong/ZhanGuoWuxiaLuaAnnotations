@@ -2940,6 +2940,10 @@ function CS.ZhanGuoWuxia.Backend.Battle.BattleField:RecordRolePerfomAction(rst) 
 function CS.ZhanGuoWuxia.Backend.Battle.BattleField:OnBattleEnd() end
 
 ---@private
+---@param roleEvaluations userdata | { [System.Int32]: ZhanGuoWuxia.Backend.Battle.RoleEvaluation } | { [nil]: ZhanGuoWuxia.Backend.Battle.RoleEvaluation }
+function CS.ZhanGuoWuxia.Backend.Battle.BattleField:ReturnEquipmentsFromDeadTemplateRoles(roleEvaluations) end
+
+---@private
 ---@return ZhanGuoWuxia.Backend.Battle.BattleRet
 function CS.ZhanGuoWuxia.Backend.Battle.BattleField:GetCurrentTeamRet() end
 
