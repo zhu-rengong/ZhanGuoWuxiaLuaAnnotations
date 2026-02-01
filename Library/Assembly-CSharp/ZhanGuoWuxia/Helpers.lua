@@ -954,6 +954,7 @@ function CS.ZhanGuoWuxia.Helpers.EnumTextHelper.GetGameDifficultyNames(hasColor)
 ---@overload fun(galleryType: ZhanGuoWuxia.UI.CG.GalleryType): System.String
 ---@overload fun(compatibility: ZhanGuoWuxia.Backend.GameCompatibility): System.String
 ---@overload fun(prefixType: ZhanGuoWuxia.Backend.Beans.PrefixType): System.String
+---@overload fun(showType: ZhanGuoWuxia.UI.Battle.BuffShowType): System.String
 ---@param gameScreenMode ZhanGuoWuxia.Backend.GameScreenMode
 ---@return System.String
 function CS.ZhanGuoWuxia.Helpers.EnumTextHelper.ToNameText(gameScreenMode) end
